@@ -17,20 +17,20 @@
         },
         "remoteDriverSettings":
         {
-            "remoteUser" : "mauriciocadima2",
-            "remoteAutomateKey" :"e63kTKCvYEaAZ2t2qMex"
+            "remoteUser" : "bb",
+            "remoteAutomateKey" :"aaa"
         }
     },
     "GeneralSettings":
     {
-        "sutURL": "http://mp.dmp-test.northplains.io"
+        "sutURL": "https://enterprise.jalasoft.local"
     },
     "Credentials":
     {
         "valid":{
-            "email":"dmp@northplains.com",
-            "password":"qwerty",
-            "userName":"dmp user"
+            "email":"mauricio cadima",
+            "password":"*****",
+            "userName":"mauricio cadima"
         }
     }
 }

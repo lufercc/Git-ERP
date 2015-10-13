@@ -1,0 +1,36 @@
+{
+    "webDriver":
+    {
+        "driverType":"browser",
+        "browser":"fireFox",
+        "implicitWaitTime":"20",
+        "explicitWaitTime":"20",
+        "waitSleepTime":"20",
+        "desiredCapabilities":
+        {
+            "browser":"Firefox",
+            "browser_version":"23",
+            "os":"Windows",
+            "os_version":"7",
+            "resolution":"1024x768",
+            "browserstack.debug": "false"
+        },
+        "remoteDriverSettings":
+        {
+            "remoteUser" : "mauriciocadima2",
+            "remoteAutomateKey" :"e63kTKCvYEaAZ2t2qMex"
+        }
+    },
+    "GeneralSettings":
+    {
+        "sutURL": "http://mp.dmp-test.northplains.io"
+    },
+    "Credentials":
+    {
+        "valid":{
+            "email":"dmp@northplains.com",
+            "password":"qwerty",
+            "userName":"dmp user"
+        }
+    }
+}

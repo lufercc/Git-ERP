@@ -11,7 +11,7 @@ public abstract class BasePage extends PortalUIElement {
     protected PageTransporter pageTransporter;
 
     public BasePage() {
-
+        this.pageTransporter = PageTransporter.getInstance();
     }
 
     public String getPageTitle() {

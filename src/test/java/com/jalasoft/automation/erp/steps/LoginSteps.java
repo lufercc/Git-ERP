@@ -2,6 +2,7 @@ package com.jalasoft.automation.erp.steps;
 
 import com.jalasoft.automation.erp.portal.ui.pages.HomePage;
 import com.jalasoft.automation.erp.portal.ui.pages.login.LoginPage;
+import com.jalasoft.automation.erp.portal.ui.pages.login.OpenERPLoginPage;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
@@ -11,8 +12,8 @@ import org.testng.Assert;
  */
 public class LoginSteps {
 
-    LoginPage loginPage;
-    public LoginSteps(LoginPage loginPage){
+    OpenERPLoginPage loginPage;
+    public LoginSteps(OpenERPLoginPage loginPage){
         this.loginPage = loginPage;
     }
 

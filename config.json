@@ -23,14 +23,19 @@
     },
     "GeneralSettings":
     {
-        "sutURL": "https://enterprise.jalasoft.local"
+        "sutURL": "http://10.31.97.80:62069/"
     },
     "Credentials":
     {
+        "purchase manager":{
+            "password":"p@ssword",
+            "userName":"selog_purMan"
+        },
+
         "valid":{
-            "email":"mauricio cadima",
-            "password":"*****",
-            "userName":"mauricio cadima"
+            "email":"selog_purMan",
+            "password":"p@ssword",
+            "userName":"selog_purMan"
         }
     }
 }

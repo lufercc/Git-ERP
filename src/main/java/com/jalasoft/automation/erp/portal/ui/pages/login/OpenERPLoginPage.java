@@ -59,7 +59,9 @@ public class OpenERPLoginPage extends BasePage {
     public void login(String credentialType) {
         UserCredentials credentials = this.userCredentials.getCredentialsByType(credentialType);
         if (credentials != null) {
+            this.userInput.clear();
             this.userInput.sendKeys(credentials.userName);
+            this.passwordInput.click();
             this.passwordInput.sendKeys(credentials.password);
             this.loginButton.click();
         }

@@ -1,8 +1,11 @@
 package com.jalasoft.automation.erp.steps;
 
 import com.jalasoft.automation.erp.portal.ui.pages.HomePage;
+import com.jalasoft.automation.erp.portal.ui.pages.general.MainMenu;
 import com.jalasoft.automation.erp.portal.ui.pages.login.LoginPage;
 import com.jalasoft.automation.erp.portal.ui.pages.login.OpenERPLoginPage;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
@@ -31,5 +34,11 @@ public class LoginSteps {
     public void i_am_on_the_the_home_page() throws Throwable {
         HomePage homePage = new HomePage();
         Assert.assertTrue(homePage.isOnPage(), "Home page not loaded.");
+    }
+
+    @And("^I logout$")
+    public void I_logout() throws Throwable {
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.logout();
     }
 }

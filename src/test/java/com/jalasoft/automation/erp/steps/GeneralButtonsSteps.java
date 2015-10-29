@@ -10,7 +10,6 @@ import cucumber.api.java.en.And;
 public class GeneralButtonsSteps {
     @And("^I press \"([^\"]*)\" general button$")
     public void I_press_general_button(String buttonString) throws Throwable {
-        // Express the Regexp above with the code you wish you had
         GeneralButtonsBar gralButtons = new GeneralButtonsBar();
         gralButtons.clickButton(buttonString);
     }

@@ -3,9 +3,9 @@
     {
         "driverType":"browser",
         "browser":"fireFox",
-        "implicitWaitTime":"20",
-        "explicitWaitTime":"20",
-        "waitSleepTime":"20",
+        "implicitWaitTime":"15",
+        "explicitWaitTime":"15",
+        "waitSleepTime":"15",
         "desiredCapabilities":
         {
             "browser":"Firefox",
@@ -30,6 +30,16 @@
         "purchase manager":{
             "password":"p@ssword",
             "userName":"selog_purMan"
+        },
+
+        "warehouse manager":{
+            "password":"p@ssword",
+            "userName":"selog_warMan"
+        },
+
+        "accountant":{
+            "password":"p@ssword",
+            "userName":"selog_acc"
         },
 
         "valid":{

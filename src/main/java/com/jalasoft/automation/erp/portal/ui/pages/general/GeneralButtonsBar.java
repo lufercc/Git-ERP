@@ -17,6 +17,9 @@ public class GeneralButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_view_manager_buttons']//div[not(contains(@style,'display: none;'))]//button[contains(.,'Guardar')]")
     protected WebElement saveButton;
 
+    @FindBy(xpath = "//div[@class='oe_view_manager_buttons']//div[not(contains(@style,'display: none;'))]//button[contains(.,'Editar')]")
+    protected WebElement editButton;
+
     public void clickButton(String buttonString)
     {
         switch(buttonString.toLowerCase())
@@ -26,6 +29,9 @@ public class GeneralButtonsBar extends PortalUIElement {
                 break;
             case "save":
                 saveButton.click();
+                break;
+            case "edit":
+                editButton.click();
                 break;
         }
     }

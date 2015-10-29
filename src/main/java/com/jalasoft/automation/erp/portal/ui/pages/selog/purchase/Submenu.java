@@ -11,17 +11,20 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']")
     protected WebElement submenuContainer;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']//div[5]//span[contains(text(),'Solicitudes de compra')]")
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Solicitudes de compra')]")
     protected WebElement purchaseRequisitions;
 
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']//div[5]//span[contains(text(),'Solicitud de cotizaciones')]")
     protected WebElement requestForQuotations;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']//div[5]//span[contains(text(),'Pedidos de compra')]")
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Pedidos de compra')]")
     protected WebElement purchaseOrders;
 
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']//div[5]//span[contains(text(),'Proveedores')]")
     protected WebElement suppliers;
+
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Albaranes de entrada')]")
+    protected WebElement incomingShipments;
 
     /**
      * This method is to go to some option in main menu
@@ -42,6 +45,9 @@ public class Submenu extends PortalUIElement{
                 break;
             case "suppliers":
                 suppliers.click();
+                break;
+            case "incoming shipments":
+                incomingShipments.click();
                 break;
         }
     }

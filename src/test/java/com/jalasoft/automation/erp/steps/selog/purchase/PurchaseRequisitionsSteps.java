@@ -19,7 +19,7 @@ public class PurchaseRequisitionsSteps {
     public void I_create_a_purchase_requisition_with_these_data(List<PurchaseRequisition> purchaseRequisitionData) throws Throwable {
         purchaseRequisitionList = purchaseRequisitionData;
         PurchaseRequisitionForm purReqForm = new PurchaseRequisitionForm();
-        // Express the Regexp above with the code you wish you had
+
         for (PurchaseRequisition pr : purchaseRequisitionData)
         {
             purReqForm.modifyData(pr);

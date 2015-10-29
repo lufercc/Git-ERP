@@ -14,9 +14,10 @@ import java.rmi.RemoteException;
  */
 
 @CucumberOptions(
+        tags = {"@EndToEnd"},
         plugin = {"pretty", "html:target/cucumber", "json:target/cucumber.json"},
         glue = {"com.jalasoft.automation.erp.steps"},
-        features = {"src/test/resources/com/jalasoft/automation/erp/features/login/Purchase.feature"},
+        features = {"src/test/resources/com/jalasoft/automation/erp/features/"},
         monochrome = true)
 public class RunCukesTest extends AbstractTestNGCucumberTests {
 

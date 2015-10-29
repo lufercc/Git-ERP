@@ -13,6 +13,3 @@ Feature: Purchase
     Then I go to "purchase requisition" purchase submenu
       And a new record is displayed in purchase requisition list view
 
-
-
-

@@ -36,16 +36,15 @@ public class MainMenu extends PortalUIElement {
      * This method is to go to some option in main menu
      * @param menu Menu name as string
      **/
-    public void goToMenu(String menu)
-    {
-        switch (menu.toLowerCase())
-        {
-            case "purchases":
-                purchasesMenu.click();
-                break;
-            case "accounting":
-                accountingMenu.click();
-                break;
+    public void goToMenu(String menu) {
+        switch (menu.toLowerCase()) {
+        case "purchases":
+            purchasesMenu.click();
+            break;
+
+        case "accounting":
+            accountingMenu.click();
+            break;
         }
     }
     public MainMenu() {
@@ -62,8 +61,7 @@ public class MainMenu extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.purchasesMenu);
     }
 
-    public void logout()
-    {
+    public void logout() {
         profileContainer.click();
         logout.click();
     }

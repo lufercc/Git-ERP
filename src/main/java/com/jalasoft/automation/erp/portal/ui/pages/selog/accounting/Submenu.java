@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by Henry Benito on 10/16/2015.
  */
 public class Submenu extends PortalUIElement{
+
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']")
     protected WebElement submenuContainer;
 
@@ -16,24 +17,6 @@ public class Submenu extends PortalUIElement{
 
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Activos')]")
     protected WebElement assets;
-
-    /**
-     * This method is to go to some option in main menu
-     * @param submenu Submenu name as string
-     **/
-    public void goToSubmenu(String submenu)
-    {
-        switch (submenu.toLowerCase())
-        {
-            case "supplier invoices":
-                supplierInvoices.click();
-                break;
-
-            case "assets":
-                assets.click();
-                break;
-        }
-    }
 
     public Submenu() {
         this.waitForLoading();
@@ -47,5 +30,17 @@ public class Submenu extends PortalUIElement{
     @Override
     public void waitForLoading() {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.submenuContainer);
+    }
+
+    public void goToSubmenu(String submenu) {
+        switch (submenu.toLowerCase()) {
+            case "supplier invoices":
+                supplierInvoices.click();
+                break;
+
+            case "assets":
+                assets.click();
+                break;
+        }
     }
 }

@@ -26,32 +26,6 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Albaranes de entrada')]")
     protected WebElement incomingShipments;
 
-    /**
-     * This method is to go to some option in main menu
-     * @param submenu Submenu name as string
-     **/
-    public void goToSubmenu(String submenu)
-    {
-        switch (submenu.toLowerCase())
-        {
-            case "purchase requisitions":
-                purchaseRequisitions.click();
-                break;
-            case "request for quotations":
-                requestForQuotations.click();
-                break;
-            case "purchase orders":
-                purchaseOrders.click();
-                break;
-            case "suppliers":
-                suppliers.click();
-                break;
-            case "incoming shipments":
-                incomingShipments.click();
-                break;
-        }
-    }
-
     public Submenu() {
         this.waitForLoading();
     }
@@ -64,5 +38,29 @@ public class Submenu extends PortalUIElement{
     @Override
     public void waitForLoading() {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.submenuContainer);
+    }
+
+    public void goToSubmenu(String submenu) {
+        switch (submenu.toLowerCase()) {
+        case "purchase requisitions":
+            purchaseRequisitions.click();
+            break;
+
+        case "request for quotations":
+            requestForQuotations.click();
+            break;
+
+        case "purchase orders":
+            purchaseOrders.click();
+            break;
+
+        case "suppliers":
+            suppliers.click();
+            break;
+
+        case "incoming shipments":
+            incomingShipments.click();
+            break;
+        }
     }
 }

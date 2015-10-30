@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by Henry Benito on 10/20/2015.
  */
 public class SupplierInvoiceReadForm extends PortalUIElement {
+
     @FindBy(xpath = "//div[contains(@class,'oe_form_container')]//div[contains(@class,'oe_title')]//span/span")
     protected WebElement supplierInvoiceID;
 
@@ -26,13 +27,11 @@ public class SupplierInvoiceReadForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.supplierInvoiceID);
     }
 
-    public String getData(String fieldString)
-    {
+    public String getData(String fieldString) {
         String result = null;
-        switch(fieldString)
-        {
-            case "id":
-                result = supplierInvoiceID.getText();
+        switch (fieldString) {
+        case "id":
+            result = supplierInvoiceID.getText();
         }
         return result;
     }

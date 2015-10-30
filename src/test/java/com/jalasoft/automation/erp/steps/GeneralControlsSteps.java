@@ -10,6 +10,7 @@ import org.junit.Assert;
  * Created by Henry Benito on 10/27/2015.
  */
 public class GeneralControlsSteps {
+
     @And("^search \"([^\"]*)\" with value \"([^\"]*)\"$")
     public void search_with_value(String attribute, String value) throws Throwable {
         // Express the Regexp above with the code you wish you had

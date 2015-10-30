@@ -38,8 +38,7 @@ public class SupplierInvoiceEditForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.tin);
     }
 
-    public void modifyData(SupplierInvoice inputData)
-    {
+    public void modifyData(SupplierInvoice inputData) {
         if (inputData.tin != null) {
             this.tin.sendKeys(inputData.tin);
         }
@@ -52,6 +51,5 @@ public class SupplierInvoiceEditForm extends PortalUIElement {
         if (inputData.controlCode != null) {
             this.controlCode.sendKeys(inputData.controlCode);
         }
-
     }
 }

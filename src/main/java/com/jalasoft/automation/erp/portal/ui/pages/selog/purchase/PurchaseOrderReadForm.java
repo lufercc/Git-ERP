@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by Henry Benito on 10/20/2015.
  */
 public class PurchaseOrderReadForm extends PortalUIElement {
+
     @FindBy(xpath = "(//span/div/input)[1]")
     protected WebElement supplier;
 
@@ -35,8 +36,7 @@ public class PurchaseOrderReadForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.purchaseOrderID);
     }
 
-    public void modifyData(PurchaseOrder inputData)
-    {
+    public void modifyData(PurchaseOrder inputData) {
         if (inputData.supplier != null) {
             this.supplier.sendKeys(inputData.supplier);
         }
@@ -45,18 +45,15 @@ public class PurchaseOrderReadForm extends PortalUIElement {
         }
     }
 
-    public void clickAddItemOrderLine()
-    {
+    public void clickAddItemOrderLine() {
         addItemPurchaseOrder.click();
     }
 
-    public String getData(String fieldString)
-    {
+    public String getData(String fieldString) {
         String result = null;
-        switch(fieldString)
-        {
-            case "id":
-                result = purchaseOrderID.getText();
+        switch (fieldString) {
+        case "id":
+            result = purchaseOrderID.getText();
         }
         return result;
     }

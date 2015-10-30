@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
  * Created by Henry Benito on 10/27/2015.
  */
 public class Search extends PortalUIElement{
+
     @FindBy(css = "div.oe_searchview_clear")
     protected WebElement clearFilter;
 
@@ -33,8 +34,7 @@ public class Search extends PortalUIElement{
     @FindBy(css = "button.oe_apply")
     protected WebElement applyButton;
 
-    public Search() {
-    }
+    public Search() {}
 
     @Override
     public boolean isLoaded() {
@@ -46,12 +46,10 @@ public class Search extends PortalUIElement{
         super.webDriverTools.waitUntilElementPresentAndVisible(this.searchUnfold);
     }
 
-    public void advancedSearch(String attribute, String value)
-    {
+    public void advancedSearch(String attribute, String value) {
         clearFilter.click();
         searchUnfold.click();
-        if(!advancedSearchContainer.getAttribute("class").contains("oe_opened"))
-        {
+        if (!advancedSearchContainer.getAttribute("class").contains("oe_opened")) {
             openAdvancedSearch.click();
         }
         Select attSelect = new Select(attributeSelect);

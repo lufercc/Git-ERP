@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by Henry Benito on 10/20/2015.
  */
 public class GeneralButtonsBar extends PortalUIElement {
+
     @FindBy(xpath = "//div[@class='oe_view_manager_buttons']")
     protected WebElement buttonsContainer;
 
@@ -20,19 +21,19 @@ public class GeneralButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_view_manager_buttons']//div[not(contains(@style,'display: none;'))]//button[contains(.,'Editar')]")
     protected WebElement editButton;
 
-    public void clickButton(String buttonString)
-    {
-        switch(buttonString.toLowerCase())
-        {
-            case "create":
-                createButton.click();
-                break;
-            case "save":
-                saveButton.click();
-                break;
-            case "edit":
-                editButton.click();
-                break;
+    public void clickButton(String buttonString) {
+        switch (buttonString.toLowerCase()) {
+        case "create":
+            createButton.click();
+            break;
+
+        case "save":
+            saveButton.click();
+            break;
+
+        case "edit":
+            editButton.click();
+            break;
         }
     }
 

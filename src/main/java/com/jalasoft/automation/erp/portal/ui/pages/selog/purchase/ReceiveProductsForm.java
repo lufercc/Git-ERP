@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Created by Henry Benito on 10/20/2015.
  */
 public class ReceiveProductsForm extends PortalUIElement {
+
     @FindBy(xpath = "//div[contains(@class,'ui-dialog-content')]//div[contains(@class,'oe_horizontal_separator')]")
     protected WebElement dialogTitle;
 
@@ -31,8 +32,7 @@ public class ReceiveProductsForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dialogTitle);
     }
 
-    public void receiveProducts()
-    {
+    public void receiveProducts() {
         receiveButton.click();
     }
 }

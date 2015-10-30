@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  * Created by Henry Benito on 10/20/2015.
  */
 public class OrderLineForm extends PortalUIElement {
+
     @FindBy(xpath = "(//div[contains(@class,'ui-dialog ui-widget ui-widget-content ui-corner-all oe_act_window ui-draggable ui-resizable openerp')]//input)[1]")
     protected WebElement product;
 
@@ -38,15 +39,13 @@ public class OrderLineForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.product);
     }
 
-    public void modifyOrderLine(OrderLine inputData)
-    {
+    public void modifyOrderLine(OrderLine inputData) {
         WebDriverWait wait = new WebDriverWait(webDriver, 5);
 
         if (inputData.product != null) {
             this.product.sendKeys(inputData.product);
-            WebElement productLink = this.webDriver.findElement(By.xpath("//ul[not(contains(@style,\"display: none;\"))]//a[contains(text(),\""+ inputData.product + "\")]"));
+            WebElement productLink = this.webDriver.findElement(By.xpath("//ul[not(contains(@style,'display: none;'))]//a[contains(text(),'" + inputData.product + "')]"));
             productLink.click();
-
         }
         saveAndCloseButton.click();
     }

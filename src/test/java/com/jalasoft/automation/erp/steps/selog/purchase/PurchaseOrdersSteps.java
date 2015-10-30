@@ -20,6 +20,7 @@ import java.util.List;
  * Created by Henry Benito on 10/22/2015.
  */
 public class PurchaseOrdersSteps {
+
     String purchaseOrderID;
     String supplierInvoiceID;
     List<OrderLine> orderLineData;

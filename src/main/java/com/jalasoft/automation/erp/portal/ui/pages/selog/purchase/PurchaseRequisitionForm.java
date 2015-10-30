@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by Henry Benito on 10/20/2015.
  */
 public class PurchaseRequisitionForm extends PortalUIElement {
+
     @FindBy(xpath = "//input[contains(@id,'oe-field-input-')]")
     protected WebElement sourceDocument;
 
@@ -44,8 +45,7 @@ public class PurchaseRequisitionForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.sourceDocument);
     }
 
-    public void modifyData(PurchaseRequisition inputData)
-    {
+    public void modifyData(PurchaseRequisition inputData) {
         if (inputData.sourceDocument != null) {
             this.sourceDocument.sendKeys(inputData.sourceDocument);
         }
@@ -61,7 +61,6 @@ public class PurchaseRequisitionForm extends PortalUIElement {
         if (inputData.company != null) {
             this.company.sendKeys(inputData.company);
         }
-
     }
 
 }

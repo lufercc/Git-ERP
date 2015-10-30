@@ -11,15 +11,14 @@ import org.openqa.selenium.support.FindBy;
  * Created by Henry Benito on 10/26/2015.
  */
 public class ButtonsBar extends PortalUIElement {
+
     @FindBy(xpath = "//div[contains(@class,'oe_form_container')]//header")
     protected WebElement container;
 
     @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Validar')]")
     protected WebElement validateButton;
 
-    public ButtonsBar()
-    {
-    }
+    public ButtonsBar() {}
 
     @Override
     public boolean isLoaded() {
@@ -31,13 +30,11 @@ public class ButtonsBar extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.container);
     }
 
-    public void clickButton(String buttonString)
-    {
-        switch(buttonString.toLowerCase())
-        {
-            case "validate":
-                validateButton.click();
-                break;
+    public void clickButton(String buttonString) {
+        switch (buttonString.toLowerCase()) {
+        case "validate":
+            validateButton.click();
+            break;
         }
     }
 }

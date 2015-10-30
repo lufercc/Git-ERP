@@ -8,16 +8,14 @@ import org.openqa.selenium.support.FindBy;
  * Created by Henry Benito on 10/26/2015.
  */
 public class InteriorFormButtonsBar extends PortalUIElement {
+
     @FindBy(xpath = "//div[contains(@class,'oe_right oe_button_box')]")
     protected WebElement container;
 
     @FindBy(xpath = "//div[contains(@class,'oe_right oe_button_box')]//button/span[contains(text(),'Movimientos internos')]")
     protected WebElement internalMoves;
 
-    public InteriorFormButtonsBar()
-    {
-
-    }
+    public InteriorFormButtonsBar() {}
     @Override
     public boolean isLoaded() {
         return super.webDriverTools.isElementDisplayed(this.container);
@@ -28,13 +26,11 @@ public class InteriorFormButtonsBar extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.container);
     }
 
-    public void clickButton(String buttonString)
-    {
-        switch(buttonString.toLowerCase())
-        {
-            case "internal moves":
-                internalMoves.click();
-                break;
+    public void clickButton(String buttonString) {
+        switch (buttonString.toLowerCase()) {
+        case "internal moves":
+            internalMoves.click();
+            break;
         }
     }
 }

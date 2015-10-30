@@ -11,6 +11,7 @@ import java.util.Date;
  * Created by Henry Benito on 10/20/2015.
  */
 public class CreateDraftInvoiceForm extends PortalUIElement {
+
     @FindBy(xpath = "//div[contains(@class,'ui-dialog-content')]//div[contains(@class,'oe_horizontal_separator')]")
     protected WebElement dialogTitle;
 
@@ -19,7 +20,6 @@ public class CreateDraftInvoiceForm extends PortalUIElement {
 
     @FindBy(xpath = "//div[contains(@class,'ui-dialog-buttonpane')]//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Crear')]")
     protected WebElement createButton;
-
 
     public CreateDraftInvoiceForm() {
         this.waitForLoading();
@@ -35,8 +35,7 @@ public class CreateDraftInvoiceForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dialogTitle);
     }
 
-    public void createInvoice()
-    {
+    public void createInvoice() {
         SimpleDateFormat sdfDate = new SimpleDateFormat("MM/dd/yyyy");//dd/MM/yyyy
         Date now = new Date();
         String strToday = sdfDate.format(now);

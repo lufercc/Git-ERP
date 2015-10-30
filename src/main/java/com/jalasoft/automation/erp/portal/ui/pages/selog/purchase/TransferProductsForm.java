@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by Henry Benito on 10/20/2015.
  */
 public class TransferProductsForm extends PortalUIElement {
+
     @FindBy(xpath = "//div[contains(@class,'ui-dialog-content')]//div[contains(@class,'oe_horizontal_separator')]")
     protected WebElement dialogTitle;
 
@@ -28,8 +29,7 @@ public class TransferProductsForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dialogTitle);
     }
 
-    public void transferProducts()
-    {
+    public void transferProducts() {
         transferButton.click();
     }
 }

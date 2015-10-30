@@ -15,6 +15,7 @@ import java.util.Date;
  * Created by Henry Benito on 10/15/2015.
  */
 public class PurchaseNavigationSteps {
+
     @And("^I go to \"([^\"]*)\" purchase submenu$")
     public void I_go_to_purchase_submenu(String submenu) throws Throwable {
         MainMenu mainMenu = new MainMenu();
@@ -26,7 +27,6 @@ public class PurchaseNavigationSteps {
 
     @And("^I press \"([^\"]*)\" purchase button$")
     public void I_press_purchase_button(String buttonString) throws Throwable {
-        // Express the Regexp above with the code you wish you had
         ButtonsBar purchaseButtonsBar = new ButtonsBar();
         purchaseButtonsBar.clickButton(buttonString);
     }

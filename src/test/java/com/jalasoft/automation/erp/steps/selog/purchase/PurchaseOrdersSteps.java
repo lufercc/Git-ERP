@@ -31,8 +31,7 @@ public class PurchaseOrdersSteps {
         //purchaseOrderList = purchaseOrderData;
         this.purOrderForm = new PurchaseOrderEditForm();
 
-        for (PurchaseOrder pr : purchaseOrderData)
-        {
+        for (PurchaseOrder pr : purchaseOrderData) {
             purOrderForm.modifyData(pr);
         }
     }
@@ -43,8 +42,7 @@ public class PurchaseOrdersSteps {
         this.purOrderForm = new PurchaseOrderEditForm();
         OrderLineForm orderLineForm;
 
-        for (OrderLine ol : orderLineData)
-        {
+        for (OrderLine ol : orderLineData) {
             purOrderForm.clickAddItemOrderLine();
             orderLineForm = new OrderLineForm();
             orderLineForm.modifyOrderLine(ol);

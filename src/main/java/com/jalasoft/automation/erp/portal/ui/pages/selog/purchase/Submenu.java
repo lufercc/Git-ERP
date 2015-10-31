@@ -11,40 +11,20 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']")
     protected WebElement submenuContainer;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']//div[5]//span[contains(text(),'Solicitudes de compra')]")
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Solicitudes de compra')]")
     protected WebElement purchaseRequisitions;
 
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']//div[5]//span[contains(text(),'Solicitud de cotizaciones')]")
     protected WebElement requestForQuotations;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']//div[5]//span[contains(text(),'Pedidos de compra')]")
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Pedidos de compra')]")
     protected WebElement purchaseOrders;
 
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']//div[5]//span[contains(text(),'Proveedores')]")
     protected WebElement suppliers;
 
-    /**
-     * This method is to go to some option in main menu
-     * @param submenu Submenu name as string
-     **/
-    public void goToSubmenu(String submenu)
-    {
-        switch (submenu.toLowerCase())
-        {
-            case "purchase requisitions":
-                purchaseRequisitions.click();
-                break;
-            case "request for quotations":
-                requestForQuotations.click();
-                break;
-            case "purchase orders":
-                purchaseOrders.click();
-                break;
-            case "suppliers":
-                suppliers.click();
-                break;
-        }
-    }
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Albaranes de entrada')]")
+    protected WebElement incomingShipments;
 
     public Submenu() {
         this.waitForLoading();
@@ -58,5 +38,29 @@ public class Submenu extends PortalUIElement{
     @Override
     public void waitForLoading() {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.submenuContainer);
+    }
+
+    public void goToSubmenu(String submenu) {
+        switch (submenu.toLowerCase()) {
+        case "purchase requisitions":
+            purchaseRequisitions.click();
+            break;
+
+        case "request for quotations":
+            requestForQuotations.click();
+            break;
+
+        case "purchase orders":
+            purchaseOrders.click();
+            break;
+
+        case "suppliers":
+            suppliers.click();
+            break;
+
+        case "incoming shipments":
+            incomingShipments.click();
+            break;
+        }
     }
 }

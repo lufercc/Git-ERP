@@ -1,10 +1,13 @@
 package com.jalasoft.automation.erp.steps.selog.accounting;
 
 import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.Asset;
+import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.AssetDeliveryRecord;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetEditForm;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetReadForm;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetsAssignationListView;
+import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetsDeliveryRecordsReadForm;
+import com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse.InternalMovesListView;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 
@@ -16,6 +19,7 @@ import java.util.List;
 public class AssetSteps {
 
     Asset auxAsset;
+    AssetDeliveryRecord auxAssetsDeliveryRecordsReadForm;
 
     @And("^I modify the asset with these data$")
     public void I_modify_the_asset_with_these_data(List<Asset> assetData) throws Throwable {
@@ -48,5 +52,19 @@ public class AssetSteps {
         openERPSearch.advancedSearch("Documento origen",this.auxAsset.code);
         AssetsAssignationListView assetsAssignationListView = new AssetsAssignationListView();
         assetsAssignationListView.clickOnRecord(this.auxAsset.code);
+    }
+
+    @And("^get main data from the asset delivery record$")
+    public void get_main_data_from_the_asset_delivery_record() throws Throwable {
+        AssetsDeliveryRecordsReadForm assetsDeliveryRecordsReadForm = new AssetsDeliveryRecordsReadForm();
+        this.auxAssetsDeliveryRecordsReadForm = assetsDeliveryRecordsReadForm.getMainData();
+    }
+
+    @And("^I search internal move created in asset delivery order$")
+    public void I_search_internal_move_created_in_asset_delivery_order() throws Throwable {
+        Search openERPSearch = new Search();
+        openERPSearch.advancedSearch("Documento origen",this.auxAssetsDeliveryRecordsReadForm.id);
+        InternalMovesListView internalMovesListView = new InternalMovesListView();
+        internalMovesListView.clickOnRecord(this.auxAsset.code);
     }
 }

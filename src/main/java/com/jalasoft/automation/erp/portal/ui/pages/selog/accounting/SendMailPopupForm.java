@@ -36,5 +36,6 @@ public class SendMailPopupForm extends PortalUIElement {
 
     public void sendMail() {
         sendButton.click();
+        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

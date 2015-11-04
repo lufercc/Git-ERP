@@ -42,9 +42,13 @@ Feature: Accounting
       And I press "deliver" accounting button
       And I press "Ok" button for general popup
       And I send email from popup
+      And get main data from the asset delivery record
       And I go to "assets assignation" accounting submenu
       And I search asset created in asset assignation
     Then it has "assigned" status
+      And I go to "internal moves" warehouse submenu
+      And I search internal move created in asset delivery order
+
 
   @EndToEnd @31727
   Scenario: Verify that an asset is created from Purchase Order

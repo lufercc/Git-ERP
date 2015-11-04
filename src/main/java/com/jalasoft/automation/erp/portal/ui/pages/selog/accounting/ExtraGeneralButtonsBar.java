@@ -31,9 +31,9 @@ public class ExtraGeneralButtonsBar extends PortalUIElement {
 
     public void clickButton(String buttonString) {
         switch (buttonString.toLowerCase()) {
-            case "create delivery record":
-                createDeliveryRecordButton.click();
-                break;
+        case "create delivery record":
+            createDeliveryRecordButton.click();
+            break;
         }
     }
 }

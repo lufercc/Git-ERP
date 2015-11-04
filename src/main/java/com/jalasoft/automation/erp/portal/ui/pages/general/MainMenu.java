@@ -25,6 +25,9 @@ public class MainMenu extends PortalUIElement {
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Compras')]")
     protected WebElement purchasesMenu;
 
+    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Almacén')]")
+    protected WebElement warehouseMenu;
+
     @FindBy(linkText = "Cerrar sesión")
     protected WebElement logout;
 
@@ -44,6 +47,10 @@ public class MainMenu extends PortalUIElement {
 
         case "accounting":
             accountingMenu.click();
+            break;
+
+        case "warehouse":
+            warehouseMenu.click();
             break;
         }
     }

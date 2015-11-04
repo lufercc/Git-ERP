@@ -9,12 +9,12 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by Henry Benito on 10/21/2015.
  */
-public class AssetsListView extends PortalUIElement {
+public class AssetsDeliveryRecordsListView extends PortalUIElement {
 
-    @FindBy(xpath = "//div[contains(@class,'oe_view_manager_body')]")
+    @FindBy(xpath = "//div[contains(@class,'oe_view_manager_current')and(not(contains(@style,'display: none;')))]")
     protected WebElement mainTable;
 
-    public AssetsListView() {
+    public AssetsDeliveryRecordsListView() {
         this.waitForLoading();
     }
 
@@ -28,27 +28,16 @@ public class AssetsListView extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.mainTable);
     }
 
-    public void goToRecord(String cellValue) {
+    public void goToRowRecord(int rowNumberRecord) {
         WebElement cell = null;
         try {
-            cell = mainTable.findElement(By.xpath("//table[contains(@class,'oe_list_content')]//tr/td[contains(.,'" + cellValue + "')]"));
+            cell = mainTable.findElement(By.xpath("(//div[contains(@class,'oe_view_manager_current')and(not(contains(@style,'display: none;')))]//div[contains(@class,'oe_view_manager_body')]//tbody/tr)[" + rowNumberRecord + "]"));
         } catch(NullPointerException npe) {
-            System.out.println("Cell was not found with '" + cellValue + "' value");
+            System.out.println("Row was not found with '" + rowNumberRecord + "' number");
         }
 
         if (!cell.equals(null)) {
             cell.click();
         }
-    }
-
-    public boolean isCellPresent(String cellValue){
-        WebElement cell = null;
-        try {
-            cell = mainTable.findElement(By.xpath("//tr/td[contains(.,'" + cellValue + "')]"));
-        } catch(NullPointerException npe) {
-            System.out.println("Cell was not found with '" + cellValue + "' value");
-        }
-
-        return (cell.equals(null) ? false : true);
     }
 }

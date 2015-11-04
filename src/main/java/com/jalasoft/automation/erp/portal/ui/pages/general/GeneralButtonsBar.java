@@ -40,21 +40,21 @@ public class GeneralButtonsBar extends PortalUIElement {
 
     public void clickButton(String buttonString) {
         switch (buttonString.toLowerCase()) {
-            case "create":
-                createButton.click();
-                break;
+        case "create":
+            createButton.click();
+            break;
 
-            case "save":
-                saveButton.click();
-                break;
+        case "save":
+            saveButton.click();
+            break;
 
-            case "edit":
-                editButton.click();
-                break;
+        case "edit":
+            editButton.click();
+            break;
 
-            case "more":
-                moreButton.click();
-                break;
+        case "more":
+            moreButton.click();
+            break;
         }
     }
 }

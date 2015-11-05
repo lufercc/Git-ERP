@@ -18,6 +18,9 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Activos')]")
     protected WebElement assets;
 
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Asignación de activos')]")
+    protected WebElement assetsAssignation;
+
     public Submenu() {
         this.waitForLoading();
     }
@@ -41,6 +44,11 @@ public class Submenu extends PortalUIElement{
             case "assets":
                 assets.click();
                 break;
+
+            case "assets assignation":
+                assetsAssignation.click();
+                break;
         }
+        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

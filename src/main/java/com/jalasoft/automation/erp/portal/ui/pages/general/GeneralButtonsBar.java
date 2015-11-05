@@ -21,21 +21,8 @@ public class GeneralButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_view_manager_buttons']//div[not(contains(@style,'display: none;'))]//button[contains(.,'Editar')]")
     protected WebElement editButton;
 
-    public void clickButton(String buttonString) {
-        switch (buttonString.toLowerCase()) {
-        case "create":
-            createButton.click();
-            break;
-
-        case "save":
-            saveButton.click();
-            break;
-
-        case "edit":
-            editButton.click();
-            break;
-        }
-    }
+    @FindBy(xpath = "//div[@class='oe_view_manager_sidebar']/div[not(contains(@style,'display: none;'))]//button[contains(.,'Más')]")
+    protected WebElement moreButton;
 
     public GeneralButtonsBar() {
         this.waitForLoading();
@@ -51,4 +38,23 @@ public class GeneralButtonsBar extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.buttonsContainer);
     }
 
+    public void clickButton(String buttonString) {
+        switch (buttonString.toLowerCase()) {
+        case "create":
+            createButton.click();
+            break;
+
+        case "save":
+            saveButton.click();
+            break;
+
+        case "edit":
+            editButton.click();
+            break;
+
+        case "more":
+            moreButton.click();
+            break;
+        }
+    }
 }

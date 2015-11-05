@@ -9,12 +9,12 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by Henry Benito on 10/21/2015.
  */
-public class AssetsListView extends PortalUIElement {
+public class AssetsAssignationListView extends PortalUIElement {
 
     @FindBy(xpath = "//div[contains(@class,'oe_view_manager_body')]")
     protected WebElement mainTable;
 
-    public AssetsListView() {
+    public AssetsAssignationListView() {
         this.waitForLoading();
     }
 
@@ -28,7 +28,7 @@ public class AssetsListView extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.mainTable);
     }
 
-    public void goToRecord(String cellValue) {
+    public void clickOnRecord(String cellValue) {
         WebElement cell = null;
         try {
             cell = mainTable.findElement(By.xpath("//table[contains(@class,'oe_list_content')]//tr/td[contains(.,'" + cellValue + "')]"));
@@ -40,7 +40,6 @@ public class AssetsListView extends PortalUIElement {
             cell.click();
         }
     }
-
     public boolean isCellPresent(String cellValue){
         WebElement cell = null;
         try {

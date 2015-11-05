@@ -5,5 +5,8 @@ package com.jalasoft.automation.erp.portal.ui.custom.selog.accounting;
  */
 public class Asset {
 
-    public String number;
+    public String name;
+    public String code;
+    public String assetCategoryParent;
+    public String grossValue;
 }

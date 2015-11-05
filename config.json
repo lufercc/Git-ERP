@@ -42,6 +42,11 @@
             "userName":"selog_acc"
         },
 
+        "asset manager":{
+            "password":"p@ssword",
+            "userName":"selog_assMan"
+        },
+
         "valid":{
             "email":"selog_purMan",
             "password":"p@ssword",

@@ -14,12 +14,15 @@ public class StatusBar extends PortalUIElement {
     @FindBy(xpath = "//ul[contains(@class,'oe_form_field_status oe_form_status oe_form_required')]")
     protected WebElement container;
 
-    @FindBy(xpath = "//ul[contains(@class,'oe_form_field_status oe_form_status oe_form_required')]/li[contains(@class,'oe_active')]/span")
+    @FindBy(xpath = "//ul[contains(@class,'oe_form_field_status oe_form_status')]/li[contains(@class,'oe_active')]/span")
     protected WebElement currentStateSpan;
 
     HashMap<String, String> statusList = new HashMap();
     public StatusBar() {
         statusList.put("draft","borrador");
+        statusList.put("running","en ejecución");
+        statusList.put("evaluation","evaluación");
+        statusList.put("assigned","asignado");
     }
 
     @Override

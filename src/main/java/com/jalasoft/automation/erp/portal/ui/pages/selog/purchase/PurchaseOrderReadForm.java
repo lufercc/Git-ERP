@@ -57,5 +57,9 @@ public class PurchaseOrderReadForm extends PortalUIElement {
         }
         return result;
     }
-
+    public PurchaseOrder getMainData() {
+        PurchaseOrder result = new PurchaseOrder();
+        result.code = purchaseOrderID.getText();
+        return result;
+    }
 }

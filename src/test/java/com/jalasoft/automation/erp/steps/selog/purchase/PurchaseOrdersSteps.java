@@ -23,8 +23,14 @@ public class PurchaseOrdersSteps {
 
     String purchaseOrderID;
     String supplierInvoiceID;
-    List<OrderLine> orderLineData;
+    OrderLine orderLineDataAux;
+    PurchaseOrder purchaseOrderAux;
     PurchaseOrderEditForm purOrderForm;
+
+    public PurchaseOrdersSteps(PurchaseOrder purchaseOrderInput, OrderLine orderLineDataInput) {
+        this.purchaseOrderAux = purchaseOrderInput;
+        orderLineDataAux = orderLineDataInput;
+    }
 
     @And("^I create a purchase order with these data$")
     public void I_create_a_purchase_order_with_these_data(List<PurchaseOrder> purchaseOrderData) throws Throwable {
@@ -38,11 +44,12 @@ public class PurchaseOrdersSteps {
 
     @And("^I add products to the purchase order$")
     public void I_add_products_to_the_purchase_order(List<OrderLine> orderLineData) throws Throwable {
-        this.orderLineData = orderLineData;
+
         this.purOrderForm = new PurchaseOrderEditForm();
         OrderLineForm orderLineForm;
 
         for (OrderLine ol : orderLineData) {
+            this.orderLineDataAux.fillMainData(ol);
             purOrderForm.clickAddItemOrderLine();
             orderLineForm = new OrderLineForm();
             orderLineForm.modifyOrderLine(ol);
@@ -53,41 +60,13 @@ public class PurchaseOrdersSteps {
     @And("^get \"([^\"]*)\" field value for Purchase Order created$")
     public void get_field_value_for_Purchase_Order_created(String fieldString) throws Throwable {
         PurchaseOrderReadForm poReadForm = new PurchaseOrderReadForm();
+        this.purchaseOrderAux.fillMainData(poReadForm.getMainData());
         this.purchaseOrderID = poReadForm.getData(fieldString);
     }
 
-    //TODO Move this step to IncomingShipmentSteps
-    @And("^I go to incoming shipment created from Purchase Order$")
-    public void I_go_to_incoming_shipment_created_from_Purchase_Order() throws Throwable {
-        Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Documento origen",purchaseOrderID);
-        IncomingShipmentList incomingShipmentList = new IncomingShipmentList();
-        incomingShipmentList.goToRecord(purchaseOrderID);
-    }
-
-    //TODO Move this step to SupplierInvoicesSteps
-    @And("^I go to supplier invoice created from incoming shipment$")
-    public void I_go_to_supplier_invoice_created_from_incoming_shipment() throws Throwable {
-        Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Documento origen",purchaseOrderID);
-        IncomingShipmentList incomingShipmentList = new IncomingShipmentList();
-        incomingShipmentList.goToRecord(purchaseOrderID);
-    }
-
-    @And("^get \"([^\"]*)\" field value for supplier invoice created$")
-    public void get_field_value_for_supplier_invoice_created(String fieldString) throws Throwable {
-        SupplierInvoiceReadForm poReadForm = new SupplierInvoiceReadForm();
-        this.supplierInvoiceID = poReadForm.getData(fieldString);
-    }
-
-    //TODO Move this step to AssetSteps
-    //TODO Review if this step could be applied to multiple assets
-    @And("^a new record is displayed in assets list view$")
-    public void a_new_record_is_displayed_in_assets_list_view() throws Throwable {
-        Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Factura",this.supplierInvoiceID);
-        AssetsListView assetList = new AssetsListView();
-        assetList.goToRecord(this.orderLineData.get(0).product);
-        Thread.sleep(3000); //TODO Use implicit wait instead thread.sleep
+    @And("^get main data from current purchase order$")
+    public void get_main_data_from_current_purchase_order() throws Throwable {
+        PurchaseOrderReadForm poReadForm = new PurchaseOrderReadForm();
+        this.purchaseOrderAux.fillMainData(poReadForm.getMainData());
     }
 }

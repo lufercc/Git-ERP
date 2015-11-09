@@ -9,4 +9,8 @@ public class Asset {
     public String code;
     public String assetCategoryParent;
     public String grossValue;
+
+    public void fillMainData(Asset aux) {
+        this.code = aux.code;
+    }
 }

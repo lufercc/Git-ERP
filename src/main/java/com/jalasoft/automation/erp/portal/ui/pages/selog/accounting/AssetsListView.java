@@ -28,7 +28,7 @@ public class AssetsListView extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.mainTable);
     }
 
-    public void goToRecord(String cellValue) {
+    public void clickOnRecord(String cellValue) {
         WebElement cell = null;
         try {
             cell = mainTable.findElement(By.xpath("//table[contains(@class,'oe_list_content')]//tr/td[contains(.,'" + cellValue + "')]"));
@@ -38,6 +38,7 @@ public class AssetsListView extends PortalUIElement {
 
         if (!cell.equals(null)) {
             cell.click();
+            this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
         }
     }
 

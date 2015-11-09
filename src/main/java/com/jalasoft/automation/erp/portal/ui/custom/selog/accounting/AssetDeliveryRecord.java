@@ -6,4 +6,8 @@ package com.jalasoft.automation.erp.portal.ui.custom.selog.accounting;
 public class AssetDeliveryRecord {
 
     public String id;
+
+    public void fillMainData(AssetDeliveryRecord aux) {
+        this.id = aux.id;
+    }
 }

@@ -1,6 +1,7 @@
 package com.jalasoft.automation.erp.portal.ui.pages.selog.accounting;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
+import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.SupplierInvoice;
 import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.PurchaseOrder;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,12 +28,9 @@ public class SupplierInvoiceReadForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.supplierInvoiceID);
     }
 
-    public String getData(String fieldString) {
-        String result = null;
-        switch (fieldString) {
-        case "id":
-            result = supplierInvoiceID.getText();
-        }
+    public SupplierInvoice getMainData() {
+        SupplierInvoice result = new SupplierInvoice();
+        result.code = supplierInvoiceID.getText();
         return result;
     }
 

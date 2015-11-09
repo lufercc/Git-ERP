@@ -2,11 +2,10 @@ package com.jalasoft.automation.erp.steps.selog.accounting;
 
 import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.Asset;
 import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.AssetDeliveryRecord;
+import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.SupplierInvoice;
+import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.OrderLine;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetEditForm;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetReadForm;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetsAssignationListView;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetsDeliveryRecordsReadForm;
+import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.*;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse.InternalMovesListView;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
@@ -20,6 +19,14 @@ public class AssetSteps {
 
     Asset auxAsset;
     AssetDeliveryRecord auxAssetsDeliveryRecordsReadForm;
+    SupplierInvoice supplierInvoiceAux;
+    OrderLine orderLineDataAux;
+
+    public AssetSteps(SupplierInvoice supplierInvoiceInput,OrderLine orderLineDataInput,Asset assetInput) {
+        supplierInvoiceAux = supplierInvoiceInput;
+        orderLineDataAux = orderLineDataInput;
+        auxAsset = assetInput;
+    }
 
     @And("^I modify the asset with these data$")
     public void I_modify_the_asset_with_these_data(List<Asset> assetData) throws Throwable {
@@ -32,39 +39,26 @@ public class AssetSteps {
         Thread.sleep(5000);//TODO Change for implicit wait
     }
 
-    @And("^get main data from the asset created$")
-    public void get_main_data_from_the_asset_created() throws Throwable {
+    @And("^get main data from the current asset$")
+    public void get_main_data_from_the_current_asset() throws Throwable {
         AssetReadForm assetReadForm = new AssetReadForm();
-        this.auxAsset = assetReadForm.getMainData();
+        this.auxAsset.fillMainData(assetReadForm.getMainData());
     }
 
-    @And("^I search asset created in asset assignation$")
-    public void I_search_asset_created_in_asset_assignation() throws Throwable {
+    //TODO Review if this step could be applied to multiple assets
+    @And("^a new record is displayed in assets list view$")
+    public void a_new_record_is_displayed_in_assets_list_view() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Código de activo",this.auxAsset.code);
-        AssetsAssignationListView assetsAssignationListView = new AssetsAssignationListView();
-        assetsAssignationListView.clickOnRecord(this.auxAsset.code);
+        openERPSearch.advancedSearch("Factura",this.supplierInvoiceAux.code);
+        AssetsListView assetList = new AssetsListView();
+        assetList.clickOnRecord(this.orderLineDataAux.product);
     }
 
-    @And("^I search internal move created in asset assignation$")
-    public void I_search_internal_move_created_in_asset_assignation() throws Throwable {
+    @And("^I search supplier invoice in the assets$")
+    public void I_search_supplier_invoice_in_the_assets() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Documento origen",this.auxAsset.code);
-        AssetsAssignationListView assetsAssignationListView = new AssetsAssignationListView();
-        assetsAssignationListView.clickOnRecord(this.auxAsset.code);
-    }
-
-    @And("^get main data from the asset delivery record$")
-    public void get_main_data_from_the_asset_delivery_record() throws Throwable {
-        AssetsDeliveryRecordsReadForm assetsDeliveryRecordsReadForm = new AssetsDeliveryRecordsReadForm();
-        this.auxAssetsDeliveryRecordsReadForm = assetsDeliveryRecordsReadForm.getMainData();
-    }
-
-    @And("^I search internal move created in asset delivery order$")
-    public void I_search_internal_move_created_in_asset_delivery_order() throws Throwable {
-        Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Documento origen",this.auxAssetsDeliveryRecordsReadForm.id);
-        InternalMovesListView internalMovesListView = new InternalMovesListView();
-        internalMovesListView.clickOnRecord(this.auxAsset.code);
+        openERPSearch.advancedSearch("Factura",this.supplierInvoiceAux.code);
+        AssetsListView assetListView = new AssetsListView();
+        assetListView.clickOnRecord(this.auxAsset.code);
     }
 }

@@ -37,6 +37,11 @@
             "userName":"selog_warMan"
         },
 
+        "sales":{
+            "password":"p@ssword",
+            "userName":"selog_sale"
+        },
+
         "accountant":{
             "password":"p@ssword",
             "userName":"selog_acc"

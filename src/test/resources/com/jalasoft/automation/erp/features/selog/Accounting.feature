@@ -128,6 +128,33 @@ Feature: Accounting
       And I search internal move created in asset delivery order
       And I logout
 
+  @EndToEnd @32141
+  Scenario: Verify that Journal Entry is created when doing a Sales Order
+    Given I navigate to login page
+    When I login with "sales" credentials
+      And I go to "sales orders" sales submenu
+      And I press "create" general button
+      And I modify the sale order with these data
+        | client | tin     |
+        | ABILA  | 4531577 |
+      And I add products to the sales order
+        | product |
+        | Amoladora de acero grande |
+      And I press "confirm" sales button
+      And get main data from current sale order
+      And I logout
+    When I login with "warehouse manager" credentials
+      And I go to "delivery orders" warehouse submenu
+      And I search sale order in delivery orders
+      And I press "force availability" warehouse button
+      And I press "deliver" warehouse button
+      And get main data from current delivery order
+      And I logout
+    When I login with "accountant" credentials
+      And I go to "journal entries" accounting submenu
+      And I search delivery order in journal entries
+      And get main data from current journal entry
+
   @EndToEnd @31727
   Scenario: Verify that an asset is created from Purchase Order
     Given I navigate to login page

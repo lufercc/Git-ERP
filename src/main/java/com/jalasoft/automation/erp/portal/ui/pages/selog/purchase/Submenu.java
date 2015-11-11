@@ -61,6 +61,9 @@ public class Submenu extends PortalUIElement{
         case "incoming shipments":
             incomingShipments.click();
             break;
+
+        default:
+            throw new IllegalArgumentException("Case value '" + submenu + "' for purchase submenu is not defined yet!!!");
         }
     }
 }

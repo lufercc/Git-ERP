@@ -1,4 +1,4 @@
-package com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse;
+package com.jalasoft.automation.erp.portal.ui.pages.selog.sales;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.CreateDraftInvoiceForm;
@@ -15,14 +15,8 @@ public class ButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[contains(@class,'oe_form_container')]//header")
     protected WebElement container;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Forzar disponibilidad')]")
-    protected WebElement forceAvailabilityButton;
-
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirmar y transferir')]")
-    protected WebElement confirmTransferButton;
-
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Enviar')]")
-    protected WebElement deliverButton;
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirmar venta')]")
+    protected WebElement confirmButton;
 
     public ButtonsBar() {}
 
@@ -38,26 +32,12 @@ public class ButtonsBar extends PortalUIElement {
 
     public void clickButton(String buttonString) {
         switch (buttonString.toLowerCase()) {
-        case "force availability":
-            forceAvailabilityButton.click();
-            break;
-
-        case "confirm and transfer":
-            confirmTransferButton.click();
-            TransferProductsForm transferProductsForm = new TransferProductsForm();
-            transferProductsForm.transferProducts();
-            break;
-
-        case "deliver":
-            deliverButton.click();
-            DeliverProductsPopupForm deliverProductsPopupForm = new DeliverProductsPopupForm();
-            deliverProductsPopupForm.deliverProducts();
+        case "confirm":
+            confirmButton.click();
             break;
 
         default:
             throw new IllegalArgumentException("Case value '" + buttonString + "' for button is not defined yet!!!");
         }
-
-        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

@@ -14,7 +14,7 @@ import java.rmi.RemoteException;
  */
 
 @CucumberOptions(
-        tags = {"@31007"},
+        tags = {"@32141"},
         plugin = {"pretty", "html:target/cucumber", "json:target/cucumber.json"},
         glue = {"com.jalasoft.automation.erp.steps"},
         features = {"src/test/resources/com/jalasoft/automation/erp/features/"},

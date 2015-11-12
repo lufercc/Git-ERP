@@ -21,6 +21,9 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Asignación de activos')]")
     protected WebElement assetsAssignation;
 
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Asientos contables')]")
+    protected WebElement journalEntries;
+
     public Submenu() {
         this.waitForLoading();
     }
@@ -48,6 +51,13 @@ public class Submenu extends PortalUIElement{
             case "assets assignation":
                 assetsAssignation.click();
                 break;
+
+            case "journal entries":
+                journalEntries.click();
+                break;
+
+            default:
+                throw new IllegalArgumentException("Case value '" + submenu + "' for accounting submenu is not defined yet!!!");
         }
         this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }

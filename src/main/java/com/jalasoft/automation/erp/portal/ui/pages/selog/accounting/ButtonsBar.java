@@ -63,8 +63,7 @@ public class ButtonsBar extends PortalUIElement {
             break;
 
         default:
-            throw new IllegalArgumentException("Case value '" +
-                                               buttonString +
+            throw new IllegalArgumentException("Case value '" + buttonString +
                                                "' for accounting buttons is not defined yet!!!");
         }
 

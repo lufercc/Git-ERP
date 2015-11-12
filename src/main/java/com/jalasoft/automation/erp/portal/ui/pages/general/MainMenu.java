@@ -19,6 +19,9 @@ public class MainMenu extends PortalUIElement {
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Evaluación de activos')]")
     protected WebElement assetsMenu;
 
+    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Ventas')]")
+    protected WebElement salesMenu;
+
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Contabilidad')]")
     protected WebElement accountingMenu;
 
@@ -52,8 +55,16 @@ public class MainMenu extends PortalUIElement {
         case "warehouse":
             warehouseMenu.click();
             break;
+
+        case "sales":
+            salesMenu.click();
+            break;
+
+        default:
+            throw new IllegalArgumentException("Case value '" + menu + "' for main menu is not defined yet. Add it!!!");
         }
     }
+
     public MainMenu() {
         this.waitForLoading();
     }

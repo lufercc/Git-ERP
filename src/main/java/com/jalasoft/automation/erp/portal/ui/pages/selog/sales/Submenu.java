@@ -1,4 +1,4 @@
-package com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse;
+package com.jalasoft.automation.erp.portal.ui.pages.selog.sales;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import org.openqa.selenium.WebElement;
@@ -11,11 +11,9 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']")
     protected WebElement submenuContainer;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Albaranes Internos')]")
-    protected WebElement internalMoves;
-
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Albaranes de salida')]")
-    protected WebElement deliveryOrders;
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]" +
+                    "//span[contains(text(),'Pedidos de ventas')]")
+    protected WebElement salesOrders;
 
     public Submenu() {
         this.waitForLoading();
@@ -23,7 +21,7 @@ public class Submenu extends PortalUIElement{
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.internalMoves);
+        return super.webDriverTools.isElementDisplayed(this.salesOrders);
     }
 
     @Override
@@ -33,13 +31,12 @@ public class Submenu extends PortalUIElement{
 
     public void goToSubmenu(String submenu) {
         switch (submenu.toLowerCase()) {
-        case "internal moves":
-            internalMoves.click();
+        case "sales orders":
+            salesOrders.click();
             break;
 
-        case "delivery orders":
-            deliveryOrders.click();
-            break;
+        default:
+            throw new IllegalArgumentException("Case value '" + submenu + "' for sales submenu is not defined yet!!!");
         }
         this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }

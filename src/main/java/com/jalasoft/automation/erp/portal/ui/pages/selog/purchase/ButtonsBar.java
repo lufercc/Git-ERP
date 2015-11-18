@@ -60,5 +60,6 @@ public class ButtonsBar extends PortalUIElement {
             createDraftInvoiceForm.createInvoice();
             break;
         }
+        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

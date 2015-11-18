@@ -33,4 +33,12 @@ public class JournalEntrySteps {
         JournalEntryReadForm journalEntryReadForm = new JournalEntryReadForm();
         this.journalEntryAux.fillMainData(journalEntryReadForm.getMainData());
     }
+
+    @And("^I search incoming shipments in journal entries$")
+    public void I_search_incoming_shipments_in_journal_entries() throws Throwable {
+        Search openERPSearch = new Search();
+        openERPSearch.advancedSearch("Referencia",this.deliveryOrderAux.code);
+        JournalEntriesListView journalEntriesListView = new JournalEntriesListView();
+        journalEntriesListView.clickOnRecord(this.deliveryOrderAux.code);
+    }
 }

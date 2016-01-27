@@ -41,6 +41,7 @@ public class AssetAssignationSteps {
     public void I_send_email_from_popup() throws Throwable {
         SendMailPopupForm sendMailPopupForm = new SendMailPopupForm();
         sendMailPopupForm.sendMail();
+        Thread.sleep(3000);
     }
 
     @And("^I search asset created in asset assignation$")

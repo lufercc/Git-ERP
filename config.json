@@ -3,9 +3,9 @@
     {
         "driverType":"browser",
         "browser":"fireFox",
-        "implicitWaitTime":"15",
-        "explicitWaitTime":"15",
-        "waitSleepTime":"15",
+        "implicitWaitTime":"20",
+        "explicitWaitTime":"20",
+        "waitSleepTime":"20",
         "desiredCapabilities":
         {
             "browser":"Firefox",
@@ -23,39 +23,39 @@
     },
     "GeneralSettings":
     {
-        "sutURL": "http://10.31.97.80:62069/"
+        "sutURL": "https://10.30.97.21"
     },
     "Credentials":
     {
         "purchase manager":{
-            "password":"p@ssword",
-            "userName":"selog_purMan"
+            "password":"123",
+            "userName":"henry11"
         },
 
         "warehouse manager":{
-            "password":"p@ssword",
-            "userName":"selog_warMan"
+            "password":"123",
+            "userName":"henry16"
         },
 
         "sales":{
-            "password":"p@ssword",
-            "userName":"selog_sale"
+            "password":"123",
+            "userName":"henry13"
         },
 
         "accountant":{
-            "password":"p@ssword",
-            "userName":"selog_acc"
+            "password":"123",
+            "userName":"henry2"
         },
 
         "asset manager":{
-            "password":"p@ssword",
-            "userName":"selog_assMan"
+            "password":"123",
+            "userName":"henry7"
         },
 
         "valid":{
-            "email":"selog_purMan",
-            "password":"p@ssword",
-            "userName":"selog_purMan"
+            "email":"henry2",
+            "password":"123",
+            "userName":"henry2"
         }
     }
 }

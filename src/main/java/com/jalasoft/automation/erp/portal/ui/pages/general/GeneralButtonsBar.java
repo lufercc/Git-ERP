@@ -39,6 +39,7 @@ public class GeneralButtonsBar extends PortalUIElement {
     }
 
     public void clickButton(String buttonString) {
+        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
         switch (buttonString.toLowerCase()) {
         case "create":
             createButton.click();
@@ -56,5 +57,6 @@ public class GeneralButtonsBar extends PortalUIElement {
             moreButton.click();
             break;
         }
+        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

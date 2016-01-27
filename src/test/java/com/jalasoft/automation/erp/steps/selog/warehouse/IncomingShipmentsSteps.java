@@ -46,7 +46,6 @@ public class IncomingShipmentsSteps {
     public void I_press_incoming_shipment_button(String buttonString) throws Throwable {
         com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.ButtonsBar purchaseButtonsBar = new com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.ButtonsBar();
         purchaseButtonsBar.clickButton(buttonString);
-
     }
 
     @And("^I move to \"([^\"]*)\" from incoming shipment$")

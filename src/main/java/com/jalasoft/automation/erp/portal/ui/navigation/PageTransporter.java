@@ -38,7 +38,13 @@ public class PageTransporter {
     public String getHomePageUrl(){
         return  this.baseURL;
     }
-    public OpenERPLoginPage navigateToLoginPage() {
+
+    public LoginPage navigateToLoginPage() {
+        this.navigateToURL(getLoginPageUrl());
+        return new LoginPage();
+    }
+
+    public OpenERPLoginPage navigateToOpenERPLoginPage() {
         this.navigateToURL(getLoginPageUrl());
         return new OpenERPLoginPage();
     }

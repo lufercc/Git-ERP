@@ -1,11 +1,16 @@
 package com.jalasoft.automation.erp.steps.selog.warehouse;
 
 import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.PurchaseOrder;
+import com.jalasoft.automation.erp.portal.ui.custom.selog.warehouse.IncomingShipment;
 import com.jalasoft.automation.erp.portal.ui.pages.general.MainMenu;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
+import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetsAssignationListView;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.IncomingShipmentList;
+import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.InteriorFormButtonsBar;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse.ButtonsBar;
+import com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse.IncomingShipmentReadForm;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse.Submenu;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 
 /**
@@ -13,8 +18,11 @@ import cucumber.api.java.en.And;
  */
 public class IncomingShipmentsSteps {
 
+    IncomingShipment incomingShipmentAux;
     PurchaseOrder purchaseOrderAux;
-    public IncomingShipmentsSteps(PurchaseOrder purchaseOrderInput) {
+
+    public IncomingShipmentsSteps(IncomingShipment incomingShipmentInput, PurchaseOrder purchaseOrderInput) {
+        this.incomingShipmentAux = incomingShipmentInput;
         this.purchaseOrderAux = purchaseOrderInput;
     }
 
@@ -24,5 +32,32 @@ public class IncomingShipmentsSteps {
         openERPSearch.advancedSearch("Documento origen",this.purchaseOrderAux.code);
         IncomingShipmentList incomingShipmentList = new IncomingShipmentList();
         incomingShipmentList.goToRecord(this.purchaseOrderAux.code);
+    }
+
+    @And("^I search purchase order in incoming shipments$")
+    public void I_search_purchase_order_in_incoming_shipments() throws Throwable {
+        Search openERPSearch = new Search();
+        openERPSearch.advancedSearch("Documento origen",this.purchaseOrderAux.code);
+        IncomingShipmentList incomingShipmentList = new IncomingShipmentList();
+        incomingShipmentList.goToRecord(this.purchaseOrderAux.code);
+    }
+
+    @And("^I press \"([^\"]*)\" incoming shipment button$")
+    public void I_press_incoming_shipment_button(String buttonString) throws Throwable {
+        com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.ButtonsBar purchaseButtonsBar = new com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.ButtonsBar();
+        purchaseButtonsBar.clickButton(buttonString);
+
+    }
+
+    @And("^I move to \"([^\"]*)\" from incoming shipment$")
+    public void I_move_to_from_incoming_shipment(String buttonString) throws Throwable {
+        InteriorFormButtonsBar intButtonsBar = new InteriorFormButtonsBar();
+        intButtonsBar.clickButton(buttonString);
+    }
+
+    @And("^get main data from current incoming shipments$")
+    public void get_main_data_from_current_incoming_shipments() throws Throwable {
+        IncomingShipmentReadForm incomingShipmentReadForm = new IncomingShipmentReadForm();
+        this.incomingShipmentAux.fillMainData(incomingShipmentReadForm.getMainData());
     }
 }

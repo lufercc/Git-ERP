@@ -34,4 +34,12 @@ public class InternalMoveSteps {
         InternalMovesListView internalMovesListView = new InternalMovesListView();
         internalMovesListView.clickOnRecord(this.auxAsset.code);
     }
+
+    @And("^I search asset in internal moves$")
+    public void I_search_asset_in_internal_moves() throws Throwable {
+        Search openERPSearch = new Search();
+        openERPSearch.advancedSearch("Documento origen",this.auxAsset.code);
+        InternalMovesListView internalMovesListView = new InternalMovesListView();
+        internalMovesListView.clickOnRecord(this.auxAsset.code);
+    }
 }

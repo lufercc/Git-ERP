@@ -18,7 +18,7 @@ Feature: Accounting
       And I press "request assignation" accounting button
       And I modify the request assignation popup with these data
         | evaluationResponsible | depAreaResponsible | custodian    | depArea   | location             |
-        | selog_assMan          | IT                 | selog_warMan | Marketing | Su compañía / Salida |
+        | Henry7                | IT                 | Henry16      | Marketing | Edificio Fundación   |
       And I press "internal moves" accounting internal button
       And I logout
     When I login with "warehouse manager" credentials
@@ -58,7 +58,7 @@ Feature: Accounting
     When I press "create" general button
       And I create a purchase order with these data
         | supplier |
-        | IC Norte |
+        | Advance  |
       And I add products to the purchase order
         | product |
         | Amoladora de acero grande |

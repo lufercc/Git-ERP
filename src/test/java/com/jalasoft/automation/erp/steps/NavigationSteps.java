@@ -20,4 +20,9 @@ public class NavigationSteps {
         MainMenu mainMenu = new MainMenu();
         mainMenu.goToMenu(menu);
     }
+
+    @Given("^I navigate to login page without cas$")
+    public void I_navigate_to_login_page_without_cas() throws Throwable {
+        PageTransporter.getInstance().navigateToOpenERPLoginPage();
+    }
 }

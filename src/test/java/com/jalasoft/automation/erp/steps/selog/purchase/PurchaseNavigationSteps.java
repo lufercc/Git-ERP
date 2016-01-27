@@ -29,5 +29,6 @@ public class PurchaseNavigationSteps {
     public void I_press_purchase_button(String buttonString) throws Throwable {
         ButtonsBar purchaseButtonsBar = new ButtonsBar();
         purchaseButtonsBar.clickButton(buttonString);
+        Thread.sleep(3000);
     }
 }

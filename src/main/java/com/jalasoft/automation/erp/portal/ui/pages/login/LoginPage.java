@@ -59,7 +59,7 @@ public class LoginPage extends BasePage {
     public void login(String credentialType) {
         UserCredentials credentials = this.userCredentials.getCredentialsByType(credentialType);
         if (credentials != null) {
-            this.userInput.sendKeys(credentials.email);
+            this.userInput.sendKeys(credentials.userName);
             this.passwordInput.sendKeys(credentials.password);
             this.loginButton.click();
         }

@@ -31,7 +31,8 @@ public class MainMenu extends PortalUIElement {
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Almacén')]")
     protected WebElement warehouseMenu;
 
-    @FindBy(linkText = "Cerrar sesión")
+    //@FindBy(linkText = "Cerrar sesión")
+    @FindBy(xpath = "//a[contains(@data-menu,'logout')]")
     protected WebElement logout;
 
     @FindBy(xpath = "//span[contains(@class,'oe_topbar_name')]")
@@ -63,10 +64,12 @@ public class MainMenu extends PortalUIElement {
         default:
             throw new IllegalArgumentException("Case value '" + menu + "' for main menu is not defined yet. Add it!!!");
         }
+        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 
     public MainMenu() {
         this.waitForLoading();
+        this.menuContainer.click();
     }
 
     @Override
@@ -80,6 +83,8 @@ public class MainMenu extends PortalUIElement {
     }
 
     public void logout() {
+        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        this.webDriverTools.waitUntilElementPresentAndVisible(profileContainer);
         profileContainer.click();
         logout.click();
     }

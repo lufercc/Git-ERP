@@ -15,8 +15,8 @@ import org.testng.Assert;
  */
 public class LoginSteps {
 
-    OpenERPLoginPage loginPage;
-    public LoginSteps(OpenERPLoginPage loginPage){
+    LoginPage loginPage;
+    public LoginSteps(LoginPage loginPage){
         this.loginPage = loginPage;
     }
 
@@ -38,6 +38,7 @@ public class LoginSteps {
 
     @And("^I logout$")
     public void I_logout() throws Throwable {
+        Thread.sleep(4000);
         MainMenu mainMenu = new MainMenu();
         mainMenu.logout();
     }

@@ -31,6 +31,14 @@
             "password":"123",
             "userName":"henry51"
         },
+        "lead":{
+            "password":"123",
+            "userName":"henry55"
+        },
+        "officer":{
+            "password":"123",
+            "userName":"henry57"
+        },
         "purchase manager":{
             "password":"123",
             "userName":"henry11"

@@ -1,12 +1,12 @@
 package com.jalasoft.automation.erp.steps.hhrr.employee;
 
+import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.*;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
 import com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee.*;
-import cucumber.api.PendingException;import cucumber.api.java.en.And;
-import org.apache.xpath.operations.Bool;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import org.junit.Assert;
-
 import java.util.List;
 
 /**
@@ -95,6 +95,83 @@ public class EmployeeSteps {
             Boolean auxResult = item.contains(engInfoReadForm.getMainData());
             if(!auxResult) {result = false;}
         }
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify if he has this nda data$")
+    public void I_verify_if_he_has_this_nda_data(List<NDA> expectedNDAData) throws Throwable {
+        Boolean result= true;
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("personal");
+        NDAInfoReadForm ndaInfoReadForm = new NDAInfoReadForm(); // evaluate if it could be moved up
+
+        result = ndaInfoReadForm.isInTheTable(expectedNDAData);
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify if he has this nationality data$")
+    public void I_verify_if_he_has_this_nationality_data(List<Nationality> expectedData) throws Throwable {
+        Boolean result= true;
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("personal");
+        NationalityInfoReadForm nationalityInfoReadForm = new NationalityInfoReadForm(); // evaluate if it could be moved up
+
+        result = nationalityInfoReadForm.isInTheTable(expectedData);
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify if he has this emergency contact data$")
+    public void I_verify_if_he_has_this_emergency_contact_data(List<EmergencyContact> expectedData) throws Throwable {
+        Boolean result= true;
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("personal");
+        EmergencyContactInfoReadForm emergencyContactInfoReadForm = new EmergencyContactInfoReadForm(); // evaluate if it could be moved up
+
+        result = emergencyContactInfoReadForm.isInTheTable(expectedData);
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify if he has this family data$")
+    public void I_verify_if_he_has_this_family_data(List<FamilyMember> expectedData) throws Throwable {
+        Boolean result= true;
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("hhrr");
+        FamilyInfoReadForm familyInfoReadForm = new FamilyInfoReadForm(); // evaluate if it could be moved up
+
+        result = familyInfoReadForm.isInTheTable(expectedData);
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify if he has this project data$")
+    public void I_verify_if_he_has_this_project_data(List<Project> expectedData) throws Throwable {
+        Boolean result= true;
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("engineering");
+        ProjectInfoReadForm projectInfoReadForm = new ProjectInfoReadForm(); // evaluate if it could be moved up
+
+        result = projectInfoReadForm.isInTheTable(expectedData);
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify if he has this external career data$")
+    public void I_verify_if_he_has_this_external_career_data(List<ExternalCareer> expectedData) throws Throwable {
+        Boolean result= true;
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("history");
+        ExternalCareerInfoReadForm externalCareerInfoReadForm = new ExternalCareerInfoReadForm(); // evaluate if it could be moved up
+
+        result = externalCareerInfoReadForm.isInTheTable(expectedData);
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify if he has this internal career data$")
+    public void I_verify_if_he_has_this_internal_career_data(List<InternalCareer> expectedData) throws Throwable {
+        Boolean result= true;
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("history");
+        InternalCareerInfoReadForm internalCareerInfoReadForm = new InternalCareerInfoReadForm(); // evaluate if it could be moved up
+
+        result = internalCareerInfoReadForm.isInTheTable(expectedData);
         Assert.assertTrue(result);
     }
 }

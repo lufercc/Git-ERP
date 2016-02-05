@@ -33,7 +33,7 @@ public class ExternalCareerInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean isInTheTable(List<ExternalCareer> expectedData) {
+    public boolean hasSameContent(List<ExternalCareer> expectedData) {
         List<HashMap> dataFromTable = this.getData();
         ExternalCareer currentExternalCareer;
         HashMap<String,String> currentRow;
@@ -46,15 +46,12 @@ public class ExternalCareerInfoReadForm extends TableOpenERP {
                 currentExternalCareer = expectedData.get(indexObjectList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentExternalCareer.name.equals(currentRow.get("Puesto"))) {
-                        if (currentExternalCareer.startDate.equals(currentRow.get("Fecha inicio"))) {
-                            if (currentExternalCareer.endDate.equals(currentRow.get("Fecha de finalización"))) {
-                                if (currentExternalCareer.employeer.equals(currentRow.get("Empleador"))) {
-                                    dataFromTable.remove(currentRow);
-                                    break;
-                                }
-                            }
-                        }
+                    if (currentExternalCareer.name.equals(currentRow.get("Puesto")) &&
+                        currentExternalCareer.startDate.equals(currentRow.get("Fecha inicio")) &&
+                        currentExternalCareer.endDate.equals(currentRow.get("Fecha de finalización")) &&
+                        currentExternalCareer.employeer.equals(currentRow.get("Empleador"))) {
+                            dataFromTable.remove(currentRow);
+                            break;
                     }
                     if(indexList == (tableSize - 1)) {
                         return false;

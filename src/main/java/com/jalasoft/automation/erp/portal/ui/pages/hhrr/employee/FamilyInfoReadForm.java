@@ -33,7 +33,7 @@ public class FamilyInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean isInTheTable(List<FamilyMember> expectedData) {
+    public boolean hasSameContent(List<FamilyMember> expectedData) {
         List<HashMap> dataFromTable = this.getData();
         FamilyMember currentFamilyMember;
         HashMap<String,String> currentRow;
@@ -46,17 +46,13 @@ public class FamilyInfoReadForm extends TableOpenERP {
                 currentFamilyMember = expectedData.get(indexObjectList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentFamilyMember.name.equals(currentRow.get("Nombres"))) {
-                        if (currentFamilyMember.lastName.equals(currentRow.get("Apellidos"))) {
-                            if (currentFamilyMember.relation.equals(currentRow.get("Parentesco"))) {
-                                if (currentFamilyMember.sex.equals(currentRow.get("Sexo"))) {
-                                    if (currentFamilyMember.birthDate.equals(currentRow.get("Fecha de nacimiento"))) {
-                                        dataFromTable.remove(currentRow);
-                                        break;
-                                    }
-                                }
-                            }
-                        }
+                    if (currentFamilyMember.name.equals(currentRow.get("Nombres")) &&
+                        currentFamilyMember.lastName.equals(currentRow.get("Apellidos")) &&
+                        currentFamilyMember.relation.equals(currentRow.get("Parentesco")) &&
+                        currentFamilyMember.sex.equals(currentRow.get("Sexo")) &&
+                        currentFamilyMember.birthDate.equals(currentRow.get("Fecha de nacimiento"))) {
+                            dataFromTable.remove(currentRow);
+                            break;
                     }
                     if(indexList == (tableSize - 1)) {
                         return false;

@@ -103,9 +103,9 @@ public class EmployeeSteps {
         Boolean result= true;
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("personal");
-        NDAInfoReadForm ndaInfoReadForm = new NDAInfoReadForm(); // evaluate if it could be moved up
+        NDAInfoReadForm ndaInfoReadForm = new NDAInfoReadForm();
 
-        result = ndaInfoReadForm.isInTheTable(expectedNDAData);
+        result = ndaInfoReadForm.hasSameContent(expectedNDAData);
         Assert.assertTrue(result);
     }
 
@@ -114,9 +114,9 @@ public class EmployeeSteps {
         Boolean result= true;
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("personal");
-        NationalityInfoReadForm nationalityInfoReadForm = new NationalityInfoReadForm(); // evaluate if it could be moved up
+        NationalityInfoReadForm nationalityInfoReadForm = new NationalityInfoReadForm();
 
-        result = nationalityInfoReadForm.isInTheTable(expectedData);
+        result = nationalityInfoReadForm.hasSameContent(expectedData);
         Assert.assertTrue(result);
     }
 
@@ -125,9 +125,9 @@ public class EmployeeSteps {
         Boolean result= true;
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("personal");
-        EmergencyContactInfoReadForm emergencyContactInfoReadForm = new EmergencyContactInfoReadForm(); // evaluate if it could be moved up
+        EmergencyContactInfoReadForm emergencyContactInfoReadForm = new EmergencyContactInfoReadForm();
 
-        result = emergencyContactInfoReadForm.isInTheTable(expectedData);
+        result = emergencyContactInfoReadForm.hasSameContent(expectedData);
         Assert.assertTrue(result);
     }
 
@@ -136,9 +136,9 @@ public class EmployeeSteps {
         Boolean result= true;
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("hhrr");
-        FamilyInfoReadForm familyInfoReadForm = new FamilyInfoReadForm(); // evaluate if it could be moved up
+        FamilyInfoReadForm familyInfoReadForm = new FamilyInfoReadForm();
 
-        result = familyInfoReadForm.isInTheTable(expectedData);
+        result = familyInfoReadForm.hasSameContent(expectedData);
         Assert.assertTrue(result);
     }
 
@@ -147,9 +147,9 @@ public class EmployeeSteps {
         Boolean result= true;
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("engineering");
-        ProjectInfoReadForm projectInfoReadForm = new ProjectInfoReadForm(); // evaluate if it could be moved up
+        ProjectInfoReadForm projectInfoReadForm = new ProjectInfoReadForm();
 
-        result = projectInfoReadForm.isInTheTable(expectedData);
+        result = projectInfoReadForm.hasSameContent(expectedData);
         Assert.assertTrue(result);
     }
 
@@ -158,9 +158,9 @@ public class EmployeeSteps {
         Boolean result= true;
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("history");
-        ExternalCareerInfoReadForm externalCareerInfoReadForm = new ExternalCareerInfoReadForm(); // evaluate if it could be moved up
+        ExternalCareerInfoReadForm externalCareerInfoReadForm = new ExternalCareerInfoReadForm();
 
-        result = externalCareerInfoReadForm.isInTheTable(expectedData);
+        result = externalCareerInfoReadForm.hasSameContent(expectedData);
         Assert.assertTrue(result);
     }
 
@@ -169,9 +169,9 @@ public class EmployeeSteps {
         Boolean result= true;
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("history");
-        InternalCareerInfoReadForm internalCareerInfoReadForm = new InternalCareerInfoReadForm(); // evaluate if it could be moved up
+        InternalCareerInfoReadForm internalCareerInfoReadForm = new InternalCareerInfoReadForm();
 
-        result = internalCareerInfoReadForm.isInTheTable(expectedData);
+        result = internalCareerInfoReadForm.hasSameContent(expectedData);
         Assert.assertTrue(result);
     }
 }

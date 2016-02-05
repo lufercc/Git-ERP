@@ -33,7 +33,7 @@ public class ProjectInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean isInTheTable(List<Project> expectedData) {
+    public boolean hasSameContent(List<Project> expectedData) {
         List<HashMap> dataFromTable = this.getData();
         Project currentProject;
         HashMap<String,String> currentRow;

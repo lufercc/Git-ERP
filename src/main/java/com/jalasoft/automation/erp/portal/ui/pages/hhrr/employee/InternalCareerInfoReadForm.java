@@ -33,7 +33,7 @@ public class InternalCareerInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean isInTheTable(List<InternalCareer> expectedData) {
+    public boolean hasSameContent(List<InternalCareer> expectedData) {
         List<HashMap> dataFromTable = this.getData();
         InternalCareer currentInternalCareer;
         HashMap<String,String> currentRow;
@@ -46,23 +46,16 @@ public class InternalCareerInfoReadForm extends TableOpenERP {
                 currentInternalCareer = expectedData.get(indexObjectList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentInternalCareer.department.equals(currentRow.get("Departamento"))) {
-                        if (currentInternalCareer.division.equals(currentRow.get("División"))) {
-                            if (currentInternalCareer.name.equals(currentRow.get("Puesto"))) {
-                                if (currentInternalCareer.projectCode.equals(currentRow.get("Código de proyecto"))) {
-                                    if (currentInternalCareer.weight.equals(currentRow.get("Peso"))) {
-                                        if (currentInternalCareer.startDate.equals(currentRow.get("Fecha inicio"))) {
-                                            if (currentInternalCareer.endDate.equals(currentRow.get("Fecha de finalización"))) {
-                                                if (currentInternalCareer.employeer.equals(currentRow.get("Empleador"))) {
-                                                    dataFromTable.remove(currentRow);
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                    if (currentInternalCareer.department.equals(currentRow.get("Departamento")) &&
+                        currentInternalCareer.division.equals(currentRow.get("División")) &&
+                        currentInternalCareer.name.equals(currentRow.get("Puesto")) &&
+                        currentInternalCareer.projectCode.equals(currentRow.get("Código de proyecto")) &&
+                        currentInternalCareer.weight.equals(currentRow.get("Peso")) &&
+                        currentInternalCareer.startDate.equals(currentRow.get("Fecha inicio")) &&
+                        currentInternalCareer.endDate.equals(currentRow.get("Fecha de finalización")) &&
+                        currentInternalCareer.employeer.equals(currentRow.get("Empleador"))) {
+                            dataFromTable.remove(currentRow);
+                            break;
                     }
                     if(indexList == (tableSize - 1)) {
                         return false;

@@ -33,9 +33,9 @@ public class TableOpenERP extends PortalUIElement {
             }
             result.add(hashMapAux);
         }
-        System.out.println("Fin");
         return result;
     }
+
     public List<String> getHeaders() {
         List<String> result = new ArrayList<>();
         List<WebElement> tableHeaders = table.findElements(By.xpath("./thead/tr[contains(@class,'oe_list_header')]/th/div"));

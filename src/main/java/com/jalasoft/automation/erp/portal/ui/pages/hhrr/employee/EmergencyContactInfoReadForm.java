@@ -33,7 +33,7 @@ public class EmergencyContactInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean isInTheTable(List<EmergencyContact> expectedData) {
+    public boolean hasSameContent(List<EmergencyContact> expectedData) {
         List<HashMap> dataFromTable = this.getData();
         EmergencyContact currentEmergencyContact;
         HashMap<String,String> currentRow;
@@ -46,15 +46,12 @@ public class EmergencyContactInfoReadForm extends TableOpenERP {
                 currentEmergencyContact = expectedData.get(indexObjectList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentEmergencyContact.name.equals(currentRow.get("Nombre completo"))) {
-                        if (currentEmergencyContact.relationship.equals(currentRow.get("Parentesco"))) {
-                            if (currentEmergencyContact.phone.equals(currentRow.get("Teléfono"))) {
-                                if (currentEmergencyContact.mobile.equals(currentRow.get("Celular"))) {
-                                    dataFromTable.remove(currentRow);
-                                    break;
-                                }
-                            }
-                        }
+                    if (currentEmergencyContact.name.equals(currentRow.get("Nombre completo")) &&
+                        currentEmergencyContact.relationship.equals(currentRow.get("Parentesco")) &&
+                        currentEmergencyContact.phone.equals(currentRow.get("Teléfono")) &&
+                        currentEmergencyContact.mobile.equals(currentRow.get("Celular"))) {
+                            dataFromTable.remove(currentRow);
+                            break;
                     }
                     if(indexList == (tableSize - 1)) {
                         return false;

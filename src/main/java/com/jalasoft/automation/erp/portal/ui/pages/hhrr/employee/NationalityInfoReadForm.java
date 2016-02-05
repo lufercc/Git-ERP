@@ -33,7 +33,7 @@ public class NationalityInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean isInTheTable(List<Nationality> expectedData) {
+    public boolean hasSameContent(List<Nationality> expectedData) {
         List<HashMap> dataFromTable = this.getData();
         Nationality currentNationality;
         HashMap<String,String> currentRow;
@@ -46,14 +46,12 @@ public class NationalityInfoReadForm extends TableOpenERP {
                 currentNationality = expectedData.get(indexNationalityList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentNationality.name.equals(currentRow.get("Nombre del país"))) {
-                        if (currentNationality.code.equals(currentRow.get("Código de país"))) {
+                    if (currentNationality.name.equals(currentRow.get("Nombre del país")) &&
+                        currentNationality.code.equals(currentRow.get("Código de país"))) {
                             dataFromTable.remove(currentRow);
                             break;
-                        }
                     }
-                    if(indexList == (tableSize - 1))
-                    {
+                    if(indexList == (tableSize - 1)) {
                         return false;
                     }
                 }

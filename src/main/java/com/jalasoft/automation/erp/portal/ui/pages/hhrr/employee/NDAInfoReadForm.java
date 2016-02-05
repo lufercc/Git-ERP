@@ -34,7 +34,7 @@ public class NDAInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean isInTheTable(List<NDA> expectedNDAData) {
+    public boolean hasSameContent(List<NDA> expectedNDAData) {
         List<HashMap> dataFromTable = this.getData();
         NDA currentNDA;
         HashMap<String,String> currentRow;
@@ -47,14 +47,12 @@ public class NDAInfoReadForm extends TableOpenERP {
                 currentNDA = expectedNDAData.get(indexNDAList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentNDA.ndaVersion.equals(currentRow.get("Versión NDA"))) {
-                        if (currentNDA.signDate.equals(currentRow.get("Fecha de firma"))) {
+                    if (currentNDA.ndaVersion.equals(currentRow.get("Versión NDA")) &&
+                        currentNDA.signDate.equals(currentRow.get("Fecha de firma"))) {
                             dataFromTable.remove(currentRow);
                             break;
-                        }
                     }
-                    if(indexList == (tableSize - 1))
-                    {
+                    if(indexList == (tableSize - 1)) {
                         return false;
                     }
                 }

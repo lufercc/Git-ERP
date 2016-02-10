@@ -67,4 +67,17 @@ Feature: Employee
       | department | division | name     | projectCode | weight | startDate  | endDate    | employeer |
       | IT         | Support  | Security | TPA         | 6      | 02/10/2016 | 02/20/2018 | Other     |
 
+    And I verify if he has this tag data
+      | name          |
+      | media jornada |
+      | dev training  |
+
+    And I verify if he has this holiday policies data
+      | name                      |
+      | Ley del trabajo boliviana |
+
+    And I verify if he has this other supervisors data
+      | name          |
+      | Administrator |
+
     And I logout

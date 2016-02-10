@@ -174,4 +174,36 @@ public class EmployeeSteps {
         result = internalCareerInfoReadForm.hasSameContent(expectedData);
         Assert.assertTrue(result);
     }
+
+    @And("^I verify if he has this tag data$")
+    public void I_verify_if_he_has_this_tag_data(List<Tag> expectedData) throws Throwable {
+        Boolean result= true;
+        EmployeeForm employeeForm = new EmployeeForm();
+        TagInfoReadForm tagInfoReadForm = new TagInfoReadForm();
+
+        result = tagInfoReadForm.hasSameContent(expectedData);
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify if he has this holiday policies data$")
+    public void I_verify_if_he_has_this_holiday_policies_data(List<Tag> expectedData) throws Throwable {
+        Boolean result= true;
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("hhrr");
+        HolidayPoliciesInfoReadForm holidayPoliciesInfoReadForm = new HolidayPoliciesInfoReadForm();
+
+        result = holidayPoliciesInfoReadForm.hasSameContent(expectedData);
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify if he has this other supervisors data$")
+    public void I_verify_if_he_has_this_other_supervisors_data(List<Tag> expectedData) throws Throwable {
+        Boolean result= true;
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("engineering");
+        OtherSupervisorsInfoReadForm otherSupervisorsInfoReadForm = new OtherSupervisorsInfoReadForm();
+
+        result = otherSupervisorsInfoReadForm.hasSameContent(expectedData);
+        Assert.assertTrue(result);
+    }
 }

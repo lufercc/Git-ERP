@@ -7,8 +7,27 @@ Feature: Employee
     And I go to "employees" hhrr submenu
     And I press "create" general button
     And I modify the employee with basic data
-      | name    |
-      | JSss    |
+      | firstName | firstNameCheck | middleName | middleNameCheck | lastName | secondLastName | marriedName |
+      | JSss      | true           | ewed       | false           | eww      | rrrr           | ttgt        |
+
+    And I modify the employee with public data
+      | address | workEmail        | workPhone   | extCode | workMobile    | codeDesktop | city       | user     | location | country | otherInfo  |
+      | ABILA   | test@hotmail.com | 45615815532 | 12      | 707-642-51545 | A224        | Cochabamba | Henry56  | 0F       | Bolivia | other info |
+
+    And I modify the employee with personal data
+      | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                     | visaExpDate | homeAddress | dateBirth  | age | country | city     |
+      | Nacional          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Negocios y turismo (B-1/B-2) | 02/20/2019  | Henry56     | 02/12/1986 | 29  | Albania | SomeCity |
+
+    And I modify the employee with hhrr data
+      | gender | maritalStatus | numberChildren | startDate  | endDate    | hireDate   | endHireDate | salaryReviewMonth | workingSchedule  | holidayGroup           | vacationAnniversary | internalID |
+      | Hombre | Cohabitando   | 5              | 02/19/2015 | 02/01/2016 | 01/04/2016 | 01/04/2017  | Enero             | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
+
+    And I modify the employee with engineering data
+      | department | division | jobTitle | manager        | lead        | visible | billable | shadowCategory | notes | commitment | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
+      | IT         | Support  | Security | autojs manager | jslead otro | false   | true     | Risk           | dwe   | false      | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
+
+    And I press "save" general button
+
     And I logout
   @readMyInformation
   Scenario: Verify that an asset is assigned if the asset is created manually

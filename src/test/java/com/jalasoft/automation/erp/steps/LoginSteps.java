@@ -38,7 +38,6 @@ public class LoginSteps {
 
     @And("^I logout$")
     public void I_logout() throws Throwable {
-        Thread.sleep(4000);
         MainMenu mainMenu = new MainMenu();
         mainMenu.logout();
     }

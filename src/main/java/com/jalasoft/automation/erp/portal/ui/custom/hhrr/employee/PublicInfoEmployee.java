@@ -5,6 +5,7 @@ package com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee;
  */
 public class PublicInfoEmployee {
 
+    public String address;
     public String addressDescription;
     public String workEmail;
     public String workPhone;

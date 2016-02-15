@@ -12,11 +12,11 @@ import java.util.List;
  */
 public class EmployeeSteps {
     @And("^I modify the employee with basic data$")
-    public void I_modify_the_employee_with_basic_data(List<BasicInfoEmployee> basicEmployeeData) throws Throwable {
-        BasicEmpEditForm basicEmpEditForm = new BasicEmpEditForm();
+    public void I_modify_the_employee_with_basic_data(List<BasicInfoEmployee> basicInfoData) throws Throwable {
+        BasicInfoEditForm basicInfoEditForm = new BasicInfoEditForm();
 
-        for (BasicInfoEmployee item : basicEmployeeData) {
-            basicEmpEditForm.modifyData(item);
+        for (BasicInfoEmployee item : basicInfoData) {
+            basicInfoEditForm.modifyData(item);
         }
     }
 
@@ -202,5 +202,49 @@ public class EmployeeSteps {
 
         result = otherSupervisorsInfoReadForm.hasSameContent(expectedData);
         Assert.assertTrue(result);
+    }
+
+    @And("^I modify the employee with public data$")
+    public void I_modify_the_employee_with_public_data(List<PublicInfoEmployee> publicInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        PublicInfoEditForm publicInfoEditForm = new PublicInfoEditForm();
+        employeeForm.selectTab("public");
+
+        for (PublicInfoEmployee item : publicInfoData) {
+            publicInfoEditForm.modifyData(item);
+        }
+    }
+
+    @And("^I modify the employee with personal data$")
+    public void I_modify_the_employee_with_personal_data(List<PersonalInfoEmployee> personalInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        PersonalInfoEditForm personalInfoEditForm = new PersonalInfoEditForm();
+        employeeForm.selectTab("personal");
+
+        for (PersonalInfoEmployee item : personalInfoData) {
+            personalInfoEditForm.modifyData(item);
+        }
+    }
+
+    @And("^I modify the employee with hhrr data$")
+    public void I_modify_the_employee_with_hhrr_data(List<HHRRInfoEmployee> hhrrInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        HHRRInfoEditForm hhrrInfoEditForm = new HHRRInfoEditForm();
+        employeeForm.selectTab("hhrr");
+
+        for (HHRRInfoEmployee item : hhrrInfoData) {
+            hhrrInfoEditForm.modifyData(item);
+        }
+    }
+
+    @And("^I modify the employee with engineering data$")
+    public void I_modify_the_employee_with_engineering_data(List<EngInfoEmployee> engInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        EngInfoEditForm engInfoEditForm = new EngInfoEditForm();
+        employeeForm.selectTab("engineering");
+
+        for (EngInfoEmployee item : engInfoData) {
+            engInfoEditForm.modifyData(item);
+        }
     }
 }

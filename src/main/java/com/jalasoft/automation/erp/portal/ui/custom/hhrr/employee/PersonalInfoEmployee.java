@@ -15,6 +15,7 @@ public class PersonalInfoEmployee {
     public String hasVisa;
     public String visaType;
     public String visaExpDate;
+    public String homeAddress;
     public String homeAddressDescription;
     public String dateBirth;
     public String age;

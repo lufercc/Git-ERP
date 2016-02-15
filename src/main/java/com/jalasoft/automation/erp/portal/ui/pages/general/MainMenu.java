@@ -37,8 +37,12 @@ public class MainMenu extends PortalUIElement {
     @FindBy(xpath = "//a[contains(@data-menu,'logout')]")
     protected WebElement logout;
 
-    @FindBy(xpath = "//span[contains(@class,'oe_topbar_name')]")
+    @FindBy(xpath = "//span[contains(@class,'oe_topbar_avatar')]")
     protected WebElement profileContainer;
+
+    @FindBy(xpath = "//span[contains(@class,'oe_user_menu')]")
+    protected WebElement userMenu;
+
 
 
     /**
@@ -75,7 +79,6 @@ public class MainMenu extends PortalUIElement {
 
     public MainMenu() {
         this.waitForLoading();
-        this.menuContainer.click();
     }
 
     @Override
@@ -90,8 +93,7 @@ public class MainMenu extends PortalUIElement {
 
     public void logout() {
         this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
-        this.webDriverTools.waitUntilElementPresentAndVisible(profileContainer);
-        profileContainer.click();
+        userMenu.click();
         logout.click();
     }
 }

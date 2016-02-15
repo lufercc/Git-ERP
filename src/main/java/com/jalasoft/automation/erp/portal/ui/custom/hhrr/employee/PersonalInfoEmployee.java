@@ -22,21 +22,21 @@ public class PersonalInfoEmployee {
     public String city;
 
     public void fillMainData(PersonalInfoEmployee aux) {
-        this.nationalOrForeign = (aux.nationalOrForeign != null) ? aux.nationalOrForeign : null;
-        this.idNumber = (aux.idNumber != null) ? aux.idNumber : null;
-        this.idExpDate = (aux.idExpDate != null) ? aux.idExpDate : null;
-        this.idPlace = (aux.idPlace != null) ? aux.idPlace : null;
-        this.passportNumber = (aux.passportNumber != null) ? aux.passportNumber : null;
-        this.passportPlace = (aux.passportPlace != null) ? aux.passportPlace : null;
-        this.passportExpDate = (aux.passportExpDate != null) ? aux.passportExpDate : null;
-        this.hasVisa = (aux.hasVisa != null) ? aux.hasVisa : null;
-        this.visaType = (aux.visaType != null) ? aux.visaType : null;
-        this.visaExpDate = (aux.visaExpDate != null) ? aux.visaExpDate : null;
-        this.homeAddressDescription = (aux.homeAddressDescription != null) ? aux.homeAddressDescription : null;
-        this.dateBirth = (aux.dateBirth != null) ? aux.dateBirth : null;
-        this.age = (aux.age != null) ? aux.age : null;
-        this.country = (aux.country != null) ? aux.country : null;
-        this.city = (aux.city != null) ? aux.city : null;
+        this.nationalOrForeign = aux.nationalOrForeign;
+        this.idNumber = aux.idNumber;
+        this.idExpDate = aux.idExpDate;
+        this.idPlace = aux.idPlace;
+        this.passportNumber = aux.passportNumber;
+        this.passportPlace = aux.passportPlace;
+        this.passportExpDate = aux.passportExpDate;
+        this.hasVisa = aux.hasVisa;
+        this.visaType = aux.visaType;
+        this.visaExpDate = aux.visaExpDate;
+        this.homeAddressDescription = aux.homeAddressDescription;
+        this.dateBirth = aux.dateBirth;
+        this.age = aux.age;
+        this.country = aux.country;
+        this.city = aux.city;
     }
 
     public boolean contains(PersonalInfoEmployee mainData) {

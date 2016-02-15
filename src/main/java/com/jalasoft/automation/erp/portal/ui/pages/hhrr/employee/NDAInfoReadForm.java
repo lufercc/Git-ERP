@@ -18,9 +18,11 @@ public class NDAInfoReadForm extends TableOpenERP {
     @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[3]")
     protected WebElement table;
 
-
     public NDAInfoReadForm() {
         super.table = this.table;
+        expectedSpanishHeaders.put("ndaVersion","Versión NDA");
+        expectedSpanishHeaders.put("signDate","Fecha de firma");
+        expectedHeaders = expectedSpanishHeaders;
         this.waitForLoading();
     }
 
@@ -35,7 +37,7 @@ public class NDAInfoReadForm extends TableOpenERP {
     }
 
     public boolean hasSameContent(List<NDA> expectedNDAData) {
-        List<HashMap> dataFromTable = this.getData();
+        List<HashMap<String,String>> dataFromTable = this.getData();
         NDA currentNDA;
         HashMap<String,String> currentRow;
         if(expectedNDAData.size()!= dataFromTable.size()) {
@@ -47,8 +49,8 @@ public class NDAInfoReadForm extends TableOpenERP {
                 currentNDA = expectedNDAData.get(indexNDAList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentNDA.ndaVersion.equals(currentRow.get("Versión NDA")) &&
-                        currentNDA.signDate.equals(currentRow.get("Fecha de firma"))) {
+                    if (currentNDA.ndaVersion.equals(currentRow.get(expectedHeaders.get("ndaVersion"))) &&
+                        currentNDA.signDate.equals(currentRow.get(expectedHeaders.get("signDate")))) {
                             dataFromTable.remove(currentRow);
                             break;
                     }

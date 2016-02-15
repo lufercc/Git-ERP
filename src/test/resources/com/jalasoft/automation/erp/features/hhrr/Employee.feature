@@ -27,7 +27,7 @@ Feature: Employee
 
     And I verify if he has this simple data in personal information
       | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                     | visaExpDate | homeAddressDescription                                              | dateBirth  | age | country | city     |
-      | Nacional          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Negocios y turismo (B-1/B-2) | 02/20/2019  | C. Tarata<br>Tarata CBA 123<br>Bolivia<br>17°21'57.9"S 66°10'32.0"W | 02/12/1986 | 29  | Albania | SomeCity |
+      | Nacional          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Negocios y turismo (B-1/B-2) | 02/20/2019  | C. Tarata<br>Tarata CBA 123<br>Bolivia<br>17°21'57.9"S 66°10'32.0"W | 02/12/1986 | 30  | Albania | SomeCity |
 
     And I verify if he has this simple data in hrdata information
       | gender | maritalStatus | numberChildren | startDate  | endDate    | hireDate   | endHireDate | salaryReviewMonth | workingSchedule  | holidayGroup           | vacationAnniversary | internalID |

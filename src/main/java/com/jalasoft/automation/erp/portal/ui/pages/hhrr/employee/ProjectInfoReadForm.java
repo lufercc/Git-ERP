@@ -17,9 +17,10 @@ public class ProjectInfoReadForm extends TableOpenERP {
     @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[6]")
     protected WebElement table;
 
-
     public ProjectInfoReadForm() {
         super.table = this.table;
+        expectedSpanishHeaders.put("code","Código de proyecto");
+        expectedHeaders = expectedSpanishHeaders;
         this.waitForLoading();
     }
 
@@ -34,7 +35,7 @@ public class ProjectInfoReadForm extends TableOpenERP {
     }
 
     public boolean hasSameContent(List<Project> expectedData) {
-        List<HashMap> dataFromTable = this.getData();
+        List<HashMap<String,String>> dataFromTable = this.getData();
         Project currentProject;
         HashMap<String,String> currentRow;
         if(expectedData.size()!= dataFromTable.size()) {
@@ -46,7 +47,7 @@ public class ProjectInfoReadForm extends TableOpenERP {
                 currentProject = expectedData.get(indexObjectList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentProject.code.equals(currentRow.get("Código de proyecto"))) {
+                    if (currentProject.code.equals(currentRow.get(expectedHeaders.get("code")))) {
                         dataFromTable.remove(currentRow);
                         break;
                     }

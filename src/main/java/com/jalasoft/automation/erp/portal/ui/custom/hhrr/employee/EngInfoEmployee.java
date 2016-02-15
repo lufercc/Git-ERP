@@ -23,22 +23,22 @@ public class EngInfoEmployee {
     public String nextEvalDate;
 
     public void fillMainData(EngInfoEmployee aux) {
-        this.department = (aux.department != null) ? aux.department : null;
-        this.division = (aux.division != null) ? aux.division : null;
-        this.jobTitle = (aux.jobTitle != null) ? aux.jobTitle : null;
-        this.manager = (aux.manager != null) ? aux.manager : null;
-        this.lead = (aux.lead != null) ? aux.lead : null;
-        this.visible = (aux.visible != null) ? aux.visible : null;
-        this.billable = (aux.billable != null) ? aux.billable : null;
-        this.shadowCategory = (aux.shadowCategory != null) ? aux.shadowCategory : null;
-        this.notes = (aux.notes != null) ? aux.notes : null;
-        this.commitment = (aux.commitment != null) ? aux.commitment : null;
-        this.active = (aux.active != null) ? aux.active : null;
-        this.consultant = (aux.consultant != null) ? aux.consultant : null;
-        this.jce = (aux.jce != null) ? aux.jce : null;
-        this.reason = (aux.reason != null) ? aux.reason : null;
-        this.lastEvalDate = (aux.lastEvalDate != null) ? aux.lastEvalDate : null;
-        this.nextEvalDate = (aux.nextEvalDate != null) ? aux.nextEvalDate : null;
+        this.department = aux.department;
+        this.division = aux.division;
+        this.jobTitle = aux.jobTitle;
+        this.manager = aux.manager;
+        this.lead = aux.lead;
+        this.visible = aux.visible;
+        this.billable = aux.billable;
+        this.shadowCategory = aux.shadowCategory;
+        this.notes = aux.notes;
+        this.commitment = aux.commitment;
+        this.active = aux.active;
+        this.consultant = aux.consultant;
+        this.jce = aux.jce;
+        this.reason = aux.reason;
+        this.lastEvalDate = aux.lastEvalDate;
+        this.nextEvalDate = aux.nextEvalDate;
     }
 
     public boolean contains(EngInfoEmployee mainData) {

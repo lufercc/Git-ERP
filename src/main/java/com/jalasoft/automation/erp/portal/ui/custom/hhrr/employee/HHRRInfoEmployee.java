@@ -19,18 +19,18 @@ public class HHRRInfoEmployee {
     public String internalID;
 
     public void fillMainData(HHRRInfoEmployee aux) {
-        this.gender = (aux.gender != null) ? aux.gender : null;
-        this.maritalStatus = (aux.maritalStatus != null) ? aux.maritalStatus : null;
-        this.numberChildren = (aux.numberChildren != null) ? aux.numberChildren : null;
-        this.startDate = (aux.startDate != null) ? aux.startDate : null;
-        this.endDate = (aux.endDate != null) ? aux.endDate : null;
-        this.hireDate = (aux.hireDate != null) ? aux.hireDate : null;
-        this.endHireDate = (aux.endHireDate != null) ? aux.endHireDate : null;
-        this.salaryReviewMonth = (aux.salaryReviewMonth != null) ? aux.salaryReviewMonth : null;
-        this.workingSchedule = (aux.workingSchedule != null) ? aux.workingSchedule : null;
-        this.holidayGroup = (aux.holidayGroup != null) ? aux.holidayGroup : null;
-        this.vacationAnniversary = (aux.vacationAnniversary != null) ? aux.vacationAnniversary : null;
-        this.internalID = (aux.internalID != null) ? aux.internalID : null;
+        this.gender = aux.gender;
+        this.maritalStatus = aux.maritalStatus;
+        this.numberChildren = aux.numberChildren;
+        this.startDate = aux.startDate;
+        this.endDate = aux.endDate;
+        this.hireDate = aux.hireDate;
+        this.endHireDate = aux.endHireDate;
+        this.salaryReviewMonth = aux.salaryReviewMonth;
+        this.workingSchedule = aux.workingSchedule;
+        this.holidayGroup = aux.holidayGroup;
+        this.vacationAnniversary = aux.vacationAnniversary;
+        this.internalID = aux.internalID;
     }
 
     public boolean contains(HHRRInfoEmployee mainData) {

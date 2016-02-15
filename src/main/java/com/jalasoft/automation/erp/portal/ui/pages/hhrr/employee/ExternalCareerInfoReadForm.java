@@ -20,6 +20,11 @@ public class ExternalCareerInfoReadForm extends TableOpenERP {
 
     public ExternalCareerInfoReadForm() {
         super.table = this.table;
+        expectedSpanishHeaders.put("name","Puesto");
+        expectedSpanishHeaders.put("startDate","Fecha inicio");
+        expectedSpanishHeaders.put("endDate","Fecha de finalización");
+        expectedSpanishHeaders.put("employeer","Empleador");
+        expectedHeaders = expectedSpanishHeaders;
         this.waitForLoading();
     }
 
@@ -34,7 +39,7 @@ public class ExternalCareerInfoReadForm extends TableOpenERP {
     }
 
     public boolean hasSameContent(List<ExternalCareer> expectedData) {
-        List<HashMap> dataFromTable = this.getData();
+        List<HashMap<String,String>> dataFromTable = this.getData();
         ExternalCareer currentExternalCareer;
         HashMap<String,String> currentRow;
         if(expectedData.size()!= dataFromTable.size()) {
@@ -46,10 +51,10 @@ public class ExternalCareerInfoReadForm extends TableOpenERP {
                 currentExternalCareer = expectedData.get(indexObjectList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentExternalCareer.name.equals(currentRow.get("Puesto")) &&
-                        currentExternalCareer.startDate.equals(currentRow.get("Fecha inicio")) &&
-                        currentExternalCareer.endDate.equals(currentRow.get("Fecha de finalización")) &&
-                        currentExternalCareer.employeer.equals(currentRow.get("Empleador"))) {
+                    if (currentExternalCareer.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                        currentExternalCareer.startDate.equals(currentRow.get(expectedHeaders.get("startDate"))) &&
+                        currentExternalCareer.endDate.equals(currentRow.get(expectedHeaders.get("endDate"))) &&
+                        currentExternalCareer.employeer.equals(currentRow.get(expectedHeaders.get("employeer")))) {
                             dataFromTable.remove(currentRow);
                             break;
                     }

@@ -15,10 +15,16 @@ public class TableOpenERP extends PortalUIElement {
     protected WebElement table;
     protected int columnsSize;
     protected int rowsSize;
-    public TableOpenERP() { }
 
-    public List<HashMap> getData() {
-        List<HashMap> result = new ArrayList<HashMap>();
+    protected HashMap<String, String> expectedHeaders;
+    protected HashMap<String, String> expectedSpanishHeaders;
+
+    public TableOpenERP() {
+        expectedSpanishHeaders = new HashMap<>();
+    }
+
+    public List< HashMap<String,String>> getData() {
+        List< HashMap<String,String>> result = new ArrayList< HashMap<String,String>>();
         HashMap<String, String> hashMapAux;
         List<String> headersList = getHeaders();
         List<WebElement> tableRecords = table.findElements(By.xpath("./tbody/tr[@data-id]"));

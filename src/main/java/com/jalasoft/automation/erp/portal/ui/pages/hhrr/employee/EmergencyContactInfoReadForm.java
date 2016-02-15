@@ -20,6 +20,11 @@ public class EmergencyContactInfoReadForm extends TableOpenERP {
 
     public EmergencyContactInfoReadForm() {
         super.table = this.table;
+        expectedSpanishHeaders.put("name","Nombre completo");
+        expectedSpanishHeaders.put("relationship","Parentesco");
+        expectedSpanishHeaders.put("phone","Teléfono");
+        expectedSpanishHeaders.put("mobile","Celular");
+        expectedHeaders = expectedSpanishHeaders;
         this.waitForLoading();
     }
 
@@ -34,7 +39,7 @@ public class EmergencyContactInfoReadForm extends TableOpenERP {
     }
 
     public boolean hasSameContent(List<EmergencyContact> expectedData) {
-        List<HashMap> dataFromTable = this.getData();
+        List<HashMap<String,String>> dataFromTable = this.getData();
         EmergencyContact currentEmergencyContact;
         HashMap<String,String> currentRow;
         if(expectedData.size()!= dataFromTable.size()) {
@@ -46,10 +51,10 @@ public class EmergencyContactInfoReadForm extends TableOpenERP {
                 currentEmergencyContact = expectedData.get(indexObjectList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentEmergencyContact.name.equals(currentRow.get("Nombre completo")) &&
-                        currentEmergencyContact.relationship.equals(currentRow.get("Parentesco")) &&
-                        currentEmergencyContact.phone.equals(currentRow.get("Teléfono")) &&
-                        currentEmergencyContact.mobile.equals(currentRow.get("Celular"))) {
+                    if (currentEmergencyContact.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                        currentEmergencyContact.relationship.equals(currentRow.get(expectedHeaders.get("relationship"))) &&
+                        currentEmergencyContact.phone.equals(currentRow.get(expectedHeaders.get("phone"))) &&
+                        currentEmergencyContact.mobile.equals(currentRow.get(expectedHeaders.get("mobile")))) {
                             dataFromTable.remove(currentRow);
                             break;
                     }

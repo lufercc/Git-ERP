@@ -9,10 +9,13 @@ public class BasicInfoEmployee {
     public String fullName;
 
     public void fillMainData(BasicInfoEmployee aux) {
-        if (aux.name != null) {
-            this.name = aux.name;
-        }
-        this.fullName = (aux.fullName != null) ? aux.fullName : null;
+        this.name = aux.name;
+        this.fullName = aux.fullName;
+
+//        if (aux.name != null) {
+//            this.name = aux.name;
+//        }
+//        this.fullName = (aux.fullName != null) ? aux.fullName : null;
     }
 
     public boolean contains(BasicInfoEmployee mainData) {

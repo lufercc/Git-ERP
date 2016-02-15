@@ -17,9 +17,17 @@ public class NationalityInfoReadForm extends TableOpenERP {
     @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[2]")
     protected WebElement table;
 
+    public HashMap<String, String> expectedHeaders;
+    public HashMap<String, String> expectedSpanishHeaders;
+
 
     public NationalityInfoReadForm() {
         super.table = this.table;
+
+        expectedSpanishHeaders = new HashMap<>();
+        expectedSpanishHeaders.put("name","Nombre del país");
+        expectedSpanishHeaders.put("code","Código de país");
+        expectedHeaders = expectedSpanishHeaders;
         this.waitForLoading();
     }
 
@@ -34,7 +42,7 @@ public class NationalityInfoReadForm extends TableOpenERP {
     }
 
     public boolean hasSameContent(List<Nationality> expectedData) {
-        List<HashMap> dataFromTable = this.getData();
+        List<HashMap<String,String>> dataFromTable = this.getData();
         Nationality currentNationality;
         HashMap<String,String> currentRow;
         if(expectedData.size()!= dataFromTable.size()) {
@@ -46,8 +54,8 @@ public class NationalityInfoReadForm extends TableOpenERP {
                 currentNationality = expectedData.get(indexNationalityList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentNationality.name.equals(currentRow.get("Nombre del país")) &&
-                        currentNationality.code.equals(currentRow.get("Código de país"))) {
+                    if (currentNationality.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                        currentNationality.code.equals(currentRow.get(expectedHeaders.get("code")))) {
                             dataFromTable.remove(currentRow);
                             break;
                     }

@@ -21,6 +21,12 @@ public class FamilyInfoReadForm extends TableOpenERP {
     public FamilyInfoReadForm() {
         super.table = this.table;
         this.waitForLoading();
+        expectedSpanishHeaders.put("name","Nombres");
+        expectedSpanishHeaders.put("lastName","Apellidos");
+        expectedSpanishHeaders.put("relation","Parentesco");
+        expectedSpanishHeaders.put("sex","Sexo");
+        expectedSpanishHeaders.put("birthDate","Fecha de nacimiento");
+        expectedHeaders = expectedSpanishHeaders;
     }
 
     @Override
@@ -34,7 +40,7 @@ public class FamilyInfoReadForm extends TableOpenERP {
     }
 
     public boolean hasSameContent(List<FamilyMember> expectedData) {
-        List<HashMap> dataFromTable = this.getData();
+        List<HashMap<String,String>> dataFromTable = this.getData();
         FamilyMember currentFamilyMember;
         HashMap<String,String> currentRow;
         if(expectedData.size()!= dataFromTable.size()) {
@@ -46,11 +52,11 @@ public class FamilyInfoReadForm extends TableOpenERP {
                 currentFamilyMember = expectedData.get(indexObjectList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentFamilyMember.name.equals(currentRow.get("Nombres")) &&
-                        currentFamilyMember.lastName.equals(currentRow.get("Apellidos")) &&
-                        currentFamilyMember.relation.equals(currentRow.get("Parentesco")) &&
-                        currentFamilyMember.sex.equals(currentRow.get("Sexo")) &&
-                        currentFamilyMember.birthDate.equals(currentRow.get("Fecha de nacimiento"))) {
+                    if (currentFamilyMember.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                        currentFamilyMember.lastName.equals(currentRow.get(expectedHeaders.get("lastName"))) &&
+                        currentFamilyMember.relation.equals(currentRow.get(expectedHeaders.get("relation"))) &&
+                        currentFamilyMember.sex.equals(currentRow.get(expectedHeaders.get("sex"))) &&
+                        currentFamilyMember.birthDate.equals(currentRow.get(expectedHeaders.get("birthDate")))) {
                             dataFromTable.remove(currentRow);
                             break;
                     }

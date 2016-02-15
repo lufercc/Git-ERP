@@ -20,6 +20,15 @@ public class InternalCareerInfoReadForm extends TableOpenERP {
 
     public InternalCareerInfoReadForm() {
         super.table = this.table;
+        expectedSpanishHeaders.put("department","Departamento");
+        expectedSpanishHeaders.put("division","División");
+        expectedSpanishHeaders.put("name","Puesto");
+        expectedSpanishHeaders.put("projectCode","Código de proyecto");
+        expectedSpanishHeaders.put("weight","Peso");
+        expectedSpanishHeaders.put("startDate","Fecha inicio");
+        expectedSpanishHeaders.put("endDate","Fecha de finalización");
+        expectedSpanishHeaders.put("employeer","Empleador");
+        expectedHeaders = expectedSpanishHeaders;
         this.waitForLoading();
     }
 
@@ -34,7 +43,7 @@ public class InternalCareerInfoReadForm extends TableOpenERP {
     }
 
     public boolean hasSameContent(List<InternalCareer> expectedData) {
-        List<HashMap> dataFromTable = this.getData();
+        List<HashMap<String,String>> dataFromTable = this.getData();
         InternalCareer currentInternalCareer;
         HashMap<String,String> currentRow;
         if(expectedData.size()!= dataFromTable.size()) {
@@ -46,14 +55,14 @@ public class InternalCareerInfoReadForm extends TableOpenERP {
                 currentInternalCareer = expectedData.get(indexObjectList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentInternalCareer.department.equals(currentRow.get("Departamento")) &&
-                        currentInternalCareer.division.equals(currentRow.get("División")) &&
-                        currentInternalCareer.name.equals(currentRow.get("Puesto")) &&
-                        currentInternalCareer.projectCode.equals(currentRow.get("Código de proyecto")) &&
-                        currentInternalCareer.weight.equals(currentRow.get("Peso")) &&
-                        currentInternalCareer.startDate.equals(currentRow.get("Fecha inicio")) &&
-                        currentInternalCareer.endDate.equals(currentRow.get("Fecha de finalización")) &&
-                        currentInternalCareer.employeer.equals(currentRow.get("Empleador"))) {
+                    if (currentInternalCareer.department.equals(currentRow.get(expectedHeaders.get("department"))) &&
+                        currentInternalCareer.division.equals(currentRow.get(expectedHeaders.get("division"))) &&
+                        currentInternalCareer.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                        currentInternalCareer.projectCode.equals(currentRow.get(expectedHeaders.get("projectCode"))) &&
+                        currentInternalCareer.weight.equals(currentRow.get(expectedHeaders.get("weight"))) &&
+                        currentInternalCareer.startDate.equals(currentRow.get(expectedHeaders.get("startDate"))) &&
+                        currentInternalCareer.endDate.equals(currentRow.get(expectedHeaders.get("endDate"))) &&
+                        currentInternalCareer.employeer.equals(currentRow.get(expectedHeaders.get("employeer")))) {
                             dataFromTable.remove(currentRow);
                             break;
                     }

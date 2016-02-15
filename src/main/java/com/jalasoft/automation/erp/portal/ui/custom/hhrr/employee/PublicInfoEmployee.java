@@ -18,17 +18,17 @@ public class PublicInfoEmployee {
     public String city;
 
     public void fillMainData(PublicInfoEmployee aux) {
-        this.addressDescription = (aux.addressDescription != null) ? aux.addressDescription : null;
-        this.workEmail = (aux.workEmail != null) ? aux.workEmail : null;
-        this.workPhone = (aux.workPhone != null) ? aux.workPhone : null;
-        this.extCode = (aux.extCode != null) ? aux.extCode : null;
-        this.workMobile = (aux.workMobile != null) ? aux.workMobile : null;
-        this.user = (aux.user != null) ? aux.user : null;
-        this.otherInfo = (aux.otherInfo != null) ? aux.otherInfo : null;
-        this.location = (aux.location != null) ? aux.location : null;
-        this.codeDesktop = (aux.codeDesktop != null) ? aux.codeDesktop : null;
-        this.country = (aux.country != null) ? aux.country : null;
-        this.city = (aux.city != null) ? aux.city : null;
+        this.addressDescription = aux.addressDescription;
+        this.workEmail = aux.workEmail;
+        this.workPhone = aux.workPhone;
+        this.extCode = aux.extCode;
+        this.workMobile = aux.workMobile;
+        this.user = aux.user;
+        this.otherInfo = aux.otherInfo;
+        this.location = aux.location;
+        this.codeDesktop = aux.codeDesktop;
+        this.country = aux.country;
+        this.city = aux.city;
     }
 
     public boolean contains(PublicInfoEmployee mainData) {

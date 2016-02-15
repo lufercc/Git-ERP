@@ -95,5 +95,6 @@ public class MainMenu extends PortalUIElement {
         this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
         userMenu.click();
         logout.click();
+        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

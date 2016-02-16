@@ -23,10 +23,22 @@
     },
     "GeneralSettings":
     {
-        "sutURL": "https://10.30.97.21"
+        "sutURL": "http://10.31.97.80:62069"
     },
     "Credentials":
     {
+        "admin":{
+            "password":"123",
+            "userName":"henry51"
+        },
+        "lead":{
+            "password":"123",
+            "userName":"henry55"
+        },
+        "officer":{
+            "password":"123",
+            "userName":"henry57"
+        },
         "purchase manager":{
             "password":"123",
             "userName":"henry11"

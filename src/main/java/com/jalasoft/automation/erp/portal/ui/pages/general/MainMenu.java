@@ -2,7 +2,6 @@ package com.jalasoft.automation.erp.portal.ui.pages.general;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 /**
@@ -15,6 +14,9 @@ public class MainMenu extends PortalUIElement {
 
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Mensajería')]")
     protected WebElement messagesMenu;
+
+    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Recursos humanos')]")
+    protected WebElement hhrrMenu;
 
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Evaluación de activos')]")
     protected WebElement assetsMenu;
@@ -45,6 +47,10 @@ public class MainMenu extends PortalUIElement {
      **/
     public void goToMenu(String menu) {
         switch (menu.toLowerCase()) {
+        case "hhrr":
+            hhrrMenu.click();
+            break;
+
         case "purchases":
             purchasesMenu.click();
             break;
@@ -79,7 +85,7 @@ public class MainMenu extends PortalUIElement {
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.purchasesMenu);
+        super.webDriverTools.waitUntilElementPresentAndVisible(this.menuContainer);
     }
 
     public void logout() {

@@ -3,7 +3,6 @@ package com.jalasoft.automation.erp.steps;
 import com.jalasoft.automation.erp.portal.ui.pages.general.GeneralButtonsBar;
 import com.jalasoft.automation.erp.portal.ui.pages.general.GeneralPopupForm;
 import com.jalasoft.automation.erp.portal.ui.pages.general.ViewButtonsBar;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 
 /**

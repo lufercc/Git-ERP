@@ -1,10 +1,8 @@
 package com.jalasoft.automation.erp.steps.hhrr.employee;
 
-import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.*;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
 import com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee.*;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import org.junit.Assert;
 import java.util.List;
@@ -178,7 +176,6 @@ public class EmployeeSteps {
     @And("^I verify if he has this tag data$")
     public void I_verify_if_he_has_this_tag_data(List<Tag> expectedData) throws Throwable {
         Boolean result= true;
-        EmployeeForm employeeForm = new EmployeeForm();
         TagInfoReadForm tagInfoReadForm = new TagInfoReadForm();
 
         result = tagInfoReadForm.hasSameContent(expectedData);

@@ -1,7 +1,6 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
-import com.jalasoft.automation.erp.portal.ui.pages.general.ViewButtonsBar;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

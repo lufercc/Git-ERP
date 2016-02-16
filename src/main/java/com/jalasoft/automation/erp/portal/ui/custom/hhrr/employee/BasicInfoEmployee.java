@@ -11,11 +11,6 @@ public class BasicInfoEmployee {
     public void fillMainData(BasicInfoEmployee aux) {
         this.name = aux.name;
         this.fullName = aux.fullName;
-
-//        if (aux.name != null) {
-//            this.name = aux.name;
-//        }
-//        this.fullName = (aux.fullName != null) ? aux.fullName : null;
     }
 
     public boolean contains(BasicInfoEmployee mainData) {

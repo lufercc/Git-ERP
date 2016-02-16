@@ -1,7 +1,6 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.ExternalCareer;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.InternalCareer;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

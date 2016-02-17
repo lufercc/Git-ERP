@@ -247,4 +247,44 @@ public class EmployeeSteps {
             engInfoEditForm.modifyData(item);
         }
     }
+
+    @And("^I add this nda data to employee form$")
+    public void I_add_this_nda_data_to_employee_form(List<NDA> ndaInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        NDAInfoEditForm ndaInfoEditForm = new NDAInfoEditForm();
+        employeeForm.selectTab("personal");
+        ndaInfoEditForm.addData(ndaInfoData);
+    }
+
+    @And("^I add this emergency contact data to employee form$")
+    public void I_add_this_emergency_contact_data_to_employee_form(List<EmergencyContact> emergencyContactInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        EmergencyContactInfoEditForm emergencyContactInfoEditForm = new EmergencyContactInfoEditForm();
+        employeeForm.selectTab("personal");
+        emergencyContactInfoEditForm.addData(emergencyContactInfoData);
+    }
+
+    @And("^I add this family data to employee form$")
+    public void I_add_this_family_data_to_employee_form(List<FamilyMember> familyMemberInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        FamilyInfoEditForm familyInfoEditForm = new FamilyInfoEditForm();
+        employeeForm.selectTab("hhrr");
+        familyInfoEditForm.addData(familyMemberInfoData);
+    }
+
+    @And("^I add this external career data to employee form$")
+    public void I_add_this_external_career_data_to_employee_form(List<ExternalCareer> externalCareerInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        ExternalCareerInfoEditForm externalCareerInfoEditForm = new ExternalCareerInfoEditForm();
+        employeeForm.selectTab("history");
+        externalCareerInfoEditForm.addData(externalCareerInfoData);
+    }
+
+    @And("^I add this internal career data to employee form$")
+    public void I_add_this_internal_career_data_to_employee_form(List<InternalCareer> internalCareerInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        InternalCareerInfoEditForm internalCareerInfoEditForm = new InternalCareerInfoEditForm();
+        employeeForm.selectTab("history");
+        internalCareerInfoEditForm.addData(internalCareerInfoData);
+    }
 }

@@ -54,6 +54,16 @@ public class TableOpenERP extends PortalUIElement {
         return result;
     }
 
+    public void clickAddElement() {
+        WebElement addElement = table.findElement(By.xpath(".//a[@href='#']"));
+        addElement.click();
+    }
+
+    public void clickFoot() {
+        WebElement foot = table.findElement(By.xpath("./tfoot"));
+        foot.click();
+    }
+
     @Override
     public boolean isLoaded() {
         return super.webDriverTools.isElementDisplayed(this.table);

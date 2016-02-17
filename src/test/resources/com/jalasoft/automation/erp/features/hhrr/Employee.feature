@@ -1,6 +1,6 @@
 @Employee
 Feature: Employee
-  @testhr
+  @testhr @all
   Scenario: Verify that an asset is assigned if the asset is created manually
     Given I navigate to login page
     When I login with "admin" credentials
@@ -26,10 +26,32 @@ Feature: Employee
       | department | division | jobTitle | manager        | lead        | visible | billable | shadowCategory | notes | commitment | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
       | IT         | Support  | Security | autojs manager | jslead otro | false   | true     | Risk           | dwe   | false      | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
 
+    And I add this nda data to employee form
+      | ndaVersion  | signDate   |
+      | Versión 2   | 02/04/2016 |
+      | Versión 1-A | 02/01/2016 |
+      | Versión 3   | 02/11/2016 |
+
+    And I add this emergency contact data to employee form
+      | name       | relationship | phone    | mobile    |
+      | Dark Vader | Padre        | 40-00000 | 797-00000 |
+
+    And I add this family data to employee form
+      | name | lastName | relation | sex    | birthDate  |
+      | Dark | Potato   | Hijo     | Hombre | 02/12/1986 |
+
+    And I add this external career data to employee form
+      | name | startDate  | endDate    | employeer |
+      | xde  | 02/03/2016 | 02/04/2016 | asd       |
+      | fsss | 03/03/2018 | 02/04/2020 | ddd       |
+
+    And I add this internal career data to employee form
+      | department | division | name     | projectCode   | manager        | lead           | weight | startDate  | endDate    | employeer | description |
+      | IT         | Support  | Security | TESTPROJABILA | autojs manager | autojs manager | 6      | 02/10/2016 | 02/20/2018 | Other     | description |
+
     And I press "save" general button
 
-    And I logout
-  @readMyInformation
+  @readMyInformation @all
   Scenario: Verify that an asset is assigned if the asset is created manually
     Given I navigate to login page
     When I login with "admin" credentials
@@ -99,4 +121,3 @@ Feature: Employee
       | name          |
       | Administrator |
 
-    And I logout

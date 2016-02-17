@@ -13,4 +13,7 @@ public class InternalCareer {
     public String startDate;
     public String endDate;
     public String employeer;
+    public String manager;
+    public String lead;
+    public String description;
 }

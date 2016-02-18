@@ -1,6 +1,7 @@
 package com.jalasoft.automation.erp.portal.ui.pages.general;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -47,6 +48,17 @@ public class GeneralButtonsBar extends PortalUIElement {
 
         case "save":
             saveButton.click();
+            try{
+                WebElement warningMessage = this.webDriver.findElement(By.xpath("//div[contains(@class,'ui-notify-message')]"));
+                WebElement closeWarningMessage = this.webDriver.findElement(By.xpath("//div[contains(@class,'ui-notify-message')]/a"));
+                if(warningMessage.isDisplayed()) {
+                    System.out.println(warningMessage.getAttribute("innerHTML"));
+                    closeWarningMessage.click();
+                }
+
+            } catch (Exception e) {
+                System.out.println("No error message is displayed" + e.getCause());
+            }
             break;
 
         case "edit":

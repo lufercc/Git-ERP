@@ -1,7 +1,7 @@
 @Employee
 Feature: Employee
   @testhr @all
-  Scenario: Verify that an asset is assigned if the asset is created manually
+  Scenario: Verify that employee fields are edited with admin role
     Given I navigate to login page
     When I login with "admin" credentials
     And I go to "employees" hhrr submenu
@@ -32,6 +32,10 @@ Feature: Employee
       | Versión 1-A | 02/01/2016 |
       | Versión 3   | 02/11/2016 |
 
+    And I delete this nda data from employee form
+      | ndaVersion  | signDate   |
+      | Versión 1-A | 02/01/2016 |
+
     And I add this emergency contact data to employee form
       | name       | relationship | phone    | mobile    |
       | Dark Vader | Padre        | 40-00000 | 797-00000 |
@@ -49,10 +53,14 @@ Feature: Employee
       | department | division | name     | projectCode   | manager        | lead           | weight | startDate  | endDate    | employeer | description |
       | IT         | Support  | Security | TESTPROJABILA | autojs manager | autojs manager | 6      | 02/10/2016 | 02/20/2018 | Other     | description |
 
+    And I add this nationality data to employee form
+      | name    |
+      | Albania |
+
     And I press "save" general button
 
   @readMyInformation @all
-  Scenario: Verify that an asset is assigned if the asset is created manually
+  Scenario: Verify that employee fields are read with admin role
     Given I navigate to login page
     When I login with "admin" credentials
     And I go to "employees" hhrr submenu
@@ -121,3 +129,13 @@ Feature: Employee
       | name          |
       | Administrator |
 
+  @outline @all
+  Scenario Outline:: Verify that employee fields are read with admin role
+    Given I navigate to login page
+    When I login with "<role>" credentials
+    And I go to "employees" hhrr submenu
+
+    Examples:
+    | role    |
+    | admin   |
+    | officer |

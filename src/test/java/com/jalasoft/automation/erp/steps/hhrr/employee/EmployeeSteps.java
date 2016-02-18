@@ -287,4 +287,21 @@ public class EmployeeSteps {
         employeeForm.selectTab("history");
         internalCareerInfoEditForm.addData(internalCareerInfoData);
     }
+
+    @And("^I add this nationality data to employee form$")
+    public void I_add_this_nationality_data_to_employee_form(List<Nationality> nationalityInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        NationalityInfoEditForm nationalityInfoEditForm = new NationalityInfoEditForm();
+        employeeForm.selectTab("personal");
+        nationalityInfoEditForm.addData(nationalityInfoData);
+    }
+
+    @And("^I delete this nda data from employee form$")
+    public void I_delete_this_nda_data_from_employee_form(List<NDA> ndaInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        NDAInfoEditForm ndaInfoEditForm = new NDAInfoEditForm();
+        employeeForm.selectTab("personal");
+
+        ndaInfoEditForm.removeData(ndaInfoData);
+    }
 }

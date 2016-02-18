@@ -46,4 +46,24 @@ public class NDAInfoEditForm extends TableOpenERP {
             clickFoot();
         }
     }
+
+    public void removeData(List<NDA> expectedData) {
+        List<HashMap> dataFromUITable;
+        NDA currentNDA;
+        HashMap<String, String> currentRow;
+
+        for (int i = 0; i < expectedData.size(); i++) {
+            dataFromUITable = this.getData();
+            currentNDA = expectedData.get(i);
+
+            for (int uit = 0; uit < dataFromUITable.size(); uit++) {
+                currentRow = dataFromUITable.get(uit);
+                if (currentNDA.ndaVersion.equals(currentRow.get("Versión NDA")) &&
+                        currentNDA.signDate.equals(currentRow.get("Fecha de firma"))) {
+                    this.deleteElement(uit);
+                    break;
+                }
+            }
+        }
+    }
 }

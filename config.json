@@ -39,6 +39,10 @@
             "password":"123",
             "userName":"henry57"
         },
+        "employee":{
+            "password":"123",
+            "userName":"henry56"
+        },
         "purchase manager":{
             "password":"123",
             "userName":"henry11"

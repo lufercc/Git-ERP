@@ -66,7 +66,15 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
 
     public InternalCareerInfoEditForm() {
         super.table = this.table;
-        this.waitForLoading();
+        expectedSpanishHeaders.put("department","Departamento");
+        expectedSpanishHeaders.put("division","División");
+        expectedSpanishHeaders.put("name","Puesto");
+        expectedSpanishHeaders.put("projectCode","Código de proyecto");
+        expectedSpanishHeaders.put("weight","Peso");
+        expectedSpanishHeaders.put("startDate","Fecha inicio");
+        expectedSpanishHeaders.put("endDate","Fecha de finalización");
+        expectedSpanishHeaders.put("employeer","Empleador");
+        expectedHeaders = expectedSpanishHeaders;
     }
 
     @Override
@@ -141,6 +149,35 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
                 addAndContinue.click();
             }
 
+        }
+    }
+
+    public void removeData(List<InternalCareer> inputData) {
+        List<HashMap<String, String>> dataFromUITable;
+        InternalCareer currentExpected;
+        HashMap<String, String> currentRow;
+
+        for (int i = 0; i < inputData.size(); i++) {
+            dataFromUITable = this.getData();
+            currentExpected = inputData.get(i);
+
+            for (int uit = 0; uit < dataFromUITable.size(); uit++) {
+                currentRow = dataFromUITable.get(uit);
+                if (currentExpected.department.equals(currentRow.get(expectedHeaders.get("department"))) &&
+                    currentExpected.division.equals(currentRow.get(expectedHeaders.get("division"))) &&
+                    currentExpected.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                    currentExpected.projectCode.equals(currentRow.get(expectedHeaders.get("projectCode"))) &&
+                    currentExpected.weight.equals(currentRow.get(expectedHeaders.get("weight"))) &&
+                    currentExpected.startDate.equals(currentRow.get(expectedHeaders.get("startDate"))) &&
+                    currentExpected.endDate.equals(currentRow.get(expectedHeaders.get("endDate"))) &&
+                    currentExpected.employeer.equals(currentRow.get(expectedHeaders.get("employeer")))) {
+                    this.deleteElement(uit);
+                    break;
+                }
+                if (uit == (dataFromUITable.size() - 1)) {
+                    System.out.println("No data was found in the table,review input data values");
+                }
+            }
         }
     }
 }

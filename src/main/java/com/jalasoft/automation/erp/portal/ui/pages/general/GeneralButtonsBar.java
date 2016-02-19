@@ -22,8 +22,11 @@ public class GeneralButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_view_manager_buttons']//div[not(contains(@style,'display: none;'))]//button[contains(.,'Editar')]")
     protected WebElement editButton;
 
-    @FindBy(xpath = "//div[@class='oe_view_manager_sidebar']/div[not(contains(@style,'display: none;'))]//button[contains(.,'Más')]")
+    @FindBy(xpath = "//div[@class='oe_view_manager_sidebar']/div[not(contains(@style,'display: none;'))]//button[contains(.,'Más')]/span")
     protected WebElement moreButton;
+
+    @FindBy(xpath = "//div[@class='oe_view_manager_sidebar']/div[not(contains(@style,'display: none;'))]//a[contains(.,'Suprimir')]")
+    protected WebElement deleteButton;
 
     public GeneralButtonsBar() {
         this.waitForLoading();
@@ -67,6 +70,12 @@ public class GeneralButtonsBar extends PortalUIElement {
 
         case "more":
             moreButton.click();
+            break;
+
+        case "delete":
+            moreButton.click();
+            deleteButton.click();
+            this.webDriverTools.clickOnConfirmationAlertOption("Yes");
             break;
         }
         this.webDriverTools.waitUntilInvisibilityOpenERPProgress();

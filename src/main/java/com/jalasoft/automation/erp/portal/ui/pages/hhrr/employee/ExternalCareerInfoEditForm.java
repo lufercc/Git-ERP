@@ -20,6 +20,11 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
 
     public ExternalCareerInfoEditForm() {
         super.table = this.table;
+        expectedSpanishHeaders.put("name","Puesto");
+        expectedSpanishHeaders.put("startDate","Fecha inicio");
+        expectedSpanishHeaders.put("endDate","Fecha de finalización");
+        expectedSpanishHeaders.put("employeer","Empleador");
+        expectedHeaders = expectedSpanishHeaders;
     }
 
     @Override
@@ -75,6 +80,31 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
                 addAndContinue.click();
             }
 
+        }
+    }
+
+    public void removeData(List<ExternalCareer> inputData) {
+        List<HashMap<String, String>> dataFromUITable;
+        ExternalCareer currentExpected;
+        HashMap<String, String> currentRow;
+
+        for (int i = 0; i < inputData.size(); i++) {
+            dataFromUITable = this.getData();
+            currentExpected = inputData.get(i);
+
+            for (int uit = 0; uit < dataFromUITable.size(); uit++) {
+                currentRow = dataFromUITable.get(uit);
+                if (currentExpected.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                    currentExpected.startDate.equals(currentRow.get(expectedHeaders.get("startDate"))) &&
+                    currentExpected.endDate.equals(currentRow.get(expectedHeaders.get("endDate"))) &&
+                    currentExpected.employeer.equals(currentRow.get(expectedHeaders.get("employeer")))) {
+                    this.deleteElement(uit);
+                    break;
+                }
+                if (uit == (dataFromUITable.size() - 1)) {
+                    System.out.println("No data was found in the table,review input data values");
+                }
+            }
         }
     }
 }

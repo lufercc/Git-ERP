@@ -43,8 +43,6 @@ public class MainMenu extends PortalUIElement {
     @FindBy(xpath = "//span[contains(@class,'oe_user_menu')]")
     protected WebElement userMenu;
 
-
-
     /**
      * This method is to go to some option in main menu
      * @param menu Menu name as string
@@ -99,7 +97,7 @@ public class MainMenu extends PortalUIElement {
         try{
             this.webDriverTools.clickOnConfirmationAlertOption("Yes");
         } catch (Exception e) {
-            //System.out.println(e.getCause().toString());
+
         }
     }
 }

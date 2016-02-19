@@ -20,6 +20,12 @@ public class FamilyInfoEditForm extends TableOpenERP {
 
     public FamilyInfoEditForm() {
         super.table = this.table;
+        expectedSpanishHeaders.put("name","Nombres");
+        expectedSpanishHeaders.put("lastName","Apellidos");
+        expectedSpanishHeaders.put("relation","Parentesco");
+        expectedSpanishHeaders.put("sex","Sexo");
+        expectedSpanishHeaders.put("birthDate","Fecha de nacimiento");
+        expectedHeaders = expectedSpanishHeaders;
     }
 
     @Override
@@ -69,6 +75,32 @@ public class FamilyInfoEditForm extends TableOpenERP {
                 this.webDriverTools.clearAndSendKeys(birthDate, item.birthDate);
             }
             clickFoot();
+        }
+    }
+
+    public void removeData(List<FamilyMember> inputData) {
+        List<HashMap<String, String>> dataFromUITable;
+        FamilyMember currentExpected;
+        HashMap<String, String> currentRow;
+
+        for (int i = 0; i < inputData.size(); i++) {
+            dataFromUITable = this.getData();
+            currentExpected = inputData.get(i);
+
+            for (int uit = 0; uit < dataFromUITable.size(); uit++) {
+                currentRow = dataFromUITable.get(uit);
+                if (currentExpected.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                    currentExpected.lastName.equals(currentRow.get(expectedHeaders.get("lastName"))) &&
+                    currentExpected.relation.equals(currentRow.get(expectedHeaders.get("relation"))) &&
+                    currentExpected.sex.equals(currentRow.get(expectedHeaders.get("sex"))) &&
+                    currentExpected.birthDate.equals(currentRow.get(expectedHeaders.get("birthDate")))) {
+                    this.deleteElement(uit);
+                    break;
+                }
+                if (uit == (dataFromUITable.size() - 1)) {
+                    System.out.println("No data was found in the table,review input data values");
+                }
+            }
         }
     }
 }

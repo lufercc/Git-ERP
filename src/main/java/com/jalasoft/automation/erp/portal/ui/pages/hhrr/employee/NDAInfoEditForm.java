@@ -17,10 +17,8 @@ public class NDAInfoEditForm extends TableOpenERP {
     @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[2]")
     protected WebElement table;
 
-
     public NDAInfoEditForm() {
         super.table = this.table;
-//        this.waitForLoading();
     }
 
     @Override
@@ -48,7 +46,7 @@ public class NDAInfoEditForm extends TableOpenERP {
     }
 
     public void removeData(List<NDA> expectedData) {
-        List<HashMap> dataFromUITable;
+        List<HashMap<String, String>> dataFromUITable;
         NDA currentNDA;
         HashMap<String, String> currentRow;
 
@@ -62,6 +60,9 @@ public class NDAInfoEditForm extends TableOpenERP {
                         currentNDA.signDate.equals(currentRow.get("Fecha de firma"))) {
                     this.deleteElement(uit);
                     break;
+                }
+                if (uit == (dataFromUITable.size() - 1)) {
+                    System.out.println("No data was found in the table,review input data values");
                 }
             }
         }

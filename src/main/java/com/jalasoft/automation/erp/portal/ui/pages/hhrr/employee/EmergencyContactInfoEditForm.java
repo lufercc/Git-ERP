@@ -20,7 +20,11 @@ public class EmergencyContactInfoEditForm extends TableOpenERP {
 
     public EmergencyContactInfoEditForm() {
         super.table = this.table;
-        //this.waitForLoading();
+        expectedSpanishHeaders.put("name","Nombre completo");
+        expectedSpanishHeaders.put("relationship","Parentesco");
+        expectedSpanishHeaders.put("phone","Teléfono");
+        expectedSpanishHeaders.put("mobile","Celular");
+        expectedHeaders = expectedSpanishHeaders;
     }
 
     @Override
@@ -63,6 +67,31 @@ public class EmergencyContactInfoEditForm extends TableOpenERP {
             }
 
             clickFoot();
+        }
+    }
+
+    public void removeData(List<EmergencyContact> inputData) {
+        List<HashMap<String, String>> dataFromUITable;
+        EmergencyContact currentExpected;
+        HashMap<String, String> currentRow;
+
+        for (int i = 0; i < inputData.size(); i++) {
+            dataFromUITable = this.getData();
+            currentExpected = inputData.get(i);
+
+            for (int uit = 0; uit < dataFromUITable.size(); uit++) {
+                currentRow = dataFromUITable.get(uit);
+                if (currentExpected.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                    currentExpected.relationship.equals(currentRow.get(expectedHeaders.get("relationship"))) &&
+                    currentExpected.phone.equals(currentRow.get(expectedHeaders.get("phone"))) &&
+                    currentExpected.mobile.equals(currentRow.get(expectedHeaders.get("mobile")))) {
+                    this.deleteElement(uit);
+                    break;
+                }
+                if (uit == (dataFromUITable.size() - 1)) {
+                    System.out.println("No data was found in the table,review input data values");
+                }
+            }
         }
     }
 }

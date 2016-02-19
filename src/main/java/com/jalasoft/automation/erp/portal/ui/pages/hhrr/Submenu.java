@@ -39,6 +39,10 @@ public class Submenu extends PortalUIElement{
                 employees.click();
                 break;
 
+            case "my information":
+                myInformation.click();
+                break;
+
             default:
                 throw new IllegalArgumentException("Case value '" + submenu + "' for hhrr submenu is not defined yet!!!");
         }

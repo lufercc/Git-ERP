@@ -23,7 +23,9 @@ public class NationalityInfoEditForm extends TableOpenERP {
 
     public NationalityInfoEditForm() {
         super.table = this.table;
-
+        expectedSpanishHeaders.put("name","Nombre del país");
+        expectedSpanishHeaders.put("code","Código de país");
+        expectedHeaders = expectedSpanishHeaders;
     }
 
     @Override
@@ -49,24 +51,27 @@ public class NationalityInfoEditForm extends TableOpenERP {
         }
     }
 
-//    public void removeData(List<Nationality> expectedData) {
-//        List<HashMap> dataFromUITable;
-//        Nationality currentNationality;
-//        HashMap<String,String> currentRow;
-//
-//        for(int i = 0; i < expectedData.size(); i++) {
-//            dataFromUITable = this.getData();
-//            currentNationality = expectedData.get(i);
-//
-//            for(int uit = 0; uit < dataFromUITable.size(); uit++) {
-//                currentRow = dataFromUITable.get(uit);
-//                if (currentNationality.name.equals(currentRow.get("Nombre del país")) &&
-//                        currentNationality.code.equals(currentRow.get("Código de país"))) {
-//                    this.deleteElement(uit);
-//                    break;
-//                }
-//            }
-//        }
-//    }
+    public void removeData(List<Nationality> inputData) {
+        List<HashMap<String, String>> dataFromUITable;
+        Nationality currentExpected;
+        HashMap<String, String> currentRow;
+
+        for (int i = 0; i < inputData.size(); i++) {
+            dataFromUITable = this.getData();
+            currentExpected = inputData.get(i);
+
+            for (int uit = 0; uit < dataFromUITable.size(); uit++) {
+                currentRow = dataFromUITable.get(uit);
+                if (currentExpected.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                    currentExpected.code.equals(currentRow.get(expectedHeaders.get("code")))) {
+                    this.deleteElementWithConfirmAlert(uit);
+                    break;
+                }
+                if (uit == (dataFromUITable.size() - 1)) {
+                    System.out.println("No data was found in the table,review input data values");
+                }
+            }
+        }
+    }
 
 }

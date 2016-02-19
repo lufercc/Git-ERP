@@ -96,6 +96,15 @@ public class TableOpenERP extends PortalUIElement {
         }
     }
 
+    public void deleteElementWithConfirmAlert(int rowNumber) {
+        getDataFromTable();
+        if (rowsSize > 0) {
+            List<WebElement> deletesButtons = table.findElements(By.name("delete"));
+            deletesButtons.get(rowNumber).click();
+            this.webDriverTools.clickOnConfirmationAlertOption("Yes");
+        }
+    }
+
     public void clickFoot() {
         WebElement foot = table.findElement(By.xpath("./tfoot"));
         foot.click();

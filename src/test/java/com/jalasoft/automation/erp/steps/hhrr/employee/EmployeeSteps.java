@@ -3,6 +3,7 @@ package com.jalasoft.automation.erp.steps.hhrr.employee;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.*;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
 import com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee.*;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import org.junit.Assert;
 import java.util.List;
@@ -303,5 +304,50 @@ public class EmployeeSteps {
         employeeForm.selectTab("personal");
 
         ndaInfoEditForm.removeData(ndaInfoData);
+    }
+
+    @And("^I delete this emergency contact data to employee form$")
+    public void I_delete_this_emergency_contact_data_to_employee_form(List<EmergencyContact> infoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        EmergencyContactInfoEditForm emergencyContactInfoEditForm = new EmergencyContactInfoEditForm();
+        employeeForm.selectTab("personal");
+
+        emergencyContactInfoEditForm.removeData(infoData);
+    }
+
+    @And("^I delete this family data to employee form$")
+    public void I_delete_this_family_data_to_employee_form(List<FamilyMember> infoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        FamilyInfoEditForm familyInfoEditForm = new FamilyInfoEditForm();
+        employeeForm.selectTab("hhrr");
+
+        familyInfoEditForm.removeData(infoData);
+    }
+
+    @And("^I delete this external career data to employee form$")
+    public void I_delete_this_external_career_data_to_employee_form(List<ExternalCareer> infoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        ExternalCareerInfoEditForm externalCareerInfoEditForm = new ExternalCareerInfoEditForm();
+        employeeForm.selectTab("history");
+
+        externalCareerInfoEditForm.removeData(infoData);
+    }
+
+    @And("^I delete this internal career data to employee form$")
+    public void I_delete_this_internal_career_data_to_employee_form(List<InternalCareer> infoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        InternalCareerInfoEditForm internalCareerInfoEditForm = new InternalCareerInfoEditForm();
+        employeeForm.selectTab("history");
+
+        internalCareerInfoEditForm.removeData(infoData);
+    }
+
+    @And("^I delete this nationality data to employee form$")
+    public void I_delete_this_nationality_data_to_employee_form(List<Nationality> infoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        NationalityInfoEditForm nationalityInfoEditForm = new NationalityInfoEditForm();
+        employeeForm.selectTab("personal");
+
+        nationalityInfoEditForm.removeData(infoData);
     }
 }

@@ -32,6 +32,22 @@ public class TagFieldOpenERP extends PortalUIElement {
         return result;
     }
 
+    public void addTags(List<Tag> tagList) {
+        WebElement tagTextField = field.findElement(By.xpath(".//textarea"));
+        for (Tag tag : tagList) {
+            tagTextField.sendKeys(tag.name);
+            WebElement suggestedValue = field.findElement(By.xpath(".//span[text()='" + tag.name + "']"));
+            suggestedValue.click();
+        }
+    }
+
+    public void deleteTags(List<Tag> tagList) {
+        for (Tag tag : tagList) {
+            WebElement suggestedValue = field.findElement(By.xpath(".//div[contains(@class,'text-tag')]//span[text()='" + tag.name + "']/following-sibling::a"));
+            suggestedValue.click();
+        }
+    }
+
     @Override
     public boolean isLoaded() {
         return super.webDriverTools.isElementDisplayed(this.field);

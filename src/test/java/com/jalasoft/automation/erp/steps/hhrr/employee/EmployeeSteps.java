@@ -350,4 +350,48 @@ public class EmployeeSteps {
 
         nationalityInfoEditForm.removeData(infoData);
     }
+
+    @And("^I add this tag data to employee form$")
+    public void I_add_this_tag_data_to_employee_form(List<Tag> inputData) throws Throwable {
+        TagInfoEditForm tagInfoEditForm = new TagInfoEditForm();
+        tagInfoEditForm.addTags(inputData);
+    }
+
+    @And("^I delete this tag data to employee form$")
+    public void I_delete_this_tag_data_to_employee_form(List<Tag> inputData) throws Throwable {
+        TagInfoEditForm tagInfoEditForm = new TagInfoEditForm();
+        tagInfoEditForm.deleteTags(inputData);
+    }
+
+    @And("^I add this holiday policies data to employee form$")
+    public void I_add_this_holiday_policies_data_to_employee_form(List<Tag> inputData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("hhrr");
+        HolidayPoliciesInfoEditForm holidayPoliciesInfoEditForm = new HolidayPoliciesInfoEditForm();
+        holidayPoliciesInfoEditForm.addTags(inputData);
+    }
+
+    @And("^I delete this holiday policies data to employee form$")
+    public void I_delete_this_holiday_policies_data_to_employee_form(List<Tag> inputData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("hhrr");
+        HolidayPoliciesInfoEditForm holidayPoliciesInfoEditForm = new HolidayPoliciesInfoEditForm();
+        holidayPoliciesInfoEditForm.deleteTags(inputData);
+    }
+
+    @And("^I add this other supervisors data to employee form$")
+    public void I_add_this_other_supervisors_data_to_employee_form(List<Tag> inputData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("engineering");
+        OtherSupervisorsInfoEditForm otherSupervisorsInfoEditForm = new OtherSupervisorsInfoEditForm();
+        otherSupervisorsInfoEditForm.addTags(inputData);
+    }
+
+    @And("^I delete this other supervisors policies data to employee form$")
+    public void I_delete_this_other_supervisors_policies_data_to_employee_form(List<Tag> inputData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab("engineering");
+        OtherSupervisorsInfoEditForm otherSupervisorsInfoEditForm = new OtherSupervisorsInfoEditForm();
+        otherSupervisorsInfoEditForm.deleteTags(inputData);
+    }
 }

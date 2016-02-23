@@ -62,6 +62,7 @@ public class LoginPage extends BasePage {
             this.userInput.sendKeys(credentials.userName);
             this.passwordInput.sendKeys(credentials.password);
             this.loginButton.click();
+            this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
         }
     }
 

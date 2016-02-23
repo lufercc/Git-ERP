@@ -4,6 +4,7 @@ import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.components.SelectOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.BasicInfoEmployee;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PublicInfoEmployee;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -15,34 +16,34 @@ public class PublicInfoEditForm extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field')and(not(contains(@class,'invisible')))]/input[@type='text'])[1]")
+    @FindBy(xpath = "//label[contains(text(),'Correo-e del trabajo')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement workEmail;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field')and(not(contains(@class,'invisible')))]/input[@type='text'])[2]")
+    @FindBy(xpath = "//label[contains(text(),'Teléfono trabajo')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement workPhone;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field')and(not(contains(@class,'invisible')))]/input[@type='text'])[3]")
+    @FindBy(xpath = "//label[contains(text(),'Código de extensión')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement extCode;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field')and(not(contains(@class,'invisible')))]/input[@type='text'])[4]")
+    @FindBy(xpath = "//label[contains(text(),'Móvil del trabajo')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement workMobile;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field')and(not(contains(@class,'invisible')))]/input[@type='text'])[5]")
+    @FindBy(xpath = "//label[contains(text(),'Código de escritorio')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement codeDesktop;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field')and(not(contains(@class,'invisible')))]/input[@type='text'])[6]")
+    @FindBy(xpath = "//label[contains(text(),'Ciudad')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement city;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[1]")
+    @FindBy(xpath = "//label[contains(text(),'Dirección de trabajo')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
     protected WebElement addressSelect;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[2]")
+    @FindBy(xpath = "//label[contains(text(),'Ubicación')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
     protected WebElement locationSelect;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[3]")
+    @FindBy(xpath = "//label[contains(text(),'País')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
     protected WebElement countrySelect;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[4]")
+    @FindBy(xpath = "//label[contains(text(),'Usuario OpenERP')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
     protected WebElement userSelect;
 
     @FindBy(name = "notes")

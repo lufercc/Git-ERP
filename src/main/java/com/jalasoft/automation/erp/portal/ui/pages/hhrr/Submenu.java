@@ -18,6 +18,8 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Mi información')]")
     protected WebElement myInformation;
 
+    protected String defaultSubmenu = "employees";
+
 
     public Submenu() {
         this.waitForLoading();
@@ -34,7 +36,8 @@ public class Submenu extends PortalUIElement{
     }
 
     public void goToSubmenu(String submenu) {
-        switch (submenu.toLowerCase()) {
+        if(!submenu.equals(defaultSubmenu)) {
+            switch (submenu.toLowerCase()) {
             case "employees":
                 employees.click();
                 break;
@@ -45,6 +48,7 @@ public class Submenu extends PortalUIElement{
 
             default:
                 throw new IllegalArgumentException("Case value '" + submenu + "' for hhrr submenu is not defined yet!!!");
+            }
         }
         this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }

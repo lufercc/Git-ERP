@@ -48,6 +48,7 @@ public class MainMenu extends PortalUIElement {
      * @param menu Menu name as string
      **/
     public void goToMenu(String menu) {
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
         switch (menu.toLowerCase()) {
         case "hhrr":
             hhrrMenu.click();

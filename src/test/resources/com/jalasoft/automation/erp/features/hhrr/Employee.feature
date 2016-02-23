@@ -73,12 +73,12 @@ Feature: Employee
       | name    | code |
       | Bolivia   | BO   |
 
-    And I add this tag data
+    And I add this tag data to employee form
       | name          |
       | media jornada |
       | dev training  |
 
-    And I delete this tag data
+    And I delete this tag data to employee form
       | name          |
       | dev training  |
 
@@ -199,3 +199,76 @@ Feature: Employee
     And I verify if he has this data in basic information
       | fullName                     |
       | jsread Employee Vargas Ochoa |
+
+  @UpdateLocalizationData @all
+  Scenario Outline: Verify that localization fields are able to be edited with granted roles
+    Given I navigate to login page
+
+    When I login with "admin" credentials
+    And I create an employee with required fields
+      | firstName | lastName          | idNumber | manager        | lead        |
+      | luke      | skywalker<number> | 6454215  | autojs manager | jslead otro |
+    And I logout
+    And I login with "<role>" credentials
+    And I go to "employees" hhrr submenu
+    And I select "list" view
+    And I search employee "luke skywalker<number>" into employee list view
+    And I press "edit" general button
+    And I modify the employee with public data
+      | workEmail        | workPhone     | workMobile    | codeDesktop | city       | location | country | otherInfo  |
+      | test@hotmail.com | 456-158-15532 | 707-642-51545 | A224        | Cochabamba | 0F       | Bolivia | other info |
+    And I press "save" general button
+    And I verify if he has this data in public information
+      | workEmail        | workPhone     | workMobile    | codeDesktop | city       | location | country | otherInfo  |
+      | test@hotmail.com | 456-158-15532 | 707-642-51545 | A224        | Cochabamba | 0F       | Bolivia | other info |
+
+    Examples:
+      | number | role            |
+      | oneu   | admin           |
+      | twou   | sr manager      |
+      | threeu | manager         |
+      | fouru  | lead            |
+      | fiveu  | officer         |
+      | sixu   | personnel admin |
+
+  @ReadLocalizationData @all
+  Scenario Outline: Verify that localization fields are able to be edited with granted roles
+    Given I navigate to login page
+
+    When I login with "admin" credentials
+    And I create an employee with required fields
+      | firstName | lastName          | idNumber | manager        | lead        |
+      | luke      | skywalker<number> | 6454215  | autojs manager | jslead otro |
+    And I press "edit" general button
+    And I modify the employee with public data
+      | workEmail        | workPhone     | workMobile    | codeDesktop | city       | location | country | otherInfo  |
+      | test@hotmail.com | 456-158-15532 | 707-642-51545 | A224        | Cochabamba | 0F       | Bolivia | other info |
+    And I press "save" general button
+    And I logout
+    And I login with "<role>" credentials
+    And I go to "employees" hhrr submenu
+    And I select "list" view
+    And I search employee "luke skywalker<number>" into employee list view
+    And I verify if he has this data in public information
+      | workEmail        | workPhone     | workMobile    | codeDesktop | city       | location | country | otherInfo  |
+      | test@hotmail.com | 456-158-15532 | 707-642-51545 | A224        | Cochabamba | 0F       | Bolivia | other info |
+
+    Examples:
+      | number | role            |
+      | oner   | hd officer      |
+      | twor   | comm officer    |
+      | threer | receptionist    |
+      | fourr  | reports         |
+
+  @CreateEmployeeWithRequiredFields @all
+  Scenario Outline: Verify that localization fields are able to be edited with granted roles
+    Given I navigate to login page
+    When I login with "<role>" credentials
+    And I create an employee with required fields
+      | firstName | lastName  | idNumber | manager        |
+      | luke      | skywalker | 6454215  | autojs manager |
+      | anaki     | skywalker | 6454216  | autojs manager |
+
+    Examples:
+      | role    |
+      | admin   |

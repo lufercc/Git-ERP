@@ -40,6 +40,5 @@ public class LoginSteps {
     public void I_logout() throws Throwable {
         MainMenu mainMenu = new MainMenu();
         mainMenu.logout();
-        Thread.sleep(3000);
     }
 }

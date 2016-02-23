@@ -60,11 +60,13 @@ public class GeneralButtonsBar extends PortalUIElement {
                 }
 
             } catch (Exception e) {
-                System.out.println("No error message is displayed" + e.getCause());
+//                System.out.println("No error message is displayed" + e.getCause());
             }
             break;
 
         case "edit":
+            this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+            this.webDriverWait.withMessage("Algo");
             editButton.click();
             break;
 

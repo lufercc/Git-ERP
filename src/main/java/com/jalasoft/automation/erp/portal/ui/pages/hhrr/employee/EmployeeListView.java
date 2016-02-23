@@ -38,6 +38,7 @@ public class EmployeeListView extends PortalUIElement {
 
         if (!cell.equals(null)) {
             cell.click();
+            this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
         }
     }
     public boolean isCellPresent(String cellValue){

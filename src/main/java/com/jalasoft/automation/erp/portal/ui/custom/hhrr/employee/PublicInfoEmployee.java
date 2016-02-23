@@ -1,10 +1,13 @@
 package com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee;
 
+import org.apache.log4j.Logger;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
 public class PublicInfoEmployee {
 
+    private Logger log;
     public String address;
     public String addressDescription;
     public String workEmail;
@@ -18,6 +21,9 @@ public class PublicInfoEmployee {
     public String country;
     public String city;
 
+    public PublicInfoEmployee() {
+        log = Logger.getLogger(getClass());
+    }
     public void fillMainData(PublicInfoEmployee aux) {
         this.addressDescription = aux.addressDescription;
         this.workEmail = aux.workEmail;
@@ -33,17 +39,72 @@ public class PublicInfoEmployee {
     }
 
     public boolean contains(PublicInfoEmployee mainData) {
-        if(!this.addressDescription.equals(mainData.addressDescription)) {return false;}
-        if(!this.workEmail.equals(mainData.workEmail)) {return false;}
-        if(!this.workPhone.equals(mainData.workPhone)) {return false;}
-        if(!this.extCode.equals(mainData.extCode)) {return false;}
-        if(!this.workMobile.equals(mainData.workMobile)) {return false;}
-        if(!this.user.equals(mainData.user)) {return false;}
-        if(!this.otherInfo.equals(mainData.otherInfo)) {return false;}
-        if(!this.location.equals(mainData.location)) {return false;}
-        if(!this.codeDesktop.equals(mainData.codeDesktop)) {return false;}
-        if(!this.country.equals(mainData.country)) {return false;}
-        if(!this.city.equals(mainData.city)) {return false;}
+        if (this.addressDescription != null){
+            if(!this.addressDescription.equals(mainData.addressDescription)) {
+                log.warn("This expected value: '" + this.addressDescription + "' was not found in the UI");
+                return false;
+            }
+        }
+        if (this.workEmail != null) {
+            if (!this.workEmail.equals(mainData.workEmail)) {
+                log.warn("This expected value: '" + this.workEmail + "' was not found in the UI");
+                return false;
+            }
+        }
+        if (this.workPhone != null) {
+            if(!this.workPhone.equals(mainData.workPhone)) {
+                log.warn("This expected value: '" + this.workPhone + "' was not found in the UI");
+                return false;
+            }
+        }
+        if (this.extCode != null) {
+            if (!this.extCode.equals(mainData.extCode)) {
+                log.warn("This expected value: '" + this.extCode + "' was not found in the UI");
+                return false;
+            }
+        }
+        if (this.workMobile != null) {
+            if (!this.workMobile.equals(mainData.workMobile)) {
+                log.warn("This expected value: '" + this.workMobile + "' was not found in the UI");
+                return false;
+            }
+        }
+        if (this.user != null) {
+            if (!this.user.equals(mainData.user)) {
+                log.warn("This expected value: '" + this.user + "' was not found in the UI");
+                return false;
+            }
+        }
+        if (this.otherInfo != null){
+            if(!this.otherInfo.equals(mainData.otherInfo)) {
+                log.warn("This expected value: '" + this.otherInfo + "' was not found in the UI");
+                return false;
+            }
+        }
+        if (this.location != null){
+            if(!this.location.equals(mainData.location)) {
+                log.warn("This expected value: '" + this.location + "' was not found in the UI");
+                return false;
+            }
+        }
+        if (this.codeDesktop != null){
+            if(!this.codeDesktop.equals(mainData.codeDesktop)) {
+                log.warn("This expected value: '" + this.codeDesktop + "' was not found in the UI");
+                return false;
+            }
+        }
+        if (this.country != null){
+            if(!this.country.equals(mainData.country)) {
+                log.warn("This expected value: '" + this.country + "' was not found in the UI");
+                return false;
+            }
+        }
+        if (this.city != null){
+            if(!this.city.equals(mainData.city)) {
+                log.warn("This expected value: '" + this.city + "' was not found in the UI");
+                return false;
+            }
+        }
         return true;
     }
 }

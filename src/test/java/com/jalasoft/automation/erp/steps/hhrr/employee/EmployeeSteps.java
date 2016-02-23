@@ -1,7 +1,10 @@
 package com.jalasoft.automation.erp.steps.hhrr.employee;
 
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.*;
+import com.jalasoft.automation.erp.portal.ui.pages.general.GeneralButtonsBar;
+import com.jalasoft.automation.erp.portal.ui.pages.general.MainMenu;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
+import com.jalasoft.automation.erp.portal.ui.pages.hhrr.Submenu;
 import com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee.*;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
@@ -27,6 +30,7 @@ public class EmployeeSteps {
         openERPSearch.advancedSearch("Nombre",employeeName);
         EmployeeListView assetsAssignationListView = new EmployeeListView();
         assetsAssignationListView.clickOnRecord(employeeName);
+
     }
 
     @And("^I verify if he has this data in basic information$")
@@ -393,5 +397,56 @@ public class EmployeeSteps {
         employeeForm.selectTab("engineering");
         OtherSupervisorsInfoEditForm otherSupervisorsInfoEditForm = new OtherSupervisorsInfoEditForm();
         otherSupervisorsInfoEditForm.deleteTags(inputData);
+    }
+
+    @And("^I create an employee with required fields$")
+    public void I_create_an_employee_with_required_fields(List<Employee> inputData) throws Throwable {
+        MainMenu mainMenu = new MainMenu();
+        Submenu accountingSubmenu = new Submenu();
+
+        mainMenu.goToMenu("hhrr");
+        accountingSubmenu.goToSubmenu("employees");
+
+        GeneralButtonsBar gralButtons;
+        BasicInfoEmployee basicInfoEmployee;
+        PersonalInfoEmployee personalInfoEmployee;
+        EngInfoEmployee engInfoEmployee;
+
+        EmployeeForm employeeForm;
+        BasicInfoEditForm basicInfoEditForm;
+        PersonalInfoEditForm personalInfoEditForm;
+        EngInfoEditForm engInfoEditForm;
+
+        for(Employee employee : inputData) {
+            gralButtons = new GeneralButtonsBar();
+            gralButtons.clickButton("create");
+            Thread.sleep(3000);
+
+            basicInfoEmployee = new BasicInfoEmployee();
+            personalInfoEmployee = new PersonalInfoEmployee();
+            engInfoEmployee = new EngInfoEmployee();
+
+            employeeForm = new EmployeeForm();
+            basicInfoEditForm = new BasicInfoEditForm();
+            personalInfoEditForm = new PersonalInfoEditForm();
+            engInfoEditForm = new EngInfoEditForm();
+
+
+            basicInfoEmployee.firstName = employee.firstName;
+            basicInfoEmployee.lastName = employee.lastName;
+            basicInfoEditForm.modifyData(basicInfoEmployee);
+
+            employeeForm.selectTab("personal");
+            personalInfoEmployee.idNumber = employee.idNumber;
+            personalInfoEditForm.modifyData(personalInfoEmployee);
+
+            employeeForm.selectTab("engineering");
+            engInfoEmployee.manager = employee.manager;
+            engInfoEmployee.lead = employee.lead;
+            engInfoEditForm.modifyData(engInfoEmployee);
+
+            gralButtons.clickButton("save");
+            Thread.sleep(3000);
+        }
     }
 }

@@ -13,40 +13,40 @@ public class HHRRInfoReadForm extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_selection')])[5]")
+    @FindBy(xpath = "//label[contains(text(),'Gender')]/ancestor::td/following-sibling::td/span")
     protected WebElement gender;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_selection')])[6]")
+    @FindBy(xpath = "//label[contains(text(),'Marital Status')]/ancestor::td/following-sibling::td/span")
     protected WebElement maritalStatus;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_char')]/span)[19]")
+    @FindBy(xpath = "//label[contains(text(),'Number of Children')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement numberChildren;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_datepicker_root oe_form_field_date')])[6]")
+    @FindBy(xpath = "//label[contains(text(),'Start Date')]/ancestor::td/following-sibling::td/span")
     protected WebElement startDate;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_datepicker_root oe_form_field_date')])[7]")
+    @FindBy(xpath = "//label[contains(text(),'End Date') and ancestor::table/preceding-sibling::div[contains(text(),'Internship')]]/ancestor::td/following-sibling::td/span")
     protected WebElement endDate;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_datepicker_root oe_form_field_date')])[8]")
+    @FindBy(xpath = "//label[contains(text(),'Hire Date')]/ancestor::td/following-sibling::td/span")
     protected WebElement hireDate;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_datepicker_root oe_form_field_date')])[9]")
+    @FindBy(xpath = "//label[contains(text(),'Hire End Date')]/ancestor::td/following-sibling::td/span")
     protected WebElement endHireDate;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_selection')])[7]")
+    @FindBy(xpath = "//label[contains(text(),'Salary Review Month')]/ancestor::td/following-sibling::td/span")
     protected WebElement salaryReviewMonth;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_many2one oe_form_field_with_button oe_inline')]/span)[1]")
+    @FindBy(xpath = "//label[contains(text(),'Working Schedule')]/ancestor::td/following-sibling::td/span/span[contains(@class,'uri')]")
     protected WebElement workingSchedule;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_many2one oe_form_field_with_button oe_inline')]/span)[3]")
+    @FindBy(xpath = "//label[contains(text(),'Holidays Group')]/ancestor::td/following-sibling::td/span/span[contains(@class,'uri')]")
     protected WebElement holidayGroup;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_datepicker_root oe_form_field_date')])[5]")
+    @FindBy(xpath = "//label[contains(text(),'Vacation Anniversary')]/ancestor::td/following-sibling::td/span")
     protected WebElement vacationAnniversary;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_char')]/span)[20]")
+    @FindBy(xpath = "//label[contains(text(),'Internal ID')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement internalID;
 
     public HHRRInfoReadForm() {
@@ -63,21 +63,21 @@ public class HHRRInfoReadForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dataContainer);
     }
 
-    public HHRRInfoEmployee getMainData() {
+    public HHRRInfoEmployee getDataFromUI(HHRRInfoEmployee infoFromStep) {
         HHRRInfoEmployee result = new HHRRInfoEmployee();
 
-        result.gender = gender.getAttribute("innerHTML");
-        result.maritalStatus = maritalStatus.getAttribute("innerHTML");
-        result.numberChildren = numberChildren.getAttribute("innerHTML");
-        result.startDate = startDate.getAttribute("innerHTML");
-        result.endDate = endDate.getAttribute("innerHTML");
-        result.hireDate = hireDate.getAttribute("innerHTML");
-        result.endHireDate = endHireDate.getAttribute("innerHTML");
-        result.salaryReviewMonth = salaryReviewMonth.getAttribute("innerHTML");
-        result.workingSchedule = workingSchedule.getAttribute("innerHTML");
-        result.holidayGroup = holidayGroup.getAttribute("innerHTML");
-        result.vacationAnniversary = vacationAnniversary.getAttribute("innerHTML");
-        result.internalID = internalID.getAttribute("innerHTML");
+        if(infoFromStep.gender != null) {result.gender = gender.getAttribute("innerHTML");}
+        if(infoFromStep.maritalStatus != null) {result.maritalStatus = maritalStatus.getAttribute("innerHTML");}
+        if(infoFromStep.numberChildren != null) {result.numberChildren = numberChildren.getAttribute("innerHTML");}
+        if(infoFromStep.startDate != null) {result.startDate = startDate.getAttribute("innerHTML");}
+        if(infoFromStep.endDate != null) {result.endDate = endDate.getAttribute("innerHTML");}
+        if(infoFromStep.hireDate != null) {result.hireDate = hireDate.getAttribute("innerHTML");}
+        if(infoFromStep.endHireDate != null) {result.endHireDate = endHireDate.getAttribute("innerHTML");}
+        if(infoFromStep.salaryReviewMonth != null) {result.salaryReviewMonth = salaryReviewMonth.getAttribute("innerHTML");}
+        if(infoFromStep.workingSchedule != null) {result.workingSchedule = workingSchedule.getAttribute("innerHTML");}
+        if(infoFromStep.holidayGroup != null) {result.holidayGroup = holidayGroup.getAttribute("innerHTML");}
+        if(infoFromStep.vacationAnniversary != null) {result.vacationAnniversary = vacationAnniversary.getAttribute("innerHTML");}
+        if(infoFromStep.internalID != null) {result.internalID = internalID.getAttribute("innerHTML");}
 
         return result;
     }

@@ -16,16 +16,17 @@ import java.util.List;
  */
 public class NationalityInfoEditForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[1]")
+    @FindBy(xpath = "//label[contains(text(),'Nationalities')]/ancestor::td/following-sibling::td//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
     protected int tableSize = 100000;
-
 
     public NationalityInfoEditForm() {
         super.table = this.table;
         expectedSpanishHeaders.put("name","Nombre del país");
         expectedSpanishHeaders.put("code","Código de país");
-        expectedHeaders = expectedSpanishHeaders;
+        expectedEnglishHeaders.put("name","Country Name");
+        expectedEnglishHeaders.put("code","Country Code");
+        expectedHeaders = expectedEnglishHeaders;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class NationalityInfoEditForm extends TableOpenERP {
         for (int i = 0; i < inputData.size(); i++) {
             addElement.click();
             PopupSearch openERPSearch = new PopupSearch();
-            openERPSearch.advancedSearch("Nombre del país",inputData.get(i).name);
+            openERPSearch.advancedSearch(expectedHeaders.get("name"),inputData.get(i).name);
 
             WebElement countryCell = this.webDriver.findElement(By.xpath("//div[contains(@class,'oe_popup_list')]//td[text()='" + inputData.get(i).name + "']"));
             countryCell.click();

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class InternalCareerInfoReadForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[8]")
+    @FindBy(xpath = "//div[contains(text(),'Internal Career Information')]/following-sibling::table//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
 
@@ -26,8 +26,16 @@ public class InternalCareerInfoReadForm extends TableOpenERP {
         expectedSpanishHeaders.put("weight","Peso");
         expectedSpanishHeaders.put("startDate","Fecha inicio");
         expectedSpanishHeaders.put("endDate","Fecha de finalización");
-        expectedSpanishHeaders.put("employeer","Empleador");
-        expectedHeaders = expectedSpanishHeaders;
+        expectedSpanishHeaders.put("employer","Empleador");
+        expectedEnglishHeaders.put("department","Department");
+        expectedEnglishHeaders.put("division","Division");
+        expectedEnglishHeaders.put("name","Job Title");
+        expectedEnglishHeaders.put("projectCode","Project Code");
+        expectedEnglishHeaders.put("weight","Weight");
+        expectedEnglishHeaders.put("startDate","Start date");
+        expectedEnglishHeaders.put("endDate","End date");
+        expectedEnglishHeaders.put("employer","Employer");
+        expectedHeaders = expectedEnglishHeaders;
         this.waitForLoading();
     }
 
@@ -61,7 +69,7 @@ public class InternalCareerInfoReadForm extends TableOpenERP {
                         currentInternalCareer.weight.equals(currentRow.get(expectedHeaders.get("weight"))) &&
                         currentInternalCareer.startDate.equals(currentRow.get(expectedHeaders.get("startDate"))) &&
                         currentInternalCareer.endDate.equals(currentRow.get(expectedHeaders.get("endDate"))) &&
-                        currentInternalCareer.employeer.equals(currentRow.get(expectedHeaders.get("employeer")))) {
+                        currentInternalCareer.employeer.equals(currentRow.get(expectedHeaders.get("employer")))) {
                             dataFromTable.remove(currentRow);
                             break;
                     }

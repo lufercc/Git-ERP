@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ExternalCareerInfoReadForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[7]")
+    @FindBy(xpath = "//div[contains(text(),'External Career Information')]/following-sibling::table[following-sibling::div[contains(text(),'Internal Career Information')]]//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
 
@@ -22,8 +22,12 @@ public class ExternalCareerInfoReadForm extends TableOpenERP {
         expectedSpanishHeaders.put("name","Puesto");
         expectedSpanishHeaders.put("startDate","Fecha inicio");
         expectedSpanishHeaders.put("endDate","Fecha de finalización");
-        expectedSpanishHeaders.put("employeer","Empleador");
-        expectedHeaders = expectedSpanishHeaders;
+        expectedSpanishHeaders.put("employer","Empleador");
+        expectedEnglishHeaders.put("name","Job Title");
+        expectedEnglishHeaders.put("startDate","Start date");
+        expectedEnglishHeaders.put("endDate","End date");
+        expectedEnglishHeaders.put("employer","Employer");
+        expectedHeaders = expectedEnglishHeaders;
         this.waitForLoading();
     }
 
@@ -53,7 +57,7 @@ public class ExternalCareerInfoReadForm extends TableOpenERP {
                     if (currentExternalCareer.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
                         currentExternalCareer.startDate.equals(currentRow.get(expectedHeaders.get("startDate"))) &&
                         currentExternalCareer.endDate.equals(currentRow.get(expectedHeaders.get("endDate"))) &&
-                        currentExternalCareer.employeer.equals(currentRow.get(expectedHeaders.get("employeer")))) {
+                        currentExternalCareer.employeer.equals(currentRow.get(expectedHeaders.get("employer")))) {
                             dataFromTable.remove(currentRow);
                             break;
                     }

@@ -13,14 +13,16 @@ import java.util.List;
  */
 public class NDAInfoReadForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[3]")
+    @FindBy(xpath = "//div[contains(text(),'NDA Info')]/following-sibling::table//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
     public NDAInfoReadForm() {
         super.table = this.table;
         expectedSpanishHeaders.put("ndaVersion","Versión NDA");
         expectedSpanishHeaders.put("signDate","Fecha de firma");
-        expectedHeaders = expectedSpanishHeaders;
+        expectedEnglishHeaders.put("ndaVersion","NDA Version");
+        expectedEnglishHeaders.put("signDate","Date of Signature");
+        expectedHeaders = expectedEnglishHeaders;
         this.waitForLoading();
     }
 

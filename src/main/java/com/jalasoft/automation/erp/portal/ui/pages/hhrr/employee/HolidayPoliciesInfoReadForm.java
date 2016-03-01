@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class HolidayPoliciesInfoReadForm extends TagFieldOpenERP {
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_form_field oe_tags')])[2]")
+    @FindBy(xpath = "//label[contains(text(),'Vacation Allocation Policies')]/ancestor::td/following-sibling::td/div[contains(@class,'oe_form_field oe_tags')]")
     protected WebElement field;
 
 

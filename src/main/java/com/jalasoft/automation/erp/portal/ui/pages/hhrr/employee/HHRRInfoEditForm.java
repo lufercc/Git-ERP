@@ -15,16 +15,16 @@ public class HHRRInfoEditForm extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field')and(not(contains(@class,'invisible')))]/input[@type='text'])[10]")
+    @FindBy(xpath = "//label[contains(text(),'Number of Children')]/ancestor::td/following-sibling::td/span/input")
     protected WebElement numberChildren;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field')and(not(contains(@class,'invisible')))]/input[@type='text'])[11]")
+    @FindBy(xpath = "//label[contains(text(),'Internal ID')]/ancestor::td/following-sibling::td/span/input")
     protected WebElement internalID;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[8]")
+    @FindBy(xpath = "//label[contains(text(),'Working Schedule')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement workingScheduleSelect;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[9]")
+    @FindBy(xpath = "//label[contains(text(),'Holidays Group')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement holidayGroupSelect;
 
     @FindBy(name = "gender")

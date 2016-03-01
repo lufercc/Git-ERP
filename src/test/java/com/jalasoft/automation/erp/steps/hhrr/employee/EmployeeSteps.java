@@ -8,6 +8,7 @@ import com.jalasoft.automation.erp.portal.ui.pages.hhrr.Submenu;
 import com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee.*;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.When;
 import org.junit.Assert;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class EmployeeSteps {
     @And("^I search employee \"([^\"]*)\" into employee list view$")
     public void I_search_employee_into_employee_list_view(String employeeName) throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Nombre",employeeName);
+        openERPSearch.advancedSearch("Name",employeeName);
         EmployeeListView assetsAssignationListView = new EmployeeListView();
         assetsAssignationListView.clickOnRecord(employeeName);
 
@@ -53,22 +54,30 @@ public class EmployeeSteps {
 
         employeeForm.selectTab("public");
         for (PublicInfoEmployee item : expectedPublicEmployeeData) {
-            Boolean auxResult = item.contains(publicInfoReadForm.getMainData());
+            Boolean auxResult = item.contains(publicInfoReadForm.getDataFromUI(item));
             if(!auxResult) {result = false;}
         }
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this simple data in personal information$")
-    public void I_verify_if_he_has_this_simple_data_in_personal_information(List<PersonalInfoEmployee> expectedPersonalEmployeeData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this simple data in personal information$")
+    public void I_verify_if_he_has_this_simple_data_in_personal_information(String hasOrNot, List<PersonalInfoEmployee> expectedPersonalEmployeeData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if(hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
+
         EmployeeForm employeeForm = new EmployeeForm();
         PersonalInfoReadForm personalInfoReadForm = new PersonalInfoReadForm();
 
         employeeForm.selectTab("personal");
         for (PersonalInfoEmployee item : expectedPersonalEmployeeData) {
-            Boolean auxResult = item.contains(personalInfoReadForm.getMainData());
-            if(!auxResult) {result = false;}
+            Boolean auxResult;
+            PersonalInfoEmployee aux = personalInfoReadForm.getDataFromUI(item);
+            auxResult = (personalInfoReadForm.allFieldsWereRead) ? item.contains(aux) : false;
+            if(auxResult && shouldBeAble) {result = true;}
+            if(!auxResult && !shouldBeAble && personalInfoReadForm.fieldsWereRead.isEmpty()) {result = true;}
         }
         Assert.assertTrue(result);
     }
@@ -81,7 +90,7 @@ public class EmployeeSteps {
 
         employeeForm.selectTab("hhrr");
         for (HHRRInfoEmployee item : expectedHHRREmployeeData) {
-            Boolean auxResult = item.contains(hhrrInfoReadForm.getMainData());
+            Boolean auxResult = item.contains(hhrrInfoReadForm.getDataFromUI(item));
             if(!auxResult) {result = false;}
         }
         Assert.assertTrue(result);
@@ -90,12 +99,13 @@ public class EmployeeSteps {
     @And("^I verify if he has this simple data in engineering information$")
     public void I_verify_if_he_has_this_simple_data_in_engineering_information(List<EngInfoEmployee> expectedEngEmployeeData) throws Throwable {
         Boolean result= true;
+
         EmployeeForm employeeForm = new EmployeeForm();
         EngInfoReadForm engInfoReadForm = new EngInfoReadForm();
 
         employeeForm.selectTab("engineering");
         for (EngInfoEmployee item : expectedEngEmployeeData) {
-            Boolean auxResult = item.contains(engInfoReadForm.getMainData());
+            Boolean auxResult = item.contains(engInfoReadForm.getDataFromUI(item));
             if(!auxResult) {result = false;}
         }
         Assert.assertTrue(result);
@@ -447,6 +457,17 @@ public class EmployeeSteps {
 
             gralButtons.clickButton("save");
             Thread.sleep(3000);
+        }
+    }
+
+
+    @And("^I do( not|)? something$")
+    public void I_do_something(String doOrNot) throws Throwable {
+        if(doOrNot != null) {
+            System.out.println("No es nulo");
+            System.out.println("Value:" + doOrNot + ";");
+        } else {
+            System.out.println("Nulo");
         }
     }
 }

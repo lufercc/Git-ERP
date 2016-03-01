@@ -13,13 +13,14 @@ import java.util.List;
  */
 public class ProjectInfoReadForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[6]")
+    @FindBy(xpath = "//label[contains(text(),'Project Codes')]/ancestor::td/following-sibling::td//table")
     protected WebElement table;
 
     public ProjectInfoReadForm() {
         super.table = this.table;
         expectedSpanishHeaders.put("code","Código de proyecto");
-        expectedHeaders = expectedSpanishHeaders;
+        expectedEnglishHeaders.put("code","Project Code");
+        expectedHeaders = expectedEnglishHeaders;
         this.waitForLoading();
     }
 

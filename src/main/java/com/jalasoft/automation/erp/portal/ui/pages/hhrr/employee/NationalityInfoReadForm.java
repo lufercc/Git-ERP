@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class NationalityInfoReadForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[2]")
+    @FindBy(xpath = "//label[contains(text(),'Nationalities')]/ancestor::td/following-sibling::td//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
     public HashMap<String, String> expectedHeaders;
@@ -26,7 +26,9 @@ public class NationalityInfoReadForm extends TableOpenERP {
         expectedSpanishHeaders = new HashMap<>();
         expectedSpanishHeaders.put("name","Nombre del país");
         expectedSpanishHeaders.put("code","Código de país");
-        expectedHeaders = expectedSpanishHeaders;
+        expectedEnglishHeaders.put("name","Country Name");
+        expectedEnglishHeaders.put("code","Country Code");
+        expectedHeaders = expectedEnglishHeaders;
         this.waitForLoading();
     }
 

@@ -7,6 +7,8 @@ import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PublicInfoEmpl
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.NoSuchElementException;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
@@ -15,22 +17,22 @@ public class PersonalInfoEditForm extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field')and(not(contains(@class,'invisible')))]/input[@type='text'])[7]")
+    @FindBy(xpath = "//label[contains(text(),'ID Number')]/ancestor::td/following-sibling::td/span/input")
     protected WebElement idNumber;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field')and(not(contains(@class,'invisible')))]/input[@type='text'])[8]")
+    @FindBy(xpath = "//label[contains(text(),'Passport No')]/ancestor::td/following-sibling::td/span/input")
     protected WebElement passportNumber;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field')and(not(contains(@class,'invisible')))]/input[@type='text'])[9]")
+    @FindBy(xpath = "//label[contains(text(),'City of Birth')]/ancestor::td/following-sibling::td/span/input")
     protected WebElement city;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[5]")
+    @FindBy(xpath = "//label[contains(text(),'Passport Issued')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement passportPlaceSelect;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[6]")
+    @FindBy(xpath = "//label[contains(text(),'Country of Birth')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement countrySelect;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[7]")
+    @FindBy(xpath = "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement homeAddressSelect;
 
     @FindBy(name = "identification_type")
@@ -138,7 +140,5 @@ public class PersonalInfoEditForm extends PortalUIElement {
         if (inputData.homeAddress != null) {
             this.homeAddress.selectItem(inputData.homeAddress);
         }
-
-
     }
 }

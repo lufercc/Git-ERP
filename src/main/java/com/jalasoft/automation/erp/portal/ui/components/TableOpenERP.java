@@ -17,9 +17,11 @@ public class TableOpenERP extends PortalUIElement {
     List<HashMap<String, String>> dataTable;
     protected HashMap<String, String> expectedHeaders;
     protected HashMap<String, String> expectedSpanishHeaders;
+    protected HashMap<String, String> expectedEnglishHeaders;
 
     public TableOpenERP() {
         expectedSpanishHeaders = new HashMap<>();
+        expectedEnglishHeaders = new HashMap<>();
     }
 
     public List< HashMap<String,String>> getData() {

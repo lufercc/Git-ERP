@@ -12,10 +12,10 @@ public class MainMenu extends PortalUIElement {
     @FindBy(xpath = "//ul[@class='oe_menu']")
     protected WebElement menuContainer;
 
-    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Mensajería')]")
+    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Messaging')]")
     protected WebElement messagesMenu;
 
-    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Recursos humanos')]")
+    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Human Resources')]")
     protected WebElement hhrrMenu;
 
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Evaluación de activos')]")

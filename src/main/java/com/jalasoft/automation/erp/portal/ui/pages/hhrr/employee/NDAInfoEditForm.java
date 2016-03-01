@@ -14,11 +14,16 @@ import java.util.List;
  */
 public class NDAInfoEditForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[2]")
+    @FindBy(xpath = "//div[contains(text(),'NDA Info')]/following-sibling::table//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
     public NDAInfoEditForm() {
         super.table = this.table;
+        expectedSpanishHeaders.put("ndaVersion","Versión NDA");
+        expectedSpanishHeaders.put("signDate","Fecha de firma");
+        expectedEnglishHeaders.put("ndaVersion","NDA Version");
+        expectedEnglishHeaders.put("signDate","Date of Signature");
+        expectedHeaders = expectedEnglishHeaders;
     }
 
     @Override
@@ -37,6 +42,7 @@ public class NDAInfoEditForm extends TableOpenERP {
 
         for ( NDA item : inputNDAData) {
             clickAddElement();
+            this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
             ndaVersion = this.webDriver.findElement(By.name("nda_version"));
             signDate = this.webDriver.findElement(By.name("date_of_signature"));
             this.webDriverTools.selectOptionOfDropListElement(ndaVersion, item.ndaVersion);
@@ -56,8 +62,8 @@ public class NDAInfoEditForm extends TableOpenERP {
 
             for (int uit = 0; uit < dataFromUITable.size(); uit++) {
                 currentRow = dataFromUITable.get(uit);
-                if (currentNDA.ndaVersion.equals(currentRow.get("Versión NDA")) &&
-                        currentNDA.signDate.equals(currentRow.get("Fecha de firma"))) {
+                if (currentNDA.ndaVersion.equals(currentRow.get(expectedHeaders.get("ndaVersion"))) &&
+                    currentNDA.signDate.equals(currentRow.get(expectedHeaders.get("signDate")))) {
                     this.deleteElement(uit);
                     break;
                 }

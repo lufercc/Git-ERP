@@ -15,19 +15,19 @@ public class EngInfoEditForm extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[10]")
+    @FindBy(xpath = "//label[contains(text(),'Department')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement departmentSelect;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[11]")
+    @FindBy(xpath = "//label[contains(text(),'Division')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement divisionSelect;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[12]")
+    @FindBy(xpath = "//label[contains(text(),'Job Title')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement jobTitleSelect;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[13]")
+    @FindBy(xpath = "//label[contains(text(),'Manager')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement managerSelect;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_form_group_cell')]/span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[14]")
+    @FindBy(xpath = "//label[contains(text(),'Lead')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement leadSelect;
 
     @FindBy(name = "visible")

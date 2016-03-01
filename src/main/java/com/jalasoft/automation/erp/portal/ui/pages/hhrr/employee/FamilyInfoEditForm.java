@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class FamilyInfoEditForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[4]")
+    @FindBy(xpath = "//div[contains(text(),'Family Information')]/following-sibling::table//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
 
@@ -25,7 +25,12 @@ public class FamilyInfoEditForm extends TableOpenERP {
         expectedSpanishHeaders.put("relation","Parentesco");
         expectedSpanishHeaders.put("sex","Sexo");
         expectedSpanishHeaders.put("birthDate","Fecha de nacimiento");
-        expectedHeaders = expectedSpanishHeaders;
+        expectedEnglishHeaders.put("name","Names");
+        expectedEnglishHeaders.put("lastName","Last Name");
+        expectedEnglishHeaders.put("relation","Relationship");
+        expectedEnglishHeaders.put("sex","Sex");
+        expectedEnglishHeaders.put("birthDate","Date of Birth");
+        expectedHeaders = expectedEnglishHeaders;
     }
 
     @Override

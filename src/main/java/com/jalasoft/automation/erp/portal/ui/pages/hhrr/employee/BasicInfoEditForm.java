@@ -16,22 +16,22 @@ public class BasicInfoEditForm extends PortalUIElement {
     @FindBy(name = "firstname_check")
     protected WebElement firstNameCheck;
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_title')]//input[contains(@id,'oe-field-input')])[2]")
+    @FindBy(xpath = "//span[following-sibling::table//label[contains(text(),'Middle Name')] and preceding-sibling::table//label[contains(text(),'First Name')]]/input")
     protected WebElement firstName;
 
     @FindBy(name = "middlename_check")
     protected WebElement middleNameCheck;
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_title')]//input[contains(@id,'oe-field-input')])[4]")
+    @FindBy(xpath = "//span[following-sibling::label[contains(text(),'Preferred Name')] and preceding-sibling::table//label[contains(text(),'Middle Name')]]/input")
     protected WebElement middleName;
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_title')]//input[contains(@id,'oe-field-input')])[6]")
+    @FindBy(xpath = "//span[following-sibling::label[contains(text(),'Second Last Name')] and preceding-sibling::label[contains(text(),'Last Name')]]/input")
     protected WebElement lastName;
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_title')]//input[contains(@id,'oe-field-input')])[7]")
+    @FindBy(xpath = "//span[following-sibling::label[contains(text(),'Married Name')] and preceding-sibling::label[contains(text(),'Second Last Name')]]/input")
     protected WebElement secondLastName;
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_title')]//input[contains(@id,'oe-field-input')])[8]")
+    @FindBy(xpath = "//span[following-sibling::label[contains(text(),'Tags')] and preceding-sibling::label[contains(text(),'Married Name')]]/input")
     protected WebElement marriedName;
 
     public BasicInfoEditForm() {

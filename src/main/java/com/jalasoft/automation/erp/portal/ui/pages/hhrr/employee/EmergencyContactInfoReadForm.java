@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class EmergencyContactInfoReadForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[4]")
+    @FindBy(xpath = "//div[contains(text(),'Emergency Contacts')]/following-sibling::table//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
 
@@ -23,7 +23,11 @@ public class EmergencyContactInfoReadForm extends TableOpenERP {
         expectedSpanishHeaders.put("relationship","Parentesco");
         expectedSpanishHeaders.put("phone","Teléfono");
         expectedSpanishHeaders.put("mobile","Celular");
-        expectedHeaders = expectedSpanishHeaders;
+        expectedEnglishHeaders.put("name","Full Name");
+        expectedEnglishHeaders.put("relationship","Relationship");
+        expectedEnglishHeaders.put("phone","Home Phone");
+        expectedEnglishHeaders.put("mobile","Mobile Phone");
+        expectedHeaders = expectedEnglishHeaders;
         this.waitForLoading();
     }
 

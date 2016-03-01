@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class EmergencyContactInfoEditForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[3]")
+    @FindBy(xpath = "//div[contains(text(),'Emergency Contacts')]/following-sibling::table//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
 
@@ -24,7 +24,11 @@ public class EmergencyContactInfoEditForm extends TableOpenERP {
         expectedSpanishHeaders.put("relationship","Parentesco");
         expectedSpanishHeaders.put("phone","Teléfono");
         expectedSpanishHeaders.put("mobile","Celular");
-        expectedHeaders = expectedSpanishHeaders;
+        expectedEnglishHeaders.put("name","Full Name");
+        expectedEnglishHeaders.put("relationship","Relationship");
+        expectedEnglishHeaders.put("phone","Home Phone");
+        expectedEnglishHeaders.put("mobile","Mobile Phone");
+        expectedHeaders = expectedEnglishHeaders;
     }
 
     @Override

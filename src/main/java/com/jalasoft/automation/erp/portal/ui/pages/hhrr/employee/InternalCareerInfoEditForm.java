@@ -15,31 +15,31 @@ import java.util.List;
  */
 public class InternalCareerInfoEditForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[7]")
+    @FindBy(xpath = "//div[contains(text(),'Internal Career Information')]/following-sibling::table//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
-    @FindBy(xpath = "(//div[@class='oe_popup_form']//span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[1]")
+    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Department')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement departmentSelect;
 
-    @FindBy(xpath = "(//div[@class='oe_popup_form']//span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[2]")
+    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Division')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement divisionSelect;
 
-    @FindBy(xpath = "(//div[@class='oe_popup_form']//span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[3]")
+    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Job Title')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement nameSelect;
 
-    @FindBy(xpath = "(//div[@class='oe_popup_form']//span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[4]")
+    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Project Assignation')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement projectCodeSelect;
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_popup_form')]//span[not(contains(@class,'invisible'))]/input[contains(@id,'oe-field-input')])[1]")
+    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Weight')]/ancestor::td/following-sibling::td/span/input")
     protected WebElement weight;
 
-    @FindBy(xpath = "(//div[@class='oe_popup_form']//span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[5]")
+    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Manager')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement managerSelect;
 
-    @FindBy(xpath = "(//div[@class='oe_popup_form']//span[contains(@class,'oe_form_field_many2one')and(not(contains(@class,'invisible')))]/div/input)[6]")
+    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Lead')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement leadSelect;
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_popup_form')]//span[not(contains(@class,'invisible'))]/input[contains(@id,'oe-field-input')])[1]")
+    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Employer')]/ancestor::td/following-sibling::td/span/input")
     protected WebElement employer;
 
     @FindBy(name = "start_date")
@@ -73,8 +73,16 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
         expectedSpanishHeaders.put("weight","Peso");
         expectedSpanishHeaders.put("startDate","Fecha inicio");
         expectedSpanishHeaders.put("endDate","Fecha de finalización");
-        expectedSpanishHeaders.put("employeer","Empleador");
-        expectedHeaders = expectedSpanishHeaders;
+        expectedSpanishHeaders.put("employer","Empleador");
+        expectedEnglishHeaders.put("department","Department");
+        expectedEnglishHeaders.put("division","Division");
+        expectedEnglishHeaders.put("name","Job Title");
+        expectedEnglishHeaders.put("projectCode","Project Code");
+        expectedEnglishHeaders.put("weight","Weight");
+        expectedEnglishHeaders.put("startDate","Start date");
+        expectedEnglishHeaders.put("endDate","End date");
+        expectedEnglishHeaders.put("employer","Employer");
+        expectedHeaders = expectedEnglishHeaders;
     }
 
     @Override
@@ -170,7 +178,7 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
                     currentExpected.weight.equals(currentRow.get(expectedHeaders.get("weight"))) &&
                     currentExpected.startDate.equals(currentRow.get(expectedHeaders.get("startDate"))) &&
                     currentExpected.endDate.equals(currentRow.get(expectedHeaders.get("endDate"))) &&
-                    currentExpected.employeer.equals(currentRow.get(expectedHeaders.get("employeer")))) {
+                    currentExpected.employeer.equals(currentRow.get(expectedHeaders.get("employer")))) {
                     this.deleteElement(uit);
                     break;
                 }

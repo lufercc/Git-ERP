@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class OtherSupervisorsInfoReadForm extends TagFieldOpenERP {
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_form_field oe_tags')])[3]")
+    @FindBy(xpath = "//label[contains(text(),'Other Supervisors')]/ancestor::td/following-sibling::td/div[contains(@class,'oe_form_field oe_tags')]")
     protected WebElement field;
 
 

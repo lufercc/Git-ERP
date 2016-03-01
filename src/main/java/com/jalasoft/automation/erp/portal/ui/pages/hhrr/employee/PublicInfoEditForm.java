@@ -16,34 +16,34 @@ public class PublicInfoEditForm extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "//label[contains(text(),'Correo-e del trabajo')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
+    @FindBy(xpath = "//label[contains(text(),'Work Email')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement workEmail;
 
-    @FindBy(xpath = "//label[contains(text(),'Teléfono trabajo')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
+    @FindBy(xpath = "//label[contains(text(),'Work Phone')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement workPhone;
 
-    @FindBy(xpath = "//label[contains(text(),'Código de extensión')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
+    @FindBy(xpath = "//label[contains(text(),'Extension Code')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement extCode;
 
-    @FindBy(xpath = "//label[contains(text(),'Móvil del trabajo')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
+    @FindBy(xpath = "//label[contains(text(),'Work Mobile')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement workMobile;
 
-    @FindBy(xpath = "//label[contains(text(),'Código de escritorio')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
+    @FindBy(xpath = "//label[contains(text(),'Desk Code')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement codeDesktop;
 
-    @FindBy(xpath = "//label[contains(text(),'Ciudad')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
+    @FindBy(xpath = "//label[contains(text(),'City')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement city;
 
-    @FindBy(xpath = "//label[contains(text(),'Dirección de trabajo')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
+    @FindBy(xpath = "//label[contains(text(),'Working Address')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
     protected WebElement addressSelect;
 
-    @FindBy(xpath = "//label[contains(text(),'Ubicación')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
+    @FindBy(xpath = "//label[contains(text(),'Location')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
     protected WebElement locationSelect;
 
-    @FindBy(xpath = "//label[contains(text(),'País')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
+    @FindBy(xpath = "//label[contains(text(),'Country')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
     protected WebElement countrySelect;
 
-    @FindBy(xpath = "//label[contains(text(),'Usuario OpenERP')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
+    @FindBy(xpath = "//label[contains(text(),'Related User')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
     protected WebElement userSelect;
 
     @FindBy(name = "notes")

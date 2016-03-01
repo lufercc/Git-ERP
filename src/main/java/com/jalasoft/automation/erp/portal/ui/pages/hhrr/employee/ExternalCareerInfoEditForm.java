@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class ExternalCareerInfoEditForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[6]")
+    @FindBy(xpath = "//div[contains(text(),'External Career Information')]/following-sibling::table[following-sibling::div[contains(text(),'Internal Career Information')]]//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
 
@@ -23,8 +23,12 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
         expectedSpanishHeaders.put("name","Puesto");
         expectedSpanishHeaders.put("startDate","Fecha inicio");
         expectedSpanishHeaders.put("endDate","Fecha de finalización");
-        expectedSpanishHeaders.put("employeer","Empleador");
-        expectedHeaders = expectedSpanishHeaders;
+        expectedSpanishHeaders.put("employer","Empleador");
+        expectedEnglishHeaders.put("name","Job Title");
+        expectedEnglishHeaders.put("startDate","Start date");
+        expectedEnglishHeaders.put("endDate","End date");
+        expectedEnglishHeaders.put("employer","Employer");
+        expectedHeaders = expectedEnglishHeaders;
     }
 
     @Override

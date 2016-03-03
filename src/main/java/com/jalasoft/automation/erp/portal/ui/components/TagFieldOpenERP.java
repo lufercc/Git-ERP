@@ -36,7 +36,8 @@ public class TagFieldOpenERP extends PortalUIElement {
         WebElement tagTextField = field.findElement(By.xpath(".//textarea"));
         for (Tag tag : tagList) {
             tagTextField.sendKeys(tag.name);
-            WebElement suggestedValue = field.findElement(By.xpath(".//span[text()='" + tag.name + "']"));
+            this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+            WebElement suggestedValue = field.findElement(By.xpath(".//span[contains(@class,'text-label')]/span[text()='" + tag.name + "']"));
             suggestedValue.click();
         }
     }

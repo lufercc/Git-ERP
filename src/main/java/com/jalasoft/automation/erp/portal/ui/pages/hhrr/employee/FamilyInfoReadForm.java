@@ -19,7 +19,6 @@ public class FamilyInfoReadForm extends TableOpenERP {
 
     public FamilyInfoReadForm() {
         super.table = this.table;
-        this.waitForLoading();
         expectedSpanishHeaders.put("name","Nombres");
         expectedSpanishHeaders.put("lastName","Apellidos");
         expectedSpanishHeaders.put("relation","Parentesco");

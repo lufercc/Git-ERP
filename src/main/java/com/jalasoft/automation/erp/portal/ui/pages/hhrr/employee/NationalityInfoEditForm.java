@@ -46,7 +46,7 @@ public class NationalityInfoEditForm extends TableOpenERP {
             addElement.click();
             PopupSearch openERPSearch = new PopupSearch();
             openERPSearch.advancedSearch(expectedHeaders.get("name"),inputData.get(i).name);
-
+            this.webDriverTools.waitUntilElementPresentAndVisible(this.webDriver.findElement(By.xpath("//div[contains(@class,'oe_popup_list')]//td[text()='" + inputData.get(i).name + "']")));
             WebElement countryCell = this.webDriver.findElement(By.xpath("//div[contains(@class,'oe_popup_list')]//td[text()='" + inputData.get(i).name + "']"));
             countryCell.click();
         }

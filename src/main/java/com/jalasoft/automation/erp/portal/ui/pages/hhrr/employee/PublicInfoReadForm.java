@@ -65,6 +65,7 @@ public class PublicInfoReadForm extends PortalUIElement {
 
     public PublicInfoEmployee getDataFromUI(PublicInfoEmployee infoFromStep) {
         PublicInfoEmployee result = new PublicInfoEmployee();
+        if(infoFromStep.address != null) {result.address = address.getAttribute("innerHTML").replace("<br>","");}
         if(infoFromStep.addressDescription != null) {result.addressDescription = addressDescription.getAttribute("innerHTML");}
         if(infoFromStep.workEmail != null) {result.workEmail = workEmail.getAttribute("innerHTML");}
         if(infoFromStep.workPhone != null) {result.workPhone = workPhone.getAttribute("innerHTML");}

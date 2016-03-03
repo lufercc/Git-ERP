@@ -28,7 +28,7 @@ public class EmergencyContactInfoReadForm extends TableOpenERP {
         expectedEnglishHeaders.put("phone","Home Phone");
         expectedEnglishHeaders.put("mobile","Mobile Phone");
         expectedHeaders = expectedEnglishHeaders;
-        this.waitForLoading();
+
     }
 
     @Override

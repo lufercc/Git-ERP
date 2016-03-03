@@ -3,6 +3,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.NDA;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import java.util.List;
  */
 public class NDAInfoReadForm extends TableOpenERP {
 
+    @CacheLookup
     @FindBy(xpath = "//div[contains(text(),'NDA Info')]/following-sibling::table//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
@@ -23,7 +25,6 @@ public class NDAInfoReadForm extends TableOpenERP {
         expectedEnglishHeaders.put("ndaVersion","NDA Version");
         expectedEnglishHeaders.put("signDate","Date of Signature");
         expectedHeaders = expectedEnglishHeaders;
-        this.waitForLoading();
     }
 
     @Override

@@ -36,7 +36,7 @@ public class InternalCareerInfoReadForm extends TableOpenERP {
         expectedEnglishHeaders.put("endDate","End date");
         expectedEnglishHeaders.put("employer","Employer");
         expectedHeaders = expectedEnglishHeaders;
-        this.waitForLoading();
+
     }
 
     @Override

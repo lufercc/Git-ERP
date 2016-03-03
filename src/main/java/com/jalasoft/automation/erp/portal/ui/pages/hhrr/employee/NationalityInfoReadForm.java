@@ -29,7 +29,7 @@ public class NationalityInfoReadForm extends TableOpenERP {
         expectedEnglishHeaders.put("name","Country Name");
         expectedEnglishHeaders.put("code","Country Code");
         expectedHeaders = expectedEnglishHeaders;
-        this.waitForLoading();
+
     }
 
     @Override

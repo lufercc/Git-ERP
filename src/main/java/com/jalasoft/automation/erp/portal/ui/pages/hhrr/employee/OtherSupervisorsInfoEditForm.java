@@ -2,6 +2,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
 import com.jalasoft.automation.erp.portal.ui.components.TagFieldOpenERP;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 /**
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class OtherSupervisorsInfoEditForm extends TagFieldOpenERP {
 
+    @CacheLookup
     @FindBy(xpath = "//label[contains(text(),'Other Supervisors')]/ancestor::td/following-sibling::td/div[contains(@class,'oe_form_field oe_tags')]")
     protected WebElement field;
 

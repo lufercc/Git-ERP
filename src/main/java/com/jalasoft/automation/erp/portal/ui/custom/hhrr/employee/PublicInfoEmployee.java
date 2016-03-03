@@ -44,6 +44,13 @@ public class PublicInfoEmployee {
     public boolean contains(PublicInfoEmployee uiData) {
         log = Logger.getLogger(getClass());
 
+        if (this.address != null){
+            if(!this.address.equals(uiData.address)) {
+                log.warn("This expected value: '" + this.address + "' was not found in the UI");
+                return false;
+            }
+        }
+
         if (this.addressDescription != null){
             if(!this.addressDescription.equals(uiData.addressDescription)) {
                 log.warn("This expected value: '" + this.addressDescription + "' was not found in the UI");

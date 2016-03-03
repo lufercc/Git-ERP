@@ -183,7 +183,7 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
                     break;
                 }
                 if (uit == (dataFromUITable.size() - 1)) {
-                    System.out.println("No data was found in the table,review input data values");
+                    System.out.println("No data was found in the table " + getClass().getName() + ",review input data values");
                 }
             }
         }

@@ -39,6 +39,7 @@ public class PersonalInfoEmployee {
         this.hasVisa = aux.hasVisa;
         this.visaType = aux.visaType;
         this.visaExpDate = aux.visaExpDate;
+        this.homeAddress = aux.homeAddress;
         this.homeAddressDescription = aux.homeAddressDescription;
         this.dateBirth = aux.dateBirth;
         this.age = aux.age;
@@ -106,6 +107,12 @@ public class PersonalInfoEmployee {
         if (this.visaExpDate != null){
             if(!this.visaExpDate.equals(uiData.visaExpDate)) {
                 logWarning(this.visaExpDate);
+                return false;
+            }
+        }
+        if (this.homeAddress != null){
+            if(!this.homeAddress.equals(uiData.homeAddress)) {
+                logWarning(this.homeAddress);
                 return false;
             }
         }

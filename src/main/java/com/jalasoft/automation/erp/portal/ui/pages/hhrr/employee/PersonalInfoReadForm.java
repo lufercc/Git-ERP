@@ -121,6 +121,9 @@ public class PersonalInfoReadForm extends PortalUIElement {
         if(infoFromStep.visaExpDate != null) {
             result.visaExpDate = getSpanValue(visaExpDate, "visaExpDate");
         }
+        if(infoFromStep.homeAddress != null) {
+            result.homeAddress = getSpanValue(homeAddress, "homeAddress");
+        }
         if(infoFromStep.homeAddressDescription != null) {
             result.homeAddressDescription = getSpanValue(homeAddressDescription, "homeAddressDescription");
         }
@@ -144,7 +147,7 @@ public class PersonalInfoReadForm extends PortalUIElement {
     private String getSpanValue(WebElement element, String field) {
         String stringResult;
         try {
-            stringResult = element.getAttribute("innerHTML");
+            stringResult = element.getAttribute("innerHTML").replace("<br>", "");
             fieldsWereRead.add(field);
         }catch (NoSuchElementException nsee) {
             fieldsWereNotRead.add(field);

@@ -188,6 +188,26 @@ public class EmployeeSteps {
         Assert.assertTrue(result);
     }
 
+    @And("^I verify if he has this hide external career data$")
+    public void I_verify_if_he_has_this_hide_external_career_data(List<ExternalCareer> expectedData) throws Throwable {
+        Boolean result= true;
+        EmployeeForm employeeForm = new EmployeeForm();
+        ExternalCareerInfoReadForm externalCareerInfoReadForm = new ExternalCareerInfoReadForm();
+
+        result = externalCareerInfoReadForm.hasSameContent(expectedData);
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify if he has this hide internal career data$")
+    public void I_verify_if_he_has_this_hide_internal_career_data(List<InternalCareer> expectedData) throws Throwable {
+        Boolean result= true;
+        EmployeeForm employeeForm = new EmployeeForm();
+        InternalCareerInfoReadForm internalCareerInfoReadForm = new InternalCareerInfoReadForm();
+
+        result = internalCareerInfoReadForm.hasSameContent(expectedData);
+        Assert.assertTrue(result);
+    }
+
     @And("^I verify if he has this tag data$")
     public void I_verify_if_he_has_this_tag_data(List<Tag> expectedData) throws Throwable {
         Boolean result= true;
@@ -401,8 +421,8 @@ public class EmployeeSteps {
         otherSupervisorsInfoEditForm.addTags(inputData);
     }
 
-    @And("^I delete this other supervisors policies data to employee form$")
-    public void I_delete_this_other_supervisors_policies_data_to_employee_form(List<Tag> inputData) throws Throwable {
+    @And("^I delete this other supervisors data to employee form$")
+    public void I_delete_this_other_supervisors_data_to_employee_form(List<Tag> inputData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("engineering");
         OtherSupervisorsInfoEditForm otherSupervisorsInfoEditForm = new OtherSupervisorsInfoEditForm();

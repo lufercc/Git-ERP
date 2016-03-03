@@ -21,7 +21,6 @@ public class ProjectInfoReadForm extends TableOpenERP {
         expectedSpanishHeaders.put("code","Código de proyecto");
         expectedEnglishHeaders.put("code","Project Code");
         expectedHeaders = expectedEnglishHeaders;
-        this.waitForLoading();
     }
 
     @Override

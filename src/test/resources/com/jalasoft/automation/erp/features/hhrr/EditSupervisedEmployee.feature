@@ -1,5 +1,5 @@
 @Employee
-Feature: Employee
+Feature: Read supervised employees
   @EditEmployeeInformation @CRUD @all @Now
   Scenario Outline: Verify that employee fields are edited with admin role
     Given I navigate to login page

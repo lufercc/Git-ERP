@@ -1,6 +1,6 @@
 @Employee
 Feature: Employee
-@ReadEmployeeMyInformation @all
+@ReadEmployeeMyInformation @all @Now
 Scenario Outline: Verify that I can read my own employee information
 Given I navigate to login page
 When I login with "<role>" credentials

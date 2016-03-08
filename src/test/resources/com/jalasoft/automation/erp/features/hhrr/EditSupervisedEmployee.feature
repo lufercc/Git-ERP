@@ -1,6 +1,6 @@
 @Employee
 Feature: Employee
-  @EditEmployeeInformation @CRUD @all
+  @EditEmployeeInformation @CRUD @all @Now
   Scenario Outline: Verify that employee fields are edited with admin role
     Given I navigate to login page
     When I login with "admin" credentials
@@ -27,7 +27,7 @@ Feature: Employee
 
     And I modify the employee with hhrr data
       | gender | maritalStatus | numberChildren | startDate  | endDate    | hireDate   | endHireDate | salaryReviewMonth | workingSchedule  | holidayGroup           | vacationAnniversary | internalID |
-      | Male   | Cohabiting    | 5              | 02/19/2015 | 02/01/2016 | 01/04/2016 | 01/04/2017  | January           | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
+      | Male   | Cohabiting    | 5              | 02/19/2015 | 02/01/2016 | 01/04/2016 | 01/04/2017  | January           | Recursos humanos | Jala Bolivian Holidays | 03/03/2016          | 654818     |
 
     And I modify the employee with engineering data
       | department | division | jobTitle | manager        | lead        | visible | billable | shadowCategory | notes | commitment | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
@@ -91,7 +91,7 @@ Feature: Employee
 
     And I verify if he has this simple data in hrdata information
       | gender | maritalStatus | numberChildren | startDate  | endDate    | hireDate   | endHireDate | salaryReviewMonth | workingSchedule  | holidayGroup           | vacationAnniversary | internalID |
-      | Male   | Cohabiting    | 5              | 02/19/2015 | 02/01/2016 | 01/04/2016 | 01/04/2017  | January           | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
+      | Male   | Cohabiting    | 5              | 02/19/2015 | 02/01/2016 | 01/04/2016 | 01/04/2017  | January           | Recursos humanos | Jala Bolivian Holidays | 03/03/2016          | 654818     |
 
     And I verify if he has this simple data in engineering information
       | department | division | jobTitle | manager        | lead        | visible | billable | shadowCategory | notes | commitment | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
@@ -255,7 +255,7 @@ Feature: Employee
       | number  | role       |
       | two     | sr manager |
 
-  @EditEmployeeInformation @CRUD @all
+  @EditEmployeeInformation @CRUD @all @Now
   Scenario Outline: Verify that employee fields are edited with admin role
     Given I navigate to login page
     When I login with "admin" credentials

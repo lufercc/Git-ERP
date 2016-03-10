@@ -490,4 +490,13 @@ public class EmployeeSteps {
             System.out.println("Nulo");
         }
     }
+
+    @And("^I remove all emergency contact data from employee form$")
+    public void I_remove_all_emergency_contact_data_from_employee_form() throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        EmergencyContactInfoEditForm emergencyContactInfoEditForm = new EmergencyContactInfoEditForm();
+        employeeForm.selectTab("personal");
+
+        emergencyContactInfoEditForm.deleteAllData();
+    }
 }

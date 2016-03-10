@@ -1,6 +1,6 @@
 @Employee
-Feature: Read supervised employees
-  @EditEmployeeInformation @CRUD @all @Now
+Feature: Edit supervised employees
+  @EditEmployeeInformation @CRUD @all
   Scenario Outline: Verify that employee fields are edited with admin role
     Given I navigate to login page
     When I login with "admin" credentials
@@ -135,8 +135,8 @@ Feature: Read supervised employees
       | number  | role  |
       | one     | admin |
 
-  @EditEmployeeInformation @CRUD @all @Now
-  Scenario Outline: Verify that employee fields are edited with admin role
+  @EditEmployeeInformation @CRUD @all
+  Scenario Outline: Verify that employee fields are edited with srmanager role
     Given I navigate to login page
     When I login with "admin" credentials
     And I create an employee with required fields
@@ -255,8 +255,8 @@ Feature: Read supervised employees
       | number  | role       |
       | two     | sr manager |
 
-  @EditEmployeeInformation @CRUD @all @Now
-  Scenario Outline: Verify that employee fields are edited with admin role
+  @EditEmployeeInformation @CRUD @all
+  Scenario Outline: Verify that employee fields are edited with X role
     Given I navigate to login page
     When I login with "admin" credentials
     And I create an employee with required fields
@@ -367,7 +367,7 @@ Feature: Read supervised employees
       | four   | manager         |
 
   @EditEmployeeInformation @CRUD @all
-  Scenario Outline: Verify that employee fields are edited with admin role
+  Scenario Outline: Verify that employee fields are edited with lead role
     Given I navigate to login page
     When I login with "admin" credentials
     And I create an employee with required fields

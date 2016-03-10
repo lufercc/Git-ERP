@@ -21,10 +21,12 @@ public class EngInfoReadForm extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "//label[contains(text(),'Department')]/ancestor::td/following-sibling::td/span/a")
+    @FindBy(xpath = "//label[contains(text(),'Department')]/ancestor::td/following-sibling::td/span/a | " +
+                    "//label[contains(text(),'Department')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement department;
 
-    @FindBy(xpath = "//label[contains(text(),'Division')]/ancestor::td/following-sibling::td/span/a")
+    @FindBy(xpath = "//label[contains(text(),'Division')]/ancestor::td/following-sibling::td/span/a | " +
+                    "//label[contains(text(),'Division')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement division;
 
     @FindBy(xpath = "//label[contains(text(),'Job Title')]/ancestor::td/following-sibling::td/span/span[contains(@class,'uri')]")

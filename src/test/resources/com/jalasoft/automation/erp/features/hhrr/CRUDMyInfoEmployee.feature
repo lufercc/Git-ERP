@@ -24,8 +24,8 @@ Feature: Read My own Information
     | Male   | Cohabiting    | 5              | 02/19/2015 | 02/01/2016 | 01/04/2016 | January           | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
 
   And I verify if he has this simple data in engineering information
-    | department | division | jobTitle | manager         | lead         | commitment | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
-    | IT         | Support  | Security | auto manager hr | auto lead hr | false      | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
+    | department | division | jobTitle | manager         | lead         | commitment | expDateCommit | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
+    | IT         | Support  | Security | auto manager hr | auto lead hr | true       | 02/03/2016    | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
 
   And I verify if he has this nationality data
     | name    | code |
@@ -88,8 +88,8 @@ Feature: Read My own Information
       | Male   | Cohabiting    | 5              | 02/19/2015 | 02/01/2016 | 01/04/2016 | January           | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
 
     And I verify if he has this simple data in engineering information
-      | department | division | jobTitle | manager       | commitment | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
-      | IT         | Support  | Security | Administrator | false      | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
+      | department | division | jobTitle | manager       | commitment | expDateCommit | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
+      | IT         | Support  | Security | Administrator | true       | 02/03/2016    | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
 
     And I verify if he has this nationality data
       | name    | code |
@@ -158,8 +158,8 @@ Feature: Read My own Information
       | Male   | Cohabiting    | 5              | 02/19/2015 | 02/01/2016 | 01/04/2016 | January           | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
 
     And I verify if he has this simple data in engineering information
-      | department | division | jobTitle | manager       | commitment | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
-      | IT         | Support  | Security | Administrator | false      | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
+      | department | division | jobTitle | manager       | commitment | expDateCommit | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
+      | IT         | Support  | Security | Administrator | true       | 02/03/2016    | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
 
     And I verify if he has this nationality data
       | name    | code |
@@ -228,8 +228,8 @@ Feature: Read My own Information
       | Male   | Cohabiting    | 5              | 02/19/2015 | 02/01/2016 | 01/04/2016 | January           | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
 
     And I verify if he has this simple data in engineering information
-      | department | division | jobTitle | manager         | lead         |commitment | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
-      | IT         | Support  | Security | auto manager hr | auto lead hr | false      | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
+      | department | division | jobTitle | manager         | lead         | commitment | expDateCommit | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
+      | IT         | Support  | Security | auto manager hr | auto lead hr | true       | 02/03/2016    | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
 
     And I verify if he has this nationality data
       | name    | code |

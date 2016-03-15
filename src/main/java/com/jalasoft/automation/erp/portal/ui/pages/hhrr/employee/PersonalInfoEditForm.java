@@ -86,6 +86,7 @@ public class PersonalInfoEditForm extends PortalUIElement {
         }
 
         if (inputData.idNumber != null) {
+            this.webDriverTools.clearText(idNumber);
             this.webDriverTools.clearAndSendKeys(this.idNumber, inputData.idNumber);
         }
 

@@ -53,6 +53,9 @@ public class EngInfoReadForm extends PortalUIElement {
     @FindBy(name = "found_commitment")
     protected WebElement commitment;
 
+    @FindBy(xpath = "//label[contains(text(),'  Expiration Date')]/ancestor::td/following-sibling::td/span")
+    protected WebElement expDateCommit;
+
     @FindBy(name = "active")
     protected WebElement active;
 
@@ -121,6 +124,9 @@ public class EngInfoReadForm extends PortalUIElement {
         }
         if(infoFromStep.commitment != null) {
             result.commitment = getCheckValue(commitment, "commitment");
+        }
+        if(infoFromStep.expDateCommit != null) {
+            result.expDateCommit = getSpanValue(expDateCommit, "lastEvalDate");
         }
         if(infoFromStep.active != null) {
             result.active = getCheckValue(active, "active");

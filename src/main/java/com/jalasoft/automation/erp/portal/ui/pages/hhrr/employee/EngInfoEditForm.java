@@ -145,6 +145,10 @@ public class EngInfoEditForm extends PortalUIElement {
             }
         }
 
+        if (inputData.expDateCommit != null) {
+            this.webDriverTools.clearAndSendKeys(this.expDateCommit, inputData.expDateCommit);
+        }
+
         if (inputData.active != null) {
             if (inputData.active.equals("true")) {
                 this.webDriverTools.checkBox(this.active);

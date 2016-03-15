@@ -20,11 +20,11 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
 
     public ExternalCareerInfoEditForm() {
         super.table = this.table;
-        expectedSpanishHeaders.put("name","Puesto");
+        expectedSpanishHeaders.put("jobTitle","Puesto");
         expectedSpanishHeaders.put("startDate","Fecha inicio");
         expectedSpanishHeaders.put("endDate","Fecha de finalización");
         expectedSpanishHeaders.put("employer","Empleador");
-        expectedEnglishHeaders.put("name","Job Title");
+        expectedEnglishHeaders.put("jobTitle","Job Title");
         expectedEnglishHeaders.put("startDate","Start date");
         expectedEnglishHeaders.put("endDate","End date");
         expectedEnglishHeaders.put("employer","Employer");
@@ -42,10 +42,11 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
     }
 
     public void addData(List<ExternalCareer> inputData) {
-        WebElement name;
+        WebElement jobTitle;
         WebElement startDate;
         WebElement endDate;
         WebElement employer;
+        WebElement description;
 
         WebElement addAndContinue;
         WebElement addAndClose;
@@ -53,17 +54,18 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
         for (int i = 0; i < inputData.size(); i++) {
             clickAddElement();
 
-            name = this.webDriver.findElement(By.xpath("(//div[contains(@class,'oe_popup_form')]//input[contains(@id,'oe-field-input')])[1]"));
+            jobTitle = this.webDriver.findElement(By.xpath("(//div[contains(@class,'oe_popup_form')]//input[contains(@id,'oe-field-input')])[1]"));
             startDate = this.webDriver.findElement(By.name("start_date"));
             endDate = this.webDriver.findElement(By.name("end_date"));
             employer = this.webDriver.findElement(By.xpath("(//div[contains(@class,'oe_popup_form')]//input[contains(@id,'oe-field-input')])[2]"));
+            description = this.webDriver.findElement(By.name("description"));
 
             addAndContinue = this.webDriver.findElement(By.xpath("//div[contains(@class,'ui-dialog-buttonpane')]//button[contains(@class,'oe_abstractformpopup-form-save-new')]"));
             addAndClose = this.webDriver.findElement(By.xpath("(//div[contains(@class,'ui-dialog-buttonpane')]//button[contains(@class,'oe_abstractformpopup-form-save')])[1]"));
 
 
-            if(inputData.get(i).name != null) {
-                this.webDriverTools.clearAndSendKeys(name, inputData.get(i).name);
+            if(inputData.get(i).jobTitle != null) {
+                this.webDriverTools.clearAndSendKeys(jobTitle, inputData.get(i).jobTitle);
             }
 
             if(inputData.get(i).startDate != null) {
@@ -74,8 +76,12 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
                 this.webDriverTools.clearAndSendKeys(endDate, inputData.get(i).endDate);
             }
 
-            if(inputData.get(i).employeer != null) {
-                this.webDriverTools.clearAndSendKeys(employer, inputData.get(i).employeer);
+            if(inputData.get(i).employer != null) {
+                this.webDriverTools.clearAndSendKeys(employer, inputData.get(i).employer);
+            }
+
+            if(inputData.get(i).description != null) {
+                this.webDriverTools.clearAndSendKeys(description, inputData.get(i).description);
             }
 
             if (i == (inputData.size() - 1)) {
@@ -98,10 +104,10 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
 
             for (int uit = 0; uit < dataFromUITable.size(); uit++) {
                 currentRow = dataFromUITable.get(uit);
-                if (currentExpected.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                if (currentExpected.jobTitle.equals(currentRow.get(expectedHeaders.get("jobTitle"))) &&
                     currentExpected.startDate.equals(currentRow.get(expectedHeaders.get("startDate"))) &&
                     currentExpected.endDate.equals(currentRow.get(expectedHeaders.get("endDate"))) &&
-                    currentExpected.employeer.equals(currentRow.get(expectedHeaders.get("employeer")))) {
+                    currentExpected.employer.equals(currentRow.get(expectedHeaders.get("employer")))) {
                     this.deleteElement(uit);
                     break;
                 }

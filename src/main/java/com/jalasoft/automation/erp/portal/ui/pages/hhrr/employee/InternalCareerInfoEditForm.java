@@ -59,7 +59,7 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
 
     SelectOpenERP department;
     SelectOpenERP division;
-    SelectOpenERP name;
+    SelectOpenERP jobTitle;
     SelectOpenERP projectCode;
     SelectOpenERP manager;
     SelectOpenERP lead;
@@ -68,7 +68,7 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
         super.table = this.table;
         expectedSpanishHeaders.put("department","Departamento");
         expectedSpanishHeaders.put("division","División");
-        expectedSpanishHeaders.put("name","Puesto");
+        expectedSpanishHeaders.put("jobTitle","Puesto");
         expectedSpanishHeaders.put("projectCode","Código de proyecto");
         expectedSpanishHeaders.put("weight","Peso");
         expectedSpanishHeaders.put("startDate","Fecha inicio");
@@ -76,7 +76,7 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
         expectedSpanishHeaders.put("employer","Empleador");
         expectedEnglishHeaders.put("department","Department");
         expectedEnglishHeaders.put("division","Division");
-        expectedEnglishHeaders.put("name","Job Title");
+        expectedEnglishHeaders.put("jobTitle","Job Title");
         expectedEnglishHeaders.put("projectCode","Project Code");
         expectedEnglishHeaders.put("weight","Weight");
         expectedEnglishHeaders.put("startDate","Start date");
@@ -98,7 +98,7 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
     public void addData(List<InternalCareer> inputData) {
         department = new SelectOpenERP(departmentSelect);
         division = new SelectOpenERP(divisionSelect);
-        name = new SelectOpenERP(nameSelect);
+        jobTitle = new SelectOpenERP(nameSelect);
         projectCode = new SelectOpenERP(projectCodeSelect);
         manager = new SelectOpenERP(managerSelect);
         lead = new SelectOpenERP(leadSelect);
@@ -114,8 +114,8 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
                 division.selectItem(inputData.get(i).division);
             }
 
-            if(inputData.get(i).name!= null) {
-                name.selectItem(inputData.get(i).name);
+            if(inputData.get(i).jobTitle!= null) {
+                jobTitle.selectItem(inputData.get(i).jobTitle);
             }
 
             if(inputData.get(i).projectCode != null) {
@@ -143,8 +143,8 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
                 this.webDriverTools.clearAndSendKeys(endDate, inputData.get(i).endDate);
             }
 
-            if(inputData.get(i).employeer != null) {
-                this.webDriverTools.clearAndSendKeys(employer, inputData.get(i).employeer);
+            if(inputData.get(i).employer != null) {
+                this.webDriverTools.clearAndSendKeys(employer, inputData.get(i).employer);
             }
 
             if(inputData.get(i).description != null) {
@@ -173,12 +173,12 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
                 currentRow = dataFromUITable.get(uit);
                 if (currentExpected.department.equals(currentRow.get(expectedHeaders.get("department"))) &&
                     currentExpected.division.equals(currentRow.get(expectedHeaders.get("division"))) &&
-                    currentExpected.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                    currentExpected.jobTitle.equals(currentRow.get(expectedHeaders.get("jobTitle"))) &&
                     currentExpected.projectCode.equals(currentRow.get(expectedHeaders.get("projectCode"))) &&
                     currentExpected.weight.equals(currentRow.get(expectedHeaders.get("weight"))) &&
                     currentExpected.startDate.equals(currentRow.get(expectedHeaders.get("startDate"))) &&
                     currentExpected.endDate.equals(currentRow.get(expectedHeaders.get("endDate"))) &&
-                    currentExpected.employeer.equals(currentRow.get(expectedHeaders.get("employer")))) {
+                    currentExpected.employer.equals(currentRow.get(expectedHeaders.get("employer")))) {
                     this.deleteElement(uit);
                     break;
                 }

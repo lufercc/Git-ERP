@@ -7,12 +7,12 @@ public class InternalCareer {
 
     public String department;
     public String division;
-    public String name;
+    public String jobTitle;
     public String projectCode;
     public String weight;
     public String startDate;
     public String endDate;
-    public String employeer;
+    public String employer;
     public String manager;
     public String lead;
     public String description;

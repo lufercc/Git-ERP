@@ -1,9 +1,11 @@
 package com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee;
 
+import com.jalasoft.automation.erp.portal.ui.custom.hhrr.GeneralRecord;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class BasicInfoEmployee {
+public class BasicInfoEmployee extends GeneralRecord {
 
     public String firstName;
     public String firstNameCheck;
@@ -26,7 +28,10 @@ public class BasicInfoEmployee {
     }
 
     public boolean contains(BasicInfoEmployee mainData) {
-        if(!this.fullName.equals(mainData.fullName)) {return false;}
+        if(!this.fullName.equals(mainData.fullName)) {
+            logWarning("fullName", this.fullName);
+            return false;
+        }
         return true;
     }
 }

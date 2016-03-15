@@ -23,8 +23,8 @@ Feature: Employee
       | Male   | Cohabiting    | 5              | 02/19/2015 | 02/01/2016 | 01/04/2016 | 01/04/2017  | January           | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
 
     And I modify the employee with engineering data
-      | department | division | jobTitle | manager       | visible | billable | shadowCategory | notes | commitment | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
-      | IT         | Support  | Security | Administrator | false   | true     | Risk           | dwe   | false      | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
+      | department | division | jobTitle | manager       | visible | billable | shadowCategory | notes | commitment | expDateCommit | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
+      | IT         | Support  | Security | Administrator | false   | true     | Risk           | dwe   | true       | 02/03/2016    | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
 
     And I add this nda data to employee form
       | ndaVersion  | signDate   |
@@ -87,8 +87,8 @@ Feature: Employee
       | Male   | Cohabiting    | 5              | 02/19/2015 | 02/01/2016 | 01/04/2016 | 01/04/2017  | January           | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
 
     And I modify the employee with engineering data
-      | department | division | jobTitle | manager         | lead         | visible | billable | shadowCategory | notes | commitment | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
-      | IT         | Support  | Security | auto manager hr | auto lead hr | false   | true     | Risk           | dwe   | false      | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
+      | department | division | jobTitle | manager         | lead         | visible | billable | shadowCategory | notes | commitment | expDateCommit | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
+      | IT         | Support  | Security | auto manager hr | auto lead hr | false   | true     | Risk           | dwe   | true       | 02/03/2016    | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
 
     And I add this nda data to employee form
       | ndaVersion  | signDate   |
@@ -127,11 +127,7 @@ Feature: Employee
 
     Examples:
       | role         | user    |
-      | staffing     | Henry52 |
       | employee     | Henry56 |
       | officer      | Henry57 |
-      | comofficer   | Henry58 |
-      | reports      | Henry60 |
-      | receptionist | Henry61 |
-      | personnel    | Henry62 |
+
 

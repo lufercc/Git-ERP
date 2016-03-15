@@ -1,13 +1,11 @@
 package com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee;
 
-import org.apache.log4j.Logger;
+import com.jalasoft.automation.erp.portal.ui.custom.hhrr.GeneralRecord;
 
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class EngInfoEmployee {
-    private Logger log;
-
+public class EngInfoEmployee extends GeneralRecord {
     public String department;
     public String division;
     public String jobTitle;
@@ -18,6 +16,7 @@ public class EngInfoEmployee {
     public String shadowCategory;
     public String notes;
     public String commitment;
+    public String expDateCommit;
     public String active;
     public String consultant;
     public String jce;
@@ -36,6 +35,7 @@ public class EngInfoEmployee {
         this.shadowCategory = aux.shadowCategory;
         this.notes = aux.notes;
         this.commitment = aux.commitment;
+        this.expDateCommit = aux.expDateCommit;
         this.active = aux.active;
         this.consultant = aux.consultant;
         this.jce = aux.jce;
@@ -45,8 +45,6 @@ public class EngInfoEmployee {
     }
 
     public boolean contains(EngInfoEmployee mainData) {
-        log = Logger.getLogger(getClass());
-
         if (this.department != null){
             if(!this.department.equals(mainData.department)) {
                 logWarning("department", this.department);
@@ -56,99 +54,101 @@ public class EngInfoEmployee {
 
         if (this.division != null){
             if(!this.division.equals(mainData.division)) {
-                logWarning("division",this.division);
+                logWarning("division", this.division);
                 return false;
             }
         }
         if (this.jobTitle != null){
             if(!this.jobTitle.equals(mainData.jobTitle)) {
-                logWarning("jobTitle",this.jobTitle);
+                logWarning("jobTitle", this.jobTitle);
                 return false;
             }
         }
         if (this.manager != null){
             if(!this.manager.equals(mainData.manager)) {
-                logWarning("manager",this.manager);
+                logWarning("manager", this.manager);
                 return false;
             }
         }
         if (this.lead != null){
             if(!this.lead.equals(mainData.lead)) {
-                logWarning("lead",this.lead);
+                logWarning("lead", this.lead);
                 return false;
             }
         }
         if (this.visible != null){
             if(!this.visible.equals(mainData.visible)) {
-                logWarning("visible",this.visible);
+                logWarning("visible", this.visible);
                 return false;
             }
         }
         if (this.billable != null){
             if(!this.billable.equals(mainData.billable)) {
-                logWarning("billable",this.billable);
+                logWarning("billable", this.billable);
                 return false;
             }
         }
 
         if (this.shadowCategory != null){
             if(!this.shadowCategory.equals(mainData.shadowCategory)) {
-                logWarning("shadowCategory",this.shadowCategory);
+                logWarning("shadowCategory", this.shadowCategory);
                 return false;
             }
         }
         if (this.notes != null){
             if(!this.notes.equals(mainData.notes)) {
-                logWarning("notes",this.notes);
+                logWarning("notes", this.notes);
                 return false;
             }
         }
         if (this.commitment != null){
             if(!this.commitment.equals(mainData.commitment)) {
-                logWarning("commitment",this.commitment);
+                logWarning("commitment", this.commitment);
+                return false;
+            }
+        }
+        if (this.expDateCommit != null){
+            if(!this.expDateCommit.equals(mainData.expDateCommit)) {
+                logWarning("expDateCommit", this.expDateCommit);
                 return false;
             }
         }
         if (this.active != null){
             if(!this.active.equals(mainData.active)) {
-                logWarning("active",this.active);
+                logWarning("active", this.active);
                 return false;
             }
         }
         if (this.consultant != null){
             if(!this.consultant.equals(mainData.consultant)) {
-                logWarning("consultant",this.consultant);
+                logWarning("consultant", this.consultant);
                 return false;
             }
         }
         if (this.jce != null){
             if(!this.jce.equals(mainData.jce)) {
-                logWarning("jce",this.jce);
+                logWarning("jce", this.jce);
                 return false;
             }
         }
         if (this.reason != null){
             if(!this.reason.equals(mainData.reason)) {
-                logWarning("reason",this.reason);
+                logWarning("reason", this.reason);
                 return false;
             }
         }
         if (this.lastEvalDate != null){
             if(!this.lastEvalDate.equals(mainData.lastEvalDate)) {
-                logWarning("lastEvalDate",this.lastEvalDate);
+                logWarning("lastEvalDate", this.lastEvalDate);
                 return false;
             }
         }
         if (this.nextEvalDate != null){
             if(!this.nextEvalDate.equals(mainData.nextEvalDate)) {
-                logWarning("nextEvalDate",this.nextEvalDate);
+                logWarning("nextEvalDate", this.nextEvalDate);
                 return false;
             }
         }
         return true;
-    }
-
-    public void logWarning(String field, String fieldValue) {
-        log.warn("This expected field: '" + field + "=" + fieldValue + "' was not found in the UI");
     }
 }

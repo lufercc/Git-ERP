@@ -1,13 +1,11 @@
 package com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee;
 
-import org.apache.log4j.Logger;
+import com.jalasoft.automation.erp.portal.ui.custom.hhrr.GeneralRecord;
 
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class HHRRInfoEmployee {
-    private Logger log;
-
+public class HHRRInfoEmployee extends GeneralRecord {
     public String gender;
     public String maritalStatus;
     public String numberChildren;
@@ -38,83 +36,78 @@ public class HHRRInfoEmployee {
 
     public boolean contains(HHRRInfoEmployee mainData) {
 
-        log = Logger.getLogger(getClass());
         if (this.gender != null){
             if(!this.gender.equals(mainData.gender)) {
-                logWarning(this.gender);
+                logWarning("gender", this.gender);
                 return false;
             }
         }
         if (this.maritalStatus != null){
             if(!this.maritalStatus.equals(mainData.maritalStatus)) {
-                logWarning(this.maritalStatus);
+                logWarning("maritalStatus", this.maritalStatus);
                 return false;
             }
         }
         if (this.numberChildren != null){
             if(!this.numberChildren.equals(mainData.numberChildren)) {
-                logWarning(this.numberChildren);
+                logWarning("numberChildren", this.numberChildren);
                 return false;
             }
         }
         if (this.startDate != null){
             if(!this.startDate.equals(mainData.startDate)) {
-                logWarning(this.startDate);
+                logWarning("startDate", this.startDate);
                 return false;
             }
         }
         if (this.endDate != null){
             if(!this.endDate.equals(mainData.endDate)) {
-                logWarning(this.endDate);
+                logWarning("endDate", this.endDate);
                 return false;
             }
         }
         if (this.hireDate != null){
             if(!this.hireDate.equals(mainData.hireDate)) {
-                logWarning(this.hireDate);
+                logWarning("hireDate", this.hireDate);
                 return false;
             }
         }
         if (this.endHireDate != null){
             if(!this.endHireDate.equals(mainData.endHireDate)) {
-                logWarning(this.endHireDate);
+                logWarning("endHireDate", this.endHireDate);
                 return false;
             }
         }
         if (this.salaryReviewMonth != null){
             if(!this.salaryReviewMonth.equals(mainData.salaryReviewMonth)) {
-                logWarning(this.salaryReviewMonth);
+                logWarning("salaryReviewMonth", this.salaryReviewMonth);
                 return false;
             }
         }
         if (this.workingSchedule != null){
             if(!this.workingSchedule.equals(mainData.workingSchedule)) {
-                logWarning(this.workingSchedule);
+                logWarning("workingSchedule", this.workingSchedule);
                 return false;
             }
         }
         if (this.holidayGroup != null){
             if(!this.holidayGroup.equals(mainData.holidayGroup)) {
-                logWarning(this.holidayGroup);
+                logWarning("holidayGroup", this.holidayGroup);
                 return false;
             }
         }
         if (this.vacationAnniversary != null){
             if(!this.vacationAnniversary.equals(mainData.vacationAnniversary)) {
-                logWarning(this.vacationAnniversary);
+                logWarning("vacationAnniversary", this.vacationAnniversary);
                 return false;
             }
         }
         if (this.internalID != null){
             if(!this.internalID.equals(mainData.internalID)) {
-                logWarning(this.internalID);
+                logWarning("internalID", this.internalID);
                 return false;
             }
         }
         return true;
-    }
-
-    public void logWarning(String field) {
-        log.warn("This expected value: '" + field + "' was not found in the UI");
     }
 }

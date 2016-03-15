@@ -19,11 +19,11 @@ public class ExternalCareerInfoReadForm extends TableOpenERP {
 
     public ExternalCareerInfoReadForm() {
         super.table = this.table;
-        expectedSpanishHeaders.put("name","Puesto");
+        expectedSpanishHeaders.put("jobTitle","Puesto");
         expectedSpanishHeaders.put("startDate","Fecha inicio");
         expectedSpanishHeaders.put("endDate","Fecha de finalización");
         expectedSpanishHeaders.put("employer","Empleador");
-        expectedEnglishHeaders.put("name","Job Title");
+        expectedEnglishHeaders.put("jobTitle","Job Title");
         expectedEnglishHeaders.put("startDate","Start date");
         expectedEnglishHeaders.put("endDate","End date");
         expectedEnglishHeaders.put("employer","Employer");
@@ -53,10 +53,10 @@ public class ExternalCareerInfoReadForm extends TableOpenERP {
                 currentExternalCareer = expectedData.get(indexObjectList);
                 for(int indexList = 0; indexList < tableSize; indexList++) {
                     currentRow = dataFromTable.get(indexList);
-                    if (currentExternalCareer.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
+                    if (currentExternalCareer.jobTitle.equals(currentRow.get(expectedHeaders.get("jobTitle"))) &&
                         currentExternalCareer.startDate.equals(currentRow.get(expectedHeaders.get("startDate"))) &&
                         currentExternalCareer.endDate.equals(currentRow.get(expectedHeaders.get("endDate"))) &&
-                        currentExternalCareer.employeer.equals(currentRow.get(expectedHeaders.get("employer")))) {
+                        currentExternalCareer.employer.equals(currentRow.get(expectedHeaders.get("employer")))) {
                             dataFromTable.remove(currentRow);
                             break;
                     }

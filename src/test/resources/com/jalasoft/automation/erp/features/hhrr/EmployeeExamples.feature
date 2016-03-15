@@ -53,17 +53,17 @@ Feature: Employee
       | Dark | Potato   | Son      | Male   | 02/12/1986 |
 
     And I add this external career data to employee form
-      | name | startDate  | endDate    | employeer |
-      | xde  | 02/03/2016 | 02/04/2016 | asd       |
-      | fsss | 03/03/2018 | 02/04/2020 | ddd       |
+      | jobTitle | startDate  | endDate    | employer |
+      | xde      | 02/03/2016 | 02/04/2016 | asd      |
+      | fsss     | 03/03/2018 | 02/04/2020 | ddd      |
 
     And I add this internal career data to employee form
-      | department | division | name     | projectCode   | manager         | lead         | weight | startDate  | endDate    | employeer | description |
-      | IT         | Support  | Security | TESTPROJABILA | auto manager hr | auto lead hr | 6      | 02/10/2016 | 02/20/2018 | Other     | description |
+      | department | division | jobTitle | projectCode   | manager         | lead         | weight | startDate  | endDate    | employer | description |
+      | IT         | Support  | Security | TESTPROJABILA | auto manager hr | auto lead hr | 6      | 02/10/2016 | 02/20/2018 | Other    | description |
 
     And I delete this internal career data to employee form
-      | department | division | name     | projectCode | weight | startDate  | endDate    | employeer |
-      | IT         | Support  | Security | TPA         | 6      | 02/10/2016 | 02/20/2018 | Other     |
+      | department | division | jobTitle | projectCode | weight | startDate  | endDate    | employer |
+      | IT         | Support  | Security | TPA         | 6      | 02/10/2016 | 02/20/2018 | Other    |
 
     And I add this nationality data to employee form
       | name    |
@@ -114,7 +114,7 @@ Feature: Employee
 
     And I verify if he has this data in public information
       | address | workEmail        | workPhone     | extCode | workMobile    | user     | otherInfo  | location | codeDesktop | country | city       |
-      | ABILA   | test@hotmail.com | 456-158-15532 | 12      | 707-642-51545 | Henry56  | other info | 0F       | A224        | Bolivia | Cochabamba |
+      | ABILA   | test@hotmail.com | 456-158-15532 | 12      | 707-642-51545 | Henry56  | Other info | 0F       | A224        | Bolivia | Cochabamba |
 
     And I verify if he has this simple data in personal information
       | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                       | visaExpDate | homeAddress | dateBirth  | age | country | city     |
@@ -125,8 +125,8 @@ Feature: Employee
       | Male   | Cohabiting    | 5              | 02/19/2015 | 02/01/2016 | 01/04/2016 | 01/04/2017  | January           | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
 
     And I verify if he has this simple data in engineering information
-      | department | division | jobTitle | manager         | lead         | visible | billable | shadowCategory | notes | commitment | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
-      | IT         | Support  | Security | auto manager hr | auto lead hr | false   | true     | Risk           | dwe   | false      | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
+      | department | division | jobTitle | manager         | lead         | visible | billable | shadowCategory | notes | commitment | expDateCommit | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
+      | IT         | Support  | Security | auto manager hr | auto lead hr | false   | true     | Risk           | dwe   | true       | 02/03/2016    | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
 
     And I verify if he has this nationality data
       | name    | code |
@@ -146,16 +146,16 @@ Feature: Employee
       | Dark | Potato   | Son     | Male | 02/12/1986 |
 
     And I verify if he has this external career data
-      | name | startDate  | endDate    | employeer |
-      | xde  | 02/03/2016 | 02/04/2016 | asd       |
+      | jobTitle | startDate  | endDate    | employer |
+      | xde      | 02/03/2016 | 02/04/2016 | asd      |
 
     And I verify if he has this project data
       | code |
       | TPA  |
 
     And I verify if he has this internal career data
-      | department | division | name     | projectCode | weight | startDate  | endDate    | employeer |
-      | IT         | Support  | Security | TPA         | 6      | 02/10/2016 | 02/20/2018 | Other     |
+      | department | division | jobTitle | projectCode | weight | startDate  | endDate    | employer |
+      | IT         | Support  | Security | TPA         | 6      | 02/10/2016 | 02/20/2018 | Other    |
 
     And I verify if he has this tag data
       | name          |

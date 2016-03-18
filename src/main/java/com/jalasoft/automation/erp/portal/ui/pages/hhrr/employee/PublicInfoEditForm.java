@@ -1,5 +1,6 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.components.SelectOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.BasicInfoEmployee;
@@ -8,10 +9,12 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class PublicInfoEditForm extends PortalUIElement {
+public class PublicInfoEditForm extends FormEditMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
@@ -73,48 +76,54 @@ public class PublicInfoEditForm extends PortalUIElement {
     }
 
     public void modifyData(PublicInfoEmployee inputData) {
+        fieldsWereEdited = new ArrayList<>();
+        fieldsWereNotEdited = new ArrayList<>();
+        allFieldsWereEdited = true;
+
         if (inputData.address != null) {
-            this.address.selectItem(inputData.address);
+            selectOpenERPItem(this.address, "address", inputData.address);
         }
 
         if (inputData.location != null) {
-            this.location.selectItem(inputData.location);
+            selectOpenERPItem(this.location, "location", inputData.location);
         }
 
         if (inputData.country != null) {
-            this.country.selectItem(inputData.country);
+            selectOpenERPItem(this.country, "country", inputData.country);
         }
 
         if (inputData.user != null) {
-            this.user.selectItem(inputData.user);
+            selectOpenERPItem(this.user, "user", inputData.user);
         }
 
         if (inputData.workEmail != null) {
-            this.webDriverTools.clearAndSendKeys(this.workEmail, inputData.workEmail);
+            setInput(this.workEmail, "workEmail", inputData.workEmail);
         }
 
         if (inputData.workPhone != null) {
-            this.webDriverTools.clearAndSendKeys(this.workPhone, inputData.workPhone);
+            setInput(this.workPhone, "workPhone", inputData.workPhone);
         }
 
         if (inputData.extCode != null) {
-            this.webDriverTools.clearAndSendKeys(this.extCode, inputData.extCode);
+            setInput(this.extCode, "extCode", inputData.extCode);
         }
 
         if (inputData.workMobile != null) {
-            this.webDriverTools.clearAndSendKeys(this.workMobile, inputData.workMobile);
+            setInput(this.workMobile, "workMobile", inputData.workMobile);
         }
 
         if (inputData.codeDesktop != null) {
-            this.webDriverTools.clearAndSendKeys(this.codeDesktop, inputData.codeDesktop);
+            setInput(this.codeDesktop, "codeDesktop", inputData.codeDesktop);
         }
 
         if (inputData.city != null) {
-            this.webDriverTools.clearAndSendKeys(this.city, inputData.city);
+            setInput(this.city, "city", inputData.city);
         }
 
         if (inputData.otherInfo != null) {
-            this.webDriverTools.clearAndSendKeys(this.otherInfo, inputData.otherInfo);
+            setInput(this.otherInfo, "otherInfo", inputData.otherInfo);
         }
+
+        logEditStatus();
     }
 }

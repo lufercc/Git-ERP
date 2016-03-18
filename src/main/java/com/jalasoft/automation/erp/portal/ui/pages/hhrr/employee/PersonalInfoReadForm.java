@@ -1,23 +1,16 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
-import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
+import com.jalasoft.automation.erp.portal.ui.components.FormReadMode;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PersonalInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class PersonalInfoReadForm extends PortalUIElement {
-
-    public List<String> fieldsWereRead;
-    public List<String> fieldsWereNotRead;
-    public Boolean allFieldsWereRead = true;
+public class PersonalInfoReadForm extends FormReadMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
@@ -139,34 +132,7 @@ public class PersonalInfoReadForm extends PortalUIElement {
         if(infoFromStep.city != null) {
             result.city = getSpanValue(city, "city");
         }
-        System.out.println("Read:" + fieldsWereRead.toString());
-        System.out.println("Not Read:" + fieldsWereNotRead.toString());
+        logReadStatus();
         return result;
-    }
-
-    private String getSpanValue(WebElement element, String field) {
-        String stringResult;
-        try {
-            stringResult = element.getAttribute("innerHTML").replace("<br>", "");
-            fieldsWereRead.add(field);
-        }catch (NoSuchElementException nsee) {
-            fieldsWereNotRead.add(field);
-            allFieldsWereRead = false;
-            stringResult = null;
-        }
-        return stringResult;
-    }
-
-    private String getCheckValue(WebElement element, String field) {
-        String stringResult;
-        try {
-            stringResult = element.getAttribute("checked");
-            fieldsWereRead.add(field);
-        }catch (NoSuchElementException nsee) {
-            fieldsWereNotRead.add(field);
-            allFieldsWereRead = false;
-            stringResult = null;
-        }
-        return stringResult;
     }
 }

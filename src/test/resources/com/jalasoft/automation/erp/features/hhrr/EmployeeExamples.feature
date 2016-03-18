@@ -15,8 +15,8 @@ Feature: Employee
       | ABILA   | test@hotmail.com | 456-158-15532 | 12      | 707-642-51545 | A224        | Cochabamba | Henry56  | 0F       | Bolivia | other info |
 
     And I modify the employee with personal data
-      | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                       | visaExpDate | homeAddress | dateBirth  | age | country | city     |
-      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Business and Tourism (B-1/B-2) | 02/20/2019  | Henry56     | 02/12/1986 | 29  | Albania | SomeCity |
+      | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                       | visaExpDate | homeAddress | dateBirth  | country | city     |
+      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Business and Tourism (B-1/B-2) | 02/20/2019  | Henry56     | 02/12/1986 | Albania | SomeCity |
 
     And I modify the employee with hhrr data
       | gender | maritalStatus | numberChildren | startDate  | endDate    | hireDate   | endHireDate | salaryReviewMonth | workingSchedule  | holidayGroup           | vacationAnniversary | internalID |
@@ -66,8 +66,8 @@ Feature: Employee
       | IT         | Support  | Security | TPA         | 6      | 02/10/2016 | 02/20/2018 | Other    |
 
     And I add this nationality data to employee form
-      | name    |
-      | Albania |
+      | name  |
+      | Ghana |
 
     And I delete this nationality data to employee form
       | name    | code |

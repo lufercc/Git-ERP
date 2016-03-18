@@ -1,11 +1,12 @@
 package com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee;
 
+import com.jalasoft.automation.erp.portal.ui.custom.hhrr.GeneralRecord;
 import org.apache.log4j.Logger;
 
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class PersonalInfoEmployee {
+public class PersonalInfoEmployee extends GeneralRecord {
     private Logger log;
     public String nationalOrForeign;
     public String idNumber;
@@ -47,109 +48,105 @@ public class PersonalInfoEmployee {
         this.city = aux.city;
     }
 
-    public boolean contains(PersonalInfoEmployee uiData) {
+    public boolean contains(boolean shouldContain, PersonalInfoEmployee uiData) {
         log = Logger.getLogger(getClass());
 
-        if (this.nationalOrForeign != null){
-            if(!this.nationalOrForeign.equals(uiData.nationalOrForeign)) {
-                logWarning(this.nationalOrForeign);
+        if (this.nationalOrForeign != null) {
+            if(this.nationalOrForeign.equals(uiData.nationalOrForeign) != shouldContain) {
+                logWarning("nationalOrForeign", this.nationalOrForeign);
                 return false;
             }
         }
         if (this.idNumber != null) {
-            if (!this.idNumber.equals(uiData.idNumber)) {
-                logWarning(this.idNumber);
+            if (this.idNumber.equals(uiData.idNumber) != shouldContain) {
+                logWarning("idNumber", this.idNumber);
                 return false;
             }
         }
         if (this.idExpDate != null) {
-            if (!this.idExpDate.equals(uiData.idExpDate)) {
-                logWarning(this.idExpDate);
+            if (this.idExpDate.equals(uiData.idExpDate) != shouldContain) {
+                logWarning("idExpDate", this.idExpDate);
                 return false;
             }
         }
         if (this.idPlace != null) {
-            if (!this.idPlace.equals(uiData.idPlace)) {
-                logWarning(this.idPlace);
+            if (this.idPlace.equals(uiData.idPlace) != shouldContain) {
+                logWarning("idPlace", this.idPlace);
                 return false;
             }
         }
         if (this.passportNumber != null) {
-            if (!this.passportNumber.equals(uiData.passportNumber)) {
-                logWarning(this.passportNumber);
+            if (this.passportNumber.equals(uiData.passportNumber) != shouldContain) {
+                logWarning("passportNumber", this.passportNumber);
                 return false;
             }
         }
         if (this.passportPlace != null) {
-            if (!this.passportPlace.equals(uiData.passportPlace)) {
-                logWarning(this.passportPlace);
+            if (this.passportPlace.equals(uiData.passportPlace) != shouldContain) {
+                logWarning("passportPlace", this.passportPlace);
                 return false;
             }
         }
         if (this.passportExpDate != null) {
-            if (!this.passportExpDate.equals(uiData.passportExpDate)) {
-                logWarning(this.passportExpDate);
+            if (this.passportExpDate.equals(uiData.passportExpDate) != shouldContain) {
+                logWarning("passportExpDate", this.passportExpDate);
                 return false;
             }
         }
         if (this.hasVisa != null) {
-            if (!this.hasVisa.equals(uiData.hasVisa)) {
-                logWarning(this.hasVisa);
+            if (this.hasVisa.equals(uiData.hasVisa) != shouldContain) {
+                logWarning("hasVisa", this.hasVisa);
                 return false;
             }
         }
         if (this.visaType != null) {
-            if (!this.visaType.equals(uiData.visaType)) {
-                logWarning(this.nationalOrForeign);
+            if (this.visaType.equals(uiData.visaType) != shouldContain) {
+                logWarning("nationalOrForeign", this.nationalOrForeign);
                 return false;
             }
         }
-        if (this.visaExpDate != null){
-            if(!this.visaExpDate.equals(uiData.visaExpDate)) {
-                logWarning(this.visaExpDate);
+        if (this.visaExpDate != null) {
+            if (this.visaExpDate.equals(uiData.visaExpDate) != shouldContain) {
+                logWarning("visaExpDate", this.visaExpDate);
                 return false;
             }
         }
-        if (this.homeAddress != null){
-            if(!this.homeAddress.equals(uiData.homeAddress)) {
-                logWarning(this.homeAddress);
+        if (this.homeAddress !=  null) {
+            if (this.homeAddress.equals(uiData.homeAddress) != shouldContain) {
+                logWarning("homeAddress", this.homeAddress);
                 return false;
             }
         }
-        if (this.homeAddressDescription != null){
-            if(!this.homeAddressDescription.equals(uiData.homeAddressDescription)) {
-                logWarning(this.homeAddressDescription);
+        if (this.homeAddressDescription != null) {
+            if (this.homeAddressDescription.equals(uiData.homeAddressDescription) != shouldContain) {
+                logWarning("homeAddressDescription", this.homeAddressDescription);
                 return false;
             }
         }
-        if (this.dateBirth != null){
-            if(!this.dateBirth.equals(uiData.dateBirth)) {
-                logWarning(this.dateBirth);
+        if (this.dateBirth != null) {
+            if (this.dateBirth.equals(uiData.dateBirth) != shouldContain) {
+                logWarning("dateBirth", this.dateBirth);
                 return false;
             }
         }
-        if (this.age != null){
-            if(!this.age.equals(uiData.age)) {
-                logWarning(this.age);
+        if (this.age != null) {
+            if (this.age.equals(uiData.age) != shouldContain) {
+                logWarning("age", this.age);
                 return false;
             }
         }
-        if (this.country != null){
-            if(!this.country.equals(uiData.country)) {
-                logWarning(this.country);
+        if (this.country != null) {
+            if (this.country.equals(uiData.country) != shouldContain) {
+                logWarning("country", this.country);
                 return false;
             }
         }
-        if (this.city != null){
-            if(!this.city.equals(uiData.city)) {
-                logWarning(this.city);
+        if (this.city != null) {
+            if (this.city.equals(uiData.city) != shouldContain) {
+                logWarning("city", this.city);
                 return false;
             }
         }
         return true;
-    }
-
-    public void logWarning(String field) {
-        log.warn("This expected value: '" + field + "' was not found in the UI");
     }
 }

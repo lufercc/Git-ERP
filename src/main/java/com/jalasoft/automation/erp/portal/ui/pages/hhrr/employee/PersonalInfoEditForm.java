@@ -1,5 +1,6 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.components.SelectOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PersonalInfoEmployee;
@@ -7,12 +8,13 @@ import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PublicInfoEmpl
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class PersonalInfoEditForm extends PortalUIElement {
+public class PersonalInfoEditForm extends FormEditMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
@@ -28,6 +30,9 @@ public class PersonalInfoEditForm extends PortalUIElement {
 
     @FindBy(xpath = "//label[contains(text(),'Passport Issued')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement passportPlaceSelect;
+
+    @FindBy(xpath = "//label[contains(text(),'Age')]/ancestor::td/following-sibling::td/span/div/input")
+    protected WebElement age;
 
     @FindBy(xpath = "//label[contains(text(),'Country of Birth')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement countrySelect;
@@ -81,65 +86,70 @@ public class PersonalInfoEditForm extends PortalUIElement {
     }
 
     public void modifyData(PersonalInfoEmployee inputData) {
+        fieldsWereEdited = new ArrayList<>();
+        fieldsWereNotEdited = new ArrayList<>();
+        allFieldsWereEdited = true;
+
         if (inputData.nationalOrForeign != null) {
-            this.webDriverTools.selectOptionOfDropListElement(this.nationalOrForeign, inputData.nationalOrForeign);
+            selectItem(this.nationalOrForeign, "nationalOrForeign", inputData.nationalOrForeign);
         }
 
         if (inputData.idNumber != null) {
-            this.webDriverTools.clearText(idNumber);
-            this.webDriverTools.clearAndSendKeys(this.idNumber, inputData.idNumber);
+            setInput(this.idNumber, "idNumber", inputData.idNumber);
         }
 
         if (inputData.idExpDate != null) {
-            this.webDriverTools.clearAndSendKeys(this.idExpDate, inputData.idExpDate);
+            setInput(this.idExpDate, "idExpDate", inputData.idExpDate);
         }
 
         if (inputData.idPlace != null) {
-            this.webDriverTools.selectOptionOfDropListElement(this.idPlace, inputData.idPlace);
+            selectItem(this.idPlace, "idPlace", inputData.idPlace);
         }
 
         if (inputData.passportNumber != null) {
-            this.webDriverTools.clearAndSendKeys(this.passportNumber, inputData.passportNumber);
+            setInput(this.passportNumber, "passportNumber", inputData.passportNumber);
         }
 
         if (inputData.passportPlace != null) {
-            this.passportPlace.selectItem(inputData.passportPlace);
+            selectOpenERPItem(this.passportPlace, "passportPlace", inputData.passportPlace);
         }
 
         if (inputData.passportExpDate != null) {
-            this.webDriverTools.clearAndSendKeys(this.passportExpDate, inputData.passportExpDate);
+            setInput(this.passportExpDate, "passportExpDate", inputData.passportExpDate);
         }
 
         if (inputData.hasVisa != null) {
-            if (inputData.hasVisa.equals("true")) {
-                this.webDriverTools.checkBox(this.hasVisa);
-            }else {
-                this.webDriverTools.unCheckBox(this.hasVisa);
-            }
+            setCheckbox(this.hasVisa, "hasVisa", inputData.hasVisa);
         }
 
         if (inputData.visaType != null) {
-            this.webDriverTools.selectOptionOfDropListElement(this.visaType, inputData.visaType);
+            selectItem(this.visaType, "visaType", inputData.visaType);
         }
 
         if (inputData.visaExpDate != null) {
-            this.webDriverTools.clearAndSendKeys(this.visaExpDate, inputData.visaExpDate);
+            setInput(this.visaExpDate, "visaExpDate", inputData.visaExpDate);
         }
 
         if (inputData.dateBirth != null) {
-            this.webDriverTools.clearAndSendKeys(this.dateBirth, inputData.dateBirth);
+            setInput(this.dateBirth, "dateBirth", inputData.dateBirth);
+        }
+
+        if (inputData.age != null) {
+            setInput(this.age, "age", inputData.age);
         }
 
         if (inputData.country != null) {
-            this.country.selectItem(inputData.country);
+            selectOpenERPItem(this.country, "country", inputData.country);
         }
 
         if (inputData.city != null) {
-            this.webDriverTools.clearAndSendKeys(this.city, inputData.city);
+            setInput(this.city, "city", inputData.city);
         }
 
         if (inputData.homeAddress != null) {
-            this.homeAddress.selectItem(inputData.homeAddress);
+            selectOpenERPItem(this.homeAddress, "homeAddress", inputData.homeAddress);
         }
+
+        logEditStatus();
     }
 }

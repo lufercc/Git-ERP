@@ -34,76 +34,76 @@ public class PublicInfoEmployee extends GeneralRecord{
         this.city = aux.city;
     }
 
-    public boolean contains(PublicInfoEmployee uiData) {
+    public boolean contains(boolean shouldContain, PublicInfoEmployee uiData) {
         if (this.address != null){
-            if(!this.address.equals(uiData.address)) {
+            if (this.address.equals(uiData.address) != shouldContain) {
                 logWarning("address", this.address);
                 return false;
             }
         }
 
         if (this.addressDescription != null){
-            if(!this.addressDescription.equals(uiData.addressDescription)) {
+            if (this.addressDescription.equals(uiData.addressDescription) != shouldContain) {
                 logWarning("addressDescription", this.addressDescription);
                 return false;
             }
         }
         if (this.workEmail != null) {
-            if (!this.workEmail.equals(uiData.workEmail)) {
+            if (this.workEmail.equals(uiData.workEmail) != shouldContain) {
                 logWarning("workEmail", this.workEmail);
                 return false;
             }
         }
         if (this.workPhone != null) {
-            if(!this.workPhone.equals(uiData.workPhone)) {
+            if (this.workPhone.equals(uiData.workPhone) != shouldContain) {
                 logWarning("workPhone", this.workPhone);
                 return false;
             }
         }
         if (this.extCode != null) {
-            if (!this.extCode.equals(uiData.extCode)) {
+            if (this.extCode.equals(uiData.extCode) != shouldContain) {
                 logWarning("extCode", this.extCode);
                 return false;
             }
         }
         if (this.workMobile != null) {
-            if (!this.workMobile.equals(uiData.workMobile)) {
+            if (this.workMobile.equals(uiData.workMobile) != shouldContain) {
                 logWarning("workMobile", this.workMobile);
                 return false;
             }
         }
         if (this.user != null) {
-            if (!this.user.equals(uiData.user)) {
+            if (this.user.equals(uiData.user) != shouldContain) {
                 logWarning("user", this.user);
                 return false;
             }
         }
         if (this.otherInfo != null){
-            if(!this.otherInfo.equals(uiData.otherInfo)) {
+            if (this.otherInfo.equals(uiData.otherInfo) != shouldContain) {
                 logWarning("otherInfo", this.otherInfo);
                 return false;
             }
         }
         if (this.location != null){
-            if(!this.location.equals(uiData.location)) {
+            if (this.location.equals(uiData.location) != shouldContain) {
                 logWarning("location", this.location);
                 return false;
             }
         }
         if (this.codeDesktop != null){
-            if(!this.codeDesktop.equals(uiData.codeDesktop)) {
+            if (this.codeDesktop.equals(uiData.codeDesktop) != shouldContain) {
                 logWarning("codeDesktop", this.codeDesktop);
                 return false;
             }
         }
         if (this.country != null){
-            if(!this.country.equals(uiData.country)) {
+            if (this.country.equals(uiData.country) != shouldContain) {
                 logWarning("country", this.country);
                 return false;
             }
         }
         if (this.city != null){
-            if(!this.city.equals(uiData.city)) {
+            if (this.city.equals(uiData.city) != shouldContain) {
                 logWarning("city", this.city);
                 return false;
             }

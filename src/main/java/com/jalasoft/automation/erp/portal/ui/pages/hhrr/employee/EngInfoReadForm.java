@@ -1,5 +1,6 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.portal.ui.components.FormReadMode;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.EngInfoEmployee;
 import org.openqa.selenium.WebElement;
@@ -12,11 +13,7 @@ import java.util.NoSuchElementException;
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class EngInfoReadForm extends PortalUIElement {
-
-    public List<String> fieldsWereRead;
-    public List<String> fieldsWereNotRead;
-    public Boolean allFieldsWereRead = true;
+public class EngInfoReadForm extends FormReadMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
@@ -146,25 +143,7 @@ public class EngInfoReadForm extends PortalUIElement {
         if(infoFromStep.nextEvalDate != null) {
             result.nextEvalDate = getSpanValue(nextEvalDate, "nextEvalDate");
         }
+        logReadStatus();
         return result;
-    }
-
-    private String getSpanValue(WebElement element, String field) {
-        String stringResult;
-        try {
-            stringResult = element.getAttribute("innerHTML");
-            fieldsWereRead.add(field);
-        }catch (NoSuchElementException nsee) {
-            fieldsWereNotRead.add(field);
-            allFieldsWereRead = false;
-            stringResult = null;
-        }
-        return stringResult;
-    }
-
-    private String getCheckValue(WebElement element, String field) {
-        String stringResult = element.getAttribute("checked");
-        stringResult = (stringResult == null) ? "false" : "true";
-        return stringResult;
     }
 }

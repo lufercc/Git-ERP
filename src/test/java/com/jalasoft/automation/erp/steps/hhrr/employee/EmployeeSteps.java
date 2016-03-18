@@ -8,7 +8,7 @@ import com.jalasoft.automation.erp.portal.ui.pages.hhrr.Submenu;
 import com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee.*;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.Then;
 import org.junit.Assert;
 import java.util.List;
 
@@ -16,6 +16,8 @@ import java.util.List;
  * Created by Henry Benito on 1/28/2016.
  */
 public class EmployeeSteps {
+
+
     @And("^I modify the employee with basic data$")
     public void I_modify_the_employee_with_basic_data(List<BasicInfoEmployee> basicInfoData) throws Throwable {
         BasicInfoEditForm basicInfoEditForm = new BasicInfoEditForm();
@@ -46,16 +48,20 @@ public class EmployeeSteps {
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this data in public information$")
-    public void I_verify_if_he_has_this_data_in_public_information(List<PublicInfoEmployee> expectedPublicEmployeeData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this data in public information$")
+    public void I_verify_if_he_has_this_data_in_public_information(String hasOrNot, List<PublicInfoEmployee> expectedPublicEmployeeData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
         EmployeeForm employeeForm = new EmployeeForm();
         PublicInfoReadForm publicInfoReadForm = new PublicInfoReadForm();
 
         employeeForm.selectTab("public");
         for (PublicInfoEmployee item : expectedPublicEmployeeData) {
-            Boolean auxResult = item.contains(publicInfoReadForm.getDataFromUI(item));
-            if(!auxResult) {result = false;}
+            Boolean auxResult = item.contains(shouldBeAble, publicInfoReadForm.getDataFromUI(item));
+            if (auxResult) {result = true;}
         }
         Assert.assertTrue(result);
     }
@@ -64,34 +70,34 @@ public class EmployeeSteps {
     public void I_verify_if_he_has_this_simple_data_in_personal_information(String hasOrNot, List<PersonalInfoEmployee> expectedPersonalEmployeeData) throws Throwable {
         Boolean result= false;
         Boolean shouldBeAble = false;
-        if(hasOrNot.isEmpty()) {
+        if (hasOrNot.isEmpty()) {
             shouldBeAble = true;
         }
-
         EmployeeForm employeeForm = new EmployeeForm();
         PersonalInfoReadForm personalInfoReadForm = new PersonalInfoReadForm();
 
         employeeForm.selectTab("personal");
         for (PersonalInfoEmployee item : expectedPersonalEmployeeData) {
-            Boolean auxResult;
-            PersonalInfoEmployee aux = personalInfoReadForm.getDataFromUI(item);
-            auxResult = (personalInfoReadForm.allFieldsWereRead) ? item.contains(aux) : false;
-            if(auxResult && shouldBeAble) {result = true;}
-            if(!auxResult && !shouldBeAble && personalInfoReadForm.fieldsWereRead.isEmpty()) {result = true;}
+            Boolean auxResult = item.contains(shouldBeAble, personalInfoReadForm.getDataFromUI(item));
+            if (auxResult) {result = true;}
         }
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this simple data in hrdata information$")
-    public void I_verify_if_he_has_this_simple_data_in_hrdata_information(List<HHRRInfoEmployee> expectedHHRREmployeeData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this simple data in hrdata information$")
+    public void I_verify_if_he_has_this_simple_data_in_hrdata_information(String hasOrNot, List<HHRRInfoEmployee> expectedHHRREmployeeData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
         EmployeeForm employeeForm = new EmployeeForm();
         HHRRInfoReadForm hhrrInfoReadForm = new HHRRInfoReadForm();
 
         employeeForm.selectTab("hhrr");
         for (HHRRInfoEmployee item : expectedHHRREmployeeData) {
-            Boolean auxResult = item.contains(hhrrInfoReadForm.getDataFromUI(item));
-            if(!auxResult) {result = false;}
+            Boolean auxResult = item.contains(shouldBeAble, hhrrInfoReadForm.getDataFromUI(item));
+            if (auxResult) {result = true;}
         }
         Assert.assertTrue(result);
     }
@@ -105,7 +111,7 @@ public class EmployeeSteps {
 
         employeeForm.selectTab("engineering");
         for (EngInfoEmployee item : expectedEngEmployeeData) {
-            Boolean auxResult = item.contains(engInfoReadForm.getDataFromUI(item));
+            Boolean auxResult = item.contains(true, engInfoReadForm.getDataFromUI(item));
             if(!auxResult) {result = false;}
         }
         Assert.assertTrue(result);
@@ -498,5 +504,20 @@ public class EmployeeSteps {
         employeeForm.selectTab("personal");
 
         emergencyContactInfoEditForm.deleteAllData();
+    }
+
+    @Then("^I verify no one of these fields are read in public information$")
+    public void I_verify_no_one_of_these_fields_are_read_in_public_information(List<PublicInfoEmployee> expectedPublicEmployeeData) throws Throwable {
+        Boolean result= false;
+
+        EmployeeForm employeeForm = new EmployeeForm();
+        PublicInfoReadForm publicInfoReadForm = new PublicInfoReadForm();
+
+        employeeForm.selectTab("public");
+        for (PublicInfoEmployee item : expectedPublicEmployeeData) {
+            PublicInfoEmployee aux = publicInfoReadForm.getDataFromUI(item);
+            if(publicInfoReadForm.fieldsWereRead.isEmpty()) {result = true;}
+        }
+        Assert.assertTrue(result);
     }
 }

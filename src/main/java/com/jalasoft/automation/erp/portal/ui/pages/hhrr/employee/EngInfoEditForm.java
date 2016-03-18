@@ -1,5 +1,6 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.components.SelectOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.EngInfoEmployee;
@@ -7,10 +8,12 @@ import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.HHRRInfoEmploy
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class EngInfoEditForm extends PortalUIElement {
+public class EngInfoEditForm extends FormEditMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
@@ -92,97 +95,77 @@ public class EngInfoEditForm extends PortalUIElement {
     }
 
     public void modifyData(EngInfoEmployee inputData) {
-
+        fieldsWereEdited = new ArrayList<>();
+        fieldsWereNotEdited = new ArrayList<>();
+        allFieldsWereEdited = true;
         if (inputData.department != null) {
-            this.department.selectItem(inputData.department);
+            selectOpenERPItem(this.department, "department", inputData.department);
         }
 
         if (inputData.division != null) {
-            this.division.selectItem(inputData.division);
+            selectOpenERPItem(this.division, "division", inputData.division);
         }
 
         if (inputData.jobTitle != null) {
-            this.jobTitle.selectItem(inputData.jobTitle);
+            selectOpenERPItem(this.jobTitle, "jobTitle", inputData.jobTitle);
         }
 
         if (inputData.manager != null) {
-            this.manager.selectItem(inputData.manager);
+            selectOpenERPItem(this.manager, "manager", inputData.manager);
         }
 
         if (inputData.lead != null) {
-            this.lead.selectItem(inputData.lead);
+            selectOpenERPItem(this.lead, "lead", inputData.lead);
         }
 
         if (inputData.visible != null) {
-            if (inputData.visible.equals("true")) {
-                this.webDriverTools.checkBox(this.visible);
-            }else {
-                this.webDriverTools.unCheckBox(this.visible);
-            }
+            setCheckbox(this.visible, "visible", inputData.visible);
         }
 
         if (inputData.billable != null) {
-            if (inputData.billable.equals("true")) {
-                this.webDriverTools.checkBox(this.billable);
-            }else {
-                this.webDriverTools.unCheckBox(this.billable);
-            }
+            setCheckbox(this.billable, "billable", inputData.billable);
         }
 
         if (inputData.shadowCategory != null) {
-            this.webDriverTools.selectOptionOfDropListElement(this.shadowCategory, inputData.shadowCategory);
+            selectItem(this.shadowCategory, "shadowCategory", inputData.shadowCategory);
         }
 
         if (inputData.notes != null) {
-            this.webDriverTools.clearAndSendKeys(this.notes, inputData.notes);
+            setInput(this.notes, "notes", inputData.notes);
         }
 
         if (inputData.commitment != null) {
-            if (inputData.commitment.equals("true")) {
-                this.webDriverTools.checkBox(this.commitment);
-            }else {
-                this.webDriverTools.unCheckBox(this.commitment);
-            }
+            setCheckbox(this.commitment, "commitment", inputData.commitment);
         }
 
         if (inputData.expDateCommit != null) {
-            this.webDriverTools.clearAndSendKeys(this.expDateCommit, inputData.expDateCommit);
+            setInput(this.expDateCommit, "expDateCommit", inputData.expDateCommit);
         }
 
         if (inputData.active != null) {
-            if (inputData.active.equals("true")) {
-                this.webDriverTools.checkBox(this.active);
-            }else {
-                this.webDriverTools.unCheckBox(this.active);
-            }
+            setCheckbox(this.active, "active", inputData.active);
         }
 
         if (inputData.consultant != null) {
-            if (inputData.consultant.equals("true")) {
-                this.webDriverTools.checkBox(this.consultant);
-            }else {
-                this.webDriverTools.unCheckBox(this.consultant);
-            }
+            setCheckbox(this.consultant, "consultant", inputData.consultant);
         }
 
         if (inputData.jce != null) {
-            if (inputData.jce.equals("true")) {
-                this.webDriverTools.checkBox(this.jce);
-            }else {
-                this.webDriverTools.unCheckBox(this.jce);
-            }
+            setCheckbox(this.jce, "jce", inputData.jce);
         }
 
         if (inputData.reason != null) {
-            this.webDriverTools.clearAndSendKeys(this.reason, inputData.reason);
+            setInput(this.reason, "reason", inputData.reason);
         }
 
         if (inputData.lastEvalDate != null) {
-            this.webDriverTools.clearAndSendKeys(this.lastEvalDate, inputData.lastEvalDate);
+            setInput(this.lastEvalDate, "lastEvalDate", inputData.lastEvalDate);
         }
 
         if (inputData.nextEvalDate != null) {
-            this.webDriverTools.clearAndSendKeys(this.nextEvalDate, inputData.nextEvalDate);
+            setInput(this.nextEvalDate, "nextEvalDate", inputData.nextEvalDate);
         }
+
+        logEditStatus();
     }
 }

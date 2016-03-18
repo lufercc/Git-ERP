@@ -66,7 +66,6 @@ public class GeneralButtonsBar extends PortalUIElement {
 
         case "edit":
             this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
-            this.webDriverWait.withMessage("Algo");
             editButton.click();
             break;
 

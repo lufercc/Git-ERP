@@ -1,16 +1,17 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
-import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
+import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
 import com.jalasoft.automation.erp.portal.ui.components.SelectOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.HHRRInfoEmployee;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PersonalInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.ArrayList;
 
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class HHRRInfoEditForm extends PortalUIElement {
+public class HHRRInfoEditForm extends FormEditMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
@@ -71,53 +72,58 @@ public class HHRRInfoEditForm extends PortalUIElement {
     }
 
     public void modifyData(HHRRInfoEmployee inputData) {
+        fieldsWereEdited = new ArrayList<>();
+        fieldsWereNotEdited = new ArrayList<>();
+        allFieldsWereEdited = true;
 
         if (inputData.gender != null) {
-            this.webDriverTools.selectOptionOfDropListElement(this.gender, inputData.gender);
+            selectItem(this.gender, "gender", inputData.gender);
         }
 
         if (inputData.maritalStatus != null) {
-            this.webDriverTools.selectOptionOfDropListElement(this.maritalStatus, inputData.maritalStatus);
+            selectItem(this.maritalStatus, "maritalStatus", inputData.maritalStatus);
         }
 
         if (inputData.numberChildren != null) {
-            this.webDriverTools.clearAndSendKeys(this.numberChildren, inputData.numberChildren);
+            setInput(this.numberChildren, "numberChildren", inputData.numberChildren);
         }
 
         if (inputData.startDate != null) {
-            this.webDriverTools.clearAndSendKeys(this.startDate, inputData.startDate);
+            setInput(this.startDate, "startDate", inputData.startDate);
         }
 
         if (inputData.endDate != null) {
-            this.webDriverTools.clearAndSendKeys(this.endDate, inputData.endDate);
+            setInput(this.endDate, "endDate", inputData.endDate);
         }
 
         if (inputData.hireDate != null) {
-            this.webDriverTools.clearAndSendKeys(this.hireDate, inputData.hireDate);
+            setInput(this.hireDate, "hireDate", inputData.hireDate);
         }
 
         if (inputData.endHireDate != null) {
-            this.webDriverTools.clearAndSendKeys(this.endHireDate, inputData.endHireDate);
+            setInput(this.endHireDate, "endHireDate", inputData.endHireDate);
         }
 
         if (inputData.salaryReviewMonth != null) {
-            this.webDriverTools.selectOptionOfDropListElement(this.salaryReviewMonth, inputData.salaryReviewMonth);
+            selectItem(this.salaryReviewMonth, "salaryReviewMonth", inputData.salaryReviewMonth);
         }
 
         if (inputData.workingSchedule != null) {
-            this.workingSchedule.selectItem(inputData.workingSchedule);
+            selectOpenERPItem(this.workingSchedule, "workingSchedule", inputData.workingSchedule);
         }
 
         if (inputData.holidayGroup != null) {
-            this.holidayGroup.selectItem(inputData.holidayGroup);
+            selectOpenERPItem(this.holidayGroup, "holidayGroup", inputData.holidayGroup);
         }
 
         if (inputData.vacationAnniversary != null) {
-            this.webDriverTools.clearAndSendKeys(this.vacationAnniversary, inputData.vacationAnniversary);
+            setInput(this.vacationAnniversary, "vacationAnniversary", inputData.vacationAnniversary);
         }
 
         if (inputData.internalID != null) {
-            this.webDriverTools.clearAndSendKeys(this.internalID, inputData.internalID);
+            setInput(this.internalID, "internalID", inputData.internalID);
         }
+
+        logEditStatus();
     }
 }

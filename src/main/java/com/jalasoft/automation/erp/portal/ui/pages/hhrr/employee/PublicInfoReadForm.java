@@ -1,14 +1,16 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
-import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
+import com.jalasoft.automation.erp.portal.ui.components.FormReadMode;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PublicInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class PublicInfoReadForm extends PortalUIElement {
+public class PublicInfoReadForm extends FormReadMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
@@ -67,20 +69,23 @@ public class PublicInfoReadForm extends PortalUIElement {
     }
 
     public PublicInfoEmployee getDataFromUI(PublicInfoEmployee infoFromStep) {
+        fieldsWereRead = new ArrayList<>();
+        fieldsWereNotRead = new ArrayList<>();
+        allFieldsWereRead = true;
         PublicInfoEmployee result = new PublicInfoEmployee();
-        if(infoFromStep.address != null) {result.address = address.getAttribute("innerHTML").replace("<br>","");}
-        if(infoFromStep.addressDescription != null) {result.addressDescription = addressDescription.getAttribute("innerHTML");}
-        if(infoFromStep.workEmail != null) {result.workEmail = workEmail.getAttribute("innerHTML");}
-        if(infoFromStep.workPhone != null) {result.workPhone = workPhone.getAttribute("innerHTML");}
-        if(infoFromStep.extCode != null) {result.extCode = extCode.getAttribute("innerHTML");}
-        if(infoFromStep.workMobile != null) {result.workMobile = workMobile.getAttribute("innerHTML");}
-        if(infoFromStep.user != null) {result.user = user.getAttribute("innerHTML");}
-        if(infoFromStep.otherInfo != null) {result.otherInfo = otherInfo.getAttribute("innerHTML");}
-        if(infoFromStep.location != null) {result.location = location.getAttribute("innerHTML");}
-        if(infoFromStep.codeDesktop != null) {result.codeDesktop = codeDesktop.getAttribute("innerHTML");}
-        if(infoFromStep.country != null) {result.country = country.getAttribute("innerHTML");}
-        if(infoFromStep.city != null) {result.city = city.getAttribute("innerHTML");}
-
+        if(infoFromStep.address != null) {result.address = getSpanValue(address, "address");}
+        if(infoFromStep.addressDescription != null) {result.addressDescription = getSpanValue(address, "address");}
+        if(infoFromStep.workEmail != null) {result.workEmail = getSpanValue(workEmail, "workEmail");}
+        if(infoFromStep.workPhone != null) {result.workPhone = getSpanValue(workPhone, "workPhone");}
+        if(infoFromStep.extCode != null) {result.extCode = getSpanValue(extCode, "extCode");}
+        if(infoFromStep.workMobile != null) {result.workMobile = getSpanValue(workMobile, "workMobile");}
+        if(infoFromStep.user != null) {result.user = getSpanValue(user, "user");}
+        if(infoFromStep.otherInfo != null) {result.otherInfo = getSpanValue(otherInfo, "otherInfo");}
+        if(infoFromStep.location != null) {result.location = getSpanValue(location, "location");}
+        if(infoFromStep.codeDesktop != null) {result.codeDesktop = getSpanValue(codeDesktop, "codeDesktop");}
+        if(infoFromStep.country != null) {result.country = getSpanValue(country, "country");}
+        if(infoFromStep.city != null) {result.city = getSpanValue(city, "city");}
+        logReadStatus();
         return result;
     }
 

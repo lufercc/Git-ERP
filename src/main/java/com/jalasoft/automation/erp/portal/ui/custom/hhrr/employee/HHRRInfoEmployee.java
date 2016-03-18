@@ -34,76 +34,76 @@ public class HHRRInfoEmployee extends GeneralRecord {
         this.internalID = aux.internalID;
     }
 
-    public boolean contains(HHRRInfoEmployee mainData) {
+    public boolean contains(boolean shouldContain, HHRRInfoEmployee mainData) {
 
         if (this.gender != null){
-            if(!this.gender.equals(mainData.gender)) {
+            if(this.gender.equals(mainData.gender) != shouldContain) {
                 logWarning("gender", this.gender);
                 return false;
             }
         }
         if (this.maritalStatus != null){
-            if(!this.maritalStatus.equals(mainData.maritalStatus)) {
+            if(this.maritalStatus.equals(mainData.maritalStatus) != shouldContain) {
                 logWarning("maritalStatus", this.maritalStatus);
                 return false;
             }
         }
         if (this.numberChildren != null){
-            if(!this.numberChildren.equals(mainData.numberChildren)) {
+            if (this.numberChildren.equals(mainData.numberChildren) != shouldContain) {
                 logWarning("numberChildren", this.numberChildren);
                 return false;
             }
         }
         if (this.startDate != null){
-            if(!this.startDate.equals(mainData.startDate)) {
+            if (this.startDate.equals(mainData.startDate) != shouldContain) {
                 logWarning("startDate", this.startDate);
                 return false;
             }
         }
         if (this.endDate != null){
-            if(!this.endDate.equals(mainData.endDate)) {
+            if (this.endDate.equals(mainData.endDate) != shouldContain) {
                 logWarning("endDate", this.endDate);
                 return false;
             }
         }
         if (this.hireDate != null){
-            if(!this.hireDate.equals(mainData.hireDate)) {
+            if (this.hireDate.equals(mainData.hireDate) != shouldContain) {
                 logWarning("hireDate", this.hireDate);
                 return false;
             }
         }
         if (this.endHireDate != null){
-            if(!this.endHireDate.equals(mainData.endHireDate)) {
+            if (this.endHireDate.equals(mainData.endHireDate) != shouldContain) {
                 logWarning("endHireDate", this.endHireDate);
                 return false;
             }
         }
         if (this.salaryReviewMonth != null){
-            if(!this.salaryReviewMonth.equals(mainData.salaryReviewMonth)) {
+            if (this.salaryReviewMonth.equals(mainData.salaryReviewMonth) != shouldContain) {
                 logWarning("salaryReviewMonth", this.salaryReviewMonth);
                 return false;
             }
         }
         if (this.workingSchedule != null){
-            if(!this.workingSchedule.equals(mainData.workingSchedule)) {
+            if (this.workingSchedule.equals(mainData.workingSchedule) != shouldContain) {
                 logWarning("workingSchedule", this.workingSchedule);
                 return false;
             }
         }
         if (this.holidayGroup != null){
-            if(!this.holidayGroup.equals(mainData.holidayGroup)) {
+            if (this.holidayGroup.equals(mainData.holidayGroup) != shouldContain) {
                 logWarning("holidayGroup", this.holidayGroup);
                 return false;
             }
         }
         if (this.vacationAnniversary != null){
-            if(!this.vacationAnniversary.equals(mainData.vacationAnniversary)) {
+            if (this.vacationAnniversary.equals(mainData.vacationAnniversary) != shouldContain) {
                 logWarning("vacationAnniversary", this.vacationAnniversary);
                 return false;
             }
         }
         if (this.internalID != null){
-            if(!this.internalID.equals(mainData.internalID)) {
+            if (this.internalID.equals(mainData.internalID) != shouldContain) {
                 logWarning("internalID", this.internalID);
                 return false;
             }

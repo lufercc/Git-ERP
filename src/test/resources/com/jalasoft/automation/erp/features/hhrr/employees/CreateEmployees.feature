@@ -1,6 +1,6 @@
 @Employee
 Feature: Employee
-  @create @all
+  @Create @all @CreatePart1
   Scenario Outline: Verify that employee fields are edited with admin role
     Given I navigate to login page
     When I login with "admin" credentials
@@ -15,8 +15,8 @@ Feature: Employee
       | ABILA   | test@hotmail.com | 456-158-15532 | 12      | 707-642-51545 | A224        | Cochabamba | <user>   | 0F       | Bolivia | Other info |
 
     And I modify the employee with personal data
-      | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                       | visaExpDate | homeAddress | dateBirth  | age | country | city     |
-      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Business and Tourism (B-1/B-2) | 02/20/2019  | Henry56     | 02/12/1986 | 29  | Albania | SomeCity |
+      | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                       | visaExpDate | homeAddress | dateBirth  | country | city     |
+      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Business and Tourism (B-1/B-2) | 02/20/2019  | Henry56     | 02/12/1986 | Albania | SomeCity |
 
     And I modify the employee with hhrr data
       | gender | maritalStatus | numberChildren | startDate  | endDate    | hireDate   | endHireDate | salaryReviewMonth | workingSchedule  | holidayGroup           | vacationAnniversary | internalID |
@@ -40,12 +40,12 @@ Feature: Employee
       | Dark | Potato   | Son      | Male   | 02/12/1986 |
 
     And I add this external career data to employee form
-      | name | startDate  | endDate    | employeer |
-      | xde  | 02/03/2016 | 02/04/2016 | asd       |
+      | jobTitle | startDate  | endDate    | employer |
+      | xde      | 02/03/2016 | 02/04/2016 | asd       |
 
     And I add this internal career data to employee form
-      | department | division | name     | projectCode   | manager       | weight | startDate  | endDate    | employeer | description |
-      | IT         | Support  | Security | TESTPROJABILA | Administrator | 6      | 02/10/2016 | 02/20/2018 | Other     | description |
+      | department | division | jobTitle | projectCode   | manager       | weight | startDate  | endDate    | employer | description |
+      | IT         | Support  | Security | TESTPROJABILA | Administrator | 6      | 02/10/2016 | 02/20/2018 | Other    | description |
 
     And I add this tag data to employee form
       | name          |
@@ -64,7 +64,9 @@ Feature: Employee
       | manager   | Henry54 |
       | lead      | Henry55 |
 
-  @create @all
+
+
+  @create @all @CreatePart2
   Scenario Outline: Verify that employee fields are edited with admin role
     Given I navigate to login page
     When I login with "admin" credentials
@@ -79,8 +81,8 @@ Feature: Employee
       | ABILA   | test@hotmail.com | 456-158-15532 | 12      | 707-642-51545 | A224        | Cochabamba | <user>   | 0F       | Bolivia | Other info |
 
     And I modify the employee with personal data
-      | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                       | visaExpDate | homeAddress | dateBirth  | age | country | city     |
-      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Business and Tourism (B-1/B-2) | 02/20/2019  | Henry56     | 02/12/1986 | 29  | Albania | SomeCity |
+      | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                       | visaExpDate | homeAddress | dateBirth  | country | city     |
+      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Business and Tourism (B-1/B-2) | 02/20/2019  | Henry56     | 02/12/1986 | Albania | SomeCity |
 
     And I modify the employee with hhrr data
       | gender | maritalStatus | numberChildren | startDate  | endDate    | hireDate   | endHireDate | salaryReviewMonth | workingSchedule  | holidayGroup           | vacationAnniversary | internalID |
@@ -104,11 +106,11 @@ Feature: Employee
       | Dark | Potato   | Son      | Male   | 02/12/1986 |
 
     And I add this external career data to employee form
-      | name | startDate  | endDate    | employeer |
-      | xde  | 02/03/2016 | 02/04/2016 | asd       |
+      | jobTitle | startDate  | endDate    | employer |
+      | xde      | 02/03/2016 | 02/04/2016 | asd      |
 
     And I add this internal career data to employee form
-      | department | division | name     | projectCode   | manager         | lead         | weight | startDate  | endDate    | employeer | description |
+      | department | division | jobTitle | projectCode   | manager         | lead         | weight | startDate  | endDate    | employer | description |
       | IT         | Support  | Security | TESTPROJABILA | auto manager hr | auto lead hr | 6      | 02/10/2016 | 02/20/2018 | Other     | description |
 
     And I add this tag data to employee form
@@ -127,7 +129,13 @@ Feature: Employee
 
     Examples:
       | role         | user    |
+      | receptionist | Henry61 |
       | employee     | Henry56 |
       | officer      | Henry57 |
+      | staffing     | Henry52 |
+      | comofficer   | Henry58 |
+      | hdofficer    | Henry59 |
+      | reports      | Henry60 |
+      | personnel    | Henry62 |
 
 

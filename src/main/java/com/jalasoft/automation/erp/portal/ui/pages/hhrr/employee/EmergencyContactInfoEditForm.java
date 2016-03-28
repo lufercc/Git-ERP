@@ -3,6 +3,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.EmergencyContact;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -42,35 +43,42 @@ public class EmergencyContactInfoEditForm extends TableOpenERP {
     }
 
     public void addData(List<EmergencyContact> inputData) {
-        WebElement name;
-        WebElement relationship;
-        WebElement phone;
-        WebElement mobile;
+        try {
+            allRecordsWereAdded = false;
 
-        for ( EmergencyContact item : inputData) {
-            clickAddElement();
-            name = this.webDriver.findElement(By.xpath("//span[contains(@data-fieldname,'name')]/input"));
-            relationship = this.webDriver.findElement(By.xpath("//span[contains(@data-fieldname,'relationship')]/input"));
-            phone = this.webDriver.findElement(By.xpath("//span[contains(@data-fieldname,'phone')]/input"));
-            mobile = this.webDriver.findElement(By.xpath("//span[contains(@data-fieldname,'mobile')]/input"));
+            WebElement name;
+            WebElement relationship;
+            WebElement phone;
+            WebElement mobile;
 
-            if(item.name != null) {
-                this.webDriverTools.clearAndSendKeys(name, item.name);
+            for (EmergencyContact item : inputData) {
+                clickAddElement();
+                name = this.webDriver.findElement(By.xpath("//span[contains(@data-fieldname,'name')]/input"));
+                relationship = this.webDriver.findElement(By.xpath("//span[contains(@data-fieldname,'relationship')]/input"));
+                phone = this.webDriver.findElement(By.xpath("//span[contains(@data-fieldname,'phone')]/input"));
+                mobile = this.webDriver.findElement(By.xpath("//span[contains(@data-fieldname,'mobile')]/input"));
+
+                if (item.name != null) {
+                    this.webDriverTools.clearAndSendKeys(name, item.name);
+                }
+
+                if (item.relationship != null) {
+                    this.webDriverTools.clearAndSendKeys(relationship, item.relationship);
+                }
+
+                if (item.phone != null) {
+                    this.webDriverTools.clearAndSendKeys(phone, item.phone);
+                }
+
+                if (item.mobile != null) {
+                    this.webDriverTools.clearAndSendKeys(mobile, item.mobile);
+                }
+
+                clickFoot();
             }
-
-            if(item.relationship != null) {
-                this.webDriverTools.clearAndSendKeys(relationship, item.relationship);
-            }
-
-            if(item.phone != null) {
-                this.webDriverTools.clearAndSendKeys(phone, item.phone);
-            }
-
-            if(item.mobile != null) {
-                this.webDriverTools.clearAndSendKeys(mobile, item.mobile);
-            }
-
-            clickFoot();
+            allRecordsWereAdded = true;
+        } catch (NoSuchElementException nsee) {
+            logNotAddedRecords();
         }
     }
 
@@ -93,7 +101,7 @@ public class EmergencyContactInfoEditForm extends TableOpenERP {
                     break;
                 }
                 if (uit == (dataFromUITable.size() - 1)) {
-                    System.out.println("No data was found in the table " + getClass().getName() + ",review input data values");
+                    logNotRecordFoundInTable();
                 }
             }
         }

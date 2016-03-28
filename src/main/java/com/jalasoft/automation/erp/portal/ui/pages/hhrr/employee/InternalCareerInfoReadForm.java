@@ -5,6 +5,7 @@ import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.InternalCareer
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,24 +50,33 @@ public class InternalCareerInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean hasSameContent(List<InternalCareer> expectedData) {
+    public boolean hasSameContent(boolean shouldBeAble, List<InternalCareer> expectedData) {
         List<HashMap<String,String>> dataFromTable = this.getData();
-        InternalCareer currentInternalCareer;
         HashMap<String,String> currentRow;
-        if(expectedData.size()!= dataFromTable.size()) {
+        int tableSize;
+
+        if((expectedData.size()!= dataFromTable.size()) && shouldBeAble) {
             return false;
         }
-        while(dataFromTable.size() > 0) {
-            int tableSize = dataFromTable.size();
-            for(int indexObjectList = 0; indexObjectList < expectedData.size(); indexObjectList++) {
-                currentInternalCareer = expectedData.get(indexObjectList);
-                for(int indexList = 0; indexList < tableSize; indexList++) {
-                    currentRow = dataFromTable.get(indexList);
+
+        if(dataFromTable.isEmpty() && !shouldBeAble) {
+            return true;
+        }
+
+        for(InternalCareer currentInternalCareer : expectedData) {
+            tableSize =  dataFromTable.size();
+            for(int indexList = 0; indexList < tableSize; indexList++) {
+                currentRow = dataFromTable.get(indexList);
+                if (shouldBeAble) {
                     if (inputDataIsInRow(currentInternalCareer,currentRow)) {
-                            dataFromTable.remove(currentRow);
-                            break;
+                        dataFromTable.remove(currentRow);
+                        break;
                     }
-                    if(indexList == (tableSize - 1)) {
+                    if (indexList == (tableSize - 1)) {
+                        return false;
+                    }
+                } else {
+                    if (inputDataIsInRow(currentInternalCareer,currentRow)) {
                         return false;
                     }
                 }

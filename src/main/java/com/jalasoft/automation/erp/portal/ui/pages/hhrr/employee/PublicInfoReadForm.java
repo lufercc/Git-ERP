@@ -88,5 +88,4 @@ public class PublicInfoReadForm extends FormReadMode {
         logReadStatus();
         return result;
     }
-
 }

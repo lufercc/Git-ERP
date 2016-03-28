@@ -2,6 +2,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.NDA;
+import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.Project;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -14,17 +15,15 @@ import java.util.List;
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class NDAInfoEditForm extends TableOpenERP {
+public class ProjectInfoEditForm extends TableOpenERP {
     @CacheLookup
-    @FindBy(xpath = "//div[contains(text(),'NDA Info')]/following-sibling::table//table[contains(@class,'oe_list_content')]")
+    @FindBy(xpath = "//label[contains(text(),'Project Codes')]/ancestor::td/following-sibling::td//table")
     protected WebElement table;
 
-    public NDAInfoEditForm() {
+    public ProjectInfoEditForm() {
         super.table = this.table;
-        expectedSpanishHeaders.put("ndaVersion","Versión NDA");
-        expectedSpanishHeaders.put("signDate","Fecha de firma");
-        expectedEnglishHeaders.put("ndaVersion","NDA Version");
-        expectedEnglishHeaders.put("signDate","Date of Signature");
+        expectedSpanishHeaders.put("code","Código de proyecto");
+        expectedEnglishHeaders.put("code","Project Code");
         expectedHeaders = expectedEnglishHeaders;
     }
 
@@ -38,20 +37,17 @@ public class NDAInfoEditForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public void addData(List<NDA> inputNDAData) {
+    public void addData(List<Project> inputNDAData) {
         try {
             allRecordsWereAdded = false;
-            WebElement ndaVersion;
-            WebElement signDate;
+            WebElement code;
 
-            for (NDA item : inputNDAData) {
+            for (Project item : inputNDAData) {
                 clickAddElement();
                 this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
-                this.webDriverTools.waitUntilElementPresentAndVisible(this.webDriver.findElement(By.name("nda_version")));
-                ndaVersion = this.webDriver.findElement(By.name("nda_version"));
-                signDate = this.webDriver.findElement(By.name("date_of_signature"));
-                this.webDriverTools.selectOptionOfDropListElement(ndaVersion, item.ndaVersion);
-                this.webDriverTools.clearAndSendKeys(signDate, item.signDate);
+                this.webDriverTools.waitUntilElementPresentAndVisible(this.webDriver.findElement(By.name("full_code")));
+                code = this.webDriver.findElement(By.name("full_code"));
+                this.webDriverTools.clearAndSendKeys(code, item.code);
                 clickFoot();
             }
             allRecordsWereAdded = true;
@@ -60,19 +56,18 @@ public class NDAInfoEditForm extends TableOpenERP {
         }
     }
 
-    public void removeData(List<NDA> expectedData) {
+    public void removeData(List<Project> expectedData) {
         List<HashMap<String, String>> dataFromUITable;
-        NDA currentNDA;
+        Project currentProject;
         HashMap<String, String> currentRow;
 
         for (int i = 0; i < expectedData.size(); i++) {
             dataFromUITable = this.getData();
-            currentNDA = expectedData.get(i);
+            currentProject = expectedData.get(i);
 
             for (int uit = 0; uit < dataFromUITable.size(); uit++) {
                 currentRow = dataFromUITable.get(uit);
-                if (currentNDA.ndaVersion.equals(currentRow.get(expectedHeaders.get("ndaVersion"))) &&
-                    currentNDA.signDate.equals(currentRow.get(expectedHeaders.get("signDate")))) {
+                if (currentProject.code.equals(currentRow.get(expectedHeaders.get("code")))) {
                     this.deleteElement(uit);
                     break;
                 }

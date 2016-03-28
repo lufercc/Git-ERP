@@ -41,30 +41,59 @@ public class EmergencyContactInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean hasSameContent(List<EmergencyContact> expectedData) {
+    public boolean hasSameContent(boolean shouldBeAble, List<EmergencyContact> expectedData) {
         List<HashMap<String,String>> dataFromTable = this.getData();
-        EmergencyContact currentEmergencyContact;
         HashMap<String,String> currentRow;
-        if(expectedData.size()!= dataFromTable.size()) {
+        int tableSize;
+
+        if((expectedData.size()!= dataFromTable.size()) && shouldBeAble) {
             return false;
         }
-        while(dataFromTable.size() > 0) {
-            int tableSize = dataFromTable.size();
-            for(int indexObjectList = 0; indexObjectList < expectedData.size(); indexObjectList++) {
-                currentEmergencyContact = expectedData.get(indexObjectList);
-                for(int indexList = 0; indexList < tableSize; indexList++) {
-                    currentRow = dataFromTable.get(indexList);
-                    if (currentEmergencyContact.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
-                        currentEmergencyContact.relationship.equals(currentRow.get(expectedHeaders.get("relationship"))) &&
-                        currentEmergencyContact.phone.equals(currentRow.get(expectedHeaders.get("phone"))) &&
-                        currentEmergencyContact.mobile.equals(currentRow.get(expectedHeaders.get("mobile")))) {
-                            dataFromTable.remove(currentRow);
-                            break;
+
+        if(dataFromTable.isEmpty() && !shouldBeAble) {
+            return true;
+        }
+        for(EmergencyContact currentEmergencyContact : expectedData) {
+            tableSize =  dataFromTable.size();
+            for(int indexList = 0; indexList < tableSize; indexList++) {
+                currentRow = dataFromTable.get(indexList);
+                if (shouldBeAble) {
+                    if (inputDataIsInRow(currentEmergencyContact,currentRow)) {
+                        dataFromTable.remove(currentRow);
+                        break;
                     }
-                    if(indexList == (tableSize - 1)) {
+                    if (indexList == (tableSize - 1)) {
+                        return false;
+                    }
+                } else {
+                    if (inputDataIsInRow(currentEmergencyContact,currentRow)) {
                         return false;
                     }
                 }
+            }
+        }
+        return true;
+    }
+
+    public boolean inputDataIsInRow(EmergencyContact inputRecord, HashMap<String,String> tableRow) {
+        if(inputRecord.name != null) {
+            if (!inputRecord.name.equals(tableRow.get(expectedHeaders.get("name")))) {
+                return false;
+            }
+        }
+        if(inputRecord.relationship != null) {
+            if (!inputRecord.relationship.equals(tableRow.get(expectedHeaders.get("relationship")))){
+                return false;
+            }
+        }
+        if(inputRecord.phone != null) {
+            if (!inputRecord.phone.equals(tableRow.get(expectedHeaders.get("phone")))) {
+                return false;
+            }
+        }
+        if(inputRecord.mobile != null) {
+            if (!inputRecord.mobile.equals(tableRow.get(expectedHeaders.get("mobile")))) {
+                return false;
             }
         }
         return true;

@@ -1,5 +1,6 @@
 package com.jalasoft.automation.erp.portal.ui.components;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -18,6 +19,10 @@ public class TableOpenERP extends PortalUIElement {
     protected HashMap<String, String> expectedHeaders;
     protected HashMap<String, String> expectedSpanishHeaders;
     protected HashMap<String, String> expectedEnglishHeaders;
+
+    protected boolean allRecordsWereAdded;
+
+    private Logger log;
 
     public TableOpenERP() {
         expectedSpanishHeaders = new HashMap<>();
@@ -110,6 +115,16 @@ public class TableOpenERP extends PortalUIElement {
     public void clickFoot() {
         WebElement foot = table.findElement(By.xpath("./tfoot"));
         foot.click();
+    }
+
+    public void logNotAddedRecords() {
+        log = Logger.getLogger(getClass());
+        log.warn("Records were not added");
+    }
+
+    public void logNotRecordFoundInTable() {
+        log = Logger.getLogger(getClass());
+        log.warn("No data was found in the table, review input data values");
     }
 
     @Override

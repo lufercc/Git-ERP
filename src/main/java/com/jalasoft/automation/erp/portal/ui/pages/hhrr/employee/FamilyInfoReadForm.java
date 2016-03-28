@@ -42,31 +42,65 @@ public class FamilyInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean hasSameContent(List<FamilyMember> expectedData) {
+    public boolean hasSameContent(boolean shouldBeAble, List<FamilyMember> expectedData) {
         List<HashMap<String,String>> dataFromTable = this.getData();
-        FamilyMember currentFamilyMember;
         HashMap<String,String> currentRow;
-        if(expectedData.size()!= dataFromTable.size()) {
+
+        int tableSize;
+
+        if((expectedData.size()!= dataFromTable.size()) && shouldBeAble) {
             return false;
         }
-        while(dataFromTable.size() > 0) {
-            int tableSize = dataFromTable.size();
-            for(int indexObjectList = 0; indexObjectList < expectedData.size(); indexObjectList++) {
-                currentFamilyMember = expectedData.get(indexObjectList);
-                for(int indexList = 0; indexList < tableSize; indexList++) {
-                    currentRow = dataFromTable.get(indexList);
-                    if (currentFamilyMember.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
-                        currentFamilyMember.lastName.equals(currentRow.get(expectedHeaders.get("lastName"))) &&
-                        currentFamilyMember.relation.equals(currentRow.get(expectedHeaders.get("relation"))) &&
-                        currentFamilyMember.sex.equals(currentRow.get(expectedHeaders.get("sex"))) &&
-                        currentFamilyMember.birthDate.equals(currentRow.get(expectedHeaders.get("birthDate")))) {
-                            dataFromTable.remove(currentRow);
-                            break;
+
+        if (dataFromTable.isEmpty() && !shouldBeAble) {
+            return true;
+        }
+        for(FamilyMember currentFamilyMember : expectedData) {
+            tableSize =  dataFromTable.size();
+            for(int indexList = 0; indexList < tableSize; indexList++) {
+                currentRow = dataFromTable.get(indexList);
+                if (shouldBeAble) {
+                    if (inputDataIsInRow(currentFamilyMember,currentRow)) {
+                        dataFromTable.remove(currentRow);
+                        break;
                     }
-                    if(indexList == (tableSize - 1)) {
+                    if (indexList == (tableSize - 1)) {
+                        return false;
+                    }
+                } else {
+                    if (inputDataIsInRow(currentFamilyMember,currentRow)) {
                         return false;
                     }
                 }
+            }
+        }
+        return true;
+    }
+
+    public boolean inputDataIsInRow(FamilyMember inputRecord, HashMap<String,String> tableRow) {
+        if(inputRecord.name != null) {
+            if (!inputRecord.name.equals(tableRow.get(expectedHeaders.get("name")))) {
+                return false;
+            }
+        }
+        if(inputRecord.lastName != null) {
+            if (!inputRecord.lastName.equals(tableRow.get(expectedHeaders.get("lastName")))){
+                return false;
+            }
+        }
+        if(inputRecord.relation != null) {
+            if (!inputRecord.relation.equals(tableRow.get(expectedHeaders.get("relation")))) {
+                return false;
+            }
+        }
+        if(inputRecord.sex != null) {
+            if (!inputRecord.sex.equals(tableRow.get(expectedHeaders.get("sex")))) {
+                return false;
+            }
+        }
+        if(inputRecord.birthDate != null) {
+            if (!inputRecord.birthDate.equals(tableRow.get(expectedHeaders.get("birthDate")))) {
+                return false;
             }
         }
         return true;

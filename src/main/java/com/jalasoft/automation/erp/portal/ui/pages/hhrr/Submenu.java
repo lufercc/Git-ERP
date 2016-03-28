@@ -35,8 +35,8 @@ public class Submenu extends PortalUIElement{
         super.webDriverTools.waitUntilElementPresentAndVisible(this.submenuContainer);
     }
 
-    public void goToSubmenu(String submenu) {
-        if(!submenu.equals(defaultSubmenu)) {
+    public void goToSubmenu(String submenu, boolean shouldGo) {
+        if(!submenu.equals(defaultSubmenu) || !shouldGo) {
             switch (submenu.toLowerCase()) {
             case "employees":
                 employees.click();

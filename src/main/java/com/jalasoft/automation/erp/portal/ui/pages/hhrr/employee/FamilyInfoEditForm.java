@@ -3,6 +3,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.FamilyMember;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -45,42 +46,48 @@ public class FamilyInfoEditForm extends TableOpenERP {
     }
 
     public void addData(List<FamilyMember> inputData) {
-        WebElement name;
-        WebElement lastName;
-        WebElement relation;
-        WebElement sex;
-        WebElement birthDate;
+        try {
+            allRecordsWereAdded = false;
+            WebElement name;
+            WebElement lastName;
+            WebElement relation;
+            WebElement sex;
+            WebElement birthDate;
 
-        for ( FamilyMember item : inputData) {
-            clickAddElement();
+            for ( FamilyMember item : inputData) {
+                clickAddElement();
 
-            name = this.webDriver.findElement(By.xpath("(//span[contains(@data-fieldname,'name')]/input)[2]"));
-            lastName = this.webDriver.findElement(By.xpath("//span[contains(@data-fieldname,'last_name')]/input"));
-            relation = this.webDriver.findElement(By.name("relation"));
-            sex = this.webDriver.findElement(By.name("sex"));
-            birthDate = this.webDriver.findElement(By.name("day_of_birth"));
+                name = this.webDriver.findElement(By.xpath("(//span[contains(@data-fieldname,'name')]/input)[2]"));
+                lastName = this.webDriver.findElement(By.xpath("//span[contains(@data-fieldname,'last_name')]/input"));
+                relation = this.webDriver.findElement(By.name("relation"));
+                sex = this.webDriver.findElement(By.name("sex"));
+                birthDate = this.webDriver.findElement(By.name("day_of_birth"));
 
 
-            if(item.name != null) {
-                this.webDriverTools.clearAndSendKeys(name, item.name);
+                if(item.name != null) {
+                    this.webDriverTools.clearAndSendKeys(name, item.name);
+                }
+
+                if(item.lastName != null) {
+                    this.webDriverTools.clearAndSendKeys(lastName, item.lastName);
+                }
+
+                if(item.relation != null) {
+                    this.webDriverTools.selectOptionOfDropListElement(relation, item.relation);
+                }
+
+                if(item.sex != null) {
+                    this.webDriverTools.selectOptionOfDropListElement(sex, item.sex);
+                }
+
+                if(item.birthDate != null) {
+                    this.webDriverTools.clearAndSendKeys(birthDate, item.birthDate);
+                }
+                clickFoot();
             }
-
-            if(item.lastName != null) {
-                this.webDriverTools.clearAndSendKeys(lastName, item.lastName);
-            }
-
-            if(item.relation != null) {
-                this.webDriverTools.selectOptionOfDropListElement(relation, item.relation);
-            }
-
-            if(item.sex != null) {
-                this.webDriverTools.selectOptionOfDropListElement(sex, item.sex);
-            }
-
-            if(item.birthDate != null) {
-                this.webDriverTools.clearAndSendKeys(birthDate, item.birthDate);
-            }
-            clickFoot();
+            allRecordsWereAdded = true;
+        } catch (NoSuchElementException nsee) {
+            logNotAddedRecords();
         }
     }
 
@@ -104,7 +111,7 @@ public class FamilyInfoEditForm extends TableOpenERP {
                     break;
                 }
                 if (uit == (dataFromUITable.size() - 1)) {
-                    System.out.println("No data was found in the table " + getClass().getName() + ",review input data values");
+                    logNotRecordFoundInTable();
                 }
             }
         }

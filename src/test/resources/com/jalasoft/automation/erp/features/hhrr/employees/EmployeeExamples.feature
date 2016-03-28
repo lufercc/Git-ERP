@@ -292,6 +292,24 @@ Feature: Employee
       | IT         | Support  | Security | autojs manager | jslead otro | false   | false    |                |       | false      | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
 
 
+  @TestNotFoundInTable
+  Scenario Outline: Verify that employee fields are read with admin role
+    Given I navigate to login page
+    When I login with "<role>" credentials
+    And I go to "employees" hhrr submenu
+    And I select "list" view
+    And I search employee "auto non edit" into employee list view
+    Then I verify if he has this internal career data
+      | department | division | jobTitle     | projectCode | weight | startDate  | endDate    | employer |
+      | IT         | Support  | Security     | TPA         | 6      | 02/10/2016 | 02/20/2018 | Other    |
+      | QE         | Security | Tech support | TPO         | 5      | 03/10/2016 | 03/20/2018 | Other emp|
+      | SELOG      |          | Technician   |             | 0      | 02/20/2016 |            |          |
 
-
+    Then I verify if he has not this internal career data
+      | department | division | jobTitle   | projectCode | weight | startDate  | endDate    | employer |
+      | IT         | Support  | Security   | TPAS        | 6      | 02/10/2016 | 02/20/2018 | Other    |
+      | QE         | Support  | Security   | TPAS        | 5      | 02/10/2016 | 02/20/2018 | Other    |
+    Examples:
+      | role    |
+      | admin   |
 

@@ -15,7 +15,7 @@ public class TagInfoEditForm extends TagFieldOpenERP {
 
     public TagInfoEditForm() {
         super.field = this.field;
-        this.waitForLoading();
+//        this.waitForLoading();
     }
 
     @Override

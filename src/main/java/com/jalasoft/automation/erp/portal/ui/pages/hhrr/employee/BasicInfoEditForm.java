@@ -1,14 +1,17 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.BasicInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class BasicInfoEditForm extends PortalUIElement {
+public class BasicInfoEditForm extends FormEditMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
@@ -22,6 +25,9 @@ public class BasicInfoEditForm extends PortalUIElement {
     @FindBy(name = "middlename_check")
     protected WebElement middleNameCheck;
 
+    @FindBy(xpath = "//div[contains(@name,'prefered_div')]/input")
+    protected WebElement preferredName;
+
     @FindBy(xpath = "//span[following-sibling::label[contains(text(),'Preferred Name')] and preceding-sibling::table//label[contains(text(),'Middle Name')]]/input")
     protected WebElement middleName;
 
@@ -31,7 +37,7 @@ public class BasicInfoEditForm extends PortalUIElement {
     @FindBy(xpath = "//span[following-sibling::label[contains(text(),'Married Name')] and preceding-sibling::label[contains(text(),'Second Last Name')]]/input")
     protected WebElement secondLastName;
 
-    @FindBy(xpath = "//span[following-sibling::label[contains(text(),'Tags')] and preceding-sibling::label[contains(text(),'Married Name')]]/input")
+    @FindBy(xpath = "//span[preceding-sibling::label[contains(text(),'Married Name')]]/input")
     protected WebElement marriedName;
 
     public BasicInfoEditForm() {
@@ -49,40 +55,41 @@ public class BasicInfoEditForm extends PortalUIElement {
     }
 
     public void modifyData(BasicInfoEmployee inputData) {
+        fieldsWereEdited = new ArrayList<>();
+        fieldsWereNotEdited = new ArrayList<>();
+        allFieldsWereEdited = true;
         if (inputData.firstName != null) {
-            this.webDriverTools.clearAndSendKeys(this.firstName, inputData.firstName);
+            setInput(this.firstName, "firstName", inputData.firstName);
         }
 
         if (inputData.firstNameCheck != null) {
-            if (inputData.firstNameCheck.equals("true")) {
-                this.webDriverTools.checkBox(this.firstNameCheck);
-            }else {
-                this.webDriverTools.unCheckBox(this.firstNameCheck);
-            }
+            setCheckbox(this.firstNameCheck, "firstNameCheck", inputData.firstNameCheck);
         }
 
         if (inputData.middleName != null) {
-            this.webDriverTools.clearAndSendKeys(this.middleName, inputData.middleName);
+            setInput(this.middleName, "middleName", inputData.middleName);
         }
 
         if (inputData.middleNameCheck != null) {
-            if (inputData.middleNameCheck.equals("true")) {
-                this.webDriverTools.checkBox(this.middleNameCheck);
-            }else {
-                this.webDriverTools.unCheckBox(this.middleNameCheck);
-            }
+            setCheckbox(this.middleNameCheck, "middleNameCheck", inputData.middleNameCheck);
         }
 
         if (inputData.lastName != null) {
-            this.webDriverTools.clearAndSendKeys(this.lastName, inputData.lastName);
+            setInput(this.lastName, "lastName", inputData.lastName);
         }
 
         if (inputData.secondLastName != null) {
-            this.webDriverTools.clearAndSendKeys(this.secondLastName, inputData.secondLastName);
+            setInput(this.secondLastName, "secondLastName", inputData.secondLastName);
         }
 
         if (inputData.marriedName != null) {
-            this.webDriverTools.clearAndSendKeys(this.marriedName, inputData.marriedName);
+            setInput(this.marriedName, "marriedName", inputData.marriedName);
         }
+
+        if (inputData.preferredName != null) {
+            setInput(this.preferredName, "preferredName", inputData.preferredName);
+        }
+
+        logEditStatus();
     }
 }

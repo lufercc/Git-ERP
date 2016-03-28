@@ -37,28 +37,49 @@ public class NDAInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean hasSameContent(List<NDA> expectedNDAData) {
+    public boolean hasSameContent(boolean shouldBeAble, List<NDA> expectedData) {
         List<HashMap<String,String>> dataFromTable = this.getData();
-        NDA currentNDA;
         HashMap<String,String> currentRow;
-        if(expectedNDAData.size()!= dataFromTable.size()) {
+        int tableSize;
+
+        if((expectedData.size()!= dataFromTable.size()) && shouldBeAble) {
             return false;
         }
-        while(dataFromTable.size() > 0) {
-            int tableSize = dataFromTable.size();
-            for(int indexNDAList = 0; indexNDAList < expectedNDAData.size(); indexNDAList++) {
-                currentNDA = expectedNDAData.get(indexNDAList);
-                for(int indexList = 0; indexList < tableSize; indexList++) {
-                    currentRow = dataFromTable.get(indexList);
-                    if (currentNDA.ndaVersion.equals(currentRow.get(expectedHeaders.get("ndaVersion"))) &&
-                        currentNDA.signDate.equals(currentRow.get(expectedHeaders.get("signDate")))) {
-                            dataFromTable.remove(currentRow);
-                            break;
+
+        if (dataFromTable.isEmpty() && !shouldBeAble) {
+            return true;
+        }
+        for(NDA currentNDA : expectedData) {
+            tableSize =  dataFromTable.size();
+            for(int indexList = 0; indexList < tableSize; indexList++) {
+                currentRow = dataFromTable.get(indexList);
+                if (shouldBeAble) {
+                    if (inputDataIsInRow(currentNDA,currentRow)) {
+                        dataFromTable.remove(currentRow);
+                        break;
                     }
-                    if(indexList == (tableSize - 1)) {
+                    if (indexList == (tableSize - 1)) {
+                        return false;
+                    }
+                } else {
+                    if (inputDataIsInRow(currentNDA,currentRow)) {
                         return false;
                     }
                 }
+            }
+        }
+        return true;
+    }
+
+    public boolean inputDataIsInRow(NDA inputRecord, HashMap<String,String> tableRow) {
+        if(inputRecord.ndaVersion != null) {
+            if (!inputRecord.ndaVersion.equals(tableRow.get(expectedHeaders.get("ndaVersion")))) {
+                return false;
+            }
+        }
+        if(inputRecord.signDate != null) {
+            if (!inputRecord.signDate.equals(tableRow.get(expectedHeaders.get("signDate")))){
+                return false;
             }
         }
         return true;

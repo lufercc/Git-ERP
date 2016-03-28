@@ -45,7 +45,8 @@ public class PersonalInfoReadForm extends FormReadMode {
     @FindBy(xpath = "//label[contains(text(),'Visa Expiration Date')]/ancestor::td/following-sibling::td/span")
     protected WebElement visaExpDate;
 
-    @FindBy(xpath = "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/a")
+    @FindBy(xpath = "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/a | " +
+            "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement homeAddress;
 
     @FindBy(xpath = "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/span")

@@ -5,6 +5,7 @@ import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.Nationality;
 import com.jalasoft.automation.erp.portal.ui.pages.general.PopupSearch;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -40,15 +41,21 @@ public class NationalityInfoEditForm extends TableOpenERP {
     }
 
     public void addData(List<Nationality> inputData) {
-        WebElement addElement = table.findElement(By.xpath(".//button[@class='oe_button oe_list_add']"));
+        try {
+            allRecordsWereAdded = false;
+            WebElement addElement = table.findElement(By.xpath(".//button[@class='oe_button oe_list_add']"));
 
-        for (int i = 0; i < inputData.size(); i++) {
-            addElement.click();
-            PopupSearch openERPSearch = new PopupSearch();
-            openERPSearch.advancedSearch(expectedHeaders.get("name"),inputData.get(i).name);
-            this.webDriverTools.waitUntilElementPresentAndVisible(this.webDriver.findElement(By.xpath("//div[contains(@class,'oe_popup_list')]//td[text()='" + inputData.get(i).name + "']")));
-            WebElement countryCell = this.webDriver.findElement(By.xpath("//div[contains(@class,'oe_popup_list')]//td[text()='" + inputData.get(i).name + "']"));
-            countryCell.click();
+            for (int i = 0; i < inputData.size(); i++) {
+                addElement.click();
+                PopupSearch openERPSearch = new PopupSearch();
+                openERPSearch.advancedSearch(expectedHeaders.get("name"),inputData.get(i).name);
+                this.webDriverTools.waitUntilElementPresentAndVisible(this.webDriver.findElement(By.xpath("//div[contains(@class,'oe_popup_list')]//td[text()='" + inputData.get(i).name + "']")));
+                WebElement countryCell = this.webDriver.findElement(By.xpath("//div[contains(@class,'oe_popup_list')]//td[text()='" + inputData.get(i).name + "']"));
+                countryCell.click();
+            }
+            allRecordsWereAdded = true;
+        } catch (NoSuchElementException nsee) {
+            logNotAddedRecords();
         }
     }
 
@@ -69,7 +76,7 @@ public class NationalityInfoEditForm extends TableOpenERP {
                     break;
                 }
                 if (uit == (dataFromUITable.size() - 1)) {
-                    System.out.println("No data was found in the table,review input data values");
+                    logNotRecordFoundInTable();
                 }
             }
         }

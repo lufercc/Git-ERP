@@ -3,6 +3,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.ExternalCareer;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -42,54 +43,60 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
     }
 
     public void addData(List<ExternalCareer> inputData) {
-        WebElement jobTitle;
-        WebElement startDate;
-        WebElement endDate;
-        WebElement employer;
-        WebElement description;
+        try {
+            allRecordsWereAdded = false;
 
-        WebElement addAndContinue;
-        WebElement addAndClose;
+            WebElement jobTitle;
+            WebElement startDate;
+            WebElement endDate;
+            WebElement employer;
+            WebElement description;
 
-        for (int i = 0; i < inputData.size(); i++) {
-            clickAddElement();
+            WebElement addAndContinue;
+            WebElement addAndClose;
 
-            jobTitle = this.webDriver.findElement(By.xpath("(//div[contains(@class,'oe_popup_form')]//input[contains(@id,'oe-field-input')])[1]"));
-            startDate = this.webDriver.findElement(By.name("start_date"));
-            endDate = this.webDriver.findElement(By.name("end_date"));
-            employer = this.webDriver.findElement(By.xpath("(//div[contains(@class,'oe_popup_form')]//input[contains(@id,'oe-field-input')])[2]"));
-            description = this.webDriver.findElement(By.name("description"));
+            for (int i = 0; i < inputData.size(); i++) {
+                clickAddElement();
 
-            addAndContinue = this.webDriver.findElement(By.xpath("//div[contains(@class,'ui-dialog-buttonpane')]//button[contains(@class,'oe_abstractformpopup-form-save-new')]"));
-            addAndClose = this.webDriver.findElement(By.xpath("(//div[contains(@class,'ui-dialog-buttonpane')]//button[contains(@class,'oe_abstractformpopup-form-save')])[1]"));
+                jobTitle = this.webDriver.findElement(By.xpath("(//div[contains(@class,'oe_popup_form')]//input[contains(@id,'oe-field-input')])[1]"));
+                startDate = this.webDriver.findElement(By.name("start_date"));
+                endDate = this.webDriver.findElement(By.name("end_date"));
+                employer = this.webDriver.findElement(By.xpath("(//div[contains(@class,'oe_popup_form')]//input[contains(@id,'oe-field-input')])[2]"));
+                description = this.webDriver.findElement(By.name("description"));
+
+                addAndContinue = this.webDriver.findElement(By.xpath("//div[contains(@class,'ui-dialog-buttonpane')]//button[contains(@class,'oe_abstractformpopup-form-save-new')]"));
+                addAndClose = this.webDriver.findElement(By.xpath("(//div[contains(@class,'ui-dialog-buttonpane')]//button[contains(@class,'oe_abstractformpopup-form-save')])[1]"));
 
 
-            if(inputData.get(i).jobTitle != null) {
-                this.webDriverTools.clearAndSendKeys(jobTitle, inputData.get(i).jobTitle);
+                if (inputData.get(i).jobTitle != null) {
+                    this.webDriverTools.clearAndSendKeys(jobTitle, inputData.get(i).jobTitle);
+                }
+
+                if (inputData.get(i).startDate != null) {
+                    this.webDriverTools.clearAndSendKeys(startDate, inputData.get(i).startDate);
+                }
+
+                if (inputData.get(i).endDate != null) {
+                    this.webDriverTools.clearAndSendKeys(endDate, inputData.get(i).endDate);
+                }
+
+                if (inputData.get(i).employer != null) {
+                    this.webDriverTools.clearAndSendKeys(employer, inputData.get(i).employer);
+                }
+
+                if (inputData.get(i).description != null) {
+                    this.webDriverTools.clearAndSendKeys(description, inputData.get(i).description);
+                }
+
+                if (i == (inputData.size() - 1)) {
+                    addAndClose.click();
+                } else {
+                    addAndContinue.click();
+                }
             }
-
-            if(inputData.get(i).startDate != null) {
-                this.webDriverTools.clearAndSendKeys(startDate, inputData.get(i).startDate);
-            }
-
-            if(inputData.get(i).endDate != null) {
-                this.webDriverTools.clearAndSendKeys(endDate, inputData.get(i).endDate);
-            }
-
-            if(inputData.get(i).employer != null) {
-                this.webDriverTools.clearAndSendKeys(employer, inputData.get(i).employer);
-            }
-
-            if(inputData.get(i).description != null) {
-                this.webDriverTools.clearAndSendKeys(description, inputData.get(i).description);
-            }
-
-            if (i == (inputData.size() - 1)) {
-                addAndClose.click();
-            }else {
-                addAndContinue.click();
-            }
-
+            allRecordsWereAdded = true;
+        } catch (NoSuchElementException nsee) {
+            logNotAddedRecords();
         }
     }
 
@@ -112,7 +119,7 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
                     break;
                 }
                 if (uit == (dataFromUITable.size() - 1)) {
-                    System.out.println("No data was found in the table " + getClass().getName() + ",review input data values");
+                    logNotRecordFoundInTable();
                 }
             }
         }

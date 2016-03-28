@@ -3,8 +3,10 @@ package com.jalasoft.automation.erp.portal.ui.components;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.Tag;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class TagFieldOpenERP extends PortalUIElement {
     protected WebElement field;
     protected int columnsSize;
     private Logger log = Logger.getLogger(getClass());
-
+    public boolean allTagsWereAdded;
     public TagFieldOpenERP() { }
 
 
@@ -33,12 +35,22 @@ public class TagFieldOpenERP extends PortalUIElement {
     }
 
     public void addTags(List<Tag> tagList) {
-        WebElement tagTextField = field.findElement(By.xpath(".//textarea"));
-        for (Tag tag : tagList) {
-            tagTextField.sendKeys(tag.name);
-            this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
-            WebElement suggestedValue = field.findElement(By.xpath(".//span[contains(@class,'text-label')]/span[text()='" + tag.name + "']"));
-            suggestedValue.click();
+        try {
+            allTagsWereAdded = false;
+            WebElement tagTextField = field.findElement(By.xpath(".//textarea"));
+            if (webDriverTools.isElementDisplayed(tagTextField)) {
+                for (Tag tag : tagList) {
+                    tagTextField.sendKeys(tag.name);
+                    this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+                    WebElement suggestedValue = field.findElement(By.xpath(".//span[contains(@class,'text-label')]/span[text()='" + tag.name + "']"));
+                    suggestedValue.click();
+                }
+                allTagsWereAdded = true;
+            } else {
+                logNotAddedRecords();
+            }
+        } catch (NoSuchElementException nsee) {
+            logNotAddedRecords();
         }
     }
 
@@ -47,6 +59,11 @@ public class TagFieldOpenERP extends PortalUIElement {
             WebElement suggestedValue = field.findElement(By.xpath(".//div[contains(@class,'text-tag')]//span[text()='" + tag.name + "']/following-sibling::a"));
             suggestedValue.click();
         }
+    }
+
+    public void logNotAddedRecords() {
+        log = Logger.getLogger(getClass());
+        log.warn("Records were not added");
     }
 
     @Override
@@ -59,26 +76,33 @@ public class TagFieldOpenERP extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.field);
     }
 
-    public boolean hasSameContent(List<Tag> expectedTagData) {
-        List<String> dataFromField = this.getTags();
-        if(expectedTagData.size()!= dataFromField.size()) {
+    public boolean hasSameContent(boolean shouldBeAble, List<Tag> expectedData) {
+        List<String> dataFromField  = this.getTags();
+        String currentRow;
+        int tableSize;
+
+        if((expectedData.size()!= dataFromField.size()) && shouldBeAble) {
             return false;
         }
-        Tag currentTag;
-        String currentRow;
 
-        while(dataFromField.size() > 0) {
-            int tableSize = dataFromField.size();
-            for(int indexTagList = 0; indexTagList < expectedTagData.size(); indexTagList++) {
-                currentTag = expectedTagData.get(indexTagList);
-                for(int indexList = 0; indexList < tableSize; indexList++) {
-                    currentRow = dataFromField.get(indexList);
+        if(dataFromField.isEmpty() && !shouldBeAble) {
+            return true;
+        }
+
+        for(Tag  currentTag : expectedData) {
+            tableSize =  dataFromField.size();
+            for(int indexList = 0; indexList < tableSize; indexList++) {
+                currentRow = dataFromField.get(indexList);
+                if (shouldBeAble) {
                     if (currentTag.name.equals(currentRow)) {
                         dataFromField.remove(currentRow);
                         break;
                     }
-                    if(indexList == (tableSize - 1)) {
-                        log.warn("This expected value: '" + currentTag.name + "' was not found in the UI");
+                    if (indexList == (tableSize - 1)) {
+                        return false;
+                    }
+                } else {
+                    if (currentTag.name.equals(currentRow)) {
                         return false;
                     }
                 }

@@ -27,6 +27,10 @@
     },
     "Credentials":
     {
+        "hb admin":{
+            "password":"123",
+            "userName":"henry50"
+        },
         "admin":{
             "password":"123",
             "userName":"henry51"

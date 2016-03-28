@@ -33,27 +33,45 @@ public class ProjectInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean hasSameContent(List<Project> expectedData) {
+    public boolean hasSameContent(boolean shouldBeAble, List<Project> expectedData) {
         List<HashMap<String,String>> dataFromTable = this.getData();
-        Project currentProject;
         HashMap<String,String> currentRow;
-        if(expectedData.size()!= dataFromTable.size()) {
+        int tableSize;
+
+        if((expectedData.size()!= dataFromTable.size()) && shouldBeAble) {
             return false;
         }
-        while(dataFromTable.size() > 0) {
-            int tableSize = dataFromTable.size();
-            for(int indexObjectList = 0; indexObjectList < expectedData.size(); indexObjectList++) {
-                currentProject = expectedData.get(indexObjectList);
-                for(int indexList = 0; indexList < tableSize; indexList++) {
-                    currentRow = dataFromTable.get(indexList);
-                    if (currentProject.code.equals(currentRow.get(expectedHeaders.get("code")))) {
+
+        if (dataFromTable.isEmpty() && !shouldBeAble) {
+            return true;
+        }
+
+        for(Project currentProject : expectedData) {
+            tableSize =  dataFromTable.size();
+            for(int indexList = 0; indexList < tableSize; indexList++) {
+                currentRow = dataFromTable.get(indexList);
+                if (shouldBeAble) {
+                    if (inputDataIsInRow(currentProject,currentRow)) {
                         dataFromTable.remove(currentRow);
                         break;
                     }
-                    if(indexList == (tableSize - 1)) {
+                    if (indexList == (tableSize - 1)) {
+                        return false;
+                    }
+                } else {
+                    if (inputDataIsInRow(currentProject,currentRow)) {
                         return false;
                     }
                 }
+            }
+        }
+        return true;
+    }
+
+    public boolean inputDataIsInRow(Project inputRecord, HashMap<String,String> tableRow) {
+        if(inputRecord.code != null) {
+            if (!inputRecord.code.equals(tableRow.get(expectedHeaders.get("code")))) {
+                return false;
             }
         }
         return true;

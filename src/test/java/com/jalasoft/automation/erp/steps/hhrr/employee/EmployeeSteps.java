@@ -10,6 +10,9 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
+import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.NoSuchElementException;
+
 import java.util.List;
 
 /**
@@ -36,14 +39,18 @@ public class EmployeeSteps {
 
     }
 
-    @And("^I verify if he has this data in basic information$")
-    public void I_verify_if_he_has_this_data_in_basic_information(List<BasicInfoEmployee> expectedBasicEmployeeData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this data in basic information$")
+    public void I_verify_if_he_has_this_data_in_basic_information(String hasOrNot, List<BasicInfoEmployee> expectedBasicEmployeeData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
         BasicInfoReadForm basicInfoReadForm = new BasicInfoReadForm();
 
         for (BasicInfoEmployee item : expectedBasicEmployeeData) {
-            Boolean auxResult = item.contains(basicInfoReadForm.getMainData());
-            if(!auxResult) {result = false;}
+            Boolean auxResult = item.contains(shouldBeAble, basicInfoReadForm.getDataFromUI(item));
+            if (auxResult) {result = true;}
         }
         Assert.assertTrue(result);
     }
@@ -102,146 +109,180 @@ public class EmployeeSteps {
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this simple data in engineering information$")
-    public void I_verify_if_he_has_this_simple_data_in_engineering_information(List<EngInfoEmployee> expectedEngEmployeeData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this simple data in engineering information$")
+    public void I_verify_if_he_has_this_simple_data_in_engineering_information(String hasOrNot, List<EngInfoEmployee> expectedEngEmployeeData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
 
         EmployeeForm employeeForm = new EmployeeForm();
         EngInfoReadForm engInfoReadForm = new EngInfoReadForm();
 
         employeeForm.selectTab("engineering");
         for (EngInfoEmployee item : expectedEngEmployeeData) {
-            Boolean auxResult = item.contains(true, engInfoReadForm.getDataFromUI(item));
-            if(!auxResult) {result = false;}
+            Boolean auxResult = item.contains(shouldBeAble, engInfoReadForm.getDataFromUI(item));
+            if(auxResult) {result = true;}
         }
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this nda data$")
-    public void I_verify_if_he_has_this_nda_data(List<NDA> expectedNDAData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this nda data$")
+    public void I_verify_if_he_has_this_nda_data(String hasOrNot, List<NDA> expectedNDAData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
+
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("personal");
         NDAInfoReadForm ndaInfoReadForm = new NDAInfoReadForm();
 
-        result = ndaInfoReadForm.hasSameContent(expectedNDAData);
+        result = ndaInfoReadForm.hasSameContent(shouldBeAble, expectedNDAData);
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this nationality data$")
-    public void I_verify_if_he_has_this_nationality_data(List<Nationality> expectedData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this nationality data$")
+    public void I_verify_if_he_has_this_nationality_data(String hasOrNot, List<Nationality> expectedData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
+
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("personal");
         NationalityInfoReadForm nationalityInfoReadForm = new NationalityInfoReadForm();
 
-        result = nationalityInfoReadForm.hasSameContent(expectedData);
+        result = nationalityInfoReadForm.hasSameContent(shouldBeAble, expectedData);
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this emergency contact data$")
-    public void I_verify_if_he_has_this_emergency_contact_data(List<EmergencyContact> expectedData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this emergency contact data$")
+    public void I_verify_if_he_has_this_emergency_contact_data(String hasOrNot, List<EmergencyContact> expectedData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
+
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("personal");
         EmergencyContactInfoReadForm emergencyContactInfoReadForm = new EmergencyContactInfoReadForm();
 
-        result = emergencyContactInfoReadForm.hasSameContent(expectedData);
+        result = emergencyContactInfoReadForm.hasSameContent(shouldBeAble, expectedData);
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this family data$")
-    public void I_verify_if_he_has_this_family_data(List<FamilyMember> expectedData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this family data$")
+    public void I_verify_if_he_has_this_family_data(String hasOrNot, List<FamilyMember> expectedData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
+
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("hhrr");
         FamilyInfoReadForm familyInfoReadForm = new FamilyInfoReadForm();
 
-        result = familyInfoReadForm.hasSameContent(expectedData);
+        result = familyInfoReadForm.hasSameContent(shouldBeAble, expectedData);
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this project data$")
-    public void I_verify_if_he_has_this_project_data(List<Project> expectedData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this project data$")
+    public void I_verify_if_he_has_this_project_data(String hasOrNot, List<Project> expectedData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
+
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("engineering");
         ProjectInfoReadForm projectInfoReadForm = new ProjectInfoReadForm();
 
-        result = projectInfoReadForm.hasSameContent(expectedData);
+        result = projectInfoReadForm.hasSameContent(shouldBeAble, expectedData);
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this external career data$")
-    public void I_verify_if_he_has_this_external_career_data(List<ExternalCareer> expectedData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this external career data$")
+    public void I_verify_if_he_has_this_external_career_data(String hasOrNot, List<ExternalCareer> expectedData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
+
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("history");
         ExternalCareerInfoReadForm externalCareerInfoReadForm = new ExternalCareerInfoReadForm();
 
-        result = externalCareerInfoReadForm.hasSameContent(expectedData);
+        result = externalCareerInfoReadForm.hasSameContent(shouldBeAble, expectedData);
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this internal career data$")
-    public void I_verify_if_he_has_this_internal_career_data(List<InternalCareer> expectedData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this internal career data$")
+    public void I_verify_if_he_has_this_internal_career_data(String hasOrNot, List<InternalCareer> expectedData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
+
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("history");
         InternalCareerInfoReadForm internalCareerInfoReadForm = new InternalCareerInfoReadForm();
 
-        result = internalCareerInfoReadForm.hasSameContent(expectedData);
+        result = internalCareerInfoReadForm.hasSameContent(shouldBeAble, expectedData);
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this hide external career data$")
-    public void I_verify_if_he_has_this_hide_external_career_data(List<ExternalCareer> expectedData) throws Throwable {
-        Boolean result= true;
-        EmployeeForm employeeForm = new EmployeeForm();
-        ExternalCareerInfoReadForm externalCareerInfoReadForm = new ExternalCareerInfoReadForm();
+    @And("^I verify if he has( not|)? this tag data$")
+    public void I_verify_if_he_has_this_tag_data(String hasOrNot, List<Tag> expectedData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
 
-        result = externalCareerInfoReadForm.hasSameContent(expectedData);
-        Assert.assertTrue(result);
-    }
-
-    @And("^I verify if he has this hide internal career data$")
-    public void I_verify_if_he_has_this_hide_internal_career_data(List<InternalCareer> expectedData) throws Throwable {
-        Boolean result= true;
-        EmployeeForm employeeForm = new EmployeeForm();
-        InternalCareerInfoReadForm internalCareerInfoReadForm = new InternalCareerInfoReadForm();
-
-        result = internalCareerInfoReadForm.hasSameContent(expectedData);
-        Assert.assertTrue(result);
-    }
-
-    @And("^I verify if he has this tag data$")
-    public void I_verify_if_he_has_this_tag_data(List<Tag> expectedData) throws Throwable {
-        Boolean result= true;
         TagInfoReadForm tagInfoReadForm = new TagInfoReadForm();
 
-        result = tagInfoReadForm.hasSameContent(expectedData);
+        result = tagInfoReadForm.hasSameContent(shouldBeAble, expectedData);
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this holiday policies data$")
-    public void I_verify_if_he_has_this_holiday_policies_data(List<Tag> expectedData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this holiday policies data$")
+    public void I_verify_if_he_has_this_holiday_policies_data(String hasOrNot, List<Tag> expectedData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
+
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("hhrr");
         HolidayPoliciesInfoReadForm holidayPoliciesInfoReadForm = new HolidayPoliciesInfoReadForm();
 
-        result = holidayPoliciesInfoReadForm.hasSameContent(expectedData);
+        result = holidayPoliciesInfoReadForm.hasSameContent(shouldBeAble, expectedData);
         Assert.assertTrue(result);
     }
 
-    @And("^I verify if he has this other supervisors data$")
-    public void I_verify_if_he_has_this_other_supervisors_data(List<Tag> expectedData) throws Throwable {
-        Boolean result= true;
+    @And("^I verify if he has( not|)? this other supervisors data$")
+    public void I_verify_if_he_has_this_other_supervisors_data(String hasOrNot, List<Tag> expectedData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
+
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab("engineering");
         OtherSupervisorsInfoReadForm otherSupervisorsInfoReadForm = new OtherSupervisorsInfoReadForm();
 
-        result = otherSupervisorsInfoReadForm.hasSameContent(expectedData);
+        result = otherSupervisorsInfoReadForm.hasSameContent(shouldBeAble, expectedData);
         Assert.assertTrue(result);
     }
 
@@ -311,6 +352,14 @@ public class EmployeeSteps {
         FamilyInfoEditForm familyInfoEditForm = new FamilyInfoEditForm();
         employeeForm.selectTab("hhrr");
         familyInfoEditForm.addData(familyMemberInfoData);
+    }
+
+    @And("^I add this project data to employee form$")
+    public void I_add_this_project_data_to_employee_form(List<Project> projectInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        ProjectInfoEditForm familyInfoEditForm = new ProjectInfoEditForm();
+        employeeForm.selectTab("engineering");
+        familyInfoEditForm.addData(projectInfoData);
     }
 
     @And("^I add this external career data to employee form$")
@@ -441,15 +490,17 @@ public class EmployeeSteps {
         Submenu accountingSubmenu = new Submenu();
 
         mainMenu.goToMenu("hhrr");
-        accountingSubmenu.goToSubmenu("employees");
+        accountingSubmenu.goToSubmenu("employees", true);
 
         GeneralButtonsBar gralButtons;
         BasicInfoEmployee basicInfoEmployee;
+        PublicInfoEmployee publicInfoEmployee;
         PersonalInfoEmployee personalInfoEmployee;
         EngInfoEmployee engInfoEmployee;
 
         EmployeeForm employeeForm;
         BasicInfoEditForm basicInfoEditForm;
+        PublicInfoEditForm publicInfoEditForm;
         PersonalInfoEditForm personalInfoEditForm;
         EngInfoEditForm engInfoEditForm;
 
@@ -459,11 +510,13 @@ public class EmployeeSteps {
             Thread.sleep(3000);
 
             basicInfoEmployee = new BasicInfoEmployee();
+            publicInfoEmployee = new PublicInfoEmployee();
             personalInfoEmployee = new PersonalInfoEmployee();
             engInfoEmployee = new EngInfoEmployee();
 
             employeeForm = new EmployeeForm();
             basicInfoEditForm = new BasicInfoEditForm();
+            publicInfoEditForm = new PublicInfoEditForm();
             personalInfoEditForm = new PersonalInfoEditForm();
             engInfoEditForm = new EngInfoEditForm();
 
@@ -471,6 +524,12 @@ public class EmployeeSteps {
             basicInfoEmployee.firstName = employee.firstName;
             basicInfoEmployee.lastName = employee.lastName;
             basicInfoEditForm.modifyData(basicInfoEmployee);
+
+            if (employee.user != null) {
+                employeeForm.selectTab("public");
+                publicInfoEmployee.user = employee.user;
+                publicInfoEditForm.modifyData(publicInfoEmployee);
+            }
 
             employeeForm.selectTab("personal");
             personalInfoEmployee.idNumber = employee.idNumber;
@@ -506,7 +565,7 @@ public class EmployeeSteps {
         emergencyContactInfoEditForm.deleteAllData();
     }
 
-    @Then("^I verify no one of these fields are read in public information$")
+    @And("^I verify no one of these fields are read in public information$")
     public void I_verify_no_one_of_these_fields_are_read_in_public_information(List<PublicInfoEmployee> expectedPublicEmployeeData) throws Throwable {
         Boolean result= false;
 
@@ -519,5 +578,63 @@ public class EmployeeSteps {
             if(publicInfoReadForm.fieldsWereRead.isEmpty()) {result = true;}
         }
         Assert.assertTrue(result);
+    }
+
+    @And("^I verify no one of these fields are read in personal information$")
+    public void I_verify_no_one_of_these_fields_are_read_in_personal_information(List<PersonalInfoEmployee> expectedPersonalEmployeeData) throws Throwable {
+        Boolean result= false;
+
+        EmployeeForm employeeForm = new EmployeeForm();
+        PersonalInfoReadForm personalInfoReadForm = new PersonalInfoReadForm();
+
+        employeeForm.selectTab("personal");
+        for (PersonalInfoEmployee item : expectedPersonalEmployeeData) {
+            PersonalInfoEmployee aux = personalInfoReadForm.getDataFromUI(item);
+            if(personalInfoReadForm.fieldsWereRead.isEmpty()) {result = true;}
+        }
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify no one of these fields are read in hhrr information$")
+    public void I_verify_no_one_of_these_fields_are_read_in_hhrr_information(List<HHRRInfoEmployee> expectedHHRREmployeeData) throws Throwable {
+        Boolean result= false;
+
+        EmployeeForm employeeForm = new EmployeeForm();
+        HHRRInfoReadForm hhrrInfoReadForm = new HHRRInfoReadForm();
+
+        employeeForm.selectTab("hhrr");
+        for (HHRRInfoEmployee item : expectedHHRREmployeeData) {
+            HHRRInfoEmployee aux = hhrrInfoReadForm.getDataFromUI(item);
+            if(hhrrInfoReadForm.fieldsWereRead.isEmpty()) {result = true;}
+        }
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify no one of these fields are read in engineering information$")
+    public void I_verify_no_one_of_these_fields_are_read_in_engineering_information(List<EngInfoEmployee> expectedEngEmployeeData) throws Throwable {
+        Boolean result= false;
+
+        EmployeeForm employeeForm = new EmployeeForm();
+        EngInfoReadForm engInfoReadForm = new EngInfoReadForm();
+
+        employeeForm.selectTab("engineering");
+        for (EngInfoEmployee item : expectedEngEmployeeData) {
+            EngInfoEmployee aux = engInfoReadForm.getDataFromUI(item);
+            if(engInfoReadForm.fieldsWereRead.isEmpty()) {result = true;}
+        }
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify if he is not able to go to \"([^\"]*)\" employee tab$")
+    public void I_verify_if_he_is_not_able_to_go_to_employee_tab(String tab) throws Throwable {
+        boolean gone;
+        EmployeeForm employeeForm = new EmployeeForm();
+        try {
+            employeeForm.selectTab(tab);
+            gone = true;
+        } catch (ElementNotVisibleException enve) {
+            gone = false;
+        }
+        Assert.assertFalse(gone);
     }
 }

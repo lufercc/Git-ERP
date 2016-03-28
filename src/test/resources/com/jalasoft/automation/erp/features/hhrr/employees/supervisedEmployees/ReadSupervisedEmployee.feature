@@ -68,7 +68,7 @@ Feature: Read supervised employees
       | reports |
 
   @ReadEmployeeInformation @CRUD @all
-  Scenario Outline: Verify that employee fields are read with receptionist role. Note: R2 access, External and Internal careers are not loaded
+  Scenario Outline: Verify that employee fields are read with receptionist role.
     Given I navigate to login page
     When I login with "<role>" credentials
     And I go to "employees" hhrr submenu
@@ -127,7 +127,7 @@ Feature: Read supervised employees
       | receptionist   |
 
   @ReadEmployeeInformation @CRUD @all
-  Scenario Outline: Verify that employee fields are read with X role
+  Scenario Outline: Verify that employee fields are read with common officer and hd officer role
     Given I navigate to login page
     When I login with "<role>" credentials
     And I go to "employees" hhrr submenu
@@ -151,7 +151,7 @@ Feature: Read supervised employees
 
     And I verify if he has this simple data in engineering information
       | department | division | jobTitle | manager         | lead         | visible | billable | shadowCategory | notes | commitment | expDateCommit | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
-      | IT         | Support  | Security | auto manager hr | auto lead hr | false   | false    |                |       | true       | 02/03/2016    |true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
+      | IT         | Support  | Security | auto manager hr | auto lead hr | false   | false    |                |       | true       | 02/03/2016    |true    | true       | false | ders   | 02/03/2016   | 02/03/2017   |
 
     And I verify if he has this nationality data
       | name    | code |
@@ -179,8 +179,8 @@ Feature: Read supervised employees
       | TPA  |
 
     And I verify if he has this internal career data
-      | department | division | jobTitle | projectCode | weight | startDate  | endDate    | employer  |
-      | IT         | Support  | Security | TPA         | 6      | 02/10/2016 | 02/20/2018 | Other     |
+      | department | division | jobTitle | startDate  | endDate    | employer |
+      | IT         | Support  | Security | 02/10/2016 | 02/20/2018 | Other    |
 
     And I verify if he has this holiday policies data
       | name               |

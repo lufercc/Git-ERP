@@ -42,28 +42,49 @@ public class NationalityInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean hasSameContent(List<Nationality> expectedData) {
+    public boolean hasSameContent(boolean shouldBeAble, List<Nationality> expectedData) {
         List<HashMap<String,String>> dataFromTable = this.getData();
-        Nationality currentNationality;
         HashMap<String,String> currentRow;
-        if(expectedData.size()!= dataFromTable.size()) {
+        int tableSize;
+
+        if((expectedData.size()!= dataFromTable.size()) && shouldBeAble) {
             return false;
         }
-        while(dataFromTable.size() > 0) {
-            int tableSize = dataFromTable.size();
-            for(int indexNationalityList = 0; indexNationalityList < expectedData.size(); indexNationalityList++) {
-                currentNationality = expectedData.get(indexNationalityList);
-                for(int indexList = 0; indexList < tableSize; indexList++) {
-                    currentRow = dataFromTable.get(indexList);
-                    if (currentNationality.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
-                        currentNationality.code.equals(currentRow.get(expectedHeaders.get("code")))) {
-                            dataFromTable.remove(currentRow);
-                            break;
+
+        if (dataFromTable.isEmpty() && !shouldBeAble) {
+            return true;
+        }
+        for(Nationality currentNationality : expectedData) {
+            tableSize =  dataFromTable.size();
+            for(int indexList = 0; indexList < tableSize; indexList++) {
+                currentRow = dataFromTable.get(indexList);
+                if (shouldBeAble) {
+                    if (inputDataIsInRow(currentNationality,currentRow)) {
+                        dataFromTable.remove(currentRow);
+                        break;
                     }
-                    if(indexList == (tableSize - 1)) {
+                    if (indexList == (tableSize - 1)) {
+                        return false;
+                    }
+                } else {
+                    if (inputDataIsInRow(currentNationality,currentRow)) {
                         return false;
                     }
                 }
+            }
+        }
+        return true;
+    }
+
+    public boolean inputDataIsInRow(Nationality inputRecord, HashMap<String,String> tableRow) {
+        if(inputRecord.name != null) {
+            if (!inputRecord.name.equals(tableRow.get(expectedHeaders.get("name")))) {
+                return false;
+            }
+        }
+        if(inputRecord.code != null) {
+            if (!inputRecord.code.equals(tableRow.get(expectedHeaders.get("code")))){
+                return false;
             }
         }
         return true;

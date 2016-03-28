@@ -27,13 +27,20 @@ public abstract class FormEditMode extends PortalUIElement {
     }
 
     public void selectItem(WebElement element, String field, String value) {
-        try {
+        if(this.webDriverTools.isElementDisplayed(element)) {
             this.webDriverTools.selectOptionOfDropListElement(element, value);
             fieldsWereEdited.add(field);
-        }catch (NoSuchElementException nsee) {
+        } else {
             fieldsWereNotEdited.add(field);
             allFieldsWereEdited = false;
         }
+//        try {
+//            this.webDriverTools.selectOptionOfDropListElement(element, value);
+//            fieldsWereEdited.add(field);
+//        }catch (NoSuchElementException nsee) {
+//            fieldsWereNotEdited.add(field);
+//            allFieldsWereEdited = false;
+//        }
     }
 
     public void setInput(WebElement element, String field, String value) {

@@ -15,7 +15,7 @@ public class TagInfoReadForm extends TagFieldOpenERP {
 
     public TagInfoReadForm() {
         super.field = this.field;
-        this.waitForLoading();
+
     }
 
     @Override

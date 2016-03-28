@@ -1,6 +1,8 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
+import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -60,9 +62,12 @@ public class EmployeeForm extends PortalUIElement {
             break;
 
         case "history":
-            empHistoryInfoTab.click();
-            break;
-
+            if (this.webDriverTools.isElementDisplayed(empHistoryInfoTab)) {
+                empHistoryInfoTab.click();
+                break;
+            } else {
+                throw new ElementNotVisibleException("The tab " + tab.toLowerCase() + " is not visible");
+            }
         default:
             throw new IllegalArgumentException("Case value '" + tab + "' for tabs is not defined yet. Add it!!!");
         }

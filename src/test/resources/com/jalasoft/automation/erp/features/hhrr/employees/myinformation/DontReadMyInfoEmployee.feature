@@ -1,5 +1,5 @@
 @Employee
-Feature: Do not read supervised employees
+Feature: Do not read my information
 
   @DontReadMyInformation @all @CRUD
   Scenario Outline: Verify that hhrr fields are not read with these roles
@@ -23,7 +23,7 @@ Feature: Do not read supervised employees
       | receptionist    | auto receptionist hr |
       | personnel admin | auto personnel hr    |
 
-  @DontReadMyInformation @all @CRUD
+  @DontReadMyInformation @all @CRUD @thos
   Scenario Outline: Verify that hhrr fields are not read with these roles
     Given I navigate to login page
     When I login with "<role>" credentials

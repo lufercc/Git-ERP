@@ -106,8 +106,8 @@ Feature: Edit and Read My own Information
 
 
     And I verify if he has this simple data in engineering information
-      | department | division | jobTitle | manager         | lead         | commitment | expDateCommit | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
-      | IT         | Support  | Security | auto manager hr | auto lead hr | true       | 02/03/2016    | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
+      | department | division | jobTitle | manager           | lead            | commitment | expDateCommit | active | consultant | jce   | reason | lastEvalDate | nextEvalDate |
+      | IT         | Support  | Security | auto srmanager hr | auto manager hr | true       | 02/03/2016    | true   | true       | false | ders   | 02/03/2016   | 02/03/2017   |
     And I verify if he has this other supervisors data
       | name          |
       | auto admin hr |
@@ -117,10 +117,9 @@ Feature: Edit and Read My own Information
       | role       | user    | number    |
       | admin      | Henry51 | admin     |
       | staffing   | Henry52 | staffing  |
-      | sr manager | Henry52 | srmanager |
+      | sr manager | Henry53 | srmanager |
 
-
-  @ReadEmployeeMyInformation @MyInformation @all @CRUD @VS
+  @ReadEmployeeMyInformation @MyInformation @all @CRUD
   Scenario Outline: Verify that I can read my own employee information
   Given I navigate to login page
   When I login with "<role>" credentials
@@ -183,7 +182,12 @@ Feature: Edit and Read My own Information
   Examples:
     | role            | employee name        | user    |
     | employee        | auto employee hr     | Henry56 |
-
+    | officer         | auto officer hr      | Henry57 |
+    | common officer  | auto comofficer hr   | Henry58 |
+    | hd officer      | auto hdofficer hr    | Henry59 |
+    | reports         | auto reports hr      | Henry60 |
+    | receptionist    | auto receptionist hr | Henry61 |
+    | personnel admin | auto personnel hr    | Henry62 |
 
   @ReadEmployeeMyInformation @MyInformation @all @CRUD
   Scenario Outline: Verify that I can read my own employee information with manager and lead

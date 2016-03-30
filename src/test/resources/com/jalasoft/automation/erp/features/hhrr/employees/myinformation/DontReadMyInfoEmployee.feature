@@ -1,7 +1,7 @@
 @Employee
 Feature: Do not read my information
 
-  @DontReadMyInformation @all @CRUD
+  @DontReadMyInformation @MyInformation @all @CRUD
   Scenario Outline: Verify that hhrr fields are not read with these roles
     Given I navigate to login page
     When I login with "<role>" credentials
@@ -23,7 +23,7 @@ Feature: Do not read my information
       | receptionist    | auto receptionist hr |
       | personnel admin | auto personnel hr    |
 
-  @DontReadMyInformation @all @CRUD @thos
+  @DontReadMyInformation @MyInformation @all @CRUD
   Scenario Outline: Verify that hhrr fields are not read with these roles
     Given I navigate to login page
     When I login with "<role>" credentials
@@ -45,7 +45,7 @@ Feature: Do not read my information
       | receptionist    | auto receptionist hr |
       | personnel admin | auto personnel hr    |
 
-  @DontReadMyInformation @all @CRUD
+  @DontReadMyInformation @MyInformation @all @CRUD
   Scenario Outline: Verify that hhrr fields are not read with these roles
     Given I navigate to login page
     When I login with "<role>" credentials

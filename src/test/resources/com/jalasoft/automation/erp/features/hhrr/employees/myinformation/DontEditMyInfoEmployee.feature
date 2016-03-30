@@ -1,6 +1,6 @@
 @Employee
 Feature: Do not edit My own Information
-  @NoEditEmployeeMyInformation @all @CRUD
+  @NoEditEmployeeMyInformation @MyInformation @all @CRUD
   Scenario Outline: Verify that I can not edit my own employee information when I belong to Read Information group
   Given I navigate to login page
     When I login with "<role>" credentials

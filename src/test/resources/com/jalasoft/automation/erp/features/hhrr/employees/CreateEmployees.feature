@@ -124,7 +124,7 @@ Feature: Employee
       | manager   | Henry54 |
       | lead      | Henry55 |
 
-  @Create @all @CreatePart2
+  @Create @all @CreatePart2 @este
   Scenario Outline: Verify that employee fields are edited with admin role
     Given I navigate to login page
     When I login with "admin" credentials
@@ -187,13 +187,13 @@ Feature: Employee
 
     Examples:
       | role         | user    |
-      | receptionist | Henry61 |
+      | staffing     | Henry52 |
       | employee     | Henry56 |
       | officer      | Henry57 |
-      | staffing     | Henry52 |
       | comofficer   | Henry58 |
       | hdofficer    | Henry59 |
       | reports      | Henry60 |
+      | receptionist | Henry61 |
       | personnel    | Henry62 |
 
 

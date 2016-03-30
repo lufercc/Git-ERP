@@ -192,7 +192,7 @@ Feature: Employee
     And I search employee "JSss eww rrrr" into employee list view
     And I press "delete" general button
 
-  @MyInformation @all
+  @BrowseToMyInformation @all
   Scenario: Verify that employee fields are read with admin role
     Given I navigate to login page
     When I login with "employee" credentials

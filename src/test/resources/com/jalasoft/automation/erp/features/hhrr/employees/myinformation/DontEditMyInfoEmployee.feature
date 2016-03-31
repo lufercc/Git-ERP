@@ -5,7 +5,6 @@ Feature: Do not edit My own Information
   Given I navigate to login page
     When I login with "<role>" credentials
     And I go to "my information" hhrr submenu
-    And I select "list" view
     And I search employee "<employee name>" into employee list view
   Then I am not able to press "edit" general button
 

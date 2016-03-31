@@ -30,7 +30,7 @@ public class PersonalInfoReadForm extends FormReadMode {
     @FindBy(xpath = "//label[contains(text(),'Passport No')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement passportNumber;
 
-    @FindBy(xpath = "//label[contains(text(),'Passport Issued')]/ancestor::td/following-sibling::td/span/a")
+    @FindBy(xpath = "//label[contains(text(),'Passport Issued')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement passportPlace;
 
     @FindBy(xpath = "//label[contains(text(),'Passport Expiration Date')]/ancestor::td/following-sibling::td/span")
@@ -58,7 +58,7 @@ public class PersonalInfoReadForm extends FormReadMode {
     @FindBy(xpath = "//label[contains(text(),'Age')]/ancestor::td/following-sibling::td/div/div")
     protected WebElement age;
 
-    @FindBy(xpath = "//label[contains(text(),'Country of Birth')]/ancestor::td/following-sibling::td/span/a")
+    @FindBy(xpath = "//label[contains(text(),'Country of Birth')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement country;
 
     @FindBy(xpath = "//label[contains(text(),'City of Birth')]/ancestor::td/following-sibling::td/span/span")

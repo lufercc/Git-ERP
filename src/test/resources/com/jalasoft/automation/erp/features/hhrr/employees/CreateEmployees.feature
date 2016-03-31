@@ -101,7 +101,7 @@ Feature: Employee
       | Dark | Potato   | Son      | Male   | 02/12/1986 |
 
     And I add this external career data to employee form
-      | jobTitle | startDate  | endDate    | employer |
+      | jobTitle | startDate  | endDate    | employer  |
       | xde      | 02/03/2016 | 02/04/2016 | asd       |
 
     And I add this internal career data to employee form

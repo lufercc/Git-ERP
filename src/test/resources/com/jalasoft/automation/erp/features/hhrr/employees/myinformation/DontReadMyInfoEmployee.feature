@@ -6,7 +6,6 @@ Feature: Do not read my information
     Given I navigate to login page
     When I login with "<role>" credentials
     And I go to "my information" hhrr submenu
-    And I select "list" view
     And I search employee "<employee name>" into employee list view
     And I verify no one of these fields are read in hhrr information
     | endHireDate |
@@ -28,7 +27,6 @@ Feature: Do not read my information
     Given I navigate to login page
     When I login with "<role>" credentials
     And I go to "my information" hhrr submenu
-    And I select "list" view
     And I search employee "<employee name>" into employee list view
     And I verify no one of these fields are read in engineering information
       | visible | billable | shadowCategory | notes |
@@ -50,7 +48,6 @@ Feature: Do not read my information
     Given I navigate to login page
     When I login with "<role>" credentials
     And I go to "my information" hhrr submenu
-    And I select "list" view
     And I search employee "<employee name>" into employee list view
     And I verify if he has not this simple data in engineering information
       | visible | billable | shadowCategory | notes |

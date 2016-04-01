@@ -47,6 +47,7 @@ public class Search extends PortalUIElement{
     }
 
     public void advancedSearch(String attribute, String value) {
+
         clearFilter.click();
         searchUnfold.click();
         if (!advancedSearchContainer.getAttribute("class").contains("oe_opened")) {

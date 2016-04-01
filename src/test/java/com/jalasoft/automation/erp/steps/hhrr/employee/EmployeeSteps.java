@@ -32,11 +32,15 @@ public class EmployeeSteps {
 
     @And("^I search employee \"([^\"]*)\" into employee list view$")
     public void I_search_employee_into_employee_list_view(String employeeName) throws Throwable {
-        Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Name",employeeName);
-        EmployeeListView assetsAssignationListView = new EmployeeListView();
-        assetsAssignationListView.clickOnRecord(employeeName);
 
+        Search openERPSearch = new Search();
+        EmployeeListView employeeListView = new EmployeeListView();
+        try {
+            employeeListView.clickOnRecord(employeeName);
+        } catch(NoSuchElementException nsse) {
+            openERPSearch.advancedSearch("Name",employeeName);
+            employeeListView.clickOnRecord(employeeName);
+        }
     }
 
     @And("^I verify if he has( not|)? this data in basic information$")

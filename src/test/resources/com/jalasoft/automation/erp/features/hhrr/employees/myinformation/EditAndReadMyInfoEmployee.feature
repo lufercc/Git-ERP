@@ -123,7 +123,6 @@ Feature: Edit and Read My own Information
   Given I navigate to login page
   When I login with "<role>" credentials
   And I go to "my information" hhrr submenu
-  And I select "list" view
   And I search employee "<employee name>" into employee list view
   And I verify if he has this data in basic information
   | fullName        |
@@ -193,7 +192,6 @@ Feature: Edit and Read My own Information
     Given I navigate to login page
     When I login with "<role>" credentials
     And I go to "my information" hhrr submenu
-    And I select "list" view
     And I search employee "<employee name>" into employee list view
     And I verify if he has this data in basic information
       | fullName        |

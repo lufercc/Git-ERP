@@ -3,6 +3,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.general;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 /**
@@ -13,6 +14,7 @@ public class GeneralButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_view_manager_buttons']")
     protected WebElement buttonsContainer;
 
+    @CacheLookup
     @FindBy(xpath = "//div[@class='oe_view_manager_buttons']//div[not(contains(@style,'display: none;'))]//button[contains(.,'Create')]")
     protected WebElement createButton;
 
@@ -46,6 +48,7 @@ public class GeneralButtonsBar extends PortalUIElement {
         this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
         switch (buttonString.toLowerCase()) {
         case "create":
+            this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
             createButton.click();
             break;
 

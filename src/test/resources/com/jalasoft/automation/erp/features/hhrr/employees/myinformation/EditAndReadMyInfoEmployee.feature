@@ -15,7 +15,6 @@ Feature: Edit and Read My own Information
     And I logout
     When I login with "<role>" credentials
     And I go to "my information" hhrr submenu
-    And I select "list" view
     And I search employee "autoedit myinfo<number>" into employee list view
     And I press "edit" general button
     When I modify the employee with basic data

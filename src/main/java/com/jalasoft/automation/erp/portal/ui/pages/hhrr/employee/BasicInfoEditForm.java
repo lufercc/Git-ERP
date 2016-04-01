@@ -63,6 +63,7 @@ public class BasicInfoEditForm extends FormEditMode {
         }
 
         if (inputData.firstNameCheck != null) {
+            webDriverTools.waitUntilInvisibilityOpenERPProgress();
             setCheckbox(this.firstNameCheck, "firstNameCheck", inputData.firstNameCheck);
         }
 
@@ -71,6 +72,7 @@ public class BasicInfoEditForm extends FormEditMode {
         }
 
         if (inputData.middleNameCheck != null) {
+            webDriverTools.waitUntilInvisibilityOpenERPProgress();
             setCheckbox(this.middleNameCheck, "middleNameCheck", inputData.middleNameCheck);
         }
 

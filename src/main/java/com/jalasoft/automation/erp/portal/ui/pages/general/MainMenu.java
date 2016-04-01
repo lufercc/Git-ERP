@@ -2,6 +2,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.general;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 /**
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class MainMenu extends PortalUIElement {
 
+    @CacheLookup
     @FindBy(xpath = "//ul[@class='oe_menu']")
     protected WebElement menuContainer;
 
@@ -33,15 +35,17 @@ public class MainMenu extends PortalUIElement {
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Almacén')]")
     protected WebElement warehouseMenu;
 
-    //@FindBy(linkText = "Cerrar sesión")
     @FindBy(xpath = "//a[contains(@data-menu,'logout')]")
     protected WebElement logout;
 
     @FindBy(xpath = "//span[contains(@class,'oe_topbar_avatar')]")
     protected WebElement profileContainer;
 
+    @CacheLookup
     @FindBy(xpath = "//span[contains(@class,'oe_user_menu')]")
     protected WebElement userMenu;
+
+    public MainMenu() {}
 
     /**
      * This method is to go to some option in main menu
@@ -74,10 +78,6 @@ public class MainMenu extends PortalUIElement {
             throw new IllegalArgumentException("Case value '" + menu + "' for main menu is not defined yet. Add it!!!");
         }
         this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
-    }
-
-    public MainMenu() {
-        this.waitForLoading();
     }
 
     @Override

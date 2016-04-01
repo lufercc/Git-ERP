@@ -3,8 +3,8 @@ package com.jalasoft.automation.erp.steps.hhrr;
 import com.jalasoft.automation.erp.portal.ui.pages.general.MainMenu;
 import com.jalasoft.automation.erp.portal.ui.pages.hhrr.Submenu;
 import cucumber.api.java.en.And;
-import junit.framework.Assert;
 import org.openqa.selenium.NoSuchElementException;
+import org.testng.Assert;
 
 /**
  * Created by Henry Benito on 10/29/2015.

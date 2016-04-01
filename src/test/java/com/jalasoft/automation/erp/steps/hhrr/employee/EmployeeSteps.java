@@ -36,7 +36,7 @@ public class EmployeeSteps {
         Search openERPSearch = new Search();
         EmployeeListView employeeListView = new EmployeeListView();
         try {
-            employeeListView.clickOnRecord(employeeName);
+                employeeListView.clickOnRecord(employeeName);
         } catch(NoSuchElementException nsse) {
             openERPSearch.advancedSearch("Name",employeeName);
             employeeListView.clickOnRecord(employeeName);

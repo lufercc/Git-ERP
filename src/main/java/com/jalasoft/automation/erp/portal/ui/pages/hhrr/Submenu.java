@@ -2,13 +2,14 @@ package com.jalasoft.automation.erp.portal.ui.pages.hhrr;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by Henry Benito on 10/16/2015.
  */
 public class Submenu extends PortalUIElement{
-
+    @CacheLookup
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']")
     protected WebElement submenuContainer;
 
@@ -22,7 +23,6 @@ public class Submenu extends PortalUIElement{
 
 
     public Submenu() {
-        this.waitForLoading();
     }
 
     @Override

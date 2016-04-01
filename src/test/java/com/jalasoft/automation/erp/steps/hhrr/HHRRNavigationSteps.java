@@ -16,13 +16,13 @@ public class HHRRNavigationSteps {
         boolean itIsDone;
         boolean shouldGo = false;
         MainMenu mainMenu = new MainMenu();
-        Submenu accountingSubmenu = new Submenu();
+        Submenu hhrrSubmenu = new Submenu();
         mainMenu.goToMenu("hhrr");
         if (hasOrNot.isEmpty()) {
             shouldGo = true;
         }
         try {
-            accountingSubmenu.goToSubmenu(submenu, shouldGo);
+            hhrrSubmenu.goToSubmenu(submenu, shouldGo);
             itIsDone = true;
         } catch(NoSuchElementException nsee) {
             itIsDone = false;

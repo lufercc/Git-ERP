@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by Henry Benito on 10/20/2015.
  */
 public class GeneralButtonsBar extends PortalUIElement {
-
+    @CacheLookup
     @FindBy(xpath = "//div[@class='oe_view_manager_buttons']")
     protected WebElement buttonsContainer;
 
@@ -32,7 +32,7 @@ public class GeneralButtonsBar extends PortalUIElement {
     protected WebElement deleteButton;
 
     public GeneralButtonsBar() {
-        this.waitForLoading();
+        waitForLoading();
     }
 
     @Override
@@ -85,6 +85,6 @@ public class GeneralButtonsBar extends PortalUIElement {
             this.webDriverTools.clickOnConfirmationAlertOption("Yes");
             break;
         }
-        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

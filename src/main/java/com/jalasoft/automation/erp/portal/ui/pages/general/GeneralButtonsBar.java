@@ -21,6 +21,7 @@ public class GeneralButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_view_manager_buttons']//div[not(contains(@style,'display: none;'))]//button[contains(.,'Save')]")
     protected WebElement saveButton;
 
+    @CacheLookup
     @FindBy(xpath = "//div[@class='oe_view_manager_buttons']//div[not(contains(@style,'display: none;'))]//button[contains(.,'Edit')]")
     protected WebElement editButton;
 

@@ -55,6 +55,7 @@ public class MainMenu extends PortalUIElement {
         webDriverTools.waitUntilInvisibilityOpenERPProgress();
         switch (menu.toLowerCase()) {
         case "hhrr":
+            webDriverTools.waitUntilElementPresentAndVisible(hhrrMenu);
             hhrrMenu.click();
             break;
 

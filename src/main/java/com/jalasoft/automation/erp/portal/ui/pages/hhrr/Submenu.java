@@ -39,10 +39,12 @@ public class Submenu extends PortalUIElement{
         if(!submenu.equals(defaultSubmenu) || !shouldGo) {
             switch (submenu.toLowerCase()) {
             case "employees":
+                webDriverTools.waitUntilElementPresentAndVisible(employees);
                 employees.click();
                 break;
 
             case "my information":
+                webDriverTools.waitUntilElementPresentAndVisible(myInformation);
                 myInformation.click();
                 break;
 

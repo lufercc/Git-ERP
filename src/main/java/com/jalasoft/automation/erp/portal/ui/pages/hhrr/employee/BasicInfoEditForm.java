@@ -59,37 +59,38 @@ public class BasicInfoEditForm extends FormEditMode {
         fieldsWereNotEdited = new ArrayList<>();
         allFieldsWereEdited = true;
         if (inputData.firstName != null) {
-            setInput(this.firstName, "firstName", inputData.firstName);
+            setInput(firstName, "firstName", inputData.firstName);
         }
 
         if (inputData.firstNameCheck != null) {
             webDriverTools.waitUntilInvisibilityOpenERPProgress();
-            setCheckbox(this.firstNameCheck, "firstNameCheck", inputData.firstNameCheck);
+            webDriverTools.waitUntilElementPresentAndVisible(firstNameCheck);
+            setCheckbox(firstNameCheck, "firstNameCheck", inputData.firstNameCheck);
         }
 
         if (inputData.middleName != null) {
-            setInput(this.middleName, "middleName", inputData.middleName);
+            setInput(middleName, "middleName", inputData.middleName);
         }
 
         if (inputData.middleNameCheck != null) {
             webDriverTools.waitUntilInvisibilityOpenERPProgress();
-            setCheckbox(this.middleNameCheck, "middleNameCheck", inputData.middleNameCheck);
+            setCheckbox(middleNameCheck, "middleNameCheck", inputData.middleNameCheck);
         }
 
         if (inputData.lastName != null) {
-            setInput(this.lastName, "lastName", inputData.lastName);
+            setInput(lastName, "lastName", inputData.lastName);
         }
 
         if (inputData.secondLastName != null) {
-            setInput(this.secondLastName, "secondLastName", inputData.secondLastName);
+            setInput(secondLastName, "secondLastName", inputData.secondLastName);
         }
 
         if (inputData.marriedName != null) {
-            setInput(this.marriedName, "marriedName", inputData.marriedName);
+            setInput(marriedName, "marriedName", inputData.marriedName);
         }
 
         if (inputData.preferredName != null) {
-            setInput(this.preferredName, "preferredName", inputData.preferredName);
+            setInput(preferredName, "preferredName", inputData.preferredName);
         }
 
         logEditStatus();

@@ -36,19 +36,20 @@ public class GeneralButtonsBar extends PortalUIElement {
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.buttonsContainer);
+        return webDriverTools.isElementDisplayed(buttonsContainer);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.buttonsContainer);
+        webDriverTools.waitUntilElementPresentAndVisible(buttonsContainer);
     }
 
     public void clickButton(String buttonString) {
-        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
         switch (buttonString.toLowerCase()) {
         case "create":
-            this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+            webDriverTools.waitUntilInvisibilityOpenERPProgress();
+            webDriverTools.waitUntilElementPresentAndVisible(createButton);
             createButton.click();
             break;
 

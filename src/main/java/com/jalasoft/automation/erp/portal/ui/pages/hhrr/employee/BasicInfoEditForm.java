@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Henry Benito on 10/20/2015.
@@ -64,7 +65,7 @@ public class BasicInfoEditForm extends FormEditMode {
 
         if (inputData.firstNameCheck != null) {
             webDriverTools.waitUntilInvisibilityOpenERPProgress();
-            webDriverTools.waitUntilElementPresentAndVisible(firstNameCheck);
+            webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             setCheckbox(firstNameCheck, "firstNameCheck", inputData.firstNameCheck);
         }
 

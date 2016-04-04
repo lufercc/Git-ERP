@@ -65,7 +65,7 @@ public class BasicInfoEditForm extends FormEditMode {
 
         if (inputData.firstNameCheck != null) {
             webDriverTools.waitUntilInvisibilityOpenERPProgress();
-            webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
             setCheckbox(firstNameCheck, "firstNameCheck", inputData.firstNameCheck);
         }
 

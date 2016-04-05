@@ -379,7 +379,7 @@ Feature: Do not edit supervised employees
       | three  | common officer |
       | four   | hd officer     |
 
-  @NoEditEmployeeInformation @all @CRUD
+  @NoEditEmployeeInformation @all @CRUD @Last
   Scenario: Verify that supervised employee fields are not edited with employee role
     Given I navigate to login page
     When I login with "employee" credentials

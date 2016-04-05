@@ -52,6 +52,6 @@ public class Submenu extends PortalUIElement{
                 throw new IllegalArgumentException("Case value '" + submenu + "' for hhrr submenu is not defined yet!!!");
             }
         }
-        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

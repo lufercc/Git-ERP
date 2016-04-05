@@ -34,7 +34,6 @@ public class GeneralButtonsBar extends PortalUIElement {
     protected WebElement deleteButton;
 
     public GeneralButtonsBar() {
-        waitForLoading();
     }
 
     @Override

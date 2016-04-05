@@ -41,6 +41,7 @@ public class EmployeeSteps {
             openERPSearch.advancedSearch("Name",employeeName);
             employeeListView.clickOnRecord(employeeName);
         }
+        Thread.sleep(3000);
     }
 
     @And("^I verify if he has( not|)? this data in basic information$")

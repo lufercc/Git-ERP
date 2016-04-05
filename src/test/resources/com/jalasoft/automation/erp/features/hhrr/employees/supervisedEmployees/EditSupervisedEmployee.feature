@@ -7,11 +7,6 @@ Feature: Edit supervised employees
     When I create an employee with required fields
       | firstName | lastName     | idNumber | manager         | lead         |
       | auto      | edit<number> | 6454215  | auto manager hr | auto lead hr |
-      And I logout
-      And I login with "<role>" credentials
-      And I go to "employees" hhrr submenu
-      And I select "list" view
-      And I search employee "auto edit<number>" into employee list view
       And I press "edit" general button
     When I modify the employee with basic data
       | firstName | firstNameCheck | middleName | middleNameCheck | lastName     | secondLastName | marriedName |

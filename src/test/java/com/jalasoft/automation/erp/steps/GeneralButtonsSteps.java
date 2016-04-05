@@ -4,9 +4,8 @@ import com.jalasoft.automation.erp.portal.ui.pages.general.GeneralButtonsBar;
 import com.jalasoft.automation.erp.portal.ui.pages.general.GeneralPopupForm;
 import com.jalasoft.automation.erp.portal.ui.pages.general.ViewButtonsBar;
 import cucumber.api.java.en.And;
-import junit.framework.Assert;
+import org.testng.Assert;
 
-import java.util.NoSuchElementException;
 
 /**
  * Created by Henry Benito on 10/20/2015.

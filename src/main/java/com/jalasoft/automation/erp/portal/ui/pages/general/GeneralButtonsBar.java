@@ -67,13 +67,12 @@ public class GeneralButtonsBar extends PortalUIElement {
                 }
 
             } catch (Exception e) {
-//                System.out.println("No error message is displayed" + e.getCause());
+                System.out.println("No error saving message is displayed");
             }
             break;
 
         case "edit":
             webDriverTools.waitUntilInvisibilityOpenERPProgress();
-            webDriver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
             webDriverTools.waitUntilElementPresentAndVisible(editButton);
             editButton.click();
             break;
@@ -85,7 +84,7 @@ public class GeneralButtonsBar extends PortalUIElement {
         case "delete":
             moreButton.click();
             deleteButton.click();
-            this.webDriverTools.clickOnConfirmationAlertOption("Yes");
+            webDriverTools.clickOnConfirmationAlertOption("Yes");
             break;
         }
         webDriverTools.waitUntilInvisibilityOpenERPProgress();

@@ -1,6 +1,6 @@
 @Employee
 Feature: Edit supervised employees
-  @EditEmployeeInformation @CRUD @all
+  @EditEmployeeInformation @CRUD @all  @ThoseSE
   Scenario Outline: Verify that employee fields are edited with admin role
     Given I navigate to login page
       And I login with "admin" credentials
@@ -137,7 +137,7 @@ Feature: Edit supervised employees
       | number  | role  |
       | one     | admin |
 
-  @EditEmployeeInformation @CRUD @all
+  @EditEmployeeInformation @CRUD @all @ThoseSE
   Scenario Outline: Verify that employee fields are edited with staffing role
     Given I navigate to login page
     And I login with "admin" credentials
@@ -274,7 +274,7 @@ Feature: Edit supervised employees
       | number  | role     |
       | eight   | staffing |
 
-  @EditEmployeeInformation @CRUD @all
+  @EditEmployeeInformation @CRUD @all @ThoseSE
   Scenario Outline: Verify that employee fields are edited with srmanager role
     Given I navigate to login page
     And I login with "admin" credentials

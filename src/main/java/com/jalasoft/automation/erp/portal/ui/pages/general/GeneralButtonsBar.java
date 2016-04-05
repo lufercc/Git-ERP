@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
@@ -71,6 +73,7 @@ public class GeneralButtonsBar extends PortalUIElement {
 
         case "edit":
             webDriverTools.waitUntilInvisibilityOpenERPProgress();
+            webDriver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
             webDriverTools.waitUntilElementPresentAndVisible(editButton);
             editButton.click();
             break;

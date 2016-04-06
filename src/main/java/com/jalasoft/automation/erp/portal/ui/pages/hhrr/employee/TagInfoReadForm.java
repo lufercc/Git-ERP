@@ -9,13 +9,13 @@ import org.openqa.selenium.support.FindBy;
  */
 public class TagInfoReadForm extends TagFieldOpenERP {
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_form_field oe_tags')])[1]")
+    @FindBy(xpath = "//label[contains(text(),'Tags')]/following-sibling::div[contains(@class,'oe_form_field oe_tags')]")
     protected WebElement field;
 
 
     public TagInfoReadForm() {
         super.field = this.field;
-        this.waitForLoading();
+
     }
 
     @Override

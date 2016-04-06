@@ -3,6 +3,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.NDA;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
@@ -13,15 +14,17 @@ import java.util.List;
  */
 public class NDAInfoReadForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[3]")
+    @CacheLookup
+    @FindBy(xpath = "//div[contains(text(),'NDA Info')]/following-sibling::table//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
     public NDAInfoReadForm() {
         super.table = this.table;
         expectedSpanishHeaders.put("ndaVersion","Versión NDA");
         expectedSpanishHeaders.put("signDate","Fecha de firma");
-        expectedHeaders = expectedSpanishHeaders;
-        this.waitForLoading();
+        expectedEnglishHeaders.put("ndaVersion","NDA Version");
+        expectedEnglishHeaders.put("signDate","Date of Signature");
+        expectedHeaders = expectedEnglishHeaders;
     }
 
     @Override
@@ -34,28 +37,49 @@ public class NDAInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean hasSameContent(List<NDA> expectedNDAData) {
+    public boolean hasSameContent(boolean shouldBeAble, List<NDA> expectedData) {
         List<HashMap<String,String>> dataFromTable = this.getData();
-        NDA currentNDA;
         HashMap<String,String> currentRow;
-        if(expectedNDAData.size()!= dataFromTable.size()) {
+        int tableSize;
+
+        if((expectedData.size()!= dataFromTable.size()) && shouldBeAble) {
             return false;
         }
-        while(dataFromTable.size() > 0) {
-            int tableSize = dataFromTable.size();
-            for(int indexNDAList = 0; indexNDAList < expectedNDAData.size(); indexNDAList++) {
-                currentNDA = expectedNDAData.get(indexNDAList);
-                for(int indexList = 0; indexList < tableSize; indexList++) {
-                    currentRow = dataFromTable.get(indexList);
-                    if (currentNDA.ndaVersion.equals(currentRow.get(expectedHeaders.get("ndaVersion"))) &&
-                        currentNDA.signDate.equals(currentRow.get(expectedHeaders.get("signDate")))) {
-                            dataFromTable.remove(currentRow);
-                            break;
+
+        if (dataFromTable.isEmpty() && !shouldBeAble) {
+            return true;
+        }
+        for(NDA currentNDA : expectedData) {
+            tableSize =  dataFromTable.size();
+            for(int indexList = 0; indexList < tableSize; indexList++) {
+                currentRow = dataFromTable.get(indexList);
+                if (shouldBeAble) {
+                    if (inputDataIsInRow(currentNDA,currentRow)) {
+                        dataFromTable.remove(currentRow);
+                        break;
                     }
-                    if(indexList == (tableSize - 1)) {
+                    if (indexList == (tableSize - 1)) {
+                        return false;
+                    }
+                } else {
+                    if (inputDataIsInRow(currentNDA,currentRow)) {
                         return false;
                     }
                 }
+            }
+        }
+        return true;
+    }
+
+    public boolean inputDataIsInRow(NDA inputRecord, HashMap<String,String> tableRow) {
+        if(inputRecord.ndaVersion != null) {
+            if (!inputRecord.ndaVersion.equals(tableRow.get(expectedHeaders.get("ndaVersion")))) {
+                return false;
+            }
+        }
+        if(inputRecord.signDate != null) {
+            if (!inputRecord.signDate.equals(tableRow.get(expectedHeaders.get("signDate")))){
+                return false;
             }
         }
         return true;

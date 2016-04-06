@@ -2,6 +2,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.general;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 /**
@@ -9,13 +10,14 @@ import org.openqa.selenium.support.FindBy;
  */
 public class MainMenu extends PortalUIElement {
 
+    @CacheLookup
     @FindBy(xpath = "//ul[@class='oe_menu']")
     protected WebElement menuContainer;
 
-    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Mensajería')]")
+    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Messaging')]")
     protected WebElement messagesMenu;
 
-    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Recursos humanos')]")
+    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Human Resources')]")
     protected WebElement hhrrMenu;
 
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Evaluación de activos')]")
@@ -33,21 +35,27 @@ public class MainMenu extends PortalUIElement {
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Almacén')]")
     protected WebElement warehouseMenu;
 
-    //@FindBy(linkText = "Cerrar sesión")
     @FindBy(xpath = "//a[contains(@data-menu,'logout')]")
     protected WebElement logout;
 
-    @FindBy(xpath = "//span[contains(@class,'oe_topbar_name')]")
+    @FindBy(xpath = "//span[contains(@class,'oe_topbar_avatar')]")
     protected WebElement profileContainer;
 
+    @CacheLookup
+    @FindBy(xpath = "//span[contains(@class,'oe_user_menu')]")
+    protected WebElement userMenu;
+
+    public MainMenu() {}
 
     /**
      * This method is to go to some option in main menu
      * @param menu Menu name as string
      **/
     public void goToMenu(String menu) {
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
         switch (menu.toLowerCase()) {
         case "hhrr":
+            webDriverTools.waitUntilElementPresentAndVisible(hhrrMenu);
             hhrrMenu.click();
             break;
 
@@ -73,11 +81,6 @@ public class MainMenu extends PortalUIElement {
         this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 
-    public MainMenu() {
-        this.waitForLoading();
-        this.menuContainer.click();
-    }
-
     @Override
     public boolean isLoaded() {
         return super.webDriverTools.isElementDisplayed(this.menuContainer);
@@ -90,8 +93,13 @@ public class MainMenu extends PortalUIElement {
 
     public void logout() {
         this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
-        this.webDriverTools.waitUntilElementPresentAndVisible(profileContainer);
-        profileContainer.click();
+        userMenu.click();
         logout.click();
+        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        try{
+            this.webDriverTools.clickOnConfirmationAlertOption("Yes");
+        } catch (Exception e) {
+
+        }
     }
 }

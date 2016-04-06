@@ -1,32 +1,38 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.portal.ui.components.FormReadMode;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.EngInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class EngInfoReadForm extends PortalUIElement {
+public class EngInfoReadForm extends FormReadMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_many2one oe_form_field_with_button')]/a)[8]")
+    @FindBy(xpath = "//label[contains(text(),'Department')]/ancestor::td/following-sibling::td/span/a | " +
+                    "//label[contains(text(),'Department')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement department;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_many2one oe_form_field_with_button')]/a)[9]")
+    @FindBy(xpath = "//label[contains(text(),'Division')]/ancestor::td/following-sibling::td/span/a | " +
+                    "//label[contains(text(),'Division')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement division;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field_many2one oe_form_field_with_button')]/span[contains(@class,'oe_form_uri')])[5]")
+    @FindBy(xpath = "//label[contains(text(),'Job Title')]/ancestor::td/following-sibling::td/span/span[contains(@class,'uri')]")
     protected WebElement jobTitle;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field_many2one oe_form_field_with_button')]/span[contains(@class,'oe_form_uri')])[6]")
+    @FindBy(xpath = "//label[contains(text(),'Manager')]/ancestor::td/following-sibling::td/span/span[contains(@class,'uri')]")
     protected WebElement manager;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field_many2one oe_form_field_with_button')]/span[contains(@class,'oe_form_uri')])[7]")
+    @FindBy(xpath = "//label[contains(text(),'Lead')]/ancestor::td/following-sibling::td/span/span[contains(@class,'uri')]")
     protected WebElement lead;
 
     @FindBy(name = "visible")
@@ -35,14 +41,17 @@ public class EngInfoReadForm extends PortalUIElement {
     @FindBy(name = "billable")
     protected WebElement billable;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_selection')])[8]")
+    @FindBy(xpath = "//label[contains(text(),'Shadow Category')]/ancestor::td/following-sibling::td/span")
     protected WebElement shadowCategory;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_text_content')])[2]")
+    @FindBy(xpath = "//label[contains(text(),'Notes')]/ancestor::td/following-sibling::td/div/span")
     protected WebElement notes;
 
     @FindBy(name = "found_commitment")
     protected WebElement commitment;
+
+    @FindBy(xpath = "//label[contains(text(),'  Expiration Date')]/ancestor::td/following-sibling::td/span")
+    protected WebElement expDateCommit;
 
     @FindBy(name = "active")
     protected WebElement active;
@@ -53,13 +62,13 @@ public class EngInfoReadForm extends PortalUIElement {
     @FindBy(name = "jala_core_engineer")
     protected WebElement jce;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_text_content')])[3]")
+    @FindBy(xpath = "//label[contains(text(),'Reason')]/ancestor::td/following-sibling::td/div/span")
     protected WebElement reason;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_datepicker_root oe_form_field_date')])[11]")
+    @FindBy(xpath = "//label[contains(text(),'Last 360 Date')]/ancestor::td/following-sibling::td/span")
     protected WebElement lastEvalDate;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_datepicker_root oe_form_field_date')])[12]")
+    @FindBy(xpath = "//label[contains(text(),'Next 360 Date')]/ancestor::td/following-sibling::td/span")
     protected WebElement nextEvalDate;
 
     public EngInfoReadForm() {
@@ -76,27 +85,65 @@ public class EngInfoReadForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dataContainer);
     }
 
-    public EngInfoEmployee getMainData() {
+    public EngInfoEmployee getDataFromUI(EngInfoEmployee infoFromStep) {
+        fieldsWereRead = new ArrayList<>();
+        fieldsWereNotRead = new ArrayList<>();
+        allFieldsWereRead = true;
+
         EngInfoEmployee result = new EngInfoEmployee();
 
-        result.department = department.getAttribute("innerHTML");
-        result.division = division.getAttribute("innerHTML");
-        result.jobTitle = jobTitle.getAttribute("innerHTML");
-        result.manager = manager.getAttribute("innerHTML");
-        result.lead = lead.getAttribute("innerHTML");
-        result.visible = visible.getAttribute("checked");
-        result.billable = billable.getAttribute("checked");
-        result.shadowCategory = shadowCategory.getAttribute("innerHTML");
-        result.notes = notes.getAttribute("innerHTML");
-        result.commitment = commitment.getAttribute("checked");
-        result.active = active.getAttribute("checked");
-        result.consultant = consultant.getAttribute("checked");
-        result.jce = jce.getAttribute("checked");
-        result.reason = reason.getAttribute("innerHTML");
-        result.lastEvalDate = lastEvalDate.getAttribute("innerHTML");
-        result.nextEvalDate = nextEvalDate.getAttribute("innerHTML");
-
+        if(infoFromStep.department != null) {
+            result.department = getSpanValue(department, "department");
+        }
+        if(infoFromStep.division != null) {
+            result.division = getSpanValue(division, "division");
+        }
+        if(infoFromStep.jobTitle != null) {
+            result.jobTitle = getSpanValue(jobTitle, "jobTitle");
+        }
+        if(infoFromStep.manager != null) {
+            result.manager = getSpanValue(manager, "manager");
+        }
+        if(infoFromStep.lead != null) {
+            result.lead = getSpanValue(lead, "lead");
+        }
+        if(infoFromStep.visible != null) {
+            result.visible = getCheckValue(visible, "visible");
+        }
+        if(infoFromStep.billable != null) {
+            result.billable = getCheckValue(billable, "billable");
+        }
+        if(infoFromStep.shadowCategory != null) {
+            result.shadowCategory = getSpanValue(shadowCategory, "shadowCategory");
+        }
+        if(infoFromStep.notes != null) {
+            result.notes = getSpanValue(notes, "notes");
+        }
+        if(infoFromStep.commitment != null) {
+            result.commitment = getCheckValue(commitment, "commitment");
+        }
+        if(infoFromStep.expDateCommit != null) {
+            result.expDateCommit = getSpanValue(expDateCommit, "lastEvalDate");
+        }
+        if(infoFromStep.active != null) {
+            result.active = getCheckValue(active, "active");
+        }
+        if(infoFromStep.consultant != null) {
+            result.consultant = getCheckValue(consultant, "consultant");
+        }
+        if(infoFromStep.jce != null) {
+            result.jce = getCheckValue(jce, "jce");
+        }
+        if(infoFromStep.reason != null) {
+            result.reason = getSpanValue(reason, "reason");
+        }
+        if(infoFromStep.lastEvalDate != null) {
+            result.lastEvalDate = getSpanValue(lastEvalDate, "lastEvalDate");
+        }
+        if(infoFromStep.nextEvalDate != null) {
+            result.nextEvalDate = getSpanValue(nextEvalDate, "nextEvalDate");
+        }
+        logReadStatus();
         return result;
     }
-
 }

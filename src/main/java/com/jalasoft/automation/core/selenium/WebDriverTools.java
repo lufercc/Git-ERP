@@ -82,17 +82,6 @@ public class WebDriverTools {
         }
     }
 
-    /**
-     * Wait until any OpenERP loading webElement disappears from UI and DOM page.
-     */
-    public void waitUntilInvisibilityOpenERPProgress() {
-        try {
-            this.webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("oe_loading")));
-        } catch (WebDriverException e) {
-            log.warn(String.format("Exception raised waiting for element invisibility: %s", e.getMessage()));
-        }
-    }
-
     public void clearAndSendKeys(WebElement webElement, String value) {
         webElement.clear();
         webElement.sendKeys(value);
@@ -447,5 +436,16 @@ public class WebDriverTools {
 
         return (String) ((JavascriptExecutor) this.webDriver).executeScript(
                 "return jQuery(arguments[0]).text();", element);
+    }
+
+    /**
+     * Wait until any OpenERP loading webElement disappears from UI and DOM page.
+     */
+    public void waitUntilInvisibilityOpenERPProgress() {
+        try {
+            this.webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("oe_loading")));
+        } catch (WebDriverException e) {
+            log.warn(String.format("Exception raised waiting for element invisibility: %s", e.getMessage()));
+        }
     }
 }

@@ -1,16 +1,8 @@
 package com.jalasoft.automation.erp.portal.ui.pages.selog.accounting;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.CreateDraftInvoiceForm;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.ReceiveProductsForm;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.TransferProductsForm;
-import org.apache.xpath.SourceTree;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Henry Benito on 10/26/2015.

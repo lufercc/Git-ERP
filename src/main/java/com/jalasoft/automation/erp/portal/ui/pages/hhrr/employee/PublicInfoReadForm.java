@@ -1,52 +1,56 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
-import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
+import com.jalasoft.automation.erp.portal.ui.components.FormReadMode;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PublicInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class PublicInfoReadForm extends PortalUIElement {
+public class PublicInfoReadForm extends FormReadMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_many2one oe_form_field_with_button')]/a)[0]")
+    @FindBy(xpath = "//label[contains(text(),'Working Address')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/a | " +
+                    "//label[contains(text(),'Working Address')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement address;
 
-    @FindBy(xpath = "//span[contains(@class,'oe_form_m2o_follow')]")
+    @FindBy(xpath = "//label[contains(text(),'Working Address')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement addressDescription;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_char_content')])[9]")
+    @FindBy(xpath = "//label[contains(text(),'Work Email')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement workEmail;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_char_content')])[10]")
+    @FindBy(xpath = "//label[contains(text(),'Work Phone')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement workPhone;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_char_content')])[11]")
+    @FindBy(xpath = "//label[contains(text(),'Extension Code')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement extCode;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_char_content')])[12]")
+    @FindBy(xpath = "//label[contains(text(),'Work Mobile')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement workMobile;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_many2one oe_form_field_with_button')]/span)[6]")
+    @FindBy(xpath = "//label[contains(text(),'Related User')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement user;
 
     @FindBy(xpath = "//div[contains(@class,'oe_form_field oe_form_field_text')]/span")
     protected WebElement otherInfo;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_many2one oe_form_field_with_button')]/a)[2]")
+    @FindBy(xpath = "//label[contains(text(),'Location')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/a | " +
+                    "//label[contains(text(),'Location')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement location;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_char_content')])[13]")
+    @FindBy(xpath = "//label[contains(text(),'Desk Code')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement codeDesktop;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_many2one oe_form_field_with_button')]/span)[3]")
+    @FindBy(xpath = "//label[contains(text(),'Country')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement country;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_char_content')])[14]")
+    @FindBy(xpath = "//label[contains(text(),'City')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement city;
 
     public PublicInfoReadForm() {
@@ -63,22 +67,24 @@ public class PublicInfoReadForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dataContainer);
     }
 
-    public PublicInfoEmployee getMainData() {
+    public PublicInfoEmployee getDataFromUI(PublicInfoEmployee infoFromStep) {
+        fieldsWereRead = new ArrayList<>();
+        fieldsWereNotRead = new ArrayList<>();
+        allFieldsWereRead = true;
         PublicInfoEmployee result = new PublicInfoEmployee();
-
-        result.addressDescription = addressDescription.getAttribute("innerHTML");
-        result.workEmail = workEmail.getAttribute("innerHTML");
-        result.workPhone = workPhone.getAttribute("innerHTML");
-        result.extCode = extCode.getAttribute("innerHTML");
-        result.workMobile = workMobile.getAttribute("innerHTML");
-        result.user = user.getAttribute("innerHTML");
-        result.otherInfo = otherInfo.getAttribute("innerHTML");
-        result.location = location.getAttribute("innerHTML");
-        result.codeDesktop = codeDesktop.getAttribute("innerHTML");
-        result.country = country.getAttribute("innerHTML");
-        result.city = city.getAttribute("innerHTML");
-
+        if(infoFromStep.address != null) {result.address = getSpanValue(address, "address");}
+        if(infoFromStep.addressDescription != null) {result.addressDescription = getSpanValue(address, "address");}
+        if(infoFromStep.workEmail != null) {result.workEmail = getSpanValue(workEmail, "workEmail");}
+        if(infoFromStep.workPhone != null) {result.workPhone = getSpanValue(workPhone, "workPhone");}
+        if(infoFromStep.extCode != null) {result.extCode = getSpanValue(extCode, "extCode");}
+        if(infoFromStep.workMobile != null) {result.workMobile = getSpanValue(workMobile, "workMobile");}
+        if(infoFromStep.user != null) {result.user = getSpanValue(user, "user");}
+        if(infoFromStep.otherInfo != null) {result.otherInfo = getSpanValue(otherInfo, "otherInfo");}
+        if(infoFromStep.location != null) {result.location = getSpanValue(location, "location");}
+        if(infoFromStep.codeDesktop != null) {result.codeDesktop = getSpanValue(codeDesktop, "codeDesktop");}
+        if(infoFromStep.country != null) {result.country = getSpanValue(country, "country");}
+        if(infoFromStep.city != null) {result.city = getSpanValue(city, "city");}
+        logReadStatus();
         return result;
     }
-
 }

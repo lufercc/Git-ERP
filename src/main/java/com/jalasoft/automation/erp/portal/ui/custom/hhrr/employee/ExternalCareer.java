@@ -5,8 +5,9 @@ package com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee;
  */
 public class ExternalCareer {
 
-    public String name;
+    public String jobTitle;
     public String startDate;
     public String endDate;
-    public String employeer;
+    public String employer;
+    public String description;
 }

@@ -1,61 +1,67 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
-import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
+import com.jalasoft.automation.erp.portal.ui.components.FormReadMode;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PersonalInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class PersonalInfoReadForm extends PortalUIElement {
+public class PersonalInfoReadForm extends FormReadMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "//span[contains(@class,'oe_form_field oe_form_field_selection oe_form_required')]")
+    @FindBy(xpath = "//label[contains(text(),'National or Foreign?')]/ancestor::td/following-sibling::td/span")
     protected WebElement nationalOrForeign;
 
-    @FindBy(xpath = "//span[contains(@class,'oe_form_field oe_form_field_char oe_field_child oe_form_required')]/span")
+    @FindBy(xpath = "//label[contains(text(),'ID Number')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement idNumber;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_datepicker_root oe_form_field_date oe_field_child')])[1]")
+    @FindBy(xpath = "//label[contains(text(),'ID Number Expiration Date')]/ancestor::td/following-sibling::td/span")
     protected WebElement idExpDate;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_selection oe_field_child')])[2]")
+    @FindBy(xpath = "//label[contains(text(),'ID Place of Issue')]/ancestor::td/following-sibling::td/span")
     protected WebElement idPlace;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_char oe_form_required')]/span)[2]")
+    @FindBy(xpath = "//label[contains(text(),'Passport No')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement passportNumber;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_many2one oe_form_field_with_button oe_form_required')]/a)[1]")
+    @FindBy(xpath = "//label[contains(text(),'Passport Issued')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement passportPlace;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_datepicker_root oe_form_field_date oe_field_child')])[2]")
+    @FindBy(xpath = "//label[contains(text(),'Passport Expiration Date')]/ancestor::td/following-sibling::td/span")
     protected WebElement passportExpDate;
 
     @FindBy(name = "has_visa")
     protected WebElement hasVisa;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_selection oe_field_child')])[3]")
+    @FindBy(xpath = "//label[contains(text(),'Type Of Visa')]/ancestor::td/following-sibling::td/span")
     protected WebElement visaType;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_datepicker_root oe_form_field_date')])[2]")
+    @FindBy(xpath = "//label[contains(text(),'Visa Expiration Date')]/ancestor::td/following-sibling::td/span")
     protected WebElement visaExpDate;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_many2one oe_form_field_with_button')]/span)[11]")
+    @FindBy(xpath = "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/a | " +
+            "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/span")
+    protected WebElement homeAddress;
+
+    @FindBy(xpath = "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement homeAddressDescription;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_datepicker_root oe_form_field_date')])[4]")
+    @FindBy(xpath = "//label[contains(text(),'Date of Birth')]/ancestor::td/following-sibling::td/span")
     protected WebElement dateBirth;
 
-    @FindBy(xpath = "//div[contains(@class,'oe_inline')]/div")
+    @FindBy(xpath = "//label[contains(text(),'Age')]/ancestor::td/following-sibling::td/div/div")
     protected WebElement age;
 
-    @FindBy(xpath = "(//span[contains(@class,'oe_form_field oe_form_field_many2one oe_form_field_with_button oe_form_required')]/a)[2]")
+    @FindBy(xpath = "//label[contains(text(),'Country of Birth')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement country;
 
-    @FindBy(xpath = "(//td[contains(@class,'oe_group_right')]//span[contains(@class,'oe_form_field oe_form_field_char')]/span)[4]")
+    @FindBy(xpath = "//label[contains(text(),'City of Birth')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement city;
 
     public PersonalInfoReadForm() {
@@ -72,26 +78,62 @@ public class PersonalInfoReadForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dataContainer);
     }
 
-    public PersonalInfoEmployee getMainData() {
+    public PersonalInfoEmployee getDataFromUI(PersonalInfoEmployee infoFromStep) {
+        fieldsWereRead = new ArrayList<>();
+        fieldsWereNotRead = new ArrayList<>();
+        allFieldsWereRead = true;
+
         PersonalInfoEmployee result = new PersonalInfoEmployee();
 
-        result.nationalOrForeign = nationalOrForeign.getAttribute("innerHTML");
-        result.idNumber = idNumber.getAttribute("innerHTML");
-        result.idExpDate = idExpDate.getAttribute("innerHTML");
-        result.idPlace = idPlace.getAttribute("innerHTML");
-        result.passportNumber = passportNumber.getAttribute("innerHTML");
-        result.passportPlace = passportPlace.getAttribute("innerHTML");
-        result.passportExpDate = passportExpDate.getAttribute("innerHTML");
-        result.hasVisa = hasVisa.getAttribute("checked");
-        result.visaType = visaType.getAttribute("innerHTML");
-        result.visaExpDate = visaExpDate.getAttribute("innerHTML");
-        result.homeAddressDescription = homeAddressDescription.getAttribute("innerHTML");
-        result.dateBirth = dateBirth.getAttribute("innerHTML");
-        result.age = age.getAttribute("innerHTML");
-        result.country = country.getAttribute("innerHTML");
-        result.city = city.getAttribute("innerHTML");
-
+        if(infoFromStep.nationalOrForeign != null) {
+            result.nationalOrForeign = getSpanValue(nationalOrForeign, "nationalOrForeign");
+        }
+        if(infoFromStep.idNumber != null) {
+            result.idNumber = getSpanValue(idNumber, "idNumber");
+        }
+        if(infoFromStep.idExpDate != null) {
+            result.idExpDate = getSpanValue(idExpDate, "idExpDate");
+        }
+        if(infoFromStep.idPlace != null) {
+            result.idPlace = getSpanValue(idPlace, "idPlace");
+        }
+        if(infoFromStep.passportNumber != null) {
+            result.passportNumber = getSpanValue(passportNumber, "passportNumber");
+        }
+        if(infoFromStep.passportPlace != null) {
+            result.passportPlace = getSpanValue(passportPlace, "passportPlace");
+        }
+        if(infoFromStep.passportExpDate != null) {
+            result.passportExpDate = getSpanValue(passportExpDate, "passportExpDate");
+        }
+        if(infoFromStep.hasVisa != null) {
+            result.hasVisa = getCheckValue(hasVisa, "hasVisa");
+        }
+        if(infoFromStep.visaType != null) {
+            result.visaType = getSpanValue(visaType, "visaType");
+        }
+        if(infoFromStep.visaExpDate != null) {
+            result.visaExpDate = getSpanValue(visaExpDate, "visaExpDate");
+        }
+        if(infoFromStep.homeAddress != null) {
+            result.homeAddress = getSpanValue(homeAddress, "homeAddress");
+        }
+        if(infoFromStep.homeAddressDescription != null) {
+            result.homeAddressDescription = getSpanValue(homeAddressDescription, "homeAddressDescription");
+        }
+        if(infoFromStep.dateBirth != null) {
+            result.dateBirth = getSpanValue(dateBirth, "dateBirth");
+        }
+        if(infoFromStep.age != null) {
+            result.age = getSpanValue(age, "age");
+        }
+        if(infoFromStep.country != null) {
+            result.country = getSpanValue(country, "country");
+        }
+        if(infoFromStep.city != null) {
+            result.city = getSpanValue(city, "city");
+        }
+        logReadStatus();
         return result;
     }
-
 }

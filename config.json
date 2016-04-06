@@ -27,17 +27,57 @@
     },
     "Credentials":
     {
+        "hb admin":{
+            "password":"123",
+            "userName":"henry50"
+        },
         "admin":{
             "password":"123",
             "userName":"henry51"
+        },
+        "staffing":{
+            "password":"123",
+            "userName":"henry52"
+        },
+        "sr manager":{
+            "password":"123",
+            "userName":"henry53"
+        },
+        "manager":{
+            "password":"123",
+            "userName":"henry54"
         },
         "lead":{
             "password":"123",
             "userName":"henry55"
         },
+        "employee":{
+            "password":"123",
+            "userName":"henry56"
+        },
         "officer":{
             "password":"123",
             "userName":"henry57"
+        },
+        "common officer":{
+            "password":"123",
+            "userName":"henry58"
+        },
+        "hd officer":{
+            "password":"123",
+            "userName":"henry59"
+        },
+        "reports":{
+            "password":"123",
+            "userName":"henry60"
+        },
+        "receptionist":{
+            "password":"123",
+            "userName":"henry61"
+        },
+        "personnel admin":{
+            "password":"123",
+            "userName":"henry62"
         },
         "purchase manager":{
             "password":"123",

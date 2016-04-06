@@ -17,8 +17,8 @@ public class SelectOpenERP extends PortalUIElement {
     }
 
     public void selectItem(String value) {
-        control.sendKeys(value);
-        WebElement suggestedValue = super.webDriver.findElement(By.linkText(value));
+        this.webDriverTools.clearAndSendKeys(control, value);
+        WebElement suggestedValue = super.webDriver.findElement(By.xpath("//ul[contains(@style,'display: block')]/li[contains(@class,'ui-menu-item')]/a[text()='" + value + "']"));
         suggestedValue.click();
     }
     @Override

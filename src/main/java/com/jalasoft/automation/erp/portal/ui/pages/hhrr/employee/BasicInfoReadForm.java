@@ -1,20 +1,23 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.portal.ui.components.FormReadMode;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.BasicInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class BasicInfoReadForm extends PortalUIElement {
+public class BasicInfoReadForm extends FormReadMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
     @FindBy(xpath = "//h1//span[contains(@class,'oe_form_char_content')]")
-    protected WebElement employeeFullName;
+    protected WebElement fullName;
 
     public BasicInfoReadForm() {
         this.waitForLoading();
@@ -30,9 +33,13 @@ public class BasicInfoReadForm extends PortalUIElement {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dataContainer);
     }
 
-    public BasicInfoEmployee getMainData() {
+    public BasicInfoEmployee getDataFromUI(BasicInfoEmployee infoFromStep) {
+        fieldsWereRead = new ArrayList<>();
+        fieldsWereNotRead = new ArrayList<>();
+        allFieldsWereRead = true;
         BasicInfoEmployee result = new BasicInfoEmployee();
-        result.fullName = employeeFullName.getAttribute("innerHTML");
+        if(infoFromStep.fullName != null) {result.fullName = getSpanValue(fullName, "fullName");}
+        logReadStatus();
         return result;
     }
 

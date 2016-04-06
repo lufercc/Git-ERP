@@ -13,18 +13,21 @@ import java.util.List;
  */
 public class ExternalCareerInfoReadForm extends TableOpenERP {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_list_content')])[7]")
+    @FindBy(xpath = "//div[contains(text(),'External Career Information')]/following-sibling::table[following-sibling::div[contains(text(),'Internal Career Information')]]//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
 
     public ExternalCareerInfoReadForm() {
         super.table = this.table;
-        expectedSpanishHeaders.put("name","Puesto");
+        expectedSpanishHeaders.put("jobTitle","Puesto");
         expectedSpanishHeaders.put("startDate","Fecha inicio");
         expectedSpanishHeaders.put("endDate","Fecha de finalización");
-        expectedSpanishHeaders.put("employeer","Empleador");
-        expectedHeaders = expectedSpanishHeaders;
-        this.waitForLoading();
+        expectedSpanishHeaders.put("employer","Empleador");
+        expectedEnglishHeaders.put("jobTitle","Job Title");
+        expectedEnglishHeaders.put("startDate","Start date");
+        expectedEnglishHeaders.put("endDate","End date");
+        expectedEnglishHeaders.put("employer","Employer");
+        expectedHeaders = expectedEnglishHeaders;
     }
 
     @Override
@@ -37,30 +40,60 @@ public class ExternalCareerInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean hasSameContent(List<ExternalCareer> expectedData) {
+    public boolean hasSameContent(boolean shouldBeAble, List<ExternalCareer> expectedData) {
         List<HashMap<String,String>> dataFromTable = this.getData();
-        ExternalCareer currentExternalCareer;
         HashMap<String,String> currentRow;
-        if(expectedData.size()!= dataFromTable.size()) {
+        int tableSize;
+
+        if((expectedData.size()!= dataFromTable.size()) && shouldBeAble) {
             return false;
         }
-        while(dataFromTable.size() > 0) {
-            int tableSize = dataFromTable.size();
-            for(int indexObjectList = 0; indexObjectList < expectedData.size(); indexObjectList++) {
-                currentExternalCareer = expectedData.get(indexObjectList);
-                for(int indexList = 0; indexList < tableSize; indexList++) {
-                    currentRow = dataFromTable.get(indexList);
-                    if (currentExternalCareer.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
-                        currentExternalCareer.startDate.equals(currentRow.get(expectedHeaders.get("startDate"))) &&
-                        currentExternalCareer.endDate.equals(currentRow.get(expectedHeaders.get("endDate"))) &&
-                        currentExternalCareer.employeer.equals(currentRow.get(expectedHeaders.get("employeer")))) {
-                            dataFromTable.remove(currentRow);
-                            break;
+
+        if(dataFromTable.isEmpty() && !shouldBeAble) {
+            return true;
+        }
+
+        for(ExternalCareer currentExternalCareer : expectedData) {
+            tableSize =  dataFromTable.size();
+            for(int indexList = 0; indexList < tableSize; indexList++) {
+                currentRow = dataFromTable.get(indexList);
+                if (shouldBeAble) {
+                    if (inputDataIsInRow(currentExternalCareer,currentRow)) {
+                        dataFromTable.remove(currentRow);
+                        break;
                     }
-                    if(indexList == (tableSize - 1)) {
+                    if (indexList == (tableSize - 1)) {
+                        return false;
+                    }
+                } else {
+                    if (inputDataIsInRow(currentExternalCareer,currentRow)) {
                         return false;
                     }
                 }
+            }
+        }
+        return true;
+    }
+
+    public boolean inputDataIsInRow(ExternalCareer inputRecord, HashMap<String,String> tableRow) {
+        if(inputRecord.jobTitle != null) {
+            if (!inputRecord.jobTitle.equals(tableRow.get(expectedHeaders.get("jobTitle")))) {
+                return false;
+            }
+        }
+        if(inputRecord.startDate != null) {
+            if (!inputRecord.startDate.equals(tableRow.get(expectedHeaders.get("startDate")))){
+                return false;
+            }
+        }
+        if(inputRecord.endDate != null) {
+            if (!inputRecord.endDate.equals(tableRow.get(expectedHeaders.get("endDate")))) {
+                return false;
+            }
+        }
+        if(inputRecord.employer != null) {
+            if (!inputRecord.employer.equals(tableRow.get(expectedHeaders.get("employer")))) {
+                return false;
             }
         }
         return true;

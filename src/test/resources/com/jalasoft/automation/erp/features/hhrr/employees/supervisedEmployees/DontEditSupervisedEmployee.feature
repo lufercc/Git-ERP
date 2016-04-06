@@ -379,8 +379,9 @@ Feature: Do not edit supervised employees
       | three  | common officer |
       | four   | hd officer     |
 
-  @NoEditEmployeeInformation @all @CRUD @Last
+  @NoEditEmployeeInformation @all
   Scenario: Verify that supervised employee fields are not edited with employee role
+    TODO: Review exception in driver tools
     Given I navigate to login page
     When I login with "employee" credentials
     Then I am not able to go to "employees" hhrr submenu

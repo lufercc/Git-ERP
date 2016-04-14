@@ -51,6 +51,7 @@ public class OrderLineForm extends FormEditMode {
         if (inputData.product != null) {
             webDriverTools.waitUntilElementPresentAndVisible(product);
             selectOpenERPItem(product, "product", inputData.product);
+            webDriver.manage().timeouts().implicitlyWait(2000,TimeUnit.SECONDS);
         }
         if (inputData.unitPrice != null) {
             webDriverTools.waitUntilElementPresentAndVisible(unitPrice);

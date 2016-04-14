@@ -16,6 +16,7 @@ public class SalesNavigationSteps {
         Submenu salesSubmenu = new Submenu();
         mainMenu.goToMenu("sales");
         salesSubmenu.goToSubmenu(submenuString);
+        Thread.sleep(2000);
     }
 
     @And("^I press \"([^\"]*)\" sales button$")

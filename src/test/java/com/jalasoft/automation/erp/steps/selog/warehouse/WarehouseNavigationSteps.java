@@ -15,6 +15,7 @@ public class WarehouseNavigationSteps {
         Submenu warehouseSubmenu = new Submenu();
         mainMenu.goToMenu("warehouse");
         warehouseSubmenu.goToSubmenu(submenuString);
+        Thread.sleep(2000);
     }
 
     @And("^I press \"([^\"]*)\" warehouse button$")

@@ -21,6 +21,7 @@ public class AccountingNavigationSteps {
         Submenu accountingSubmenu = new Submenu();
         mainMenu.goToMenu("accounting");
         accountingSubmenu.goToSubmenu(submenu);
+        Thread.sleep(2000);
     }
 
     @And("^I press \"([^\"]*)\" accounting button$")

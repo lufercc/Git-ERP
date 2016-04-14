@@ -44,14 +44,14 @@ public class OrderLineForm extends FormEditMode {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.product);
     }
 
-    public void modifyOrderLine(OrderLine inputData) {
+    public void modifyOrderLine(OrderLine inputData) throws InterruptedException {
         fieldsWereEdited = new ArrayList<>();
         fieldsWereNotEdited = new ArrayList<>();
         allFieldsWereEdited = true;
         if (inputData.product != null) {
             webDriverTools.waitUntilElementPresentAndVisible(product);
             selectOpenERPItem(product, "product", inputData.product);
-            webDriver.manage().timeouts().implicitlyWait(2000,TimeUnit.SECONDS);
+            Thread.sleep(2000);
         }
         if (inputData.unitPrice != null) {
             webDriverTools.waitUntilElementPresentAndVisible(unitPrice);

@@ -3,8 +3,8 @@
     {
         "driverType":"browser",
         "browser":"fireFox",
-        "implicitWaitTime":"20",
-        "explicitWaitTime":"20",
+        "implicitWaitTime":"10",
+        "explicitWaitTime":"10",
         "waitSleepTime":"20",
         "desiredCapabilities":
         {

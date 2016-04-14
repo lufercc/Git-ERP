@@ -11,24 +11,24 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']")
     protected WebElement submenuContainer;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Albaranes Internos')]")
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Internal Moves')]")
     protected WebElement internalMoves;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Albaranes de salida')]")
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Delivery Orders')]")
     protected WebElement deliveryOrders;
 
     public Submenu() {
-        this.waitForLoading();
+        waitForLoading();
     }
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.internalMoves);
+        return webDriverTools.isElementDisplayed(internalMoves);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.submenuContainer);
+        webDriverTools.waitUntilElementPresentAndVisible(submenuContainer);
     }
 
     public void goToSubmenu(String submenu) {
@@ -41,6 +41,6 @@ public class Submenu extends PortalUIElement{
             deliveryOrders.click();
             break;
         }
-        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

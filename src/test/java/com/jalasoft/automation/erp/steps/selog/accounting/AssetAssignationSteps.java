@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class AssetAssignationSteps {
 
+
     Asset auxAsset;
 
     public AssetAssignationSteps(Asset assetInput) {
@@ -26,6 +27,7 @@ public class AssetAssignationSteps {
         for (RequestAssignation ra : requestAssignationData) {
             RequestAssignationPopupForm requestAssignationPopupForm = new RequestAssignationPopupForm();
             requestAssignationPopupForm.modifyDataAndAccept(ra);
+            Thread.sleep(2000);
         }
     }
 
@@ -34,6 +36,7 @@ public class AssetAssignationSteps {
         for (DeliverAsset da : deliverAssetData) {
             DeliverAssetPopupForm deliverAssetPopupForm = new DeliverAssetPopupForm();
             deliverAssetPopupForm.modifyDataAndAccept(da);
+            Thread.sleep(2000);
         }
     }
 
@@ -41,13 +44,13 @@ public class AssetAssignationSteps {
     public void I_send_email_from_popup() throws Throwable {
         SendMailPopupForm sendMailPopupForm = new SendMailPopupForm();
         sendMailPopupForm.sendMail();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
     }
 
     @And("^I search asset created in asset assignation$")
     public void I_search_asset_created_in_asset_assignation() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Código de activo",this.auxAsset.code);
+        openERPSearch.advancedSearch("Asset Code",this.auxAsset.code);
         AssetsAssignationListView assetsAssignationListView = new AssetsAssignationListView();
         assetsAssignationListView.clickOnRecord(this.auxAsset.code);
     }

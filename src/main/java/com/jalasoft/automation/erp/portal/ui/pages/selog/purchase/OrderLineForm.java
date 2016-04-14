@@ -1,5 +1,6 @@
 package com.jalasoft.automation.erp.portal.ui.pages.selog.purchase;
 
+import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.OrderLine;
 
@@ -9,12 +10,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class OrderLineForm extends PortalUIElement {
+public class OrderLineForm extends FormEditMode {
 
     @FindBy(xpath = "(//div[contains(@class,'ui-dialog ui-widget ui-widget-content ui-corner-all oe_act_window ui-draggable ui-resizable openerp')]//input)[1]")
     protected WebElement product;
@@ -22,7 +24,10 @@ public class OrderLineForm extends PortalUIElement {
     @FindBy(xpath = "(//div[contains(@class,'ui-dialog ui-widget ui-widget-content ui-corner-all oe_act_window ui-draggable ui-resizable openerp')]//textarea")
     protected WebElement noteTextArea;
 
-    @FindBy(xpath = "//button[contains(text(),'Agregar y Cerrar')]")
+    @FindBy(xpath = "//label[contains(text(),'Unit Price')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
+    protected WebElement unitPrice;
+
+    @FindBy(xpath = "//button[contains(text(),'Add & Close')]")
     protected WebElement saveAndCloseButton;
 
     public OrderLineForm() {
@@ -40,14 +45,19 @@ public class OrderLineForm extends PortalUIElement {
     }
 
     public void modifyOrderLine(OrderLine inputData) {
-        WebDriverWait wait = new WebDriverWait(webDriver, 5);
-
+        fieldsWereEdited = new ArrayList<>();
+        fieldsWereNotEdited = new ArrayList<>();
+        allFieldsWereEdited = true;
         if (inputData.product != null) {
-            this.product.sendKeys(inputData.product);
-            WebElement productLink = this.webDriver.findElement(By.xpath("//ul[not(contains(@style,'display: none;'))]//a[contains(text(),'" + inputData.product + "')]"));
-            productLink.click();
+            webDriverTools.waitUntilElementPresentAndVisible(product);
+            selectOpenERPItem(product, "product", inputData.product);
+        }
+        if (inputData.unitPrice != null) {
+            webDriverTools.waitUntilElementPresentAndVisible(unitPrice);
+            setInput(unitPrice,"unitPrice", inputData.unitPrice);
         }
         saveAndCloseButton.click();
+        logEditStatus();
     }
 
 }

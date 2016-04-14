@@ -22,7 +22,7 @@ public class PurchaseOrderEditForm extends PortalUIElement {
     @FindBy(name = "purchase_type")
     protected WebElement purchaseType;
 
-    @FindBy(xpath = "//a[contains(text(),'Añadir un elemento')]")
+    @FindBy(xpath = "//a[contains(text(),'Add an item')]")
     protected WebElement addItemPurchaseOrder;
 
     WebElement valueSelected;
@@ -33,12 +33,12 @@ public class PurchaseOrderEditForm extends PortalUIElement {
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.supplier);
+        return webDriverTools.isElementDisplayed(supplier);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.supplier);
+        webDriverTools.waitUntilElementPresentAndVisible(supplier);
     }
 
     public void modifyData(PurchaseOrder inputData) {

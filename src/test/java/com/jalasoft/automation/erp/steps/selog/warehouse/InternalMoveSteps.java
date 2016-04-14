@@ -14,6 +14,7 @@ public class InternalMoveSteps {
 
     Asset auxAsset;
     AssetDeliveryRecord auxAssetDeliveryRecord;
+    String searchByField = "Source Document";
     public InternalMoveSteps(Asset assetInput, AssetDeliveryRecord assetDeliveryRecordInput) {
         auxAsset = assetInput;
         auxAssetDeliveryRecord = assetDeliveryRecordInput;
@@ -22,24 +23,24 @@ public class InternalMoveSteps {
     @And("^I search internal move created in asset assignation$")
     public void I_search_internal_move_created_in_asset_assignation() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Documento origen",this.auxAsset.code);
+        openERPSearch.advancedSearch(searchByField,auxAsset.code);
         InternalMovesListView internalMovesListView = new InternalMovesListView();
-        internalMovesListView.clickOnRecord(this.auxAsset.code);
+        internalMovesListView.clickOnRecord(auxAsset.code);
     }
 
     @And("^I search internal move created in asset delivery order$")
     public void I_search_internal_move_created_in_asset_delivery_order() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Documento origen",this.auxAssetDeliveryRecord.id);
+        openERPSearch.advancedSearch(searchByField,auxAssetDeliveryRecord.id);
         InternalMovesListView internalMovesListView = new InternalMovesListView();
-        internalMovesListView.clickOnRecord(this.auxAsset.code);
+        internalMovesListView.clickOnRecord(auxAssetDeliveryRecord.id);
     }
 
     @And("^I search asset in internal moves$")
     public void I_search_asset_in_internal_moves() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Documento origen",this.auxAsset.code);
+        openERPSearch.advancedSearch(searchByField,auxAsset.code);
         InternalMovesListView internalMovesListView = new InternalMovesListView();
-        internalMovesListView.clickOnRecord(this.auxAsset.code);
+        internalMovesListView.clickOnRecord(auxAsset.code);
     }
 }

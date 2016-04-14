@@ -1,18 +1,16 @@
 package com.jalasoft.automation.erp.portal.ui.pages.selog.accounting;
 
-import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
-import com.jalasoft.automation.erp.portal.ui.components.SelectOpenERP;
+import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
 import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.Asset;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.SupplierInvoice;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.ArrayList;
 
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class AssetEditForm extends PortalUIElement {
+public class AssetEditForm extends FormEditMode {
 
     @FindBy(xpath = "//input[@placeholder='Nombre']")
     protected WebElement name;
@@ -20,35 +18,36 @@ public class AssetEditForm extends PortalUIElement {
     @FindBy(name = "parent_image")
     protected WebElement parentImage;
 
-    @FindBy(xpath = "//span[contains(@class,'oe_form_field_float oe_form_field_monetary oe_form_required')]//input")
+    @FindBy(xpath = "//label[contains(text(),'Gross Value')]/ancestor::td/following-sibling::td/span/input")
     protected WebElement grossValue;
 
-    protected SelectOpenERP assetCategoryParent;
-
-    WebElement valueSelected;
+    @FindBy(xpath = "//label[contains(text(),'Parent')]/ancestor::td/following-sibling::td/span/div/input")
+    protected WebElement assetCategoryParent;
 
     public AssetEditForm() {
-        this.waitForLoading();
-        this.assetCategoryParent = new SelectOpenERP(By.xpath("(//table[contains(@class,'oe_form_group')]//input)[2]"));
-
+        waitForLoading();
     }
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.parentImage);
+        return webDriverTools.isElementDisplayed(parentImage);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.parentImage);
+        webDriverTools.waitUntilElementPresentAndVisible(parentImage);
     }
 
     public void modifyData(Asset inputData) {
+        fieldsWereEdited = new ArrayList<>();
+        fieldsWereNotEdited = new ArrayList<>();
+        allFieldsWereEdited = true;
         if (inputData.assetCategoryParent != null) {
-            this.assetCategoryParent.selectItem(inputData.assetCategoryParent);
+            selectOpenERPItem(assetCategoryParent, "assetCategoryParent", inputData.assetCategoryParent);
         }
         if (inputData.grossValue != null) {
-            this.webDriverTools.clearAndSendKeys(this.grossValue,inputData.grossValue);
+            setInput(grossValue, "grossValue", inputData.grossValue);
         }
+        logEditStatus();
     }
 }

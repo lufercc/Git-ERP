@@ -17,7 +17,7 @@ public class SendMailPopupForm extends PortalUIElement {
     @FindBy(xpath = "//div[contains(@class,'ui-dialog-content')]//div[contains(@class,'oe_horizontal_separator')]")
     protected WebElement dialogTitle;
 
-    @FindBy(xpath = "//div[contains(@class,'ui-dialog-buttonpane')]//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Enviar')]")
+    @FindBy(xpath = "//div[contains(@class,'ui-dialog-buttonpane')]//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Send')]")
     protected WebElement sendButton;
 
     public SendMailPopupForm() {

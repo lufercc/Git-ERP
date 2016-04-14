@@ -20,32 +20,34 @@ public class IncomingShipmentsSteps {
 
     IncomingShipment incomingShipmentAux;
     PurchaseOrder purchaseOrderAux;
+    String searchBy = "Source Document";
 
     public IncomingShipmentsSteps(IncomingShipment incomingShipmentInput, PurchaseOrder purchaseOrderInput) {
-        this.incomingShipmentAux = incomingShipmentInput;
-        this.purchaseOrderAux = purchaseOrderInput;
+        incomingShipmentAux = incomingShipmentInput;
+        purchaseOrderAux = purchaseOrderInput;
     }
 
     @And("^I go to incoming shipment created from purchase order$")
     public void I_go_to_incoming_shipment_created_from_purchase_order() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Documento origen",this.purchaseOrderAux.code);
+        openERPSearch.advancedSearch(searchBy,this.purchaseOrderAux.code);
         IncomingShipmentList incomingShipmentList = new IncomingShipmentList();
-        incomingShipmentList.goToRecord(this.purchaseOrderAux.code);
+        incomingShipmentList.goToRecord(purchaseOrderAux.code);
     }
 
     @And("^I search purchase order in incoming shipments$")
     public void I_search_purchase_order_in_incoming_shipments() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Documento origen",this.purchaseOrderAux.code);
+        openERPSearch.advancedSearch(searchBy,this.purchaseOrderAux.code);
         IncomingShipmentList incomingShipmentList = new IncomingShipmentList();
-        incomingShipmentList.goToRecord(this.purchaseOrderAux.code);
+        incomingShipmentList.goToRecord(purchaseOrderAux.code);
     }
 
     @And("^I press \"([^\"]*)\" incoming shipment button$")
     public void I_press_incoming_shipment_button(String buttonString) throws Throwable {
         com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.ButtonsBar purchaseButtonsBar = new com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.ButtonsBar();
         purchaseButtonsBar.clickButton(buttonString);
+        Thread.sleep(2000);
     }
 
     @And("^I move to \"([^\"]*)\" from incoming shipment$")
@@ -57,6 +59,6 @@ public class IncomingShipmentsSteps {
     @And("^get main data from current incoming shipments$")
     public void get_main_data_from_current_incoming_shipments() throws Throwable {
         IncomingShipmentReadForm incomingShipmentReadForm = new IncomingShipmentReadForm();
-        this.incomingShipmentAux.fillMainData(incomingShipmentReadForm.getMainData());
+        incomingShipmentAux.fillMainData(incomingShipmentReadForm.getMainData());
     }
 }

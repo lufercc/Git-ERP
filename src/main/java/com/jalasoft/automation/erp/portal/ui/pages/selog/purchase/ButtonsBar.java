@@ -12,16 +12,16 @@ public class ButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[contains(@class,'oe_form_container')]//header")
     protected WebElement container;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirmar pedido')]")
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirm Order')]")
     protected WebElement confirmButton;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Recibir')]")
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Receive')]")
     protected WebElement receiveButton;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirmar y transferir')]")
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirm & Transfer')]")
     protected WebElement confirmTransferButton;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Crear factura/abono')]")
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Create Invoice/Refund')]")
     protected WebElement createInvoiceButton;
 
     public ButtonsBar() {}

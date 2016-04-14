@@ -20,10 +20,11 @@ public class SupplierInvoicesSteps {
 
     PurchaseOrder purchaseOrderAux;
     SupplierInvoice supplierInvoiceAux;
+    String searchBy = "Source Document";
 
     public SupplierInvoicesSteps(PurchaseOrder purchaseOrderInput, SupplierInvoice supplierInvoiceInput) {
-        this.purchaseOrderAux = purchaseOrderInput;
-        this.supplierInvoiceAux = supplierInvoiceInput;
+        purchaseOrderAux = purchaseOrderInput;
+        supplierInvoiceAux = supplierInvoiceInput;
     }
 
     @And("^I edit the supplier invoice with these data$")
@@ -37,9 +38,10 @@ public class SupplierInvoicesSteps {
     @And("^I go to supplier invoice created from incoming shipment$")
     public void I_go_to_supplier_invoice_created_from_incoming_shipment() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Documento origen",this.purchaseOrderAux.code);
+        openERPSearch.advancedSearch(searchBy,purchaseOrderAux.code);
         SupplierInvoicesList supplierInvoicesList = new SupplierInvoicesList();
-        supplierInvoicesList.goToRecord(this.purchaseOrderAux.code);
+        supplierInvoicesList.goToRecord(purchaseOrderAux.code);
+        Thread.sleep(2000);
     }
 
     @And("^get main data from current supplier invoice$")

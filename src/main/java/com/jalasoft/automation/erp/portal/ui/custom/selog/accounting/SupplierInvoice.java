@@ -10,8 +10,9 @@ public class SupplierInvoice {
     public String number;
     public String authorizationNumber;
     public String controlCode;
+    public String verificationTotal;
 
     public void fillMainData(SupplierInvoice aux) {
-        this.code = aux.code;
+        code = aux.code;
     }
 }

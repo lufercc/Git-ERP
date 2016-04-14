@@ -15,7 +15,7 @@ public class ReceiveProductsForm extends PortalUIElement {
     @FindBy(xpath = "//div[contains(@class,'ui-dialog-content')]//div[contains(@class,'oe_horizontal_separator')]")
     protected WebElement dialogTitle;
 
-    @FindBy(xpath = "//div[contains(@class,'ui-dialog-buttonpane')]//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Recibir')]")
+    @FindBy(xpath = "//div[contains(@class,'ui-dialog-buttonpane')]//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Receive')]")
     protected WebElement receiveButton;
 
     public ReceiveProductsForm() {

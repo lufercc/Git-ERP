@@ -23,7 +23,7 @@
     },
     "GeneralSettings":
     {
-        "sutURL": "http://10.31.97.80:62069"
+        "sutURL": "http://10.31.97.80:63069"
     },
     "Credentials":
     {
@@ -81,12 +81,12 @@
         },
         "purchase manager":{
             "password":"123",
-            "userName":"henry11"
+            "userName":"henry3"
         },
 
         "warehouse manager":{
             "password":"123",
-            "userName":"henry16"
+            "userName":"henry2"
         },
 
         "sales":{
@@ -96,12 +96,12 @@
 
         "accountant":{
             "password":"123",
-            "userName":"henry2"
+            "userName":"henry15"
         },
 
         "asset manager":{
             "password":"123",
-            "userName":"henry7"
+            "userName":"henry18"
         },
 
         "valid":{

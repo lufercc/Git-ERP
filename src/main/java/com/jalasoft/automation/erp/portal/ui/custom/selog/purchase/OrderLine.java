@@ -6,6 +6,7 @@ package com.jalasoft.automation.erp.portal.ui.custom.selog.purchase;
 public class OrderLine {
 
     public String product;
+    public String unitPrice;
 
     public void fillMainData(OrderLine aux) {
         this.product = aux.product;

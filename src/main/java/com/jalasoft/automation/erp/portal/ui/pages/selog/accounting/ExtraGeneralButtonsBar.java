@@ -12,7 +12,7 @@ public class ExtraGeneralButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_view_manager_sidebar']")
     protected WebElement buttonsContainer;
 
-    @FindBy(xpath = "//div[@class='oe_view_manager_sidebar']/div[not(contains(@style,'display: none;'))]//li/a[contains(.,'Crear acta de entrega')]")
+    @FindBy(xpath = "//div[@class='oe_view_manager_sidebar']/div[not(contains(@style,'display: none;'))]//li/a[contains(.,'Create Delivery Record')]")
     protected WebElement createDeliveryRecordButton;
 
     public ExtraGeneralButtonsBar() {

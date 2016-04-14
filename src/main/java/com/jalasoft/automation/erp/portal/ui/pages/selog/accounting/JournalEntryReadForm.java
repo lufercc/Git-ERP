@@ -14,8 +14,8 @@ public class JournalEntryReadForm extends PortalUIElement {
     @FindBy(xpath = "//div[contains(@class,'oe_form_container')]")
     protected WebElement container;
 
-    @FindBy(xpath = "//div[contains(@class,'oe_form_container')]//div[contains(@class,'oe_title')]//span/span")
-    protected WebElement journalEntryCode;
+    @FindBy(xpath = "//label[contains(text(),'Reference')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
+    protected WebElement journalEntryReference;
 
     public JournalEntryReadForm() {}
 
@@ -31,7 +31,7 @@ public class JournalEntryReadForm extends PortalUIElement {
 
     public JournalEntry getMainData() {
         JournalEntry result = new JournalEntry();
-        result.code = journalEntryCode.getText();
+        result.reference = journalEntryReference.getText();
         return result;
     }
 

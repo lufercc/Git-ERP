@@ -2,6 +2,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.general;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
@@ -23,16 +24,16 @@ public class MainMenu extends PortalUIElement {
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Evaluación de activos')]")
     protected WebElement assetsMenu;
 
-    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Ventas')]")
+    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Sales')]")
     protected WebElement salesMenu;
 
-    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Contabilidad')]")
+    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Accounting')]")
     protected WebElement accountingMenu;
 
-    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Compras')]")
+    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Purchases')]")
     protected WebElement purchasesMenu;
 
-    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Almacén')]")
+    @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Warehouse')]")
     protected WebElement warehouseMenu;
 
     @FindBy(xpath = "//a[contains(@data-menu,'logout')]")
@@ -44,6 +45,12 @@ public class MainMenu extends PortalUIElement {
     @CacheLookup
     @FindBy(xpath = "//span[contains(@class,'oe_user_menu')]")
     protected WebElement userMenu;
+
+    @CacheLookup
+    @FindBy(xpath = "//span[contains(@class,'oe_topbar_name')]")
+    protected WebElement userName;
+
+
 
     public MainMenu() {}
 
@@ -78,26 +85,28 @@ public class MainMenu extends PortalUIElement {
         default:
             throw new IllegalArgumentException("Case value '" + menu + "' for main menu is not defined yet. Add it!!!");
         }
-        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.menuContainer);
+        return webDriverTools.isElementDisplayed(menuContainer);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.menuContainer);
+        webDriverTools.waitUntilElementPresentAndVisible(menuContainer);
     }
 
     public void logout() {
-        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
-        userMenu.click();
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        webDriverTools.waitUntilElementPresentAndVisible(userName);
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        userName.click();
         logout.click();
-        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
         try{
-            this.webDriverTools.clickOnConfirmationAlertOption("Yes");
+            webDriverTools.clickOnConfirmationAlertOption("Yes");
         } catch (Exception e) {
 
         }

@@ -14,7 +14,7 @@ public class IncomingShipmentReadForm extends PortalUIElement {
     @FindBy(xpath = "//div[contains(@class,'oe_form_container')]")
     protected WebElement container;
 
-    @FindBy(xpath = "//div[contains(@class,'oe_form_container')]//div[contains(@class,'oe_title')]//span/span")
+    @FindBy(xpath = "//div[contains(@class,'oe_selog_sheet_wider')]//h1/span/span[contains(@class,'content')]")
     protected WebElement incomingShipmentCode;
 
     public IncomingShipmentReadForm() {}

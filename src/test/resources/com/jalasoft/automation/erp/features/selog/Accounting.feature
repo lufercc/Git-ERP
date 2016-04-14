@@ -17,8 +17,8 @@ Feature: Accounting
       And I search asset created in asset assignation
       And I press "request assignation" accounting button
       And I modify the request assignation popup with these data
-        | evaluationResponsible | depAreaResponsible | custodian    | depArea   | location             |
-        | Henry7                | IT                 | Henry16      | Marketing | Edificio Fundación   |
+        | evaluationResponsible | depAreaResponsible | custodian | depArea   | location            |
+        | Henry19               | IT                 | Henry16   | Marketing | Foundation Building |
       And I press "internal moves" accounting internal button
       And I logout
     When I login with "warehouse manager" credentials
@@ -33,8 +33,8 @@ Feature: Accounting
     Then it has "evaluation" status
     When I press "deliver" accounting button
       And I modify the deliver asset popup with these data
-        | assetStatus    | assetNote |
-        | Bueno          | Some Note |
+        | assetStatus | assetNote |
+        | Good        | Some Note |
       And I press "more" general button
       And I press "create delivery record" extra general accounting button
       And I press "delivery records" accounting internal button
@@ -48,7 +48,6 @@ Feature: Accounting
     Then it has "assigned" status
       And I go to "internal moves" warehouse submenu
       And I search internal move created in asset delivery order
-      And I logout
 
   @EndToEnd @31007
   Scenario: Verify that an asset is assigned if the asset is created from Purchase Order
@@ -60,8 +59,8 @@ Feature: Accounting
         | supplier |
         | Advance  |
       And I add products to the purchase order
-        | product |
-        | Amoladora de acero grande |
+        | product                   | unitPrice |
+        | Amoladora de acero grande | 10        |
       And I press "confirm" purchase button
       And get main data from current purchase order
       And I logout
@@ -80,8 +79,8 @@ Feature: Accounting
       And I go to supplier invoice created from incoming shipment
       And I press "edit" general button
       And I edit the supplier invoice with these data
-        | tin           | number | authorizationNumber | controlCode    |
-        | 3511597451515 | 000454 | 65464646464555      | B2-A2-H6-R4-G4 |
+        | tin           | number | authorizationNumber | controlCode    | verificationTotal |
+        | 3511597451515 | 000454 | 65464646464555      | B2-A2-H6-R4-G4 | 10.00             |
       And I press "validate" accounting button
       And get main data from current supplier invoice
       And I logout
@@ -95,8 +94,8 @@ Feature: Accounting
       And I search asset created in asset assignation
       And I press "request assignation" accounting button
       And I modify the request assignation popup with these data
-        | evaluationResponsible | depAreaResponsible | custodian    | depArea   | location             |
-        | selog_assMan          | IT                 | selog_warMan | Marketing | Su compañía / Salida |
+        | evaluationResponsible | depAreaResponsible | custodian | depArea   | location            |
+        | Henry19               | IT                 | Henry16   | Marketing | Foundation Building |
       And I press "internal moves" accounting internal button
       And I logout
     When I login with "warehouse manager" credentials
@@ -112,7 +111,7 @@ Feature: Accounting
     When I press "deliver" accounting button
       And I modify the deliver asset popup with these data
         | assetStatus    | assetNote |
-        | Bueno          | Some Note |
+        | Good          | Some Note |
       And I press "more" general button
       And I press "create delivery record" extra general accounting button
       And I press "delivery records" accounting internal button
@@ -126,7 +125,6 @@ Feature: Accounting
     Then it has "assigned" status
       And I go to "internal moves" warehouse submenu
       And I search internal move created in asset delivery order
-      And I logout
 
   @32140 @Fail
   Scenario: Verify that Journal Entry accounts are properly configured after creating a Purchase Order
@@ -136,7 +134,7 @@ Feature: Accounting
       And I press "create" general button
       And I create a purchase order with these data
         | supplier |
-        | IC Norte |
+        | Advance |
       And I add products to the purchase order
         | product |
         | Amoladora de acero grande |
@@ -155,17 +153,16 @@ Feature: Accounting
       And I press "create invoice" incoming shipment button
       And I go to "journal entries" accounting submenu
       And I search incoming shipments in journal entries
-#     TODO HBH1 Is blocking this scenario
 
-  @32141 @Fail
+  @EndToEnd @32141
   Scenario: Verify that Journal Entry is created when doing a Sales Order
     Given I navigate to login page
     When I login with "sales" credentials
       And I go to "sales orders" sales submenu
       And I press "create" general button
       And I modify the sale order with these data
-        | client | tin     |
-        | ABILA  | 4531577 |
+        | client | tin     | saleTaxType |
+        | Henry1 | 4531577 | ST          |
       And I add products to the sales order
         | product |
         | Amoladora de acero grande |
@@ -175,7 +172,6 @@ Feature: Accounting
     When I login with "warehouse manager" credentials
       And I go to "delivery orders" warehouse submenu
       And I search sale order in delivery orders
-      And I press "force availability" warehouse button
       And I press "deliver" warehouse button
       And get main data from current delivery order
       And I logout
@@ -183,7 +179,6 @@ Feature: Accounting
       And I go to "journal entries" accounting submenu
       And I search delivery order in journal entries
       And get main data from current journal entry
-      And I logout
 
   @EndToEnd @32510
   Scenario: Verify that an asset follows all the workflow until it`s transferred in an asset delivery record
@@ -202,8 +197,8 @@ Feature: Accounting
       And I search asset created in asset assignation
       And I press "request assignation" accounting button
       And I modify the request assignation popup with these data
-        | evaluationResponsible | depAreaResponsible | custodian    | depArea   | location             |
-        | selog_assMan          | IT                 | selog_warMan | Marketing | Su compañía / Salida |
+        | evaluationResponsible | depAreaResponsible | custodian | depArea   | location            |
+        | Henry19               | IT                 | Henry16   | Marketing | Foundation Building |
       And I logout
     When I login with "warehouse manager" credentials
       And I go to "internal moves" warehouse submenu
@@ -217,7 +212,7 @@ Feature: Accounting
       And I press "deliver" accounting button
       And I modify the deliver asset popup with these data
         | assetStatus    | assetNote |
-        | Bueno          | Some Note |
+        | Good          | Some Note |
       And I press "more" general button
       And I press "create delivery record" extra general accounting button
       And I press "delivery records" accounting internal button
@@ -225,7 +220,6 @@ Feature: Accounting
       And I press "deliver" accounting button
       And I press "Ok" button for general popup
       And I send email from popup
-      And I logout
 
   @EndToEnd @31727
   Scenario: Verify that an asset is created from Purchase Order
@@ -234,11 +228,11 @@ Feature: Accounting
       And I go to "purchase orders" purchase submenu
     When I press "create" general button
       And I create a purchase order with these data
-      | supplier |
-      | IC Norte |
+        | supplier |
+        | Advance  |
       And I add products to the purchase order
-      | product |
-      | Amoladora de acero grande |
+        | product                   | unitPrice |
+        | Amoladora de acero grande | 10        |
       And I press "confirm" purchase button
       And get main data from current purchase order
       And I logout
@@ -257,11 +251,10 @@ Feature: Accounting
       And I go to supplier invoice created from incoming shipment
       And I press "edit" general button
       And I edit the supplier invoice with these data
-      | tin           | number | authorizationNumber | controlCode    |
-      | 3511597451515 | 000454 | 65464646464555      | B2-A2-H6-R4-G4 |
+        | tin           | number | authorizationNumber | controlCode    | verificationTotal |
+        | 3511597451515 | 000454 | 65464646464555      | B2-A2-H6-R4-G4 | 10.00             |
       And I press "validate" accounting button
       And get main data from current supplier invoice
       And I go to "assets" accounting submenu
       And a new record is displayed in assets list view
     Then it has "draft" status
-      And I logout

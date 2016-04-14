@@ -22,5 +22,6 @@ public class SalesNavigationSteps {
     public void I_press_sales_button(String buttonString) throws Throwable {
         ButtonsBar purchaseButtonsBar = new ButtonsBar();
         purchaseButtonsBar.clickButton(buttonString);
+        Thread.sleep(2000);
     }
 }

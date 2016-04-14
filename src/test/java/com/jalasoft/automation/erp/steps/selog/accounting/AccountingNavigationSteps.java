@@ -27,6 +27,7 @@ public class AccountingNavigationSteps {
     public void I_press_accounting_button(String buttonString) throws Throwable {
         ButtonsBar accountingButtonsBar = new ButtonsBar();
         accountingButtonsBar.clickButton(buttonString);
+        Thread.sleep(2000);
     }
 
     @And("^I press \"([^\"]*)\" accounting internal button$")

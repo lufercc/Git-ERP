@@ -17,13 +17,13 @@ public class SelectOpenERP extends PortalUIElement {
     }
 
     public void selectItem(String value) {
-        this.webDriverTools.clearAndSendKeys(control, value);
-        WebElement suggestedValue = super.webDriver.findElement(By.xpath("//ul[contains(@style,'display: block')]/li[contains(@class,'ui-menu-item')]/a[text()='" + value + "']"));
+        webDriverTools.clearAndSendKeys(control, value);
+        WebElement suggestedValue = webDriver.findElement(By.xpath("//ul[contains(@style,'display: block')]/li[contains(@class,'ui-menu-item')]/a[text()='" + value + "']"));
         suggestedValue.click();
     }
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.control);
+        return webDriverTools.isElementDisplayed(this.control);
     }
 
     @Override

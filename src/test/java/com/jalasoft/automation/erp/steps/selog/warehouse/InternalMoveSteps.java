@@ -24,6 +24,7 @@ public class InternalMoveSteps {
     public void I_search_internal_move_created_in_asset_assignation() throws Throwable {
         Search openERPSearch = new Search();
         openERPSearch.advancedSearch(searchByField,auxAsset.code);
+        Thread.sleep(2000);
         InternalMovesListView internalMovesListView = new InternalMovesListView();
         internalMovesListView.clickOnRecord(auxAsset.code);
     }
@@ -40,6 +41,7 @@ public class InternalMoveSteps {
     public void I_search_asset_in_internal_moves() throws Throwable {
         Search openERPSearch = new Search();
         openERPSearch.advancedSearch(searchByField,auxAsset.code);
+        Thread.sleep(2000);
         InternalMovesListView internalMovesListView = new InternalMovesListView();
         internalMovesListView.clickOnRecord(auxAsset.code);
     }

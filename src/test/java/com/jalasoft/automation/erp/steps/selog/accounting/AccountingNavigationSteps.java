@@ -35,11 +35,13 @@ public class AccountingNavigationSteps {
     public void I_press_accounting_internal_button(String buttonString) throws Throwable {
         InteriorFormButtonsBar intButtonsBar = new InteriorFormButtonsBar();
         intButtonsBar.clickButton(buttonString);
+        Thread.sleep(2000);
     }
 
     @And("^I press \"([^\"]*)\" extra general accounting button$")
     public void I_press_extra_general_accounting_button(String buttonString) throws Throwable {
         ExtraGeneralButtonsBar extraGralButtons = new ExtraGeneralButtonsBar();
         extraGralButtons.clickButton(buttonString);
+        Thread.sleep(2000);
     }
 }

@@ -17,7 +17,7 @@ public class AssetsAssignationListView extends PortalUIElement {
     protected WebElement mainTable;
 
     public AssetsAssignationListView() {
-        this.waitForLoading();
+        
     }
 
     @Override

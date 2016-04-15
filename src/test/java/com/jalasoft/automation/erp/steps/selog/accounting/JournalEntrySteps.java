@@ -25,6 +25,7 @@ public class JournalEntrySteps {
     public void I_search_delivery_order_in_journal_entries() throws Throwable {
         Search openERPSearch = new Search();
         openERPSearch.advancedSearch(searchBy, this.deliveryOrderAux.code);
+        Thread.sleep(2000);
         JournalEntriesListView journalEntriesListView = new JournalEntriesListView();
         journalEntriesListView.clickOnRecord(this.deliveryOrderAux.code);
     }
@@ -39,6 +40,7 @@ public class JournalEntrySteps {
     public void I_search_incoming_shipments_in_journal_entries() throws Throwable {
         Search openERPSearch = new Search();
         openERPSearch.advancedSearch(searchBy, this.deliveryOrderAux.code);
+        Thread.sleep(2000);
         JournalEntriesListView journalEntriesListView = new JournalEntriesListView();
         journalEntriesListView.clickOnRecord(this.deliveryOrderAux.code);
     }

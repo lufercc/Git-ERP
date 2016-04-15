@@ -2,6 +2,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.selog.purchase;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 /**
@@ -23,12 +24,11 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']//div[5]//span[contains(text(),'Suppliers')]")
     protected WebElement suppliers;
 
+    @CacheLookup
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Incoming Shipments')]")
     protected WebElement incomingShipments;
 
-    public Submenu() {
-        this.waitForLoading();
-    }
+    public Submenu() {}
 
     @Override
     public boolean isLoaded() {

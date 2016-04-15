@@ -49,6 +49,7 @@ public class AssetAssignationSteps {
 
     @And("^I search asset created in asset assignation$")
     public void I_search_asset_created_in_asset_assignation() throws Throwable {
+        Thread.sleep(2000);
         Search openERPSearch = new Search();
         openERPSearch.advancedSearch("Asset Code",this.auxAsset.code);
         AssetsAssignationListView assetsAssignationListView = new AssetsAssignationListView();

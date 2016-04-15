@@ -17,7 +17,7 @@ public class SupplierInvoicesList extends PortalUIElement {
     protected WebElement mainTable;
 
     public SupplierInvoicesList() {
-
+        waitForLoading();
     }
 
     @Override

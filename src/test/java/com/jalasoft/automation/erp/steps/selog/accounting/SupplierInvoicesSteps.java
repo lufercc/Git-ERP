@@ -39,9 +39,9 @@ public class SupplierInvoicesSteps {
     public void I_go_to_supplier_invoice_created_from_incoming_shipment() throws Throwable {
         Search openERPSearch = new Search();
         openERPSearch.advancedSearch(searchBy,purchaseOrderAux.code);
+        Thread.sleep(3000);
         SupplierInvoicesList supplierInvoicesList = new SupplierInvoicesList();
         supplierInvoicesList.goToRecord(purchaseOrderAux.code);
-        Thread.sleep(2000);
     }
 
     @And("^get main data from current supplier invoice$")

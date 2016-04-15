@@ -17,7 +17,7 @@ public class InternalMovesListView extends PortalUIElement {
     protected WebElement mainTable;
 
     public InternalMovesListView() {
-
+        waitForLoading();
     }
 
     @Override

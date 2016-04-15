@@ -51,7 +51,7 @@ public class AssetAssignationSteps {
     public void I_search_asset_created_in_asset_assignation() throws Throwable {
         Search openERPSearch = new Search();
         openERPSearch.advancedSearch("Asset Code",this.auxAsset.code);
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         AssetsAssignationListView assetsAssignationListView = new AssetsAssignationListView();
         assetsAssignationListView.clickOnRecord(this.auxAsset.code);
     }

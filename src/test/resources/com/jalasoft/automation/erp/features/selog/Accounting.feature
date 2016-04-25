@@ -7,8 +7,8 @@ Feature: Accounting
       And I go to "assets" accounting submenu
       And I press "create" general button
       And I modify the asset with these data
-        | assetCategoryParent | grossValue |
-        | 01_Domo             | 100        |
+        | parent  | grossValue |
+        | 01_Domo | 100        |
       And I press "save" general button
       And I press "confirm asset" accounting button
       And get main data from the current asset
@@ -187,8 +187,8 @@ Feature: Accounting
       And I go to "assets" accounting submenu
       And I press "create" general button
       And I modify the asset with these data
-        | assetCategoryParent | grossValue |
-        | 01_Domo             | 100        |
+        | parent  | grossValue |
+        | 01_Domo | 100        |
       And I press "save" general button
       And I press "confirm asset" accounting button
       And get main data from the current asset
@@ -258,3 +258,119 @@ Feature: Accounting
       And I go to "assets" accounting submenu
       And a new record is displayed in assets list view
     Then it has "draft" status
+
+  @CreateSupplier
+  Scenario: Create a supplier with just required fields
+    Given I navigate to login page
+    And I login with "purchase manager" credentials
+    And I go to "suppliers" purchase submenu
+    When I press "create" general button
+    And I edit the supplier with these "basic" data
+      | name     | isACompany | address         |
+      | blah SRL | false      | Av. Algun Lugar |
+    And I edit the supplier with these "accounting" data
+      | tin     |
+      | 6805325 |
+    And I edit the supplier with these "sales & purchases" data
+      | salePricelist          | purchasePricelist                |
+      | Public Pricelist (BOB) | Default Purchase Pricelist (BOB) |
+    And I press "save" general button
+
+  @CreateProduct
+  Scenario: Create a product from asset
+    Given I navigate to login page
+    And I login with "asset manager" credentials
+    And I go to "assets" accounting submenu
+    And I press "create" general button
+    And I modify the asset with these data
+      | hierarchyType | parent             | code | name                |
+      | Subclass      | 06_ESTABILIZADORES | E1   | Estabilizador KIA HB|
+    And I press "save" general button
+    And I press "confirm subclass" accounting button
+    And I logout
+    When I login with "coffee shop manager" credentials
+    And I go to "products" warehouse submenu
+    And I search "Estabilizador KIA HB" in products
+    And I press "edit" general button
+    And I modify the product with these "information" data
+      | salePrice |
+      | 1         |
+    And I modify the product with these "procurements" data
+      | purchasePrice | CostPrice |
+      | 150           | 130.5     |
+    And I modify the product with these "inventory" data
+      | quantityOnHand   |
+      | 0                |
+    And I press "save" general button
+    And I verify the product has these "information" data
+      | salePrice |
+      | 1.000000 |
+    And I verify the product has these "procurements" data
+      | purchasePrice | CostPrice  |
+      | 150.0000      | 130.500000 |
+    And I verify the product has these "inventory" data
+      | quantityOnHand |
+      | 0.000000       |
+
+  @CreateProduct
+  Scenario Outline: Create a product
+    Given I navigate to login page
+    When I login with "coffee shop manager" credentials
+    And I go to "products" warehouse submenu
+    And I press "create" general button
+    And I modify the product with these "basic" data
+      | name   | category   |
+      | <name> | <category> |
+    And I modify the product with these "information" data
+      | productType   | salePrice   | unitMeasure   |
+      | <productType> | <salePrice> | <unitMeasure> |
+    And I modify the product with these "procurements" data
+      | purchasePrice   | costPrice   |
+      | <purchasePrice> | <costPrice> |
+    And I modify the product with these "inventory" data
+      | quantityOnHand   |
+      | <quantityOnHand> |
+    And I press "save" general button
+    And I verify the product has these "information" data
+      | salePrice   |
+      | <salePrice> |
+    And I verify the product has these "procurements" data
+      | purchasePrice   | costPrice   |
+      | <purchasePrice> | <costPrice> |
+    And I verify the product has these "inventory" data
+      | quantityOnHand   |
+      | <quantityOnHand> |
+  Examples:
+  | name                           | category                       | productType       | salePrice    | unitMeasure | purchasePrice | costPrice    | quantityOnHand |
+  | Leche                          | All products                   | Consumable        | 20.457800    | Liter(s)    | 15.0000       | 12.063800    | 200.000000     |
+  | Lote de repuestos motor diesel | M0101_REPUESTOS GENERADORES    | Stockable Product | 8,682.680000 | KIT         | 9,745.9200    | 9,355.154800 | 50.000000      |
+  | Platillo de plastico           | G0114_EQUIP/ACC COCINA/COMEDOR | Stockable Product | 22.000000    | Pieza       | 27.9200       | 26.053900    | 50.000000      |
+
+  @CreateProduct @tyu
+  Scenario Outline: Create a product
+    Given I navigate to login page
+    When I login with "coffee shop manager" credentials
+    And I go to "products" warehouse submenu
+    And I press "create" general button
+    And I modify the product with these "basic" data
+      | name   | category   |
+      | <name> | <category> |
+    And I modify the product with these "information" data
+      | productType   | salePrice   | unitMeasure   |
+      | <productType> | <salePrice> | <unitMeasure> |
+    And I modify the product with these "procurements" data
+      | purchasePrice   | costPrice   |
+      | <purchasePrice> | <costPrice> |
+    And I press "save" general button
+    And I verify the product has these "information" data
+      | salePrice   |
+      | <salePrice> |
+    And I verify the product has these "procurements" data
+      | purchasePrice   | costPrice   |
+      | <purchasePrice> | <costPrice> |
+
+    Examples:
+      | name          | category              | productType | salePrice    | unitMeasure | purchasePrice | costPrice    |
+      | Mantenimiento | Z_SERVICIOS PRESTADOS | Service     | 100.000000   | Hour(s)     | 250.5500      | 275.1536     |
+      | Luz           | All products          | Service     | 1,545.550000 | Day(s)      | 1,655.4600    | 1,491.581300 |
+

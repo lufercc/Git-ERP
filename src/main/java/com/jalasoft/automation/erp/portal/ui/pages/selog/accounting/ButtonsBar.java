@@ -15,6 +15,9 @@ public class ButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Validate')]")
     protected WebElement validateButton;
 
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirm Subclass')]")
+    protected WebElement confirmSubclassButton;
+
     @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirm Asset')]")
     protected WebElement confirmAssetButton;
 
@@ -40,6 +43,10 @@ public class ButtonsBar extends PortalUIElement {
         switch (buttonString.toLowerCase()) {
         case "validate":
             validateButton.click();
+            break;
+
+        case "confirm subclass":
+            confirmSubclassButton.click();
             break;
 
         case "confirm asset":

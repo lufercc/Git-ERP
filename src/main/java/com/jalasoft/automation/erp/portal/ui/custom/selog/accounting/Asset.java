@@ -7,10 +7,11 @@ public class Asset {
 
     public String name;
     public String code;
-    public String assetCategoryParent;
+    public String parent;
     public String grossValue;
+    public String hierarchyType;
 
     public void fillMainData(Asset aux) {
-        this.code = aux.code;
+        code = aux.code;
     }
 }

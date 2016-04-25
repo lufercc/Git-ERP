@@ -21,7 +21,8 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Purchase Orders')]")
     protected WebElement purchaseOrders;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']//div[5]//span[contains(text(),'Suppliers')]")
+    @CacheLookup
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Suppliers')]")
     protected WebElement suppliers;
 
     @CacheLookup

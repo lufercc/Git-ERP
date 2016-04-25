@@ -79,14 +79,20 @@
             "password":"123",
             "userName":"henry62"
         },
+
+        "warehouse manager":{
+            "password":"123",
+            "userName":"henry2"
+        },
+
         "purchase manager":{
             "password":"123",
             "userName":"henry3"
         },
 
-        "warehouse manager":{
+        "coffee shop manager":{
             "password":"123",
-            "userName":"henry2"
+            "userName":"henry4"
         },
 
         "sales":{

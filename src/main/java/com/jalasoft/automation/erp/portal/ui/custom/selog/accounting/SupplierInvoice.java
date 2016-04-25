@@ -9,6 +9,7 @@ public class SupplierInvoice extends GeneralRecord {
 
     public String supplier;
     public String purchaseTaxType;
+    public String fiscalPosition;
     public String code;
     public String supplierInvoiceName;
     public String tin;
@@ -20,6 +21,8 @@ public class SupplierInvoice extends GeneralRecord {
     public String invoiceDate;
     public String subtotal;
     public String tax;
+    public String amountNoVAT;
+    public String ice;
     public String total;
     public String balance;
 
@@ -28,37 +31,43 @@ public class SupplierInvoice extends GeneralRecord {
     }
 
     public boolean contains(boolean shouldContain, SupplierInvoice uiData) {
-        if (this.supplierInvoiceName != null) {
+        if (supplierInvoiceName != null) {
             if(supplierInvoiceName.equals(uiData.supplierInvoiceName) != shouldContain) {
                 logWarning("supplierInvoiceName", supplierInvoiceName);
                 return false;
             }
         }
-        if (this.tin != null) {
+        if (fiscalPosition != null) {
+            if(fiscalPosition.equals(uiData.fiscalPosition) != shouldContain) {
+                logWarning("fiscalPosition", fiscalPosition);
+                return false;
+            }
+        }
+        if (tin != null) {
             if (tin.equals(uiData.tin) != shouldContain) {
                 logWarning("tin", tin);
                 return false;
             }
         }
-        if (this.subtotal != null) {
+        if (subtotal != null) {
             if (subtotal.equals(uiData.subtotal) != shouldContain) {
                 logWarning("subtotal", subtotal);
                 return false;
             }
         }
-        if (this.tax != null) {
+        if (tax != null) {
             if (tax.equals(uiData.tax) != shouldContain) {
                 logWarning("tax", tax);
                 return false;
             }
         }
-        if (this.total != null) {
+        if (total != null) {
             if (total.equals(uiData.total) != shouldContain) {
                 logWarning("total", total);
                 return false;
             }
         }
-        if (this.balance != null) {
+        if (balance != null) {
             if (balance.equals(uiData.balance) != shouldContain) {
                 logWarning("balance", balance);
                 return false;

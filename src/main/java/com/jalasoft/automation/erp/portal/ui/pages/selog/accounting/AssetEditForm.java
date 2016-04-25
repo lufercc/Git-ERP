@@ -12,8 +12,11 @@ import java.util.ArrayList;
  */
 public class AssetEditForm extends FormEditMode {
 
-    @FindBy(xpath = "//input[@placeholder='Nombre']")
+    @FindBy(xpath = "//input[@placeholder='Name']")
     protected WebElement name;
+
+    @FindBy(xpath = "//input[@placeholder='Code']")
+    protected WebElement code;
 
     @FindBy(name = "parent_image")
     protected WebElement parentImage;
@@ -22,7 +25,10 @@ public class AssetEditForm extends FormEditMode {
     protected WebElement grossValue;
 
     @FindBy(xpath = "//label[contains(text(),'Parent')]/ancestor::td/following-sibling::td/span/div/input")
-    protected WebElement assetCategoryParent;
+    protected WebElement parent;
+
+    @FindBy(name = "type")
+    protected WebElement hierarchyType;
 
     public AssetEditForm() {
         waitForLoading();
@@ -38,15 +44,25 @@ public class AssetEditForm extends FormEditMode {
         webDriverTools.waitUntilElementPresentAndVisible(parentImage);
     }
 
-    public void modifyData(Asset inputData) {
+    public void modifyData(Asset inputData) throws InterruptedException {
         fieldsWereEdited = new ArrayList<>();
         fieldsWereNotEdited = new ArrayList<>();
         allFieldsWereEdited = true;
-        if (inputData.assetCategoryParent != null) {
-            selectOpenERPItem(assetCategoryParent, "assetCategoryParent", inputData.assetCategoryParent);
+        if (inputData.hierarchyType != null) {
+            selectItem(hierarchyType, "hierarchyType", inputData.hierarchyType);
+            Thread.sleep(2000);
+        }
+        if (inputData.parent != null) {
+            selectOpenERPItem(parent, "parent", inputData.parent);
         }
         if (inputData.grossValue != null) {
             setInput(grossValue, "grossValue", inputData.grossValue);
+        }
+        if (inputData.code != null) {
+            setInput(code, "code", inputData.code);
+        }
+        if (inputData.name != null) {
+            setInput(name, "name", inputData.name);
         }
         logEditStatus();
     }

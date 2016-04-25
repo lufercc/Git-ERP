@@ -13,6 +13,9 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']")
     protected WebElement submenuContainer;
 
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Suppliers')]")
+    protected WebElement suppliers;
+
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Supplier Invoices')]")
     protected WebElement supplierInvoices;
 
@@ -53,6 +56,11 @@ public class Submenu extends PortalUIElement{
             case "assets assignation":
                 webDriverTools.waitUntilElementPresentAndVisible(assetsAssignation);
                 assetsAssignation.click();
+                break;
+
+            case "suppliers":
+                webDriverTools.waitUntilElementPresentAndVisible(suppliers);
+                suppliers.click();
                 break;
 
             case "journal entries":

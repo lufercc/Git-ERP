@@ -17,6 +17,9 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Delivery Orders')]")
     protected WebElement deliveryOrders;
 
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Products') and not(contains(text(),'ICE') or contains(text(),'Category') or contains(text(),'Incoming') or contains(text(),'Deliver'))]")
+    protected WebElement products;
+
     public Submenu() {
         waitForLoading();
     }
@@ -40,7 +43,12 @@ public class Submenu extends PortalUIElement{
         case "delivery orders":
             deliveryOrders.click();
             break;
-        }
+
+        case "products":
+            products.click();
+            break;
+
+    }
         webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

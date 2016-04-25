@@ -21,6 +21,10 @@ public class SupplierInvoiceReadForm extends FormReadMode {
     protected WebElement subtotal;
     @FindBy(xpath = "//table[contains(@class,'subtotal')]//label[contains(text(),'Tax')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement tax;
+    @FindBy(xpath = "//table[contains(@class,'subtotal')]//label[contains(text(),'Amount Not Subject To VAT')]/ancestor::td/following-sibling::td/span/span")
+    protected WebElement amountNoVAT;
+    @FindBy(xpath = "//table[contains(@class,'subtotal')]//label[contains(text(),'ICE')]/ancestor::td/following-sibling::td/span/span")
+    protected WebElement ice;
     @FindBy(xpath = "//table[contains(@class,'subtotal')]//label[contains(text(),'Total')]/ancestor::td/following-sibling::td/span/span")
     protected WebElement total;
     @FindBy(xpath = "//table[contains(@class,'subtotal')]//label[contains(text(),'Balance')]/ancestor::td/following-sibling::td/span/span")
@@ -58,6 +62,12 @@ public class SupplierInvoiceReadForm extends FormReadMode {
         }
         if(infoFromStep.tax != null) {
             result.tax = getSpanValue(tax, "tax");
+        }
+        if(infoFromStep.amountNoVAT != null) {
+            result.amountNoVAT = getSpanValue(amountNoVAT, "amountNoVAT");
+        }
+        if(infoFromStep.ice != null) {
+            result.ice = getSpanValue(ice, "ice");
         }
         if(infoFromStep.total != null) {
             result.total = getSpanValue(total, "total");

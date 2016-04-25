@@ -69,7 +69,7 @@ public class SupplierInvoiceProductsReadForm extends TableOpenERP {
                         break;
                     }
                     if (indexList == (tableSize - 1)) {
-                        logNotRecordFoundInTable();
+                        logNotRecordFoundInTable(product.toString());
                         return false;
                     }
                 } else {
@@ -95,6 +95,12 @@ public class SupplierInvoiceProductsReadForm extends TableOpenERP {
         }
         if(inputRecord.unitPrice != null) {
             if (!inputRecord.unitPrice.equals(tableRow.get(expectedHeaders.get("unitPrice")))) {
+                return false;
+            }
+        }
+
+        if(inputRecord.taxes != null) {
+            if (!inputRecord.taxes.equals(tableRow.get(expectedHeaders.get("taxes")))) {
                 return false;
             }
         }

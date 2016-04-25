@@ -20,6 +20,9 @@ public class SupplierInvoiceEditForm extends FormEditMode {
     @FindBy(xpath = "//label[contains(text(),'Purchase Tax Type')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
     protected WebElement purchaseTaxType;
 
+    @FindBy(xpath = "//label[contains(text(),'Fiscal Position')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
+    protected WebElement fiscalPosition;
+
     @FindBy(xpath = "//label[contains(text(),'Supplier Invoice Name')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement supplierInvoiceName;
 
@@ -44,6 +47,11 @@ public class SupplierInvoiceEditForm extends FormEditMode {
     @FindBy(name = "date_invoice")
     protected WebElement invoiceDate;
 
+    @FindBy(xpath = "//label[contains(text(),'Amount Not Subject To VAT')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
+    protected WebElement amountNoVAT;
+
+    @FindBy(xpath = "//label[contains(text(),'ICE')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
+    protected WebElement ice;
 
     public SupplierInvoiceEditForm() {}
 
@@ -97,6 +105,14 @@ public class SupplierInvoiceEditForm extends FormEditMode {
             webDriverTools.waitUntilElementPresentAndVisible(invoiceDate);
             setInput(invoiceDate, "invoiceDate", inputData.invoiceDate);
         }
+        if (inputData.amountNoVAT != null) {
+            webDriverTools.waitUntilElementPresentAndVisible(amountNoVAT);
+            setInput(amountNoVAT, "amountNoVAT", inputData.amountNoVAT);
+        }
+        if (inputData.ice != null) {
+            webDriverTools.waitUntilElementPresentAndVisible(ice);
+            setInput(ice, "ice", inputData.ice);
+        }
 
         logEditStatus();
     }
@@ -110,6 +126,10 @@ public class SupplierInvoiceEditForm extends FormEditMode {
         }
         if(infoFromStep.tin != null) {
             result.tin = tin.getAttribute("value").replace("<br>", "");
+        }
+
+        if(infoFromStep.fiscalPosition != null) {
+            result.fiscalPosition = fiscalPosition.getAttribute("value").replace("<br>", "");
         }
         return result;
     }

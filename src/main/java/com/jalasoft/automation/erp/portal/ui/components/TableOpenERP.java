@@ -201,6 +201,11 @@ public class TableOpenERP extends PortalUIElement {
         log.warn("No data was found in the table, review input data values");
     }
 
+    public void logNotRecordFoundInTable(String inputRecord) {
+        log = Logger.getLogger(getClass());
+        log.warn("No data was found in the table, review input data values\n" + inputRecord);
+    }
+
 
     @Override
     public boolean isLoaded() {

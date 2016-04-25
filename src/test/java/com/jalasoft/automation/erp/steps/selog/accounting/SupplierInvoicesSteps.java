@@ -33,7 +33,7 @@ public class SupplierInvoicesSteps {
         for (SupplierInvoice si : supplierInvoiceData) {
             supInvoiceForm.modifyData(si);
         }
-        Thread.sleep(3000);
+        Thread.sleep(2000);
     }
 
     @And("^I go to supplier invoice created from incoming shipment$")

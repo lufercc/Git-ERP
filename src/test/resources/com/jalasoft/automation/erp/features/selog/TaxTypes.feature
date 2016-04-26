@@ -98,7 +98,7 @@ Feature: Review different tax types
       | false | false  | false               | false       |
     When I edit the supplier invoice with these data
       | invoiceDate |
-      | 08/30/2016  |
+      | 08/31/2016  |
     And I add products with this data to supplier invoice
       | productID                      | quantity |
       | Lote de repuestos motor diesel | 1        |

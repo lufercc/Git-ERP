@@ -562,7 +562,7 @@ Feature: Review different tax types
       | Fuel Purchase  | 2412841 |
     Then I edit the supplier invoice with these data
       | number | authorizationNumber | controlCode | invoiceDate | amountNoVAT |
-      | 256987 | 256987              | 256987      | 08/30/2016  | 30.00       |
+      | 256987 | 256987              | 256987      | 08/31/2016  | 30.00       |
     And I add products with this data to supplier invoice
       | productID            | quantity |
       | Leche                | 110.6    |

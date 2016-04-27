@@ -283,14 +283,14 @@ Feature: Accounting
     And I go to "assets" accounting submenu
     And I press "create" general button
     And I modify the asset with these data
-      | hierarchyType | parent             | code | name                |
-      | Subclass      | 06_ESTABILIZADORES | E1   | Estabilizador KIA HB|
+      | hierarchyType | parent             | code | name                        |
+      | Subclass      | 06_ESTABILIZADORES | E1   | AutomationEstabilizador KIA |
     And I press "save" general button
     And I press "confirm subclass" accounting button
     And I logout
     When I login with "coffee shop manager" credentials
     And I go to "products" warehouse submenu
-    And I search "Estabilizador KIA HB" in products
+    And I search "AutomationEstabilizador KIA" in products
     And I press "edit" general button
     And I modify the product with these "information" data
       | salePrice |
@@ -307,7 +307,7 @@ Feature: Accounting
       | 1.000000 |
     And I verify the product has these "procurements" data
       | purchasePrice | CostPrice  |
-      | 150.0000      | 130.500000 |
+      | 150.00        | 130.500000 |
     And I verify the product has these "inventory" data
       | quantityOnHand |
       | 0.000000       |
@@ -341,12 +341,12 @@ Feature: Accounting
       | quantityOnHand   |
       | <quantityOnHand> |
   Examples:
-  | name                           | category                       | productType       | salePrice    | unitMeasure | purchasePrice | costPrice    | quantityOnHand |
-  | Leche                          | All products                   | Consumable        | 20.457800    | Liter(s)    | 15.0000       | 12.063800    | 200.000000     |
-  | Lote de repuestos motor diesel | M0101_REPUESTOS GENERADORES    | Stockable Product | 8,682.680000 | KIT         | 9,745.9200    | 9,355.154800 | 50.000000      |
-  | Platillo de plastico           | G0114_EQUIP/ACC COCINA/COMEDOR | Stockable Product | 22.000000    | Pieza       | 27.9200       | 26.053900    | 50.000000      |
+  | name                                     | category                        | productType       | salePrice    | unitMeasure | purchasePrice | costPrice    | quantityOnHand |
+  | AutomationLeche                          | All products                    | Consumable        | 20.457800    | Liter(s)    | 15.00         | 12.063800    | 200.000000     |
+  | AutomationLote de repuestos motor diesel | M_TECNOLOGIA ELECTRONEGA        | Stockable Product | 8,682.680000 | KIT         | 9,745.92      | 9,355.154800 | 50.000000      |
+  | AutomationPlatillo de plastico           | G_INSUMOS DE MANTENIMIENTO GRAL | Stockable Product | 22.000000    | PIEZA       | 27.92         | 26.053900    | 50.000000      |
 
-  @CreateProduct @tyu
+  @CreateProduct
   Scenario Outline: Create a product
     Given I navigate to login page
     When I login with "coffee shop manager" credentials
@@ -370,7 +370,7 @@ Feature: Accounting
       | <purchasePrice> | <costPrice> |
 
     Examples:
-      | name          | category              | productType | salePrice    | unitMeasure | purchasePrice | costPrice    |
-      | Mantenimiento | Z_SERVICIOS PRESTADOS | Service     | 100.000000   | Hour(s)     | 250.5500      | 275.1536     |
-      | Luz           | All products          | Service     | 1,545.550000 | Day(s)      | 1,655.4600    | 1,491.581300 |
+      | name                    | category              | productType | salePrice    | unitMeasure | purchasePrice | costPrice    |
+      | AutomationMantenimiento | Z_SERVICIOS PRESTADOS | Service     | 100.000000   | Hour(s)     | 250.55        | 275.153600   |
+      | AutomationLuz           | All products          | Service     | 1,545.550000 | Day(s)      | 1,655.46      | 1,491.581300 |
 

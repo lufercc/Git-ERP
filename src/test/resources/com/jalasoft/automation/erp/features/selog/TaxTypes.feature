@@ -8,10 +8,10 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance  |
+      | CustomAutoSupplier  |
     Then I verify if he has supplier invoice data on edit mode
       | supplierInvoiceName | tin     |
-      | Advance             | 2412841 |
+      | CustomAutoSupplier             | 2412841 |
     When I edit the supplier invoice with these data
       | purchaseTaxType       |
       | Retention Tax Goods 1 |
@@ -23,13 +23,13 @@ Feature: Review different tax types
       | 432432                | 08/30/2016  |
     And I add products with this data to supplier invoice
       | productID                      | quantity |
-      | Estabilizador KIA              | 2        |
-      | Lote de repuestos motor diesel | 1        |
+      | AutomationEstabilizador KIA              | 2        |
+      | AutomationLote de repuestos motor diesel | 1        |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID                      | quantity | unitPrice    | taxes      | amount   |
-      | Estabilizador KIA              | 2        | 150.000000   | RETBIEN1 | 300.00   |
-      | Lote de repuestos motor diesel | 1        | 9,745.920000 | RETBIEN1 | 9,745.92 |
+      | AutomationEstabilizador KIA              | 2        | 150.000000   | RETBIEN1 | 300.00   |
+      | AutomationLote de repuestos motor diesel | 1        | 9,745.920000 | RETBIEN1 | 9,745.92 |
     And I verify taxes data on supplier invoice
       | taxDescription                  | taxAccount                       | base     | taxAmount |
       | RETBIENIUE1 - RE-Goods-IUE 5% 1 | 2130105 RETENCIONES IUE - BIENES | 9,242.24 | -502.30   |
@@ -46,10 +46,10 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance  |
+      | CustomAutoSupplier  |
     Then I verify if he has supplier invoice data on edit mode
       | supplierInvoiceName | tin     |
-      | Advance             | 2412841 |
+      | CustomAutoSupplier             | 2412841 |
     When I edit the supplier invoice with these data
       | purchaseTaxType       |
       | Retention Tax Goods 2 |
@@ -61,15 +61,15 @@ Feature: Review different tax types
       | 432432                | 08/30/2016  |
     And I add products with this data to supplier invoice
       | productID                      | quantity |
-      | Estabilizador KIA              | 3        |
-      | Leche                          | 3.5      |
-      | Platillo de plastico           | 1        |
+      | AutomationEstabilizador KIA              | 3        |
+      | AutomationLeche                          | 3.5      |
+      | AutomationPlatillo de plastico           | 1        |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID                  | quantity | unitPrice  | taxes    | amount |
-      | Estabilizador KIA          | 3        | 150.000000 | RETENBIEN2 | 450.00 |
-      | Leche                      | 3.5      | 15.000000  | RETENBIEN2 | 52.50  |
-      | Platillo de plastico       | 1        | 27.920000  | RETENBIEN2 | 27.92  |
+      | AutomationEstabilizador KIA          | 3        | 150.000000 | RETENBIEN2 | 450.00 |
+      | AutomationLeche                      | 3.5      | 15.000000  | RETENBIEN2 | 52.50  |
+      | AutomationPlatillo de plastico       | 1        | 27.920000  | RETENBIEN2 | 27.92  |
     And I verify taxes data on supplier invoice
       | taxDescription  | taxAccount                       | base   | taxAmount |
       | RE-Goods-IUE 5% | 2130105 RETENCIONES IUE - BIENES | 530.42 | -28.83    |
@@ -86,7 +86,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance2 |
+      | CustomAutoSupplier2 |
     And I edit the supplier invoice with these data
       | purchaseTaxType       |
       | <purchaseTaxType>     |
@@ -101,13 +101,13 @@ Feature: Review different tax types
       | 08/31/2016  |
     And I add products with this data to supplier invoice
       | productID                      | quantity |
-      | Lote de repuestos motor diesel | 1        |
-      | Estabilizador KIA              | 1.7      |
+      | AutomationLote de repuestos motor diesel | 1        |
+      | AutomationEstabilizador KIA              | 1.7      |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID                      | quantity | unitPrice    | taxes   | amount   |
-      | Lote de repuestos motor diesel | 1        | 9,355.154800 | <taxes> | 9,355.15 |
-      | Estabilizador KIA              | 1.7      | 130.500000   | <taxes> | 221.85   |
+      | AutomationLote de repuestos motor diesel | 1        | 9,355.154800 | <taxes> | 9,355.15 |
+      | AutomationEstabilizador KIA              | 1.7      | 130.500000   | <taxes> | 221.85   |
 
     And I verify taxes data on supplier invoice
       | taxDescription    | taxAccount                                                              | base     | taxAmount |
@@ -131,7 +131,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance2 |
+      | CustomAutoSupplier2 |
     And I edit the supplier invoice with these data
       | purchaseTaxType       |
       | <purchaseTaxType>     |
@@ -146,13 +146,13 @@ Feature: Review different tax types
       | 432432                | 08/30/2016  |
     And I add products with this data to supplier invoice
       | productID                      | quantity |
-      | Lote de repuestos motor diesel | 1        |
-      | Estabilizador KIA              | 1.7      |
+      | AutomationLote de repuestos motor diesel | 1        |
+      | AutomationEstabilizador KIA              | 1.7      |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID                      | quantity | unitPrice    | taxes   | amount   |
-      | Lote de repuestos motor diesel | 1        | 9,355.154800 | <taxes> | 9,355.15 |
-      | Estabilizador KIA              | 1.7      | 130.500000   | <taxes> | 221.85   |
+      | AutomationLote de repuestos motor diesel | 1        | 9,355.154800 | <taxes> | 9,355.15 |
+      | AutomationEstabilizador KIA              | 1.7      | 130.500000   | <taxes> | 221.85   |
 
     And I verify taxes data on supplier invoice
       | taxDescription    | taxAccount                                                              | base     | taxAmount |
@@ -167,7 +167,7 @@ Feature: Review different tax types
       | purchaseTaxType             | fiscalPosition                 | taxes   | taxDescription1             | taxDescription2             |
       | Exempt                      | Exempt                         | EXENTO  | EXENTO - I0 Exempt          | EXENTO - I0 Exempt          |
 
-  @TaxTypes @35811 @ThisTax
+  @TaxTypes @35811
   Scenario Outline: CLD-35811:Verify tha values are acurate when a Supplier Invoices is created if Purchase tax type has tax zero
     Given I navigate to login page
     When I login with "accountant" credentials
@@ -175,7 +175,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance2 |
+      | CustomAutoSupplier2 |
     And I edit the supplier invoice with these data
       | purchaseTaxType       |
       | <purchaseTaxType>     |
@@ -190,13 +190,13 @@ Feature: Review different tax types
       | 08/30/2016  |
     And I add products with this data to supplier invoice
       | productID                      | quantity |
-      | Lote de repuestos motor diesel | 1        |
-      | Estabilizador KIA              | 1.7      |
+      | AutomationLote de repuestos motor diesel | 1        |
+      | AutomationEstabilizador KIA              | 1.7      |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID                      | quantity | unitPrice    | taxes   | amount   |
-      | Lote de repuestos motor diesel | 1        | 9,355.154800 | <taxes> | 9,355.15 |
-      | Estabilizador KIA              | 1.7      | 130.500000   | <taxes> | 221.85   |
+      | AutomationLote de repuestos motor diesel | 1        | 9,355.154800 | <taxes> | 9,355.15 |
+      | AutomationEstabilizador KIA              | 1.7      | 130.500000   | <taxes> | 221.85   |
 
     And I verify taxes data on supplier invoice
       | taxDescription    | taxAccount    | base    | taxAmount |
@@ -218,7 +218,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance |
+      | CustomAutoSupplier |
     And I edit the supplier invoice with these data
       | purchaseTaxType          |
       | Retention Tax Services 2 |
@@ -233,11 +233,11 @@ Feature: Review different tax types
       | 432432                | 08/30/2016  |
     And I add products with this data to supplier invoice
       | productID     | quantity |
-      | Mantenimiento | 1.5      |
+      | AutomationMantenimiento | 1.5      |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID     | quantity | unitPrice  | taxes    | amount |
-      | Mantenimiento | 1.5      | 250.550000 | RETSERV2 | 375.83 |
+      | AutomationMantenimiento | 1.5      | 250.550000 | RETSERV2 | 375.83 |
 
     And I verify taxes data on supplier invoice
       | taxDescription    | taxAccount                          | base   | taxAmount |
@@ -256,7 +256,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance |
+      | CustomAutoSupplier |
     And I edit the supplier invoice with these data
       | purchaseTaxType          |
       | Retention Tax Services 1 |
@@ -271,11 +271,11 @@ Feature: Review different tax types
       | 432432                | 08/30/2016  |
     And I add products with this data to supplier invoice
       | productID | quantity |
-      | Luz       | 30       |
+      | AutomationLuz       | 30       |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID | quantity | unitPrice    | taxes    | amount    |
-      | Luz       | 30       | 1,655.460000 | RETSERV1 | 49,663.80 |
+      | AutomationLuz       | 30       | 1,655.460000 | RETSERV1 | 49,663.80 |
 
     And I verify taxes data on supplier invoice
       | taxDescription                    | taxAccount                          | base      | taxAmount |
@@ -294,7 +294,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance2 |
+      | CustomAutoSupplier2 |
     And I edit the supplier invoice with these data
       | purchaseTaxType            |
       | VAT Complementary System 1 |
@@ -309,11 +309,11 @@ Feature: Review different tax types
       | 432432                | 08/30/2016  |
     And I add products with this data to supplier invoice
       | productID     | quantity |
-      | Mantenimiento | 25.35    |
+      | AutomationMantenimiento | 25.35    |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID     | quantity | unitPrice  | taxes     | amount   |
-      | Mantenimiento | 25.35    | 275.153600 | RCRETIVA1 | 6,975.14 |
+      | AutomationMantenimiento | 25.35    | 275.153600 | RCRETIVA1 | 6,975.14 |
 
     And I verify taxes data on supplier invoice
       | taxDescription             | taxAccount                 | base     | taxAmount |
@@ -332,7 +332,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance2 |
+      | CustomAutoSupplier2 |
     And I edit the supplier invoice with these data
       | purchaseTaxType            |
       | VAT Complementary System 2 |
@@ -347,11 +347,11 @@ Feature: Review different tax types
       | 432432                | 08/30/2016  |
     And I add products with this data to supplier invoice
       | productID | quantity |
-      | Luz       | 3.3      |
+      | AutomationLuz       | 3.3      |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID | quantity | unitPrice    | taxes     | amount   |
-      | Luz       | 3.3      | 1,491.581300 | RCRETIVA2 | 4,922.22 |
+      | AutomationLuz       | 3.3      | 1,491.581300 | RCRETIVA2 | 4,922.22 |
 
     And I verify taxes data on supplier invoice
       | taxDescription  | taxAccount                 | base     | taxAmount |
@@ -370,7 +370,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance  |
+      | CustomAutoSupplier  |
     And I edit the supplier invoice with these data
       | purchaseTaxType                |
       | Integrated Tax System Purchase |
@@ -385,11 +385,11 @@ Feature: Review different tax types
       | 08/30/2016  |
     And I add products with this data to supplier invoice
       | productID     | quantity |
-      | Mantenimiento | 7.55     |
+      | AutomationMantenimiento | 7.55     |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID     | quantity | unitPrice  | taxes   | amount   |
-      | Mantenimiento | 7.55     | 250.550000 | REGINTE | 1,891.65 |
+      | AutomationMantenimiento | 7.55     | 250.550000 | REGINTE | 1,891.65 |
 
     And I verify taxes data on supplier invoice
       | taxDescription                 | taxAccount                                                              | base     | taxAmount |
@@ -407,7 +407,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance  |
+      | CustomAutoSupplier  |
     And I edit the supplier invoice with these data
       | purchaseTaxType |
       | Exempt          |
@@ -422,11 +422,11 @@ Feature: Review different tax types
       | 432432                | 08/30/2016  |
     And I add products with this data to supplier invoice
       | productID     | quantity |
-      | Mantenimiento | 7.55     |
+      | AutomationMantenimiento | 7.55     |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID     | quantity | unitPrice  | taxes  | amount   |
-      | Mantenimiento | 7.55     | 250.550000 | EXENTO | 1,891.65 |
+      | AutomationMantenimiento | 7.55     | 250.550000 | EXENTO | 1,891.65 |
 
     And I verify taxes data on supplier invoice
       | taxDescription     | taxAccount                                                              | base     | taxAmount |
@@ -444,7 +444,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance2 |
+      | CustomAutoSupplier2 |
     And I edit the supplier invoice with these data
       | purchaseTaxType |
       | Basic Services  |
@@ -456,11 +456,11 @@ Feature: Review different tax types
       | 256987 | 256987              | 256987      | 08/30/2016  | 20.00       |
     And I add products with this data to supplier invoice
       | productID | quantity |
-      | Luz       | 4.8      |
+      | AutomationLuz       | 4.8      |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID | quantity | unitPrice   | taxes         | amount   |
-      | Luz       | 4.8      | 1,491.581300 | COMPSERVELEC | 7,159.59 |
+      | AutomationLuz       | 4.8      | 1,491.581300 | COMPSERVELEC | 7,159.59 |
 
     And I verify taxes data on supplier invoice
       | taxDescription | taxAccount                                                              | base     | taxAmount |
@@ -479,7 +479,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance  |
+      | CustomAutoSupplier  |
     And I edit the supplier invoice with these data
       | purchaseTaxType |
       | Fuel            |
@@ -491,11 +491,11 @@ Feature: Review different tax types
       | 256987 | 256987              | 256987      | 08/30/2016  | 30.00       |
     And I add products with this data to supplier invoice
       | productID     | quantity |
-      | Mantenimiento | 35.8     |
+      | AutomationMantenimiento | 35.8     |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID     | quantity | unitPrice  | taxes    | amount   |
-      | Mantenimiento | 35.8     | 250.550000 | COMPCOMB | 8,969.69 |
+      | AutomationMantenimiento | 35.8     | 250.550000 | COMPCOMB | 8,969.69 |
 
     And I verify taxes data on supplier invoice
       | taxDescription | taxAccount                                                            | base     | taxAmount |
@@ -514,7 +514,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance2 |
+      | CustomAutoSupplier2 |
     And I edit the supplier invoice with these data
       | purchaseTaxType |
       | Normal          |
@@ -526,15 +526,15 @@ Feature: Review different tax types
       | 256987 | 256987              | 256987      | 08/30/2016  |
     And I add products with this data to supplier invoice
       | productID            | quantity |
-      | Leche                | 5.7      |
-      | Platillo de plastico | 2        |
-      | Estabilizador KIA    | 1        |
+      | AutomationLeche                | 5.7      |
+      | AutomationPlatillo de plastico | 2        |
+      | AutomationEstabilizador KIA    | 1        |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID            | quantity | unitPrice  | taxes     | amount |
-      | Leche                | 5.7      | 12.063800  | IVACOMPRA | 68.76  |
-      | Platillo de plastico | 2        | 26.053900  | IVACOMPRA | 52.11  |
-      | Estabilizador KIA    | 1        | 130.500000 | IVACOMPRA | 130.50 |
+      | AutomationLeche                | 5.7      | 12.063800  | IVACOMPRA | 68.76  |
+      | AutomationPlatillo de plastico | 2        | 26.053900  | IVACOMPRA | 52.11  |
+      | AutomationEstabilizador KIA    | 1        | 130.500000 | IVACOMPRA | 130.50 |
 
     And I verify taxes data on supplier invoice
       | taxDescription   | taxAccount                 | base   | taxAmount |
@@ -553,7 +553,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance  |
+      | CustomAutoSupplier  |
     And I edit the supplier invoice with these data
       | purchaseTaxType |
       | Stockable Fuel  |
@@ -565,15 +565,15 @@ Feature: Review different tax types
       | 256987 | 256987              | 256987      | 08/31/2016  | 30.00       |
     And I add products with this data to supplier invoice
       | productID            | quantity |
-      | Leche                | 110.6    |
-      | Platillo de plastico | 18       |
-      | Estabilizador KIA    | 3        |
+      | AutomationLeche                | 110.6    |
+      | AutomationPlatillo de plastico | 18       |
+      | AutomationEstabilizador KIA    | 3        |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID            | quantity | unitPrice  | taxes    | amount   |
-      | Leche                | 110.6    | 15.000000  | COMPCOMB | 1,659.00 |
-      | Platillo de plastico | 18       | 27.920000  | COMPCOMB | 502.56   |
-      | Estabilizador KIA    | 3        | 150.000000 | COMPCOMB | 450.00   |
+      | AutomationLeche                | 110.6    | 15.000000  | COMPCOMB | 1,659.00 |
+      | AutomationPlatillo de plastico | 18       | 27.920000  | COMPCOMB | 502.56   |
+      | AutomationEstabilizador KIA    | 3        | 150.000000 | COMPCOMB | 450.00   |
 
     And I verify taxes data on supplier invoice
       | taxDescription | taxAccount                                                              | base     | taxAmount |
@@ -593,7 +593,7 @@ Feature: Review different tax types
     And I press "create" general button
     And I edit the supplier invoice with these data
       | supplier |
-      | Advance  |
+      | CustomAutoSupplier  |
     And I edit the supplier invoice with these data
       | purchaseTaxType |
       | Special Tax (ICE)  |
@@ -605,15 +605,15 @@ Feature: Review different tax types
       | 256987 | 256987              | 256987      | 08/30/2016  | 38.18 |
     And I add products with this data to supplier invoice
       | productID            | quantity |
-      | Leche                | 110.6    |
-      | Platillo de plastico | 18       |
-      | Estabilizador KIA    | 3        |
+      | AutomationLeche                | 110.6    |
+      | AutomationPlatillo de plastico | 18       |
+      | AutomationEstabilizador KIA    | 3        |
     And I press "save" general button
     Then I verify products data on supplier invoice
       | productID            | quantity | unitPrice  | taxes     | amount   |
-      | Leche                | 110.6    | 15.000000  | COMPRAICE | 1,659.00 |
-      | Platillo de plastico | 18       | 27.920000  | COMPRAICE | 502.56   |
-      | Estabilizador KIA    | 3        | 150.000000 | COMPRAICE | 450.00   |
+      | AutomationLeche                | 110.6    | 15.000000  | COMPRAICE | 1,659.00 |
+      | AutomationPlatillo de plastico | 18       | 27.920000  | COMPRAICE | 502.56   |
+      | AutomationEstabilizador KIA    | 3        | 150.000000 | COMPRAICE | 450.00   |
 
     And I verify taxes data on supplier invoice
       | taxDescription | taxAccount                                                              | base     | taxAmount |

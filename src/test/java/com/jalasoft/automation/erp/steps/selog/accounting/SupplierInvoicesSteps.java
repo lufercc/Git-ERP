@@ -73,6 +73,7 @@ public class SupplierInvoicesSteps {
 
     @And("^I add products with this data to supplier invoice$")
     public void I_add_products_with_this_data_to_supplier_invoice(List<Product> inputData) throws Throwable {
+        Thread.sleep(2000);
         SupplierInvoiceProductsEditForm supplierInvoiceProductsEditForm = new SupplierInvoiceProductsEditForm();
         supplierInvoiceProductsEditForm.addData(inputData);
     }

@@ -23,7 +23,7 @@
     },
     "GeneralSettings":
     {
-        "sutURL": "http://10.31.97.80:63069/?db=odoo"
+        "sutURL": "https://10.31.97.86:8443"
     },
     "Credentials":
     {

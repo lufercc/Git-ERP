@@ -20,7 +20,7 @@ Feature: Review different tax types
       | false | false  | false               | false       | true                  |
     When I edit the supplier invoice with these data
       | supplierReceiptNumber | invoiceDate |
-      | 432432                | 08/30/2016  |
+      | 432432                | 09/01/2016  |
     And I add products with this data to supplier invoice
       | productID                      | quantity |
       | AutomationEstabilizador KIA              | 2        |
@@ -58,7 +58,7 @@ Feature: Review different tax types
       | false | false  | false               | false       | true                  |
     When I edit the supplier invoice with these data
       | supplierReceiptNumber | invoiceDate |
-      | 432432                | 08/30/2016  |
+      | 432432                | 09/01/2016  |
     And I add products with this data to supplier invoice
       | productID                      | quantity |
       | AutomationEstabilizador KIA              | 3        |
@@ -98,7 +98,7 @@ Feature: Review different tax types
       | false | false  | false               | false       |
     When I edit the supplier invoice with these data
       | invoiceDate |
-      | 08/31/2016  |
+      | 09/02/2016  |
     And I add products with this data to supplier invoice
       | productID                      | quantity |
       | AutomationLote de repuestos motor diesel | 1        |
@@ -143,7 +143,7 @@ Feature: Review different tax types
       | false | false  | false               | false       |
     When I edit the supplier invoice with these data
       | supplierReceiptNumber | invoiceDate |
-      | 432432                | 08/30/2016  |
+      | 432432                | 09/01/2016  |
     And I add products with this data to supplier invoice
       | productID                      | quantity |
       | AutomationLote de repuestos motor diesel | 1        |
@@ -187,7 +187,7 @@ Feature: Review different tax types
       | false | false  | false               | false       |
     When I edit the supplier invoice with these data
       | invoiceDate |
-      | 08/30/2016  |
+      | 09/01/2016  |
     And I add products with this data to supplier invoice
       | productID                      | quantity |
       | AutomationLote de repuestos motor diesel | 1        |
@@ -230,7 +230,7 @@ Feature: Review different tax types
       | false | false  | false               | false       |
     When I edit the supplier invoice with these data
       | supplierReceiptNumber | invoiceDate |
-      | 432432                | 08/30/2016  |
+      | 432432                | 09/01/2016  |
     And I add products with this data to supplier invoice
       | productID     | quantity |
       | AutomationMantenimiento | 1.5      |
@@ -268,7 +268,7 @@ Feature: Review different tax types
       | false | false  | false               | false       |
     When I edit the supplier invoice with these data
       | supplierReceiptNumber | invoiceDate |
-      | 432432                | 08/30/2016  |
+      | 432432                | 09/01/2016  |
     And I add products with this data to supplier invoice
       | productID | quantity |
       | AutomationLuz       | 30       |
@@ -306,7 +306,7 @@ Feature: Review different tax types
       | false | false  | false               | false       |
     When I edit the supplier invoice with these data
       | supplierReceiptNumber | invoiceDate |
-      | 432432                | 08/30/2016  |
+      | 432432                | 09/01/2016  |
     And I add products with this data to supplier invoice
       | productID     | quantity |
       | AutomationMantenimiento | 25.35    |
@@ -344,7 +344,7 @@ Feature: Review different tax types
       | false | false  | false               | false       |
     When I edit the supplier invoice with these data
       | supplierReceiptNumber | invoiceDate |
-      | 432432                | 08/30/2016  |
+      | 432432                | 09/01/2016  |
     And I add products with this data to supplier invoice
       | productID | quantity |
       | AutomationLuz       | 3.3      |
@@ -382,7 +382,7 @@ Feature: Review different tax types
       | false | false  | false               | false       | false                 |
     When I edit the supplier invoice with these data
       | invoiceDate |
-      | 08/30/2016  |
+      | 09/01/2016  |
     And I add products with this data to supplier invoice
       | productID     | quantity |
       | AutomationMantenimiento | 7.55     |
@@ -419,7 +419,7 @@ Feature: Review different tax types
       | false | false  | false               | false       |
     When I edit the supplier invoice with these data
       | supplierReceiptNumber | invoiceDate |
-      | 432432                | 08/30/2016  |
+      | 432432                | 09/01/2016  |
     And I add products with this data to supplier invoice
       | productID     | quantity |
       | AutomationMantenimiento | 7.55     |
@@ -453,7 +453,7 @@ Feature: Review different tax types
       | Basic Services Purchase | 6805325 |
     Then I edit the supplier invoice with these data
       | number | authorizationNumber | controlCode | invoiceDate | amountNoVAT |
-      | 256987 | 256987              | 256987      | 08/30/2016  | 20.00       |
+      | 256987 | 256987              | 256987      | 09/01/2016  | 20.00       |
     And I add products with this data to supplier invoice
       | productID | quantity |
       | AutomationLuz       | 4.8      |
@@ -488,7 +488,7 @@ Feature: Review different tax types
       | Fuel Purchase  | 2412841 |
     Then I edit the supplier invoice with these data
       | number | authorizationNumber | controlCode | invoiceDate | amountNoVAT |
-      | 256987 | 256987              | 256987      | 08/30/2016  | 30.00       |
+      | 256987 | 256987              | 256987      | 09/01/2016  | 30.00       |
     And I add products with this data to supplier invoice
       | productID     | quantity |
       | AutomationMantenimiento | 35.8     |
@@ -523,7 +523,7 @@ Feature: Review different tax types
       | Normal Purchase 1 | 6805325 |
     Then I edit the supplier invoice with these data
       | number | authorizationNumber | controlCode | invoiceDate |
-      | 256987 | 256987              | 256987      | 08/30/2016  |
+      | 256987 | 256987              | 256987      | 09/01/2016  |
     And I add products with this data to supplier invoice
       | productID            | quantity |
       | AutomationLeche                | 5.7      |
@@ -562,7 +562,7 @@ Feature: Review different tax types
       | Fuel Purchase  | 2412841 |
     Then I edit the supplier invoice with these data
       | number | authorizationNumber | controlCode | invoiceDate | amountNoVAT |
-      | 256987 | 256987              | 256987      | 08/31/2016  | 30.00       |
+      | 256987 | 256987              | 256987      | 09/02/2016  | 30.00       |
     And I add products with this data to supplier invoice
       | productID            | quantity |
       | AutomationLeche                | 110.6    |
@@ -602,7 +602,7 @@ Feature: Review different tax types
       | Special Tax (ICE)  | 2412841 |
     Then I edit the supplier invoice with these data
       | number | authorizationNumber | controlCode | invoiceDate | ice   |
-      | 256987 | 256987              | 256987      | 08/30/2016  | 38.18 |
+      | 256987 | 256987              | 256987      | 09/01/2016  | 38.18 |
     And I add products with this data to supplier invoice
       | productID            | quantity |
       | AutomationLeche                | 110.6    |

@@ -3,8 +3,8 @@
     {
         "driverType":"browser",
         "browser":"fireFox",
-        "implicitWaitTime":"20",
-        "explicitWaitTime":"20",
+        "implicitWaitTime":"10",
+        "explicitWaitTime":"10",
         "waitSleepTime":"20",
         "desiredCapabilities":
         {
@@ -23,7 +23,7 @@
     },
     "GeneralSettings":
     {
-        "sutURL": "http://10.31.97.80:62069"
+        "sutURL": "https://10.31.97.86:8443"
     },
     "Credentials":
     {
@@ -79,14 +79,20 @@
             "password":"123",
             "userName":"henry62"
         },
-        "purchase manager":{
-            "password":"123",
-            "userName":"henry11"
-        },
 
         "warehouse manager":{
             "password":"123",
-            "userName":"henry16"
+            "userName":"henry2"
+        },
+
+        "purchase manager":{
+            "password":"123",
+            "userName":"henry3"
+        },
+
+        "coffee shop manager":{
+            "password":"123",
+            "userName":"henry4"
         },
 
         "sales":{
@@ -96,12 +102,12 @@
 
         "accountant":{
             "password":"123",
-            "userName":"henry2"
+            "userName":"henry15"
         },
 
         "asset manager":{
             "password":"123",
-            "userName":"henry7"
+            "userName":"henry18"
         },
 
         "valid":{

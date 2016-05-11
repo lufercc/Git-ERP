@@ -2,6 +2,7 @@ package com.jalasoft.automation.erp.portal.ui.components;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ public class TableOpenERP extends PortalUIElement {
     protected HashMap<String, String> expectedHeaders;
     protected HashMap<String, String> expectedSpanishHeaders;
     protected HashMap<String, String> expectedEnglishHeaders;
+    public List<String> fieldsWereEdited;
+    public List<String> fieldsWereNotEdited;
+    public Boolean allFieldsWereEdited = true;
 
     protected boolean allRecordsWereAdded;
 
@@ -27,6 +31,76 @@ public class TableOpenERP extends PortalUIElement {
     public TableOpenERP() {
         expectedSpanishHeaders = new HashMap<>();
         expectedEnglishHeaders = new HashMap<>();
+    }
+
+
+    public void selectOpenERPItem(SelectOpenERP element, String field, String value) {
+        try {
+            element.selectItem(value);
+            fieldsWereEdited.add(field);
+        }catch (NoSuchElementException nsee) {
+            fieldsWereNotEdited.add(field);
+            allFieldsWereEdited = false;
+        }
+    }
+
+    public void selectOpenERPItem(WebElement element, String field, String value) {
+        try {
+            SelectOpenERP aux = new SelectOpenERP(element);
+            aux.selectItem(value);
+            fieldsWereEdited.add(field);
+        }catch (NoSuchElementException nsee) {
+            fieldsWereNotEdited.add(field);
+            allFieldsWereEdited = false;
+        }
+    }
+
+    public void selectItem(WebElement element, String field, String value) {
+        if(this.webDriverTools.isElementDisplayed(element)) {
+            this.webDriverTools.selectOptionOfDropListElement(element, value);
+            fieldsWereEdited.add(field);
+        } else {
+            fieldsWereNotEdited.add(field);
+            allFieldsWereEdited = false;
+        }
+//        try {
+//            this.webDriverTools.selectOptionOfDropListElement(element, value);
+//            fieldsWereEdited.add(field);
+//        }catch (NoSuchElementException nsee) {
+//            fieldsWereNotEdited.add(field);
+//            allFieldsWereEdited = false;
+//        }
+    }
+
+    public void setInput(WebElement element, String field, String value) {
+        try {
+            this.webDriverTools.clearAndSendKeys(element, value);
+            fieldsWereEdited.add(field);
+        }catch (NoSuchElementException nsee) {
+            fieldsWereNotEdited.add(field);
+            allFieldsWereEdited = false;
+        }
+    }
+
+    public void setCheckbox(WebElement element, String field, String value) {
+        try {
+            if (value.equals("true")) {
+                this.webDriverTools.checkBox(element);
+            }else {
+                this.webDriverTools.unCheckBox(element);
+            }
+            fieldsWereEdited.add(field);
+        }catch (NoSuchElementException nsee) {
+            fieldsWereNotEdited.add(field);
+            allFieldsWereEdited = false;
+        }
+    }
+
+    public void logEditStatus() {
+        log = Logger.getLogger(getClass());
+        log.info("All fields were updated? ==> " + allFieldsWereEdited);
+        log.info("These fields were updated in the form: " + fieldsWereEdited);
+        log.info("These fields were NOT updated in the form: " + fieldsWereNotEdited);
     }
 
     public List< HashMap<String,String>> getData() {
@@ -126,6 +200,12 @@ public class TableOpenERP extends PortalUIElement {
         log = Logger.getLogger(getClass());
         log.warn("No data was found in the table, review input data values");
     }
+
+    public void logNotRecordFoundInTable(String inputRecord) {
+        log = Logger.getLogger(getClass());
+        log.warn("No data was found in the table, review input data values\n" + inputRecord);
+    }
+
 
     @Override
     public boolean isLoaded() {

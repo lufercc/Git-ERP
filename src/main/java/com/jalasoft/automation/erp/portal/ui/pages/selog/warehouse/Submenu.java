@@ -11,24 +11,27 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']")
     protected WebElement submenuContainer;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Albaranes Internos')]")
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Internal Moves')]")
     protected WebElement internalMoves;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Albaranes de salida')]")
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Delivery Orders')]")
     protected WebElement deliveryOrders;
 
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Products') and not(contains(text(),'ICE') or contains(text(),'Category') or contains(text(),'Incoming') or contains(text(),'Deliver'))]")
+    protected WebElement products;
+
     public Submenu() {
-        this.waitForLoading();
+        waitForLoading();
     }
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.internalMoves);
+        return webDriverTools.isElementDisplayed(internalMoves);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.submenuContainer);
+        webDriverTools.waitUntilElementPresentAndVisible(submenuContainer);
     }
 
     public void goToSubmenu(String submenu) {
@@ -40,7 +43,12 @@ public class Submenu extends PortalUIElement{
         case "delivery orders":
             deliveryOrders.click();
             break;
-        }
-        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+
+        case "products":
+            products.click();
+            break;
+
+    }
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

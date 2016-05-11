@@ -14,6 +14,7 @@ import cucumber.api.java.en.And;
 public class JournalEntrySteps {
     JournalEntry journalEntryAux;
     DeliveryOrder deliveryOrderAux;
+    String searchBy = "Reference";
 
     public JournalEntrySteps(JournalEntry journalEntryInput, DeliveryOrder deliveryOrderInput) {
         journalEntryAux = journalEntryInput;
@@ -23,7 +24,8 @@ public class JournalEntrySteps {
     @And("^I search delivery order in journal entries$")
     public void I_search_delivery_order_in_journal_entries() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Referencia",this.deliveryOrderAux.code);
+        openERPSearch.advancedSearch(searchBy, this.deliveryOrderAux.code);
+        Thread.sleep(2000);
         JournalEntriesListView journalEntriesListView = new JournalEntriesListView();
         journalEntriesListView.clickOnRecord(this.deliveryOrderAux.code);
     }
@@ -31,13 +33,14 @@ public class JournalEntrySteps {
     @And("^get main data from current journal entry$")
     public void get_main_data_from_current_journal_entry() throws Throwable {
         JournalEntryReadForm journalEntryReadForm = new JournalEntryReadForm();
-        this.journalEntryAux.fillMainData(journalEntryReadForm.getMainData());
+        journalEntryAux.fillMainData(journalEntryReadForm.getMainData());
     }
 
     @And("^I search incoming shipments in journal entries$")
     public void I_search_incoming_shipments_in_journal_entries() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Referencia",this.deliveryOrderAux.code);
+        openERPSearch.advancedSearch(searchBy, this.deliveryOrderAux.code);
+        Thread.sleep(2000);
         JournalEntriesListView journalEntriesListView = new JournalEntriesListView();
         journalEntriesListView.clickOnRecord(this.deliveryOrderAux.code);
     }

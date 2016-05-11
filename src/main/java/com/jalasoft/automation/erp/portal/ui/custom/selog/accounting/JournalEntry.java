@@ -6,8 +6,10 @@ package com.jalasoft.automation.erp.portal.ui.custom.selog.accounting;
 public class JournalEntry {
 
     public String code;
+    public String reference;
 
     public void fillMainData(JournalEntry aux) {
-        this.code = aux.code;
+        code = aux.code;
+        reference = aux.reference;
     }
 }

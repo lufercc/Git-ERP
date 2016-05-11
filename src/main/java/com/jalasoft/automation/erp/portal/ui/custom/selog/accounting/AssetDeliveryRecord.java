@@ -8,6 +8,6 @@ public class AssetDeliveryRecord {
     public String id;
 
     public void fillMainData(AssetDeliveryRecord aux) {
-        this.id = aux.id;
+        id = aux.id;
     }
 }

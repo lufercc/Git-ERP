@@ -26,6 +26,28 @@ public abstract class FormEditMode extends PortalUIElement {
         }
     }
 
+    public void selectOERPItemFromPartialText(WebElement element, String field, String value) {
+        try {
+            SelectOpenERP aux = new SelectOpenERP(element);
+            aux.selectItemFromPartialItem(value);
+            fieldsWereEdited.add(field);
+        }catch (NoSuchElementException nsee) {
+            fieldsWereNotEdited.add(field);
+            allFieldsWereEdited = false;
+        }
+    }
+
+    public void selectOpenERPItem(WebElement element, String field, String value) {
+        try {
+            SelectOpenERP aux = new SelectOpenERP(element);
+            aux.selectItem(value);
+            fieldsWereEdited.add(field);
+        }catch (NoSuchElementException nsee) {
+            fieldsWereNotEdited.add(field);
+            allFieldsWereEdited = false;
+        }
+    }
+
     public void selectItem(WebElement element, String field, String value) {
         if(this.webDriverTools.isElementDisplayed(element)) {
             this.webDriverTools.selectOptionOfDropListElement(element, value);

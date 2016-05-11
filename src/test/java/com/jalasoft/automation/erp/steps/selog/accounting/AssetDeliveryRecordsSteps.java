@@ -26,6 +26,6 @@ public class AssetDeliveryRecordsSteps {
     @And("^get main data from the asset delivery record$")
     public void get_main_data_from_the_asset_delivery_record() throws Throwable {
         AssetsDeliveryRecordsReadForm assetsDeliveryRecordsReadForm = new AssetsDeliveryRecordsReadForm();
-        this.assetDeliveryRecordAux.fillMainData(assetsDeliveryRecordsReadForm.getMainData());
+        assetDeliveryRecordAux.fillMainData(assetsDeliveryRecordsReadForm.getMainData());
     }
 }

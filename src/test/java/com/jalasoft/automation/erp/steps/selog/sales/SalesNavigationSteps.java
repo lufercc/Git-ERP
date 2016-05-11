@@ -16,11 +16,13 @@ public class SalesNavigationSteps {
         Submenu salesSubmenu = new Submenu();
         mainMenu.goToMenu("sales");
         salesSubmenu.goToSubmenu(submenuString);
+        Thread.sleep(2000);
     }
 
     @And("^I press \"([^\"]*)\" sales button$")
     public void I_press_sales_button(String buttonString) throws Throwable {
         ButtonsBar purchaseButtonsBar = new ButtonsBar();
         purchaseButtonsBar.clickButton(buttonString);
+        Thread.sleep(2000);
     }
 }

@@ -1,26 +1,32 @@
 package com.jalasoft.automation.erp.portal.ui.pages.selog.sales;
 
+import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.PurchaseOrder;
 import com.jalasoft.automation.erp.portal.ui.custom.selog.sales.SaleOrder;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class SaleOrderEditForm extends PortalUIElement {
+public class SaleOrderEditForm extends FormEditMode {
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_form_group')]//input)[1]")
+    @FindBy(xpath = "//label[contains(text(),'Customer')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
     protected WebElement client;
 
-    @FindBy(xpath = "(//table[contains(@class,'oe_form_group')]//input)[2]")
+    @FindBy(xpath = "//label[contains(text(),'TIN')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
     protected WebElement tin;
+
+    @FindBy(xpath = "//label[contains(text(),'Sale Tax Type')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
+    protected WebElement saleTaxType;
 
     @FindBy(name = "purchase_type")
     protected WebElement purchaseType;
 
-    @FindBy(xpath = "//a[contains(text(),'Añadir un elemento')]")
+    @FindBy(xpath = "//a[contains(text(),'Add an item')]")
     protected WebElement addItemPurchaseOrder;
 
     public SaleOrderEditForm() {
@@ -38,13 +44,21 @@ public class SaleOrderEditForm extends PortalUIElement {
     }
 
     public void modifyData(SaleOrder inputData) {
+        fieldsWereEdited = new ArrayList<>();
+        fieldsWereNotEdited = new ArrayList<>();
+        allFieldsWereEdited = true;
+
         if (inputData.client != null) {
-            this.client.sendKeys(inputData.client);
-            this.webDriverTools.pressKey("Enter");
+            selectOpenERPItem(client, "client", inputData.client);
         }
         if (inputData.tin != null) {
-            this.tin.sendKeys(inputData.tin);
+            setInput(tin, "tin", inputData.tin);
         }
+        if (inputData.saleTaxType != null) {
+            selectOpenERPItem(saleTaxType, "saleTaxType", inputData.saleTaxType);
+        }
+
+        logEditStatus();
     }
 
     public void clickAddItemOrderLine() {

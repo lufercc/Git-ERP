@@ -21,23 +21,27 @@ public class AccountingNavigationSteps {
         Submenu accountingSubmenu = new Submenu();
         mainMenu.goToMenu("accounting");
         accountingSubmenu.goToSubmenu(submenu);
+        Thread.sleep(2000);
     }
 
     @And("^I press \"([^\"]*)\" accounting button$")
     public void I_press_accounting_button(String buttonString) throws Throwable {
         ButtonsBar accountingButtonsBar = new ButtonsBar();
         accountingButtonsBar.clickButton(buttonString);
+        Thread.sleep(2000);
     }
 
     @And("^I press \"([^\"]*)\" accounting internal button$")
     public void I_press_accounting_internal_button(String buttonString) throws Throwable {
         InteriorFormButtonsBar intButtonsBar = new InteriorFormButtonsBar();
         intButtonsBar.clickButton(buttonString);
+        Thread.sleep(2000);
     }
 
     @And("^I press \"([^\"]*)\" extra general accounting button$")
     public void I_press_extra_general_accounting_button(String buttonString) throws Throwable {
         ExtraGeneralButtonsBar extraGralButtons = new ExtraGeneralButtonsBar();
         extraGralButtons.clickButton(buttonString);
+        Thread.sleep(2000);
     }
 }

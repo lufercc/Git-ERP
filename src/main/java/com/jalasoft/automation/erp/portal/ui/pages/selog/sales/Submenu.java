@@ -12,7 +12,7 @@ public class Submenu extends PortalUIElement{
     protected WebElement submenuContainer;
 
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]" +
-                    "//span[contains(text(),'Pedidos de ventas')]")
+                    "//span[contains(text(),'Sales Orders')]")
     protected WebElement salesOrders;
 
     public Submenu() {

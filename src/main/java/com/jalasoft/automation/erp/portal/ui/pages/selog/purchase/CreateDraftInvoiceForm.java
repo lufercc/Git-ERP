@@ -18,7 +18,7 @@ public class CreateDraftInvoiceForm extends PortalUIElement {
     @FindBy(name= "invoice_date")
     protected WebElement invoiceDate;
 
-    @FindBy(xpath = "//div[contains(@class,'ui-dialog-buttonpane')]//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Crear')]")
+    @FindBy(xpath = "//div[contains(@class,'ui-dialog-buttonpane')]//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Create')]")
     protected WebElement createButton;
 
     public CreateDraftInvoiceForm() {

@@ -49,12 +49,11 @@ public class PurchaseOrdersSteps {
         OrderLineForm orderLineForm;
 
         for (OrderLine ol : orderLineData) {
-            this.orderLineDataAux.fillMainData(ol);
+            orderLineDataAux.fillMainData(ol);
             purOrderForm.clickAddItemOrderLine();
             orderLineForm = new OrderLineForm();
             orderLineForm.modifyOrderLine(ol);
         }
-
     }
 
     @And("^get \"([^\"]*)\" field value for Purchase Order created$")

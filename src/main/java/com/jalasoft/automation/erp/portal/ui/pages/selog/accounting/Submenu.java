@@ -2,6 +2,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.selog.accounting;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 /**
@@ -12,30 +13,33 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']")
     protected WebElement submenuContainer;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Facturas de proveedor')]")
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Suppliers')]")
+    protected WebElement suppliers;
+
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Supplier Invoices')]")
     protected WebElement supplierInvoices;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Activos')]")
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Assets')]")
     protected WebElement assets;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Asignación de activos')]")
+    @CacheLookup
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Assets Assignation')]")
     protected WebElement assetsAssignation;
 
-    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Asientos contables')]")
+    @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'Journal Entries')]")
     protected WebElement journalEntries;
 
     public Submenu() {
-        this.waitForLoading();
     }
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.supplierInvoices);
+        return webDriverTools.isElementDisplayed(supplierInvoices);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.submenuContainer);
+        webDriverTools.waitUntilElementPresentAndVisible(submenuContainer);
     }
 
     public void goToSubmenu(String submenu) {
@@ -45,11 +49,18 @@ public class Submenu extends PortalUIElement{
                 break;
 
             case "assets":
+                webDriverTools.waitUntilElementPresentAndVisible(assets);
                 assets.click();
                 break;
 
             case "assets assignation":
+                webDriverTools.waitUntilElementPresentAndVisible(assetsAssignation);
                 assetsAssignation.click();
+                break;
+
+            case "suppliers":
+                webDriverTools.waitUntilElementPresentAndVisible(suppliers);
+                suppliers.click();
                 break;
 
             case "journal entries":
@@ -59,6 +70,6 @@ public class Submenu extends PortalUIElement{
             default:
                 throw new IllegalArgumentException("Case value '" + submenu + "' for accounting submenu is not defined yet!!!");
         }
-        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

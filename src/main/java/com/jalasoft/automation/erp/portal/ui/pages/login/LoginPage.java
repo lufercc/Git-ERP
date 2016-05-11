@@ -24,6 +24,9 @@ public class LoginPage extends BasePage {
     @FindBy(className = "btn-submit")
     protected WebElement loginButton;
 
+    @FindBy(xpath = "//div[contains(@class,'errors') and contains(text(),'Timelimit Exceeded')]")
+    protected WebElement timelimitExceededError;
+
     protected CredentialsConfig userCredentials;
 
     public LoginPage() {
@@ -59,10 +62,13 @@ public class LoginPage extends BasePage {
     public void login(String credentialType) {
         UserCredentials credentials = this.userCredentials.getCredentialsByType(credentialType);
         if (credentials != null) {
-            this.userInput.sendKeys(credentials.userName);
-            this.passwordInput.sendKeys(credentials.password);
-            this.loginButton.click();
-            this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+            do {
+                this.userInput.sendKeys(credentials.userName);
+                this.passwordInput.sendKeys(credentials.password);
+                this.loginButton.click();
+                this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+            }
+            while (webDriverTools.isElementDisplayed(timelimitExceededError));
         }
     }
 

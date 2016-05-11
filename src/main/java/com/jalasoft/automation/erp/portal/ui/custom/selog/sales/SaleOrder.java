@@ -8,6 +8,7 @@ public class SaleOrder {
     public String code;
     public String client;
     public String tin;
+    public String saleTaxType;
 
     public SaleOrder() {
     }

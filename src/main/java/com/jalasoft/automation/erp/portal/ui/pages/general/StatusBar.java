@@ -19,25 +19,25 @@ public class StatusBar extends PortalUIElement {
 
     HashMap<String, String> statusList = new HashMap();
     public StatusBar() {
-        statusList.put("draft","borrador");
-        statusList.put("running","en ejecución");
-        statusList.put("evaluation","evaluación");
-        statusList.put("assigned","asignado");
-        statusList.put("delivered","entregado");
+        statusList.put("draft","Draft");
+        statusList.put("running","Running");
+        statusList.put("evaluation","Evaluation");
+        statusList.put("assigned","Assigned");
+        statusList.put("delivered","Delivered");
     }
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.container);
+        return webDriverTools.isElementDisplayed(container);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.container);
+        webDriverTools.waitUntilElementPresentAndVisible(container);
     }
 
     public String getCurrentStatus() {
-            return currentStateSpan.getText().toLowerCase();
+            return currentStateSpan.getText();
     }
 
     public boolean isInThisStatus(String expStatus) {

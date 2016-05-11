@@ -3,6 +3,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.selog.accounting;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.AssetDeliveryRecord;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 /**
@@ -13,7 +14,9 @@ public class AssetsDeliveryRecordsReadForm extends PortalUIElement {
     @FindBy(xpath = "//div[contains(@class,'oe_form_container')]")
     protected WebElement container;
 
-    @FindBy(xpath = "//div[contains(@class,'oe_form_container')]//div[contains(@class,'oe_title')]//span/span")
+//    @FindBy(xpath = "//div[contains(@class,'oe_form_container')]//div[contains(@class,'oe_title')]//span/span")
+    @CacheLookup
+    @FindBy(xpath = "//label[contains(text(),'No.')]/following-sibling::span/span")
     protected WebElement deliveryRecordID;
 
     public AssetsDeliveryRecordsReadForm() {}
@@ -30,7 +33,8 @@ public class AssetsDeliveryRecordsReadForm extends PortalUIElement {
 
     public AssetDeliveryRecord getMainData() {
         AssetDeliveryRecord result = new AssetDeliveryRecord();
-        result.id = deliveryRecordID.getText();
+        result.id = deliveryRecordID.getAttribute("innerHTML");
+        System.out.println("Asset Delivery Record ID:" + result.id);
         return result;
     }
 

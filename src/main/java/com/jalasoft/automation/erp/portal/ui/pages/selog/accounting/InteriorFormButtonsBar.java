@@ -12,21 +12,21 @@ public class InteriorFormButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[contains(@class,'oe_right oe_button_box')]")
     protected WebElement container;
 
-    @FindBy(xpath = "//div[contains(@class,'oe_right oe_button_box')]//button/span[contains(text(),'Albaranes internos')]")
+    @FindBy(xpath = "//div[contains(@class,'oe_right oe_button_box')]//button/span[contains(text(),'Internal Moves')]")
     protected WebElement internalMoves;
 
-    @FindBy(xpath = "//div[contains(@class,'oe_right oe_button_box')]//button/span[contains(text(),'Actas de entrega')]")
+    @FindBy(xpath = "//div[contains(@class,'oe_right oe_button_box')]//button/span[contains(text(),'Delivery Records')]")
     protected WebElement deliveryRecords;
 
     public InteriorFormButtonsBar() {}
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.container);
+        return webDriverTools.isElementDisplayed(container);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.container);
+        webDriverTools.waitUntilElementPresentAndVisible(container);
     }
 
     public void clickButton(String buttonString) {

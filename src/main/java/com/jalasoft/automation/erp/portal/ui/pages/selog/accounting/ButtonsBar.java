@@ -12,34 +12,41 @@ public class ButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[contains(@class,'oe_form_container')]//header")
     protected WebElement container;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Validar')]")
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Validate')]")
     protected WebElement validateButton;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirmar Activo')]")
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirm Subclass')]")
+    protected WebElement confirmSubclassButton;
+
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirm Asset')]")
     protected WebElement confirmAssetButton;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Solicitar Asignación')]")
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Request Assignation')]")
     protected WebElement requestAssignationButton;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Entregar')]")
+    @FindBy(xpath = "//header/button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Deliver')]")
     protected WebElement deliverButton;
 
     public ButtonsBar() {}
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.container);
+        return webDriverTools.isElementDisplayed(container);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.container);
+        webDriverTools.waitUntilElementPresentAndVisible(container);
     }
 
     public void clickButton(String buttonString) {
         switch (buttonString.toLowerCase()) {
         case "validate":
             validateButton.click();
+            break;
+
+        case "confirm subclass":
+            confirmSubclassButton.click();
             break;
 
         case "confirm asset":

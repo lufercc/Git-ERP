@@ -15,7 +15,7 @@ public class ButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[contains(@class,'oe_form_container')]//header")
     protected WebElement container;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirmar venta')]")
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirm Sale')]")
     protected WebElement confirmButton;
 
     public ButtonsBar() {}

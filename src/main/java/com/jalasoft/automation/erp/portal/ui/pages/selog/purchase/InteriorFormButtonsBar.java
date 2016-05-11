@@ -12,7 +12,7 @@ public class InteriorFormButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[contains(@class,'oe_right oe_button_box')]")
     protected WebElement container;
 
-    @FindBy(xpath = "//div[contains(@class,'oe_right oe_button_box')]//button/span[contains(text(),'Movimientos internos')]")
+    @FindBy(xpath = "//div[contains(@class,'oe_right oe_button_box')]//button/span[contains(text(),'Internal Moves')]")
     protected WebElement internalMoves;
 
     public InteriorFormButtonsBar() {}

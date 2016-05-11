@@ -21,6 +21,7 @@ public class AssetSteps {
     AssetDeliveryRecord auxAssetsDeliveryRecordsReadForm;
     SupplierInvoice supplierInvoiceAux;
     OrderLine orderLineDataAux;
+    String searchBy = "Invoice";
 
     public AssetSteps(SupplierInvoice supplierInvoiceInput,OrderLine orderLineDataInput,Asset assetInput) {
         supplierInvoiceAux = supplierInvoiceInput;
@@ -49,7 +50,7 @@ public class AssetSteps {
     @And("^a new record is displayed in assets list view$")
     public void a_new_record_is_displayed_in_assets_list_view() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Factura",this.supplierInvoiceAux.code);
+        openERPSearch.advancedSearch(searchBy,this.supplierInvoiceAux.code);
         AssetsListView assetList = new AssetsListView();
         assetList.clickOnRecord(this.orderLineDataAux.product);
     }
@@ -57,7 +58,7 @@ public class AssetSteps {
     @And("^I search supplier invoice in the assets$")
     public void I_search_supplier_invoice_in_the_assets() throws Throwable {
         Search openERPSearch = new Search();
-        openERPSearch.advancedSearch("Factura",this.supplierInvoiceAux.code);
+        openERPSearch.advancedSearch(searchBy,this.supplierInvoiceAux.code);
         AssetsListView assetListView = new AssetsListView();
         assetListView.clickOnRecord(this.auxAsset.code);
     }

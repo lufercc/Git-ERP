@@ -22,13 +22,13 @@ public class PurchaseNavigationSteps {
         Submenu purchaseSubmenu = new Submenu();
         mainMenu.goToMenu("purchases");
         purchaseSubmenu.goToSubmenu(submenu);
-        Thread.sleep(6000); //TODO Use implicit wait instead thread.sleep
+        Thread.sleep(2000); //TODO Use implicit wait instead thread.sleep
     }
 
     @And("^I press \"([^\"]*)\" purchase button$")
     public void I_press_purchase_button(String buttonString) throws Throwable {
         ButtonsBar purchaseButtonsBar = new ButtonsBar();
         purchaseButtonsBar.clickButton(buttonString);
-        Thread.sleep(3000);
+        Thread.sleep(2000);
     }
 }

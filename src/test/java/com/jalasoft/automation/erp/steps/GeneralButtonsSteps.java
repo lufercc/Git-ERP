@@ -14,7 +14,6 @@ public class GeneralButtonsSteps {
 
     @And("^I press \"([^\"]*)\" general button$")
     public void I_press_general_button(String buttonString) throws Throwable {
-
         GeneralButtonsBar gralButtons = new GeneralButtonsBar();
         gralButtons.clickButton(buttonString);
         Thread.sleep(3000);

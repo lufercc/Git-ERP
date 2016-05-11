@@ -15,25 +15,25 @@ public class ButtonsBar extends PortalUIElement {
     @FindBy(xpath = "//div[contains(@class,'oe_form_container')]//header")
     protected WebElement container;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Forzar disponibilidad')]")
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Force Availability')]")
     protected WebElement forceAvailabilityButton;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirmar y transferir')]")
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Confirm & Transfer')]")
     protected WebElement confirmTransferButton;
 
-    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Enviar')]")
+    @FindBy(xpath = "//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Deliver')]")
     protected WebElement deliverButton;
 
     public ButtonsBar() {}
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.container);
+        return webDriverTools.isElementDisplayed(container);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.container);
+        webDriverTools.waitUntilElementPresentAndVisible(container);
     }
 
     public void clickButton(String buttonString) {
@@ -58,6 +58,6 @@ public class ButtonsBar extends PortalUIElement {
             throw new IllegalArgumentException("Case value '" + buttonString + "' for button is not defined yet!!!");
         }
 
-        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
     }
 }

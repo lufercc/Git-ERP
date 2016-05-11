@@ -1,5 +1,6 @@
 package com.jalasoft.automation.erp.portal.ui.pages.selog.accounting;
 
+import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.components.SelectOpenERP;
 import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.RequestAssignation;
@@ -7,10 +8,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class RequestAssignationPopupForm extends PortalUIElement {
+public class RequestAssignationPopupForm extends FormEditMode {
 
 
     @FindBy(css = "//div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.oe_act_window.ui-draggable.ui-resizable.openerp")
@@ -20,40 +23,29 @@ public class RequestAssignationPopupForm extends PortalUIElement {
     protected WebElement dialogTitle;
 
 
-//    @FindBy(xpath = "(//div[contains(@class,'ui-dialog ui-widget ui-widget-content')]//input)[1]")
-//    protected WebElement evaluationResponsible;
-//
-//    @FindBy(xpath = "(//div[contains(@class,'ui-dialog ui-widget ui-widget-content')]//input)[2]")
-//    protected WebElement depAreaResponsible;
-//
-//    @FindBy(xpath = "(//div[contains(@class,'ui-dialog ui-widget ui-widget-content')]//input)[3]")
-//    protected WebElement custodian;
-//
-//    @FindBy(xpath = "(//div[contains(@class,'ui-dialog ui-widget ui-widget-content')]//input)[4]")
-//    protected WebElement depArea;
-//
-//    @FindBy(xpath = "(//div[contains(@class,'ui-dialog ui-widget ui-widget-content')]//input)[5]")
-//    protected WebElement location;
+    @FindBy(xpath = "//label[contains(text(),'Evaluation Responsible')]/ancestor::td/following-sibling::td/span/div/input")
+    protected WebElement evaluationResponsible;
 
-    @FindBy(xpath = "(//div[contains(@class,'ui-dialog ui-widget ui-widget-content')]//span[contains(@class,'jala-icon-deploy')])[5]")
+    @FindBy(xpath = "//label[contains(text(),'Department / Area Responsible')]/ancestor::td/following-sibling::td/span/div/input")
+    protected WebElement depAreaResponsible;
+
+    @FindBy(xpath = "//label[contains(text(),'Custodian')]/ancestor::td/following-sibling::td/span/div/input")
+    protected WebElement custodian;
+
+    @FindBy(xpath = "//label[contains(text(),'Department / Area') and not(contains(text(),'Responsible'))]/ancestor::td/following-sibling::td/span/div/input")
+    protected WebElement depArea;
+
+    @FindBy(xpath = "//label[contains(text(),'Location') and not(contains(text(),'Asset'))]/ancestor::td/following-sibling::td/span/div/input")
+    protected WebElement location;
+
+    @FindBy(xpath = "//label[contains(text(),'Asset Location')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement locationDeploy;
 
-    @FindBy(xpath = "//div[contains(@class,'ui-dialog-buttonpane')]//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Aceptar')]")
+    @FindBy(xpath = "//div[contains(@class,'ui-dialog-buttonpane')]//button[not(contains(@class,'oe_form_invisible'))]/span[contains(text(),'Accept')]")
     protected WebElement acceptButton;
 
-    protected SelectOpenERP evaluationResponsible;
-    protected SelectOpenERP depAreaResponsible;
-    protected SelectOpenERP custodian;
-    protected SelectOpenERP depArea;
-    protected SelectOpenERP location;
-
     public RequestAssignationPopupForm() {
-        this.waitForLoading();
-        this.evaluationResponsible = new SelectOpenERP(By.xpath("(//div[contains(@class,'ui-dialog ui-widget ui-widget-content')]//input)[1]"));
-        this.depAreaResponsible = new SelectOpenERP(By.xpath("(//div[contains(@class,'ui-dialog ui-widget ui-widget-content')]//input)[2]"));
-        this.custodian = new SelectOpenERP(By.xpath("(//div[contains(@class,'ui-dialog ui-widget ui-widget-content')]//input)[3]"));
-        this.depArea = new SelectOpenERP(By.xpath("(//div[contains(@class,'ui-dialog ui-widget ui-widget-content')]//input)[4]"));
-        this.location = new SelectOpenERP(By.xpath("(//div[contains(@class,'ui-dialog ui-widget ui-widget-content')]//input)[5]"));
+        waitForLoading();
     }
 
     @Override
@@ -67,25 +59,26 @@ public class RequestAssignationPopupForm extends PortalUIElement {
     }
 
     public void modifyDataAndAccept(RequestAssignation inputData) {
+        fieldsWereEdited = new ArrayList<>();
+        fieldsWereNotEdited = new ArrayList<>();
+        allFieldsWereEdited = true;
         if (inputData.evaluationResponsible != null) {
-            this.evaluationResponsible.selectItem(inputData.evaluationResponsible);
+            selectOpenERPItem(evaluationResponsible, "evaluationResponsible", inputData.evaluationResponsible);
         }
         if (inputData.depAreaResponsible != null) {
-            this.depAreaResponsible.selectItem(inputData.depAreaResponsible);
+            selectOpenERPItem(depAreaResponsible, "depAreaResponsible", inputData.depAreaResponsible);
         }
         if (inputData.custodian != null) {
-            this.custodian.selectItem(inputData.custodian);
+            selectOpenERPItem(custodian, "custodian", inputData.custodian);
         }
         if (inputData.depArea != null) {
-            this.depArea.selectItem(inputData.depArea);
+            selectOpenERPItem(depArea, "depArea", inputData.depArea);
         }
         if (inputData.location != null) {
-//            this.locationDeploy.click();
-//            WebElement item = webDriver.findElement(By.xpath("//ul[not(contains(@style,'display: none'))]//a[contains(text(),'" + inputData.location + "')]"));
-//            item.click();
-            this.location.selectItem(inputData.location);
+            selectOpenERPItem(location, "location", inputData.location);
         }
         acceptButton.click();
-        this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        webDriverTools.waitUntilInvisibilityOpenERPProgress();
+        logEditStatus();
     }
 }

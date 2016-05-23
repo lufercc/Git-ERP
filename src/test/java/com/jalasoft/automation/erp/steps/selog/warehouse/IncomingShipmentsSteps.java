@@ -1,16 +1,11 @@
 package com.jalasoft.automation.erp.steps.selog.warehouse;
 
-import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.PurchaseOrder;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.warehouse.IncomingShipment;
-import com.jalasoft.automation.erp.portal.ui.pages.general.MainMenu;
+import com.jalasoft.automation.erp.objects.selog.purchase.PurchaseOrder;
+import com.jalasoft.automation.erp.objects.selog.warehouse.IncomingShipment;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetsAssignationListView;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.IncomingShipmentList;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.InteriorFormButtonsBar;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse.ButtonsBar;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse.IncomingShipmentReadForm;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse.Submenu;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 
 /**

@@ -14,16 +14,16 @@ public class EmployeeForm extends PortalUIElement {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_clear ui-tabs')]//ul/li/a)[1]")
+    @FindBy(xpath = "//ul[contains(@role,'tablist')]/li/a[contains(text(),'Public Information')]")
     protected WebElement publicInfoTab;
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_clear ui-tabs')]//ul/li/a)[2]")
+    @FindBy(xpath = "//ul[contains(@role,'tablist')]/li/a[contains(text(),'Personal Information')]")
     protected WebElement personalInfoTab;
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_clear ui-tabs')]//ul/li/a)[3]")
+    @FindBy(xpath = "//ul[contains(@role,'tablist')]/li/a[contains(text(),'HR Settings')]")
     protected WebElement hhrrInfoTab;
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_clear ui-tabs')]//ul/li/a)[4]")
+    @FindBy(xpath = "//ul[contains(@role,'tablist')]/li/a[contains(text(),'Engineering')]")
     protected WebElement engineeringInfoTab;
 
     @FindBy(xpath = "(//div[contains(@class,'oe_clear ui-tabs')]//ul/li/a)[5]")
@@ -45,6 +45,8 @@ public class EmployeeForm extends PortalUIElement {
 
     public void selectTab(String tab) {
         switch (tab.toLowerCase()) {
+        case "basic":
+            break;
         case "public":
             publicInfoTab.click();
             break;

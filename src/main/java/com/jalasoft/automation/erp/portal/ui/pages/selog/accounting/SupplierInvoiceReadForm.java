@@ -2,8 +2,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.selog.accounting;
 
 import com.jalasoft.automation.erp.portal.ui.components.FormReadMode;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.SupplierInvoice;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.PurchaseOrder;
+import com.jalasoft.automation.erp.objects.selog.accounting.SupplierInvoice;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

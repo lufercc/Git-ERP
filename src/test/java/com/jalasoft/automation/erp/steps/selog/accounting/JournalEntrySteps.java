@@ -1,11 +1,10 @@
 package com.jalasoft.automation.erp.steps.selog.accounting;
 
-import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.JournalEntry;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.warehouse.DeliveryOrder;
+import com.jalasoft.automation.erp.objects.selog.accounting.JournalEntry;
+import com.jalasoft.automation.erp.objects.selog.warehouse.DeliveryOrder;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.JournalEntriesListView;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.JournalEntryReadForm;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 
 /**

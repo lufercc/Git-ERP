@@ -2,8 +2,7 @@ package com.jalasoft.automation.erp.portal.ui.pages.selog.sales;
 
 import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.PurchaseOrder;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.sales.SaleOrder;
+import com.jalasoft.automation.erp.objects.selog.sales.SaleOrder;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

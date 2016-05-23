@@ -1,8 +1,9 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.objects.general.OdooObject;
 import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
 import com.jalasoft.automation.erp.portal.ui.components.SelectOpenERP;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.HHRRInfoEmployee;
+import com.jalasoft.automation.erp.objects.hhrr.employee.HHRRInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -71,10 +72,12 @@ public class HHRRInfoEditForm extends FormEditMode {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dataContainer);
     }
 
-    public void modifyData(HHRRInfoEmployee inputData) {
+    public void modifyData(OdooObject inputDataObj) {
         fieldsWereEdited = new ArrayList<>();
         fieldsWereNotEdited = new ArrayList<>();
         allFieldsWereEdited = true;
+
+        HHRRInfoEmployee inputData = (HHRRInfoEmployee)inputDataObj;
 
         if (inputData.gender != null) {
             selectItem(this.gender, "gender", inputData.gender);

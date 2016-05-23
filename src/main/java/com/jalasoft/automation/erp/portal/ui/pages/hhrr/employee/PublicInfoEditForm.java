@@ -1,11 +1,9 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.objects.general.OdooObject;
 import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
-import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.components.SelectOpenERP;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.BasicInfoEmployee;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PublicInfoEmployee;
-import org.openqa.selenium.Keys;
+import com.jalasoft.automation.erp.objects.hhrr.employee.PublicInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -19,7 +17,7 @@ public class PublicInfoEditForm extends FormEditMode {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "//label[contains(text(),'Work Email')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
+    @FindBy(xpath = "//label[contains(text(),'Work Email')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
     protected WebElement workEmail;
 
     @FindBy(xpath = "//label[contains(text(),'Work Phone')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
@@ -75,10 +73,11 @@ public class PublicInfoEditForm extends FormEditMode {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dataContainer);
     }
 
-    public void modifyData(PublicInfoEmployee inputData) {
-        fieldsWereEdited = new ArrayList<>();
-        fieldsWereNotEdited = new ArrayList<>();
-        allFieldsWereEdited = true;
+    public void modifyData(OdooObject inputDataObj) {
+        fieldsAffectedByAction = new ArrayList<>();
+        fieldsNoAffectedByAction = new ArrayList<>();
+        allFieldsAffected = true;
+        PublicInfoEmployee inputData = (PublicInfoEmployee)inputDataObj;
 
         if (inputData.address != null) {
             selectOpenERPItem(this.address, "address", inputData.address);

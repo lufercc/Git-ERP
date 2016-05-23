@@ -1,7 +1,8 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.objects.general.OdooObject;
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.EmergencyContact;
+import com.jalasoft.automation.erp.objects.hhrr.employee.EmergencyContact;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -41,41 +42,8 @@ public class EmergencyContactInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean hasSameContent(boolean shouldBeAble, List<EmergencyContact> expectedData) {
-        List<HashMap<String,String>> dataFromTable = this.getData();
-        HashMap<String,String> currentRow;
-        int tableSize;
-
-        if((expectedData.size()!= dataFromTable.size()) && shouldBeAble) {
-            return false;
-        }
-
-        if(dataFromTable.isEmpty() && !shouldBeAble) {
-            return true;
-        }
-        for(EmergencyContact currentEmergencyContact : expectedData) {
-            tableSize =  dataFromTable.size();
-            for(int indexList = 0; indexList < tableSize; indexList++) {
-                currentRow = dataFromTable.get(indexList);
-                if (shouldBeAble) {
-                    if (inputDataIsInRow(currentEmergencyContact,currentRow)) {
-                        dataFromTable.remove(currentRow);
-                        break;
-                    }
-                    if (indexList == (tableSize - 1)) {
-                        return false;
-                    }
-                } else {
-                    if (inputDataIsInRow(currentEmergencyContact,currentRow)) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    public boolean inputDataIsInRow(EmergencyContact inputRecord, HashMap<String,String> tableRow) {
+    public boolean inputDataIsInRow(OdooObject inputRec, HashMap<String,String> tableRow) {
+        EmergencyContact inputRecord = (EmergencyContact)inputRec;
         if(inputRecord.name != null) {
             if (!inputRecord.name.equals(tableRow.get(expectedHeaders.get("name")))) {
                 return false;

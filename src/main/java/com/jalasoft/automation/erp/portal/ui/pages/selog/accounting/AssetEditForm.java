@@ -1,7 +1,8 @@
 package com.jalasoft.automation.erp.portal.ui.pages.selog.accounting;
 
+
 import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.Asset;
+import com.jalasoft.automation.erp.objects.selog.accounting.Asset;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

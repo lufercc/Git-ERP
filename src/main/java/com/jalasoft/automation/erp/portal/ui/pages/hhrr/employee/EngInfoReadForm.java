@@ -1,14 +1,12 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.objects.general.OdooObject;
 import com.jalasoft.automation.erp.portal.ui.components.FormReadMode;
-import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.EngInfoEmployee;
+import com.jalasoft.automation.erp.objects.hhrr.employee.EngInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  * Created by Henry Benito on 10/20/2015.
@@ -85,11 +83,11 @@ public class EngInfoReadForm extends FormReadMode {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dataContainer);
     }
 
-    public EngInfoEmployee getDataFromUI(EngInfoEmployee infoFromStep) {
+    public EngInfoEmployee getDataFromUI(OdooObject infoFromStepObj) {
         fieldsWereRead = new ArrayList<>();
         fieldsWereNotRead = new ArrayList<>();
         allFieldsWereRead = true;
-
+        EngInfoEmployee infoFromStep = (EngInfoEmployee)infoFromStepObj;
         EngInfoEmployee result = new EngInfoEmployee();
 
         if(infoFromStep.department != null) {

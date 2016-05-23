@@ -19,7 +19,7 @@ public class Submenu extends PortalUIElement{
     @FindBy(xpath = "//div[@class='oe_secondary_menus_container']/div[not(contains(@style,'display: none'))]//span[contains(text(),'My Information')]")
     protected WebElement myInformation;
 
-    protected String defaultSubmenu = "employees";
+    protected String defaultSubmenu = "departments";
 
 
     public Submenu() {

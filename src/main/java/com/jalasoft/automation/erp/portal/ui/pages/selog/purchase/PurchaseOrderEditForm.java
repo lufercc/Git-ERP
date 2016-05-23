@@ -1,10 +1,8 @@
 package com.jalasoft.automation.erp.portal.ui.pages.selog.purchase;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.PurchaseOrder;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.PurchaseRequisition;
+import com.jalasoft.automation.erp.objects.selog.purchase.PurchaseOrder;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

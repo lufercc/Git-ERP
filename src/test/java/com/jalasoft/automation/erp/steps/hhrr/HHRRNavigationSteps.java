@@ -17,7 +17,7 @@ public class HHRRNavigationSteps {
         boolean shouldGo = false;
         MainMenu mainMenu = new MainMenu();
         Submenu hhrrSubmenu = new Submenu();
-        mainMenu.goToMenu("hhrr");
+        mainMenu.goToMenu("employees");
         if (hasOrNot.isEmpty()) {
             shouldGo = true;
         }

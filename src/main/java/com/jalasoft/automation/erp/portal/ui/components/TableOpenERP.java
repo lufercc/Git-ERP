@@ -1,5 +1,6 @@
 package com.jalasoft.automation.erp.portal.ui.components;
 
+import com.jalasoft.automation.erp.objects.general.OdooObject;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * Created by Henry Benito on 1/12/2016.
  */
-public class TableOpenERP extends PortalUIElement {
+public abstract class TableOpenERP extends PortalUIElement {
     protected WebElement table;
     protected int columnsSize;
     protected int rowsSize = -1;
@@ -140,6 +141,42 @@ public class TableOpenERP extends PortalUIElement {
         }
         this.dataTable = result;
     }
+
+    public boolean hasSameContent(boolean shouldBeAble, List<OdooObject> expectedData) {
+        List<HashMap<String,String>> dataFromTable = this.getData();
+        HashMap<String,String> currentRow;
+        int tableSize;
+
+        if((expectedData.size()!= dataFromTable.size()) && shouldBeAble) {
+            return false;
+        }
+
+        if (dataFromTable.isEmpty() && !shouldBeAble) {
+            return true;
+        }
+        for(OdooObject currentData : expectedData) {
+            tableSize =  dataFromTable.size();
+            for(int indexList = 0; indexList < tableSize; indexList++) {
+                currentRow = dataFromTable.get(indexList);
+                if (shouldBeAble) {
+                    if (inputDataIsInRow(currentData,currentRow)) {
+                        dataFromTable.remove(currentRow);
+                        break;
+                    }
+                    if (indexList == (tableSize - 1)) {
+                        return false;
+                    }
+                } else {
+                    if (inputDataIsInRow(currentData,currentRow)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public abstract boolean inputDataIsInRow(OdooObject inputRec, HashMap<String,String> tableRow);
 
     public List<String> getHeaders() {
         List<String> result = new ArrayList<>();

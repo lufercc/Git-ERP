@@ -25,4 +25,9 @@ public class NavigationSteps {
     public void I_navigate_to_login_page_without_cas() throws Throwable {
         PageTransporter.getInstance().navigateToOpenERPLoginPage();
     }
+
+    @Given("^I navigate to odoo login page$")
+    public void i_navigate_to_odoo_login_page() throws Throwable {
+        PageTransporter.getInstance().navigateToOdooLoginPage();
+    }
 }

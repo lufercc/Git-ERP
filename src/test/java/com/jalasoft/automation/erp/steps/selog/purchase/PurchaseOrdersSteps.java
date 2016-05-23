@@ -1,17 +1,10 @@
 package com.jalasoft.automation.erp.steps.selog.purchase;
 
-import com.jalasoft.automation.erp.portal.PortalAutomationApp;
-import com.jalasoft.automation.erp.portal.config.PortalConfig;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.OrderLine;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.PurchaseOrder;
-import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetsListView;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.SupplierInvoiceReadForm;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.IncomingShipmentList;
+import com.jalasoft.automation.erp.objects.selog.purchase.OrderLine;
+import com.jalasoft.automation.erp.objects.selog.purchase.PurchaseOrder;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.OrderLineForm;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.PurchaseOrderEditForm;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.PurchaseOrderReadForm;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 
 import java.util.List;

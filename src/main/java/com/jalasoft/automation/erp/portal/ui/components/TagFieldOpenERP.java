@@ -1,12 +1,11 @@
 package com.jalasoft.automation.erp.portal.ui.components;
 
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.Tag;
+import com.jalasoft.automation.erp.objects.hhrr.employee.Tag;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -3,6 +3,7 @@ package com.jalasoft.automation.core.selenium;
 import com.jalasoft.automation.core.config.WebDriverConfig;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -107,7 +108,7 @@ public class WebDriverManager {
         DesiredCapabilities capabilities = this.getDesiredCapabilities(webDriverConfig);
         switch (this.browser.toLowerCase()) {
             case "chrome":
-                webDriver = new FirefoxDriver(capabilities);
+                webDriver = new ChromeDriver(capabilities);
                 System.setProperty("webdriver.chrome.webDriver", "drivers/chromedriver.exe");
                 break;
             case "ie":

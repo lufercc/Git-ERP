@@ -1,11 +1,10 @@
 package com.jalasoft.automation.erp.steps.selog.warehouse;
 
-import com.jalasoft.automation.erp.portal.ui.custom.selog.sales.SaleOrder;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.warehouse.DeliveryOrder;
+import com.jalasoft.automation.erp.objects.selog.sales.SaleOrder;
+import com.jalasoft.automation.erp.objects.selog.warehouse.DeliveryOrder;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse.DeliveryOrderReadForm;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse.DeliveryOrdersListView;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 
 /**

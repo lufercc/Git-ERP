@@ -1,6 +1,6 @@
 package com.jalasoft.automation.erp.steps.selog.purchase;
 
-import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.PurchaseRequisition;
+import com.jalasoft.automation.erp.objects.selog.purchase.PurchaseRequisition;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.PurchaseRequisitionForm;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.PurchaseRequisitionList;
 import cucumber.api.PendingException;

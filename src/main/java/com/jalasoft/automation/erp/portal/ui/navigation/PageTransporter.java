@@ -3,6 +3,7 @@ package com.jalasoft.automation.erp.portal.ui.navigation;
 import com.jalasoft.automation.core.selenium.WebDriverManager;
 import com.jalasoft.automation.erp.portal.PortalAutomationApp;
 import com.jalasoft.automation.erp.portal.ui.pages.login.LoginPage;
+import com.jalasoft.automation.erp.portal.ui.pages.login.OdooLoginPage;
 import com.jalasoft.automation.erp.portal.ui.pages.login.OpenERPLoginPage;
 import org.openqa.selenium.WebDriver;
 
@@ -42,6 +43,11 @@ public class PageTransporter {
     public LoginPage navigateToLoginPage() {
         this.navigateToURL(getLoginPageUrl());
         return new LoginPage();
+    }
+
+    public OdooLoginPage navigateToOdooLoginPage() {
+        this.navigateToURL(getLoginPageUrl());
+        return new OdooLoginPage();
     }
 
     public OpenERPLoginPage navigateToOpenERPLoginPage() {

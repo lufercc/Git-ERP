@@ -1,17 +1,11 @@
 package com.jalasoft.automation.erp.portal.ui.pages.selog.purchase;
 
 import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
-import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.OrderLine;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import com.jalasoft.automation.erp.objects.selog.purchase.OrderLine;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
+
 
 /**
  * Created by Henry Benito on 10/20/2015.

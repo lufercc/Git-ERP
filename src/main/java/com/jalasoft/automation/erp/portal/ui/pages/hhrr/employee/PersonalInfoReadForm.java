@@ -1,7 +1,8 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.objects.general.OdooObject;
 import com.jalasoft.automation.erp.portal.ui.components.FormReadMode;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PersonalInfoEmployee;
+import com.jalasoft.automation.erp.objects.hhrr.employee.PersonalInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -78,11 +79,11 @@ public class PersonalInfoReadForm extends FormReadMode {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dataContainer);
     }
 
-    public PersonalInfoEmployee getDataFromUI(PersonalInfoEmployee infoFromStep) {
+    public PersonalInfoEmployee getDataFromUI(OdooObject infoFromStepObj) {
         fieldsWereRead = new ArrayList<>();
         fieldsWereNotRead = new ArrayList<>();
         allFieldsWereRead = true;
-
+        PersonalInfoEmployee infoFromStep = (PersonalInfoEmployee)infoFromStepObj;
         PersonalInfoEmployee result = new PersonalInfoEmployee();
 
         if(infoFromStep.nationalOrForeign != null) {

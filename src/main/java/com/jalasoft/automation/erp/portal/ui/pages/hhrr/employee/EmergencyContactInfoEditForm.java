@@ -1,7 +1,8 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.objects.general.OdooObject;
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.EmergencyContact;
+import com.jalasoft.automation.erp.objects.hhrr.employee.EmergencyContact;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -106,4 +107,6 @@ public class EmergencyContactInfoEditForm extends TableOpenERP {
             }
         }
     }
+
+    public boolean inputDataIsInRow(OdooObject inputRec, HashMap<String,String> tableRow){return false;}
 }

@@ -1,8 +1,7 @@
 package com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse;
 
 import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.JournalEntry;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.warehouse.IncomingShipment;
+import com.jalasoft.automation.erp.objects.selog.warehouse.IncomingShipment;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

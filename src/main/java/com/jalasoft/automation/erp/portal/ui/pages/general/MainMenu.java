@@ -12,7 +12,7 @@ import org.openqa.selenium.support.FindBy;
 public class MainMenu extends PortalUIElement {
 
     @CacheLookup
-    @FindBy(xpath = "//ul[@class='oe_menu']")
+    @FindBy(id = "oe_main_menu_placeholder")
     protected WebElement menuContainer;
 
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Messaging')]")
@@ -20,6 +20,9 @@ public class MainMenu extends PortalUIElement {
 
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Human Resources')]")
     protected WebElement hhrrMenu;
+
+    @FindBy(xpath = "//div[@id='oe_main_menu_placeholder']//span[contains(text(),'Employees')]")
+    protected WebElement employeesMenu;
 
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Evaluación de activos')]")
     protected WebElement assetsMenu;
@@ -36,14 +39,14 @@ public class MainMenu extends PortalUIElement {
     @FindBy(xpath = "//ul[@class='oe_menu']//span[contains(text(),'Warehouse')]")
     protected WebElement warehouseMenu;
 
-    @FindBy(xpath = "//a[contains(@data-menu,'logout')]")
+    @FindBy(xpath = "//div[@id='oe_main_menu_placeholder']//a[contains(@data-menu,'logout')]")
     protected WebElement logout;
 
-    @FindBy(xpath = "//span[contains(@class,'oe_topbar_avatar')]")
+    @FindBy(xpath = "//div[@id='oe_main_menu_placeholder']/ul[contains(@class,'oe_user_menu_placeholder')]")
     protected WebElement profileContainer;
 
     @CacheLookup
-    @FindBy(xpath = "//span[contains(@class,'oe_user_menu')]")
+    @FindBy(xpath = "//div[@id='oe_main_menu_placeholder']/ul[contains(@class,'oe_user_menu_placeholder')]")
     protected WebElement userMenu;
 
     @CacheLookup
@@ -61,6 +64,10 @@ public class MainMenu extends PortalUIElement {
     public void goToMenu(String menu) {
         webDriverTools.waitUntilInvisibilityOpenERPProgress();
         switch (menu.toLowerCase()) {
+        case "employees":
+            webDriverTools.waitUntilElementPresentAndVisible(menuContainer);
+            employeesMenu.click();
+            break;
         case "hhrr":
             webDriverTools.waitUntilElementPresentAndVisible(hhrrMenu);
             hhrrMenu.click();

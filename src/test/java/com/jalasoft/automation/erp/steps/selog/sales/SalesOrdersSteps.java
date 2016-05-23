@@ -1,11 +1,10 @@
 package com.jalasoft.automation.erp.steps.selog.sales;
 
-import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.OrderLine;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.sales.SaleOrder;
+import com.jalasoft.automation.erp.objects.selog.purchase.OrderLine;
+import com.jalasoft.automation.erp.objects.selog.sales.SaleOrder;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.purchase.OrderLineForm;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.sales.SaleOrderEditForm;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.sales.SaleOrderReadForm;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 
 import java.util.List;

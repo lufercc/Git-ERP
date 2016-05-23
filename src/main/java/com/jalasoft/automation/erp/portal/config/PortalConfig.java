@@ -32,4 +32,8 @@ public class PortalConfig implements AutomationAppSettings {
         return (jsonConfigFileReader.getConfigValue("GeneralSettings", "sutURL")).toString();
     }
 
+    public String getSutDB() {
+        return (jsonConfigFileReader.getConfigValue("GeneralSettings", "db")).toString();
+    }
+
 }

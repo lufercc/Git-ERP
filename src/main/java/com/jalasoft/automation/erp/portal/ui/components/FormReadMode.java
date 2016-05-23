@@ -1,5 +1,6 @@
 package com.jalasoft.automation.erp.portal.ui.components;
 
+import com.jalasoft.automation.erp.objects.general.OdooObject;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
@@ -9,11 +10,7 @@ import org.openqa.selenium.NoSuchElementException;
 /**
  * Created by Henry Benito on 3/16/2016.
  */
-public abstract class FormReadMode extends PortalUIElement {
-    private Logger log;
-    public List<String> fieldsWereRead;
-    public List<String> fieldsWereNotRead;
-    public Boolean allFieldsWereRead = true;
+public abstract class FormReadMode extends OdooForm {
 
     public String getSpanValue(WebElement element, String field) {
         String stringResult;
@@ -48,4 +45,7 @@ public abstract class FormReadMode extends PortalUIElement {
         log.info("These fields were read in the form: " + fieldsWereRead);
         log.info("These fields were NOT read in the form: " + fieldsWereNotRead);
     }
+
+    public void modifyData(OdooObject input){};
+    public abstract OdooObject getDataFromUI(OdooObject odooObject);
 }

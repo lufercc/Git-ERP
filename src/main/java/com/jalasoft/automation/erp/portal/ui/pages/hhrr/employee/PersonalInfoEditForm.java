@@ -1,15 +1,13 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.objects.general.OdooObject;
 import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
-import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
 import com.jalasoft.automation.erp.portal.ui.components.SelectOpenERP;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PersonalInfoEmployee;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.PublicInfoEmployee;
+import com.jalasoft.automation.erp.objects.hhrr.employee.PersonalInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 
 /**
  * Created by Henry Benito on 10/20/2015.
@@ -85,10 +83,12 @@ public class PersonalInfoEditForm extends FormEditMode {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dataContainer);
     }
 
-    public void modifyData(PersonalInfoEmployee inputData) {
+    public void modifyData(OdooObject inputDataObj) {
         fieldsWereEdited = new ArrayList<>();
         fieldsWereNotEdited = new ArrayList<>();
         allFieldsWereEdited = true;
+
+        PersonalInfoEmployee inputData = (PersonalInfoEmployee)inputDataObj;
 
         if (inputData.nationalOrForeign != null) {
             selectItem(this.nationalOrForeign, "nationalOrForeign", inputData.nationalOrForeign);

@@ -1,13 +1,11 @@
 package com.jalasoft.automation.erp.steps.selog.accounting;
 
-import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.Asset;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.AssetDeliveryRecord;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.SupplierInvoice;
-import com.jalasoft.automation.erp.portal.ui.custom.selog.purchase.OrderLine;
+import com.jalasoft.automation.erp.objects.selog.accounting.Asset;
+import com.jalasoft.automation.erp.objects.selog.accounting.AssetDeliveryRecord;
+import com.jalasoft.automation.erp.objects.selog.accounting.SupplierInvoice;
+import com.jalasoft.automation.erp.objects.selog.purchase.OrderLine;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.*;
-import com.jalasoft.automation.erp.portal.ui.pages.selog.warehouse.InternalMovesListView;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 
 import java.util.List;

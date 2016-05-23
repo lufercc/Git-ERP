@@ -1,8 +1,8 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.objects.general.OdooObject;
 import com.jalasoft.automation.erp.portal.ui.components.FormReadMode;
-import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.HHRRInfoEmployee;
+import com.jalasoft.automation.erp.objects.hhrr.employee.HHRRInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -66,11 +66,11 @@ public class HHRRInfoReadForm extends FormReadMode {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dataContainer);
     }
 
-    public HHRRInfoEmployee getDataFromUI(HHRRInfoEmployee infoFromStep) {
+    public HHRRInfoEmployee getDataFromUI(OdooObject infoFromStepObj) {
         fieldsWereRead = new ArrayList<>();
         fieldsWereNotRead = new ArrayList<>();
         allFieldsWereRead = true;
-
+        HHRRInfoEmployee infoFromStep = (HHRRInfoEmployee)infoFromStepObj;
         HHRRInfoEmployee result = new HHRRInfoEmployee();
 
         if(infoFromStep.gender != null) {result.gender = getSpanValue(gender, "gender");}

@@ -17,10 +17,10 @@ public class GeneralButtonsBar extends PortalUIElement {
     protected WebElement buttonsContainer;
 
     @CacheLookup
-    @FindBy(xpath = "//div[@class='oe_view_manager_buttons']//div[not(contains(@style,'display: none;'))]//button[contains(.,'Create')]")
+    @FindBy(xpath = "//div[contains(@class,'cp-buttons') or contains(@class,'cp_buttons')]/div[not(contains(@style,'display: none;'))]//button[contains(.,'Create')]")
     protected WebElement createButton;
 
-    @FindBy(xpath = "//div[@class='oe_view_manager_buttons']//div[not(contains(@style,'display: none;'))]//button[contains(.,'Save')]")
+    @FindBy(xpath = "//div[contains(@class,'cp-buttons') or contains(@class,'cp_buttons')]/div[not(contains(@style,'display: none;'))]//button[contains(.,'Save')]")
     protected WebElement saveButton;
 
     @CacheLookup

@@ -1,11 +1,11 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.objects.general.OdooObject;
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.InternalCareer;
+import com.jalasoft.automation.erp.objects.hhrr.employee.InternalCareer;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -50,42 +50,8 @@ public class InternalCareerInfoReadForm extends TableOpenERP {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
 
-    public boolean hasSameContent(boolean shouldBeAble, List<InternalCareer> expectedData) {
-        List<HashMap<String,String>> dataFromTable = this.getData();
-        HashMap<String,String> currentRow;
-        int tableSize;
-
-        if((expectedData.size()!= dataFromTable.size()) && shouldBeAble) {
-            return false;
-        }
-
-        if(dataFromTable.isEmpty() && !shouldBeAble) {
-            return true;
-        }
-
-        for(InternalCareer currentInternalCareer : expectedData) {
-            tableSize =  dataFromTable.size();
-            for(int indexList = 0; indexList < tableSize; indexList++) {
-                currentRow = dataFromTable.get(indexList);
-                if (shouldBeAble) {
-                    if (inputDataIsInRow(currentInternalCareer,currentRow)) {
-                        dataFromTable.remove(currentRow);
-                        break;
-                    }
-                    if (indexList == (tableSize - 1)) {
-                        return false;
-                    }
-                } else {
-                    if (inputDataIsInRow(currentInternalCareer,currentRow)) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    public boolean inputDataIsInRow(InternalCareer inputRecord, HashMap<String,String> tableRow) {
+    public boolean inputDataIsInRow(OdooObject inputRec, HashMap<String,String> tableRow) {
+        InternalCareer inputRecord = (InternalCareer)inputRec;
         if(inputRecord.department != null) {
             if (!inputRecord.department.equals(tableRow.get(expectedHeaders.get("department")))) {
                 return false;

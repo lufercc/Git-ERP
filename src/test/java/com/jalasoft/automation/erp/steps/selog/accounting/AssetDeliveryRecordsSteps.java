@@ -1,9 +1,8 @@
 package com.jalasoft.automation.erp.steps.selog.accounting;
 
-import com.jalasoft.automation.erp.portal.ui.custom.selog.accounting.AssetDeliveryRecord;
+import com.jalasoft.automation.erp.objects.selog.accounting.AssetDeliveryRecord;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetsDeliveryRecordsListView;
 import com.jalasoft.automation.erp.portal.ui.pages.selog.accounting.AssetsDeliveryRecordsReadForm;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 
 /**

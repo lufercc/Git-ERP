@@ -1,8 +1,8 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
+import com.jalasoft.automation.erp.objects.general.OdooObject;
 import com.jalasoft.automation.erp.portal.ui.components.FormEditMode;
-import com.jalasoft.automation.erp.portal.ui.components.PortalUIElement;
-import com.jalasoft.automation.erp.portal.ui.custom.hhrr.employee.BasicInfoEmployee;
+import com.jalasoft.automation.erp.objects.hhrr.employee.BasicInfoEmployee;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -16,6 +16,9 @@ public class BasicInfoEditForm extends FormEditMode {
 
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
+
+    @FindBy(xpath = "//div[@class='oe_title']/h1//input")
+    protected WebElement fullName;
 
     @FindBy(name = "firstname_check")
     protected WebElement firstNameCheck;
@@ -55,10 +58,17 @@ public class BasicInfoEditForm extends FormEditMode {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.dataContainer);
     }
 
-    public void modifyData(BasicInfoEmployee inputData) {
-        fieldsWereEdited = new ArrayList<>();
-        fieldsWereNotEdited = new ArrayList<>();
-        allFieldsWereEdited = true;
+    public void modifyData(OdooObject inputDataObj) {
+        fieldsAffectedByAction = new ArrayList<>();
+        fieldsNoAffectedByAction = new ArrayList<>();
+        allFieldsAffected = true;
+
+        BasicInfoEmployee inputData = (BasicInfoEmployee)inputDataObj;
+
+        if (inputData.fullName != null) {
+            setInput(fullName, "fullName", inputData.fullName);
+        }
+
         if (inputData.firstName != null) {
             setInput(firstName, "firstName", inputData.firstName);
         }

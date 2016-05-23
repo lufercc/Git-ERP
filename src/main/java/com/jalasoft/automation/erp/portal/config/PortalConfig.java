@@ -32,4 +32,11 @@ public class PortalConfig implements AutomationAppSettings {
         return (jsonConfigFileReader.getConfigValue("GeneralSettings", "sutURL")).toString();
     }
 
+    //Code added to know the device type from config.js file
+    @Override
+    public String getDeviceType() {
+
+        return (jsonConfigFileReader.getConfigValue("GeneralSettings", "deviceType")).toString();
+    }
+
 }

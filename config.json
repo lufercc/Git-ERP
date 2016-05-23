@@ -23,13 +23,14 @@
     },
     "GeneralSettings":
     {
-        "sutURL": "https://10.31.97.86:8443"
+        "sutURL": "http://10.31.97.132:55069/",
+        "deviceType": "computer"
     },
     "Credentials":
     {
-        "hb admin":{
-            "password":"123",
-            "userName":"henry50"
+        "admin":{
+            "password":"admin",
+            "userName":"admin"
         },
         "admin":{
             "password":"123",

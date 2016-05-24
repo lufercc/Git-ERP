@@ -24,7 +24,8 @@
     "GeneralSettings":
     {
         "sutURL": "http://192.168.99.100:8070",
-        "db": "testing"
+        "db": "testing",
+        "deviceType": "computer"
     },
     "Credentials":
     {

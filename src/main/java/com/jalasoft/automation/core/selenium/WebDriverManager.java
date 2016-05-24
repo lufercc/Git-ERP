@@ -10,6 +10,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.Dimension;
+import com.jalasoft.automation.erp.portal.PortalAutomationApp;
 
 import java.net.URL;
 import java.util.Map;
@@ -25,6 +27,8 @@ public class WebDriverManager {
     private long explicitWaitTime;
     private long waitSleepTime;
     private WebDriverConfig webDriverConfig;
+
+    private String deviceType= PortalAutomationApp.getInstance().getConfig().getDeviceType();
 
     private WebDriverManager() {
 
@@ -66,6 +70,7 @@ public class WebDriverManager {
         } else {
             this.setupBrowserDriver(webDriverConfig);
         }
+        this.setupDriverDeviceType(this.deviceType);
         this.setupDriverTimeouts();
     }
 
@@ -76,6 +81,7 @@ public class WebDriverManager {
      */
     public void changeImplicitWaitTime(int timeout) {
         this.implicitWaitTime = timeout;
+        this.setupDriverDeviceType(this.deviceType);
         this.setupDriverTimeouts();
     }
 
@@ -84,6 +90,7 @@ public class WebDriverManager {
      */
     public void restoreImplicitWaitTimeToDefault() {
         this.implicitWaitTime = this.webDriverConfig.getImplicitWaitTime();
+        this.setupDriverDeviceType(this.deviceType);
         this.setupDriverTimeouts();
     }
 
@@ -126,9 +133,25 @@ public class WebDriverManager {
     }
 
     private void setupDriverTimeouts() {
+
         log.info(String.format("initializing driver timeouts implicit wait time:{%d}, explicit wait time:{%d} ", this.implicitWaitTime, this.explicitWaitTime));
-        webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(this.implicitWaitTime, TimeUnit.SECONDS);
         webDriverWait = new WebDriverWait(webDriver, this.explicitWaitTime, this.waitSleepTime);
+    }
+
+    private void setupDriverDeviceType(String deviceType){
+        switch (deviceType.toLowerCase()) {
+            case "computer":
+                webDriver.manage().window().maximize();
+                break;
+            case "mobile":
+                Dimension dimensionCellphone = new Dimension(386, 645);
+                webDriver.manage().window().setSize(dimensionCellphone);
+                break;
+            case "tablet":
+                Dimension dimensionTablet = new Dimension(768, 1024);
+                webDriver.manage().window().setSize(dimensionTablet);
+                break;
+        }
     }
 }

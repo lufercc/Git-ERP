@@ -84,9 +84,9 @@ public class PersonalInfoEditForm extends FormEditMode {
     }
 
     public void modifyData(OdooObject inputDataObj) {
-        fieldsWereEdited = new ArrayList<>();
-        fieldsWereNotEdited = new ArrayList<>();
-        allFieldsWereEdited = true;
+        fieldsAffectedByAction = new ArrayList<>();
+        fieldsNoAffectedByAction = new ArrayList<>();
+        allFieldsAffected = true;
 
         PersonalInfoEmployee inputData = (PersonalInfoEmployee)inputDataObj;
 

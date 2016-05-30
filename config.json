@@ -23,8 +23,8 @@
     },
     "GeneralSettings":
     {
-        "sutURL": "http://192.168.99.100:8070",
-        "db": "testing",
+        "sutURL": "http://10.31.97.132:55069/",
+        "db": "odoo",
         "deviceType": "computer"
     },
     "Credentials":

@@ -24,9 +24,9 @@ public class EmployeeFactory {
             }
         case "personal":
             if (editMode) {
-                return new HHRRInfoEditForm();
+                return new PersonalInfoEditForm();
             } else {
-                return new HHRRInfoReadForm();
+                return new PersonalInfoReadForm();
             }
         case "hhrr":
             if (editMode) {

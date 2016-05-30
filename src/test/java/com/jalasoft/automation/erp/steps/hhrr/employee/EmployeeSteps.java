@@ -3,7 +3,7 @@ package com.jalasoft.automation.erp.steps.hhrr.employee;
 import com.jalasoft.automation.erp.api.WebServiceAPI;
 import com.jalasoft.automation.erp.objects.general.OdooObject;
 import com.jalasoft.automation.erp.objects.hhrr.employee.*;
-import com.jalasoft.automation.erp.objects.utils.IDGenerator;
+import com.jalasoft.automation.erp.objects.Utils.IDGenerator;
 import com.jalasoft.automation.erp.portal.ui.components.OdooForm;
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
 import com.jalasoft.automation.erp.portal.ui.pages.general.GeneralButtonsBar;
@@ -669,6 +669,4 @@ public class EmployeeSteps {
         TableOpenERP employeeReadForm = employeeFactory.getTableForm(employeeDataName, false);
         return employeeReadForm.hasSameContent(shouldBeAble, dataFromStep);
     }
-
-
 }

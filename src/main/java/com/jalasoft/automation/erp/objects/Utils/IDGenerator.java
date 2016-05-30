@@ -1,4 +1,4 @@
-package com.jalasoft.automation.erp.objects.utils;
+package com.jalasoft.automation.erp.objects.Utils;
 
 import java.util.Random;
 

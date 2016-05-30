@@ -54,15 +54,15 @@ Feature: OdooTest
 
     And I modify the employee with personal data
       | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | homeAddress  | dateBirth  | country | city     |
-      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Administrator| 02/12/1986 | Albania | SomeCity |
+      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | false   | Administrator| 02/12/1986 | Albania | SomeCity |
 
     And I modify the employee with hhrr data
-      | gender | maritalStatus | numberChildren | hireDate   | endHireDate | workingSchedule  | holidayGroup           | vacationAnniversary | internalID |
-      | Male   | Cohabiting    | 3              | 01/04/2016 | 01/04/2017  | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
+      | gender | maritalStatus | numberChildren | hireDate   | workingSchedule  | holidayGroup           | vacationAnniversary | internalID |
+      | Male   | Single        | 3              | 01/04/2016 | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
 
     And I modify the employee with engineering data
-      | department | division | jobTitle | manager       | consultant |
-      | IT         | Support  | Security | Administrator | true       |
+      | department | division    | jobTitle | manager        | consultant |
+      | Sales      | Outsourcing | Security | Auto S Manager | true       |
 
     And I add this family data to employee form
       | name | lastName | relation | sex    | birthDate  |

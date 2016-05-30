@@ -73,9 +73,9 @@ public class HHRRInfoEditForm extends FormEditMode {
     }
 
     public void modifyData(OdooObject inputDataObj) {
-        fieldsWereEdited = new ArrayList<>();
-        fieldsWereNotEdited = new ArrayList<>();
-        allFieldsWereEdited = true;
+        fieldsAffectedByAction = new ArrayList<>();
+        fieldsNoAffectedByAction = new ArrayList<>();
+        allFieldsAffected = true;
 
         HHRRInfoEmployee inputData = (HHRRInfoEmployee)inputDataObj;
 

@@ -36,12 +36,12 @@ public class TagFieldOpenERP extends PortalUIElement {
     public void addTags(List<Tag> tagList) {
         try {
             allTagsWereAdded = false;
-            WebElement tagTextField = field.findElement(By.xpath(".//textarea"));
+            WebElement tagTextField = field.findElement(By.xpath(".//input"));
             if (webDriverTools.isElementDisplayed(tagTextField)) {
                 for (Tag tag : tagList) {
                     tagTextField.sendKeys(tag.name);
                     this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
-                    WebElement suggestedValue = field.findElement(By.xpath(".//span[contains(@class,'text-label')]/span[text()='" + tag.name + "']"));
+                    WebElement suggestedValue = webDriver.findElement(By.xpath("//ul[contains(@class,'ui-autocomplete') and contains(@style,'display: block')]//a[contains(text(),'" + tag.name + "')]"));
                     suggestedValue.click();
                 }
                 allTagsWereAdded = true;

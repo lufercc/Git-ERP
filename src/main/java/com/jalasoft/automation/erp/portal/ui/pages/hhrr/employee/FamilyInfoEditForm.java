@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class FamilyInfoEditForm extends TableOpenERP {
     @CacheLookup
-    @FindBy(xpath = "//div[contains(text(),'Family Information')]/following-sibling::table//table[contains(@class,'oe_list_content')]")
+    @FindBy(name = "hr.dependent")
     protected WebElement table;
 
 
@@ -58,8 +58,8 @@ public class FamilyInfoEditForm extends TableOpenERP {
             for ( FamilyMember item : inputData) {
                 clickAddElement();
 
-                name = this.webDriver.findElement(By.xpath("(//span[contains(@data-fieldname,'name')]/input)[2]"));
-                lastName = this.webDriver.findElement(By.xpath("//span[contains(@data-fieldname,'last_name')]/input"));
+                name = this.webDriver.findElement(By.xpath("//table//input[@name='name']"));
+                lastName = this.webDriver.findElement(By.name("last_name"));
                 relation = this.webDriver.findElement(By.name("relation"));
                 sex = this.webDriver.findElement(By.name("sex"));
                 birthDate = this.webDriver.findElement(By.name("day_of_birth"));

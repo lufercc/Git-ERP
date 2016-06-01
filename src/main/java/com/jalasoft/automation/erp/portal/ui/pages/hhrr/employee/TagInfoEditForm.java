@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class TagInfoEditForm extends TagFieldOpenERP {
 
-    @FindBy(xpath = "//label[contains(text(),'Tags')]/following-sibling::div[contains(@class,'oe_form_field oe_tags')]")
+    @FindBy(xpath = "//input[contains(@name,'category_ids')]/ancestor::div[contains(@class,'many2manytags')]")
     protected WebElement field;
 
 

@@ -26,7 +26,7 @@ public class EmployeeForm extends PortalUIElement {
     @FindBy(xpath = "//ul[contains(@role,'tablist')]/li/a[contains(text(),'Engineering')]")
     protected WebElement engineeringInfoTab;
 
-    @FindBy(xpath = "(//div[contains(@class,'oe_clear ui-tabs')]//ul/li/a)[5]")
+    @FindBy(xpath = "//div[contains(@class,'oe_form_sheet')]//ul//li//a[contains(text(),'Employment History')]")
     protected WebElement empHistoryInfoTab;
 
     public EmployeeForm() {

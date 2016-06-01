@@ -69,19 +69,11 @@ Feature: OdooTest
       | Dark | Potato   | Son      | Male   | 02/12/1986 |
 
     And I add this external career data to employee form
-      | jobTitle | startDate  | endDate    | employer  |
-      | xde      | 02/03/2016 | 02/04/2016 | asd       |
+      | jobTitle | startDate  | endDate    | employer |
+      | xde      | 02/03/2016 | 02/04/2016 | asd      |
 
-    And I add this internal career data to employee form
-      | department | division | jobTitle | projectCode   | manager       | weight | startDate  | endDate    | employer | description |
-      | IT         | Support  | Security | TESTPROJABILA | Administrator | 6      | 02/10/2016 | 02/20/2018 | Other    | description |
+    And I add this tag data to employee form
+      | name          |
+      | media jornada |
 
     And I press "save" general button
-    And I verify if he has this data in basic information
-      | firstName   | lastName    |
-      | testEmployee| Automation  |
-
-    And remove this "test employee" employee via api with this credentials "adminodoo"
-    And create employee via api with this credentials "adminodoo"
-      | name | test employeeAPI |
-    And create employee with random name via api with this credentials "adminodoo"

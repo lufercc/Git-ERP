@@ -38,7 +38,7 @@ public class OdooLoginPage extends BasePage {
 
     @Override
     public void waitForLoading() {
-         super.webDriverTools.waitUntilElementPresentAndVisible(this.loginButton);
+         super.webDriverTools.waitUntilElementPresentAndVisible(this.userInput);
     }
 
     @Override

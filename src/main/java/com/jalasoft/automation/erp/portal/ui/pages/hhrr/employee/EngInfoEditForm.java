@@ -53,7 +53,7 @@ public class EngInfoEditForm extends FormEditMode {
     @FindBy(name = "active")
     protected WebElement active;
 
-    @FindBy(name = "consultant")
+    @FindBy(name = "is_consultant")
     protected WebElement consultant;
 
     @FindBy(name = "jala_core_engineer")
@@ -94,10 +94,12 @@ public class EngInfoEditForm extends FormEditMode {
     }
 
     public void modifyData(OdooObject inputDataObj) {
-        fieldsWereEdited = new ArrayList<>();
-        fieldsWereNotEdited = new ArrayList<>();
-        allFieldsWereEdited = true;
+        fieldsAffectedByAction = new ArrayList<>();
+        fieldsNoAffectedByAction = new ArrayList<>();
+        allFieldsAffected = true;
+
         EngInfoEmployee inputData = (EngInfoEmployee)inputDataObj;
+
         if (inputData.department != null) {
             selectOpenERPItem(this.department, "department", inputData.department);
         }

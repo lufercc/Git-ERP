@@ -20,13 +20,13 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
     @FindBy(xpath = "//div[contains(text(),'Internal Career Information')]/following-sibling::table//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
 
-    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Department')]/ancestor::td/following-sibling::td/span/div/input")
+    @FindBy(name = "department_id")
     protected WebElement departmentSelect;
 
     @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Division')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement divisionSelect;
 
-    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Job Title')]/ancestor::td/following-sibling::td/span/div/input")
+    @FindBy(xpath = "//div[contains(@class,'modal-dialog')]//input[@name='name']")
     protected WebElement nameSelect;
 
     @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Project Assignation')]/ancestor::td/following-sibling::td/span/div/input")
@@ -35,13 +35,13 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
     @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Weight')]/ancestor::td/following-sibling::td/span/input")
     protected WebElement weight;
 
-    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Manager')]/ancestor::td/following-sibling::td/span/div/input")
+    @FindBy(name = "manager_id")
     protected WebElement managerSelect;
 
-    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Lead')]/ancestor::td/following-sibling::td/span/div/input")
+    @FindBy(name = "lead_id")
     protected WebElement leadSelect;
 
-    @FindBy(xpath = "//div[@class='oe_popup_form']//label[contains(text(),'Employer')]/ancestor::td/following-sibling::td/span/input")
+    @FindBy(name = "employer")
     protected WebElement employer;
 
     @FindBy(name = "start_date")
@@ -53,10 +53,10 @@ public class InternalCareerInfoEditForm extends TableOpenERP {
     @FindBy(name = "description")
     protected WebElement description;
 
-    @FindBy(xpath = "//div[contains(@class,'ui-dialog-buttonpane')]//button[contains(@class,'oe_abstractformpopup-form-save-new')]")
+    @FindBy(xpath = "//div[contains(@class,'modal-footer')]//span[contains(text(),'Save & New')]")
     protected WebElement addAndContinue;
 
-    @FindBy(xpath = "(//div[contains(@class,'ui-dialog-buttonpane')]//button[contains(@class,'oe_abstractformpopup-form-save')])[1]")
+    @FindBy(xpath = "//div[contains(@class,'modal-footer')]//button[contains(@class,'o_formdialog_save')]")
     protected WebElement addAndClose;
 
     SelectOpenERP department;

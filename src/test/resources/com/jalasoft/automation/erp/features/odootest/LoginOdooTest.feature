@@ -54,34 +54,26 @@ Feature: OdooTest
 
     And I modify the employee with personal data
       | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | homeAddress  | dateBirth  | country | city     |
-      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Administrator| 02/12/1986 | Albania | SomeCity |
+      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | false   | Administrator| 02/12/1986 | Albania | SomeCity |
 
     And I modify the employee with hhrr data
-      | gender | maritalStatus | numberChildren | hireDate   | endHireDate | workingSchedule  | holidayGroup           | vacationAnniversary | internalID |
-      | Male   | Cohabiting    | 3              | 01/04/2016 | 01/04/2017  | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
+      | gender | maritalStatus | numberChildren | hireDate   | workingSchedule  | holidayGroup           | vacationAnniversary | internalID |
+      | Male   | Single        | 3              | 01/04/2016 | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
 
     And I modify the employee with engineering data
-      | department | division | jobTitle | manager       | consultant |
-      | IT         | Support  | Security | Administrator | true       |
+      | department | division    | jobTitle | manager        | consultant |
+      | Sales      | Outsourcing | Security | Auto S Manager | true       |
 
     And I add this family data to employee form
       | name | lastName | relation | sex    | birthDate  |
       | Dark | Potato   | Son      | Male   | 02/12/1986 |
 
     And I add this external career data to employee form
-      | jobTitle | startDate  | endDate    | employer  |
-      | xde      | 02/03/2016 | 02/04/2016 | asd       |
+      | jobTitle | startDate  | endDate    | employer |
+      | xde      | 02/03/2016 | 02/04/2016 | asd      |
 
-    And I add this internal career data to employee form
-      | department | division | jobTitle | projectCode   | manager       | weight | startDate  | endDate    | employer | description |
-      | IT         | Support  | Security | TESTPROJABILA | Administrator | 6      | 02/10/2016 | 02/20/2018 | Other    | description |
+    And I add this tag data to employee form
+      | name          |
+      | media jornada |
 
     And I press "save" general button
-    And I verify if he has this data in basic information
-      | firstName   | lastName    |
-      | testEmployee| Automation  |
-
-    And remove this "test employee" employee via api with this credentials "adminodoo"
-    And create employee via api with this credentials "adminodoo"
-      | name | test employeeAPI |
-    And create employee with random name via api with this credentials "adminodoo"

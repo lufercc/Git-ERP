@@ -8,6 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,7 +19,6 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
 
     @FindBy(xpath = "//div[contains(text(),'External Career Information')]/following-sibling::table[following-sibling::div[contains(text(),'Internal Career Information')]]//table[contains(@class,'oe_list_content')]")
     protected WebElement table;
-
 
     public ExternalCareerInfoEditForm() {
         super.table = this.table;
@@ -44,6 +44,7 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
     }
 
     public void addData(List<ExternalCareer> inputData) {
+
         try {
             allRecordsWereAdded = false;
 
@@ -58,15 +59,14 @@ public class ExternalCareerInfoEditForm extends TableOpenERP {
 
             for (int i = 0; i < inputData.size(); i++) {
                 clickAddElement();
-
-                jobTitle = this.webDriver.findElement(By.xpath("(//div[contains(@class,'oe_popup_form')]//input[contains(@id,'oe-field-input')])[1]"));
+                jobTitle = this.webDriver.findElement(By.xpath("//div[contains(@class,'modal-dialog')]//input[contains(@name,'name')]"));
                 startDate = this.webDriver.findElement(By.name("start_date"));
                 endDate = this.webDriver.findElement(By.name("end_date"));
-                employer = this.webDriver.findElement(By.xpath("(//div[contains(@class,'oe_popup_form')]//input[contains(@id,'oe-field-input')])[2]"));
+                employer = this.webDriver.findElement(By.name("employer"));
                 description = this.webDriver.findElement(By.name("description"));
 
-                addAndContinue = this.webDriver.findElement(By.xpath("//div[contains(@class,'ui-dialog-buttonpane')]//button[contains(@class,'oe_abstractformpopup-form-save-new')]"));
-                addAndClose = this.webDriver.findElement(By.xpath("(//div[contains(@class,'ui-dialog-buttonpane')]//button[contains(@class,'oe_abstractformpopup-form-save')])[1]"));
+                addAndContinue = this.webDriver.findElement(By.xpath("//div[contains(@class,'modal-footer')]//button[contains(@class,'o_formdialog_save')]//following::span[contains(text(),'Save & New')]"));
+                addAndClose = this.webDriver.findElement(By.xpath("//div[contains(@class,'modal-footer')]//button[contains(@class,'o_formdialog_save')]"));
 
 
                 if (inputData.get(i).jobTitle != null) {

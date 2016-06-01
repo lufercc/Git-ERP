@@ -34,6 +34,12 @@ public class EmployeeFactory {
             } else {
                 return new HHRRInfoReadForm();
             }
+        case "engineering":
+            if (editMode) {
+                return new EngInfoEditForm();
+            } else {
+                return new EngInfoReadForm();
+            }
         }
         return null;
     }

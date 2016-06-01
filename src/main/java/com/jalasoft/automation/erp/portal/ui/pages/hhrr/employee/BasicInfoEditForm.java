@@ -32,7 +32,7 @@ public class BasicInfoEditForm extends FormEditMode {
     @FindBy(xpath = "//div[contains(@name,'prefered_div')]/input")
     protected WebElement preferredName;
 
-    @FindBy(xpath = "//span[following-sibling::label[contains(text(),'Last Name')] and preceding-sibling::label[contains(text(),'Middle Name')]]/input")
+    @FindBy(name = "middlename")
     protected WebElement middleName;
 
     @FindBy(xpath = "//span[following-sibling::label[contains(text(),'Second Last Name')] and preceding-sibling::label[contains(text(),'Last Name')]]/input")

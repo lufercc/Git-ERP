@@ -6,6 +6,7 @@ import com.jalasoft.automation.erp.objects.hhrr.employee.*;
 import com.jalasoft.automation.erp.objects.Utils.IDGenerator;
 import com.jalasoft.automation.erp.portal.ui.components.OdooForm;
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
+import com.jalasoft.automation.erp.portal.ui.pages.general.Attachment;
 import com.jalasoft.automation.erp.portal.ui.pages.general.GeneralButtonsBar;
 import com.jalasoft.automation.erp.portal.ui.pages.general.MainMenu;
 import com.jalasoft.automation.erp.portal.ui.pages.general.Search;
@@ -576,6 +577,22 @@ public class EmployeeSteps {
             }
         }
     }
+    /*
+     ========================
+     Attachements Steps
+     ========================
+     */
+    @And("^I add this file to employee attachments$")
+    public void iAddThisFileToEmployeeAttachments() throws Throwable {
+        Attachment attach = new Attachment();
+        attach.attachFile("G:\\Media\\Music\\DubStep\\Poreotics.mp4");
+        List<String> stringList = attach.getFilesAsStringList();
+        Boolean isInTheList = attach.isInTheList("Poreotics.mp4");
+        attach.deleteFileAttached("Poreotics.mp4");
+        System.out.println("LIST:" + stringList);
+        System.out.println("Is in the LIST?:" + isInTheList);
+
+    }
 
     /*
      ========================
@@ -631,6 +648,7 @@ public class EmployeeSteps {
         OdooForm employeeEditForm = employeeFactory.getForm(employeeDataType, true);
 
         employeeEditForm.modifyData(inputData);
+        
         if ((!employeeEditForm.getListNonAffected().isEmpty() && shouldBeAble) ||
             (!employeeEditForm.getListAffected().isEmpty() && !shouldBeAble)) {
             Assert.fail();

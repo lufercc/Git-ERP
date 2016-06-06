@@ -23,7 +23,7 @@ public class BasicInfoEditForm extends FormEditMode {
     @FindBy(name = "firstname_check")
     protected WebElement firstNameCheck;
 
-    @FindBy(xpath = "//span[following-sibling::label[contains(text(),'Middle Name')] and preceding-sibling::label[contains(text(),'First Name')]]//input")
+    @FindBy(name = "firstname")
     protected WebElement firstName;
 
     @FindBy(name = "middlename_check")
@@ -35,13 +35,13 @@ public class BasicInfoEditForm extends FormEditMode {
     @FindBy(name = "middlename")
     protected WebElement middleName;
 
-    @FindBy(xpath = "//span[following-sibling::label[contains(text(),'Second Last Name')] and preceding-sibling::label[contains(text(),'Last Name')]]/input")
+    @FindBy(name = "lastname")
     protected WebElement lastName;
 
-    @FindBy(xpath = "//span[following-sibling::label[contains(text(),'Married Name')] and preceding-sibling::label[contains(text(),'Second Last Name')]]/input")
+    @FindBy(name = "second_lastname")
     protected WebElement secondLastName;
 
-    @FindBy(xpath = "//span[preceding-sibling::label[contains(text(),'Married Name')]]/input")
+    @FindBy(name = "married_name")
     protected WebElement marriedName;
 
     public BasicInfoEditForm() {

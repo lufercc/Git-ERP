@@ -17,50 +17,48 @@ public class PublicInfoEditForm extends FormEditMode {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "//label[contains(text(),'Work Email')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
-    protected WebElement workEmail;
-
-    @FindBy(xpath = "//label[contains(text(),'Work Phone')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
-    protected WebElement workPhone;
-
-    @FindBy(xpath = "//label[contains(text(),'Extension Code')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
-    protected WebElement extCode;
-
-    @FindBy(xpath = "//label[contains(text(),'Work Mobile')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
-    protected WebElement workMobile;
-
-    @FindBy(xpath = "//label[contains(text(),'Desk Code')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
-    protected WebElement codeDesktop;
-
-    @FindBy(xpath = "//label[contains(text(),'City')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
-    protected WebElement city;
-
-    @FindBy(xpath = "//label[contains(text(),'Working Address')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
+    @FindBy(xpath = "//div//input[contains(@name,'address_id')]")
     protected WebElement addressSelect;
 
-    @FindBy(xpath = "//label[contains(text(),'Location')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
+    @FindBy(name = "work_email")
+    protected WebElement workEmail;
+
+    @FindBy(name = "work_phone")
+    protected WebElement workPhone;
+
+    @FindBy(name = "extension_code")
+    protected WebElement extCode;
+
+    @FindBy(name = "mobile_phone")
+    protected WebElement workMobile;
+
+    @FindBy(name = "work_location")
+    protected WebElement workLocation;
+
+    @FindBy(name = "location_id")
     protected WebElement locationSelect;
 
-    @FindBy(xpath = "//label[contains(text(),'Country')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
+    @FindBy(name = "country_localization_id")
     protected WebElement countrySelect;
 
-    @FindBy(xpath = "//label[contains(text(),'Related User')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/div/input")
-    protected WebElement userSelect;
+    @FindBy(name = "city_localization")
+    protected WebElement city;
 
     @FindBy(name = "notes")
     protected WebElement otherInfo;
 
+    @FindBy(xpath = "//label[contains(text(),'Desk Code')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/input")
+    protected WebElement codeDesktop;
+
     SelectOpenERP address;
     SelectOpenERP location;
     SelectOpenERP country;
-    SelectOpenERP user;
 
     public PublicInfoEditForm() {
         this.waitForLoading();
         address = new SelectOpenERP(addressSelect);
         location = new SelectOpenERP(locationSelect);
         country = new SelectOpenERP(countrySelect);
-        user = new SelectOpenERP(userSelect);
     }
 
     @Override
@@ -83,18 +81,6 @@ public class PublicInfoEditForm extends FormEditMode {
             selectOpenERPItem(this.address, "address", inputData.address);
         }
 
-        if (inputData.location != null) {
-            selectOpenERPItem(this.location, "location", inputData.location);
-        }
-
-        if (inputData.country != null) {
-            selectOpenERPItem(this.country, "country", inputData.country);
-        }
-
-        if (inputData.user != null) {
-            selectOpenERPItem(this.user, "user", inputData.user);
-        }
-
         if (inputData.workEmail != null) {
             setInput(this.workEmail, "workEmail", inputData.workEmail);
         }
@@ -111,16 +97,28 @@ public class PublicInfoEditForm extends FormEditMode {
             setInput(this.workMobile, "workMobile", inputData.workMobile);
         }
 
+        if (inputData.workLocation != null) {
+            setInput(this.workLocation, "workLocation", inputData.workLocation);
+        }
+
+        if (inputData.location != null) {
+            selectOpenERPItem(this.location, "location", inputData.location);
+        }
+
+        if (inputData.country != null) {
+            selectOpenERPItem(this.country, "country", inputData.country);
+        }
+
+        if (inputData.otherInfo != null) {
+            setInput(this.otherInfo, "otherInfo", inputData.otherInfo);
+        }
+
         if (inputData.codeDesktop != null) {
             setInput(this.codeDesktop, "codeDesktop", inputData.codeDesktop);
         }
 
         if (inputData.city != null) {
             setInput(this.city, "city", inputData.city);
-        }
-
-        if (inputData.otherInfo != null) {
-            setInput(this.otherInfo, "otherInfo", inputData.otherInfo);
         }
 
         logEditStatus();

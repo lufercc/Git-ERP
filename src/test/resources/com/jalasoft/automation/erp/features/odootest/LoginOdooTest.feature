@@ -44,36 +44,41 @@ Feature: OdooTest
     When I login with "adminodoo" odoo credentials
     And I go to "employees" hhrr submenu
     And I press "create" general button
+
     And I modify the employee with basic data
       | firstName | middleName | lastName   | secondLastName | marriedName |
       | testEmplo | js         | Automation | hr             | none        |
 
+    And I add this tag data to employee form
+      | name          |
+      | media jornada |
+
     And I modify the employee with public data
-      | address | workEmail        | workPhone     | extCode | workMobile    | city       | location | country | otherInfo  |
-      | ABILA   | test@hotmail.com | 456-158-15532 | 12      | 707-642-51545 | Cochabamba | 0F       | Bolivia | Other info |
+      | address | workEmail        | workPhone     | extCode | workMobile    | workLocation | location | country | city       | otherInfo  |
+      | ABILA   | test@hotmail.com | 456-158-15532 | 12      | 707-642-51545 | Melchor      | 0F       | Bolivia | Cochabamba | Other info |
 
     And I modify the employee with personal data
-      | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | homeAddress  | dateBirth  | country | city     |
-      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | false   | Administrator| 02/12/1986 | Albania | SomeCity |
+      | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                       | visaExpDate| hasDriverLicense | motorcycleLicence | motorcycleLicenceEXP | carLicence | bloodType | homeAddress  | dateBirth  | country | city     |
+      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Business and Tourism (B-1/B-2) | 02/20/2019 | true             | true              | 02/20/2019           | C          | O+        | Administrator| 02/12/1986 | Albania | SomeCity |
+
+    And I add this nationality data to employee form
+      | name  |
+      | Ghana |
 
     And I modify the employee with hhrr data
-      | gender | maritalStatus | numberChildren | hireDate   | workingSchedule  | holidayGroup           | vacationAnniversary | internalID |
-      | Male   | Single        | 3              | 01/04/2016 | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          | 654818     |
-
-    And I modify the employee with engineering data
-      | department | division    | jobTitle | manager        | consultant |
-      | Sales      | Outsourcing | Security | Auto S Manager | true       |
+      | user          | hireDate   | salaryReviewDate | gender  | maritalStatus | numberChildren | internalID | workingSchedule  | holidayGroup           | vacationAnniversary |
+      | Administrator | 01/04/2016 | 01/04/2016       | Male    | Single        | 3              | 654818     | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          |
 
     And I add this family data to employee form
       | name | lastName | relation | sex    | birthDate  |
       | Dark | Potato   | Son      | Male   | 02/12/1986 |
 
+    And I modify the employee with engineering data
+      | department | division    | jobTitle | manager        | consultant |
+      | Sales      | Outsourcing | Security | Auto S Manager | true       |
+
     And I add this external career data to employee form
       | jobTitle | startDate  | endDate    | employer |
       | xde      | 02/03/2016 | 02/04/2016 | asd      |
-
-    And I add this tag data to employee form
-      | name          |
-      | media jornada |
 
     And I press "save" general button

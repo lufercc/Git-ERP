@@ -12,7 +12,7 @@ public class PublicInfoEmployee extends OdooObject {
     public String workPhone;
     public String extCode;
     public String workMobile;
-    public String user;
+    public String workLocation;
     public String otherInfo;
     public String location;
     public String codeDesktop;
@@ -25,7 +25,7 @@ public class PublicInfoEmployee extends OdooObject {
         this.workPhone = aux.workPhone;
         this.extCode = aux.extCode;
         this.workMobile = aux.workMobile;
-        this.user = aux.user;
+        this.workLocation = aux.workLocation;
         this.otherInfo = aux.otherInfo;
         this.location = aux.location;
         this.codeDesktop = aux.codeDesktop;
@@ -41,7 +41,6 @@ public class PublicInfoEmployee extends OdooObject {
                 return false;
             }
         }
-
         if (this.addressDescription != null){
             if (this.addressDescription.equals(uiData.addressDescription) != shouldContain) {
                 logWarning("addressDescription", this.addressDescription);
@@ -72,9 +71,9 @@ public class PublicInfoEmployee extends OdooObject {
                 return false;
             }
         }
-        if (this.user != null) {
-            if (this.user.equals(uiData.user) != shouldContain) {
-                logWarning("user", this.user);
+        if (this.workLocation != null) {
+            if (this.workLocation.equals(uiData.workLocation) != shouldContain) {
+                logWarning("workLocation", this.workLocation);
                 return false;
             }
         }

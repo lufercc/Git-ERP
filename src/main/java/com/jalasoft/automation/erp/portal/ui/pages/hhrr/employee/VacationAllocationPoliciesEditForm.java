@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class VacationAllocationPoliciesEditForm extends TagFieldOpenERP {
 
-    @FindBy(xpath = "//input[contains(@name,'vac_alloc_policy_ids')]/ancestor::div[contains(@class,'many2manytags')]")
+    @FindBy(xpath = ".//div//table//input[contains(@name,'vac_alloc_policy_ids')]/ancestor::div[contains(@class,'many2manytags')]")
     protected WebElement field;
 
 

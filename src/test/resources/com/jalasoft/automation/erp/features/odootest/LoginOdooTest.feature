@@ -69,6 +69,10 @@ Feature: OdooTest
       | user          | hireDate   | salaryReviewDate | gender  | maritalStatus | numberChildren | internalID | workingSchedule  | holidayGroup           | vacationAnniversary |
       | Administrator | 01/04/2016 | 01/04/2016       | Male    | Single        | 3              | 654818     | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          |
 
+    And I add this Vacation Allocation Policies data to employee form
+      | name 			  |
+      | Bolivian Labor Law|
+
     And I add this family data to employee form
       | name | lastName | relation | sex    | birthDate  |
       | Dark | Potato   | Son      | Male   | 02/12/1986 |

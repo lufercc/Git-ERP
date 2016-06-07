@@ -409,13 +409,13 @@ public class EmployeeSteps {
         OtherSupervisorsInfoEditForm otherSupervisorsInfoEditForm = new OtherSupervisorsInfoEditForm();
         otherSupervisorsInfoEditForm.deleteTags(inputData);
     }
-///
+
     @And("^I add this Vacation Allocation Policies data to employee form$")
-    public void I_add_this_Vacation_Allocation_Policies_data_to_employee_form(List<Tag> vacationAllocationPolicesData) throws Throwable {
+    public void I_add_this_Vacation_Allocation_Policies_data_to_employee_form(List<Tag> inputData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab(hhrrInfo);
         VacationAllocationPoliciesEditForm vacationAllocationPoliciesEditForm = new VacationAllocationPoliciesEditForm();
-        vacationAllocationPoliciesEditForm.addTags(vacationAllocationPolicesData);
+        vacationAllocationPoliciesEditForm.addTags(inputData);
     }
 
     @And("^I create an employee with required fields$")

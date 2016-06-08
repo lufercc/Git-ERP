@@ -18,6 +18,11 @@ public class PersonalInfoEmployee extends OdooObject {
     public String hasVisa;
     public String visaType;
     public String visaExpDate;
+    public String hasDriverLicense;
+    public String motorcycleLicence;
+    public String motorcycleLicenceEXP;
+    public String carLicence;
+    public String bloodType;
     public String homeAddress;
     public String homeAddressDescription;
     public String dateBirth;
@@ -40,6 +45,11 @@ public class PersonalInfoEmployee extends OdooObject {
         this.hasVisa = aux.hasVisa;
         this.visaType = aux.visaType;
         this.visaExpDate = aux.visaExpDate;
+        this.hasDriverLicense = aux.hasDriverLicense;
+        this.motorcycleLicence = aux.motorcycleLicence;
+        this.motorcycleLicenceEXP = aux.motorcycleLicenceEXP;
+        this.carLicence = aux.carLicence;
+        this.bloodType = aux.bloodType;
         this.homeAddress = aux.homeAddress;
         this.homeAddressDescription = aux.homeAddressDescription;
         this.dateBirth = aux.dateBirth;
@@ -108,6 +118,36 @@ public class PersonalInfoEmployee extends OdooObject {
         if (this.visaExpDate != null) {
             if (this.visaExpDate.equals(uiData.visaExpDate) != shouldContain) {
                 logWarning("visaExpDate", this.visaExpDate);
+                return false;
+            }
+        }
+        if (this.hasDriverLicense != null) {
+            if (this.hasDriverLicense.equals(uiData.hasDriverLicense) != shouldContain) {
+                logWarning("hasDriverLicense", this.hasDriverLicense);
+                return false;
+            }
+        }
+        if (this.motorcycleLicenceEXP != null) {
+            if (this.motorcycleLicenceEXP.equals(uiData.motorcycleLicence) != shouldContain) {
+                logWarning("motorcycleLicence", this.motorcycleLicence);
+                return false;
+            }
+        }
+        if (this.motorcycleLicenceEXP != null) {
+            if (this.motorcycleLicenceEXP.equals(uiData.motorcycleLicenceEXP) != shouldContain) {
+                logWarning("motorcycleLicenceEXP", this.motorcycleLicenceEXP);
+                return false;
+            }
+        }
+        if (this.carLicence != null) {
+            if (this.carLicence.equals(uiData.carLicence) != shouldContain) {
+                logWarning("carLicence", this.carLicence);
+                return false;
+            }
+        }
+        if (this.bloodType != null) {
+            if (this.bloodType.equals(uiData.bloodType) != shouldContain) {
+                logWarning("bloodType", this.bloodType);
                 return false;
             }
         }

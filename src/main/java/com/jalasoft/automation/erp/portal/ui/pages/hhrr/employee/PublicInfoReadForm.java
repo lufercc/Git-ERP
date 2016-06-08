@@ -35,9 +35,6 @@ public class PublicInfoReadForm extends FormReadMode {
     @FindBy(xpath = "//label[contains(text(),'Work Mobile')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement workMobile;
 
-    @FindBy(xpath = "//label[contains(text(),'Related User')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
-    protected WebElement user;
-
     @FindBy(xpath = "//div[contains(@class,'oe_form_field oe_form_field_text')]/span")
     protected WebElement otherInfo;
 
@@ -81,7 +78,6 @@ public class PublicInfoReadForm extends FormReadMode {
         if(infoFromStep.workPhone != null) {result.workPhone = getSpanValue(workPhone, "workPhone");}
         if(infoFromStep.extCode != null) {result.extCode = getSpanValue(extCode, "extCode");}
         if(infoFromStep.workMobile != null) {result.workMobile = getSpanValue(workMobile, "workMobile");}
-        if(infoFromStep.user != null) {result.user = getSpanValue(user, "user");}
         if(infoFromStep.otherInfo != null) {result.otherInfo = getSpanValue(otherInfo, "otherInfo");}
         if(infoFromStep.location != null) {result.location = getSpanValue(location, "location");}
         if(infoFromStep.codeDesktop != null) {result.codeDesktop = getSpanValue(codeDesktop, "codeDesktop");}
@@ -105,7 +101,6 @@ public class PublicInfoReadForm extends FormReadMode {
         if(infoFromStep.workPhone != null) {result.workPhone = getSpanValue(workPhone, "workPhone");}
         if(infoFromStep.extCode != null) {result.extCode = getSpanValue(extCode, "extCode");}
         if(infoFromStep.workMobile != null) {result.workMobile = getSpanValue(workMobile, "workMobile");}
-        if(infoFromStep.user != null) {result.user = getSpanValue(user, "user");}
         if(infoFromStep.otherInfo != null) {result.otherInfo = getSpanValue(otherInfo, "otherInfo");}
         if(infoFromStep.location != null) {result.location = getSpanValue(location, "location");}
         if(infoFromStep.codeDesktop != null) {result.codeDesktop = getSpanValue(codeDesktop, "codeDesktop");}

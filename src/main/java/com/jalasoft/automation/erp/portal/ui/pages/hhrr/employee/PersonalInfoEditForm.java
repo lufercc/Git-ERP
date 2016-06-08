@@ -17,38 +17,20 @@ public class PersonalInfoEditForm extends FormEditMode {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "//label[contains(text(),'ID Number')]/ancestor::td/following-sibling::td/span/input")
-    protected WebElement idNumber;
-
-    @FindBy(xpath = "//label[contains(text(),'Passport No')]/ancestor::td/following-sibling::td/span/input")
-    protected WebElement passportNumber;
-
-    @FindBy(xpath = "//label[contains(text(),'City of Birth')]/ancestor::td/following-sibling::td/span/input")
-    protected WebElement city;
-
-    @FindBy(xpath = "//label[contains(text(),'Passport Issued')]/ancestor::td/following-sibling::td/span/div/input")
-    protected WebElement passportPlaceSelect;
-
-    @FindBy(xpath = "//label[contains(text(),'Age')]/ancestor::td/following-sibling::td/span/div/input")
-    protected WebElement age;
-
-    @FindBy(xpath = "//label[contains(text(),'Country of Birth')]/ancestor::td/following-sibling::td/span/div/input")
-    protected WebElement countrySelect;
-
-    @FindBy(xpath = "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/div/input")
-    protected WebElement homeAddressSelect;
-
     @FindBy(name = "identification_type")
     protected WebElement nationalOrForeign;
 
-    @FindBy(name = "identification_poi")
-    protected WebElement idPlace;
+    @FindBy(name = "identification_id")
+    protected WebElement idNumber;
 
     @FindBy(name = "id_expiration")
     protected WebElement idExpDate;
 
-    @FindBy(name = "passport_exp_date")
-    protected WebElement passportExpDate;
+    @FindBy(name = "passport_issued_id")
+    protected WebElement passportPlaceSelect;
+
+    @FindBy(name = "passport_id")
+    protected WebElement passportNumber;
 
     @FindBy(name = "has_visa")
     protected WebElement hasVisa;
@@ -59,8 +41,41 @@ public class PersonalInfoEditForm extends FormEditMode {
     @FindBy(name = "visa_expiration")
     protected WebElement visaExpDate;
 
+    @FindBy(name = "has_driver_license")
+    protected WebElement hasDriverLicense;
+
+    @FindBy(name = "motorcycle_license")
+    protected WebElement motorcycleLicence;
+
+    @FindBy(name = "motorcycle_exp_date")
+    protected WebElement motorcycleLicenceEXP;
+
+    @FindBy(name = "car_license")
+    protected WebElement carLicence;
+
+    @FindBy(name = "blood_type")
+    protected WebElement bloodType;
+
     @FindBy(name = "birthday")
     protected WebElement dateBirth;
+
+    @FindBy(name = "country_of_birth_id")
+    protected WebElement countrySelect;
+
+    @FindBy(name = "city_of_birth")
+    protected WebElement city;
+
+    @FindBy(name = "address_home_id")
+    protected WebElement homeAddressSelect;
+
+    @FindBy(xpath = "//label[contains(text(),'Age')]/ancestor::td/following-sibling::td/span/div/input")
+    protected WebElement age;
+
+    @FindBy(name = "identification_poi")
+    protected WebElement idPlace;
+
+    @FindBy(name = "passport_exp_date")
+    protected WebElement passportExpDate;
 
     SelectOpenERP passportPlace;
     SelectOpenERP country;
@@ -130,12 +145,28 @@ public class PersonalInfoEditForm extends FormEditMode {
             setInput(this.visaExpDate, "visaExpDate", inputData.visaExpDate);
         }
 
-        if (inputData.dateBirth != null) {
-            setInput(this.dateBirth, "dateBirth", inputData.dateBirth);
+        if (inputData.hasDriverLicense != null) {
+            setCheckbox(this.hasDriverLicense, "hasDriverLicense", inputData.hasDriverLicense);
         }
 
-        if (inputData.age != null) {
-            setInput(this.age, "age", inputData.age);
+        if (inputData.motorcycleLicenceEXP != null) {
+            setCheckbox(this.motorcycleLicence, "motorcycleLicence", inputData.motorcycleLicence);
+        }
+
+        if (inputData.motorcycleLicenceEXP != null) {
+            setInput(this.motorcycleLicenceEXP, "motorcycleLicenceEXP", inputData.motorcycleLicenceEXP);
+        }
+
+        if (inputData.carLicence != null) {
+            selectItem(this.carLicence, "carLicence", inputData.carLicence);
+        }
+
+        if (inputData.bloodType != null) {
+            selectItem(this.bloodType, "bloodType", inputData.bloodType);
+        }
+
+        if (inputData.dateBirth != null) {
+            setInput(this.dateBirth, "dateBirth", inputData.dateBirth);
         }
 
         if (inputData.country != null) {
@@ -149,6 +180,11 @@ public class PersonalInfoEditForm extends FormEditMode {
         if (inputData.homeAddress != null) {
             selectOpenERPItem(this.homeAddress, "homeAddress", inputData.homeAddress);
         }
+
+        if (inputData.age != null) {
+            setInput(this.age, "age", inputData.age);
+        }
+
 
         logEditStatus();
     }

@@ -16,6 +16,9 @@ public class HHRRInfoReadForm extends FormReadMode {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
+    @FindBy(name = "user_id")
+    protected WebElement user;
+
     @FindBy(xpath = "//label[contains(text(),'Gender')]/ancestor::td/following-sibling::td/span")
     protected WebElement gender;
 
@@ -73,6 +76,7 @@ public class HHRRInfoReadForm extends FormReadMode {
         HHRRInfoEmployee infoFromStep = (HHRRInfoEmployee)infoFromStepObj;
         HHRRInfoEmployee result = new HHRRInfoEmployee();
 
+        if(infoFromStep.user != null) {result.user = getSpanValue(user, "user");}
         if(infoFromStep.gender != null) {result.gender = getSpanValue(gender, "gender");}
         if(infoFromStep.maritalStatus != null) {result.maritalStatus = getSpanValue(maritalStatus, "maritalStatus");}
         if(infoFromStep.numberChildren != null) {result.numberChildren = getSpanValue(numberChildren, "numberChildren");}
@@ -80,7 +84,7 @@ public class HHRRInfoReadForm extends FormReadMode {
         if(infoFromStep.endDate != null) {result.endDate = getSpanValue(endDate, "endDate");}
         if(infoFromStep.hireDate != null) {result.hireDate = getSpanValue(hireDate, "hireDate");}
         if(infoFromStep.endHireDate != null) {result.endHireDate = getSpanValue(endHireDate, "endHireDate");}
-        if(infoFromStep.salaryReviewMonth != null) {result.salaryReviewMonth = getSpanValue(salaryReviewMonth, "salaryReviewMonth");}
+        if(infoFromStep.salaryReviewDate != null) {result.salaryReviewDate = getSpanValue(salaryReviewMonth, "salaryReviewDate");}
         if(infoFromStep.workingSchedule != null) {result.workingSchedule = getSpanValue(workingSchedule, "workingSchedule");}
         if(infoFromStep.holidayGroup != null) {result.holidayGroup = getSpanValue(holidayGroup, "holidayGroup");}
         if(infoFromStep.vacationAnniversary != null) {result.vacationAnniversary = getSpanValue(vacationAnniversary, "vacationAnniversary");}

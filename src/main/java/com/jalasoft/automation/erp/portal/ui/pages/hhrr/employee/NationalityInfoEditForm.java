@@ -1,6 +1,7 @@
 package com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee;
 
 import com.jalasoft.automation.erp.objects.general.OdooObject;
+import com.jalasoft.automation.erp.objects.hhrr.employee.Tag;
 import com.jalasoft.automation.erp.portal.ui.components.TableOpenERP;
 import com.jalasoft.automation.erp.objects.hhrr.employee.Nationality;
 import com.jalasoft.automation.erp.portal.ui.pages.general.PopupSearch;
@@ -17,8 +18,8 @@ import java.util.List;
  */
 public class NationalityInfoEditForm extends TableOpenERP {
 
-    @FindBy(xpath = "//label[contains(text(),'Nationalities')]/ancestor::td/following-sibling::td//table[contains(@class,'oe_list_content')]")
-    protected WebElement table;
+    @FindBy(xpath = ".//table//td//label[contains(text(),'Nationalities')]/following::td")
+    protected WebElement field;
     protected int tableSize = 100000;
 
     public NationalityInfoEditForm() {
@@ -43,17 +44,18 @@ public class NationalityInfoEditForm extends TableOpenERP {
     public void addData(List<Nationality> inputData) {
         try {
             allRecordsWereAdded = false;
-            WebElement addElement = table.findElement(By.xpath(".//button[@class='oe_button oe_list_add']"));
-
-            for (int i = 0; i < inputData.size(); i++) {
-                addElement.click();
-                PopupSearch openERPSearch = new PopupSearch();
-                openERPSearch.advancedSearch(expectedHeaders.get("name"),inputData.get(i).name);
-                this.webDriverTools.waitUntilElementPresentAndVisible(this.webDriver.findElement(By.xpath("//div[contains(@class,'oe_popup_list')]//td[text()='" + inputData.get(i).name + "']")));
-                WebElement countryCell = this.webDriver.findElement(By.xpath("//div[contains(@class,'oe_popup_list')]//td[text()='" + inputData.get(i).name + "']"));
-                countryCell.click();
+            WebElement tagTextField = field.findElement(By.xpath(".//input[contains(@name,'nationality_ids')]"));
+            if (webDriverTools.isElementDisplayed(tagTextField)) {
+                for (Nationality nationality : inputData) {
+                    tagTextField.sendKeys(nationality.name);
+                    this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
+                    WebElement suggestedValue = webDriver.findElement(By.xpath("//ul[contains(@class,'ui-autocomplete') and contains(@style,'display: block')]//a[contains(text(),'" + nationality.name + "')]"));
+                    suggestedValue.click();
+                }
+                allRecordsWereAdded = true;
+            } else {
+                logNotAddedRecords();
             }
-            allRecordsWereAdded = true;
         } catch (NoSuchElementException nsee) {
             logNotAddedRecords();
         }

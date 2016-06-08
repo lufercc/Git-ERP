@@ -17,29 +17,8 @@ public class HHRRInfoEditForm extends FormEditMode {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "//label[contains(text(),'Number of Children')]/ancestor::td/following-sibling::td/span/input")
-    protected WebElement numberChildren;
-
-    @FindBy(xpath = "//label[contains(text(),'Internal ID')]/ancestor::td/following-sibling::td/span/input")
-    protected WebElement internalID;
-
-    @FindBy(xpath = "//label[contains(text(),'Working Schedule')]/ancestor::td/following-sibling::td/span/div/input")
-    protected WebElement workingScheduleSelect;
-
-    @FindBy(xpath = "//label[contains(text(),'Holidays Group')]/ancestor::td/following-sibling::td/span/div/input")
-    protected WebElement holidayGroupSelect;
-
-    @FindBy(name = "gender")
-    protected WebElement gender;
-
-    @FindBy(name = "marital")
-    protected WebElement maritalStatus;
-
-    @FindBy(name = "internship_start_date")
-    protected WebElement startDate;
-
-    @FindBy(name = "internship_end_date")
-    protected WebElement endDate;
+    @FindBy(name = "user_id")
+    protected WebElement userSelect;
 
     @FindBy(name = "hire_date")
     protected WebElement hireDate;
@@ -47,19 +26,48 @@ public class HHRRInfoEditForm extends FormEditMode {
     @FindBy(name = "hire_end_date")
     protected WebElement endHireDate;
 
-    @FindBy(name = "salary_review_month")
-    protected WebElement salaryReviewMonth;
+    @FindBy(name = "salary_review_date")
+    protected WebElement salaryReviewDate;
+
+    @FindBy(name = "gender")
+    protected WebElement gender;
+
+    @FindBy(name = "marital")
+    protected WebElement maritalStatus;
+
+    @FindBy(name = "children_number")
+    protected WebElement numberChildren;
+
+    @FindBy(name = "internal_number")
+    protected WebElement internalID;
+
+    @FindBy(name = "working_schedule")
+    protected WebElement workingScheduleSelect;
+
+    @FindBy(name = "day_observance_group_id")
+    protected WebElement holidayGroupSelect;
 
     @FindBy(name = "vacation_anniversary")
     protected WebElement vacationAnniversary;
 
+    @FindBy(name = "vac_alloc_policy_ids")
+    protected WebElement vacationAllocationPolicies;
+
+    @FindBy(name = "internship_start_date")
+    protected WebElement startDate;
+
+    @FindBy(name = "internship_end_date")
+    protected WebElement endDate;
+
     SelectOpenERP workingSchedule;
     SelectOpenERP holidayGroup;
+    SelectOpenERP user;
 
     public HHRRInfoEditForm() {
         this.waitForLoading();
         workingSchedule = new SelectOpenERP(workingScheduleSelect);
         holidayGroup = new SelectOpenERP(holidayGroupSelect);
+        user = new SelectOpenERP(userSelect);
     }
 
     @Override
@@ -79,6 +87,22 @@ public class HHRRInfoEditForm extends FormEditMode {
 
         HHRRInfoEmployee inputData = (HHRRInfoEmployee)inputDataObj;
 
+        if (inputData.user != null) {
+            selectOpenERPItem(this.user, "user", inputData.user);
+        }
+
+        if (inputData.hireDate != null) {
+            setInput(this.hireDate, "hireDate", inputData.hireDate);
+        }
+
+        if (inputData.endHireDate != null) {
+            setInput(this.endHireDate, "endHireDate", inputData.endHireDate);
+        }
+
+        if (inputData.salaryReviewDate != null) {
+            setInput(this.salaryReviewDate, "salaryReviewDate", inputData.salaryReviewDate);
+        }
+
         if (inputData.gender != null) {
             selectItem(this.gender, "gender", inputData.gender);
         }
@@ -91,24 +115,8 @@ public class HHRRInfoEditForm extends FormEditMode {
             setInput(this.numberChildren, "numberChildren", inputData.numberChildren);
         }
 
-        if (inputData.startDate != null) {
-            setInput(this.startDate, "startDate", inputData.startDate);
-        }
-
-        if (inputData.endDate != null) {
-            setInput(this.endDate, "endDate", inputData.endDate);
-        }
-
-        if (inputData.hireDate != null) {
-            setInput(this.hireDate, "hireDate", inputData.hireDate);
-        }
-
-        if (inputData.endHireDate != null) {
-            setInput(this.endHireDate, "endHireDate", inputData.endHireDate);
-        }
-
-        if (inputData.salaryReviewMonth != null) {
-            selectItem(this.salaryReviewMonth, "salaryReviewMonth", inputData.salaryReviewMonth);
+        if (inputData.internalID != null) {
+            setInput(this.internalID, "internalID", inputData.internalID);
         }
 
         if (inputData.workingSchedule != null) {
@@ -123,10 +131,18 @@ public class HHRRInfoEditForm extends FormEditMode {
             setInput(this.vacationAnniversary, "vacationAnniversary", inputData.vacationAnniversary);
         }
 
-        if (inputData.internalID != null) {
-            setInput(this.internalID, "internalID", inputData.internalID);
+        if (inputData.vacationAllocationPolicies != null) {
+            selectOpenERPItem(this.vacationAllocationPolicies, "vacationAllocationPolicies", inputData.vacationAllocationPolicies);
         }
 
-        logEditStatus();
+        if (inputData.startDate != null) {
+            setInput(this.startDate, "startDate", inputData.startDate);
+        }
+
+        if (inputData.endDate != null) {
+            setInput(this.endDate, "endDate", inputData.endDate);
+        }
+
+       logEditStatus();
     }
 }

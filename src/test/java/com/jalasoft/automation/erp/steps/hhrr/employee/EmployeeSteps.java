@@ -363,7 +363,6 @@ public class EmployeeSteps {
         EmployeeForm employeeForm = new EmployeeForm();
         NationalityInfoEditForm nationalityInfoEditForm = new NationalityInfoEditForm();
         employeeForm.selectTab(personalInfo);
-
         nationalityInfoEditForm.removeData(infoData);
     }
 
@@ -411,6 +410,14 @@ public class EmployeeSteps {
         otherSupervisorsInfoEditForm.deleteTags(inputData);
     }
 
+    @And("^I add this Vacation Allocation Policies data to employee form$")
+    public void I_add_this_Vacation_Allocation_Policies_data_to_employee_form(List<Tag> inputData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab(hhrrInfo);
+        VacationAllocationPoliciesEditForm vacationAllocationPoliciesEditForm = new VacationAllocationPoliciesEditForm();
+        vacationAllocationPoliciesEditForm.addTags(inputData);
+    }
+
     @And("^I create an employee with required fields$")
     public void I_create_an_employee_with_required_fields(List<Employee> inputData) throws Throwable {
         MainMenu mainMenu = new MainMenu();
@@ -421,15 +428,17 @@ public class EmployeeSteps {
 
         GeneralButtonsBar gralButtons;
         BasicInfoEmployee basicInfoEmployee;
-        PublicInfoEmployee publicInfoEmployee;
+        //PublicInfoEmployee publicInfoEmployee;
         PersonalInfoEmployee personalInfoEmployee;
         EngInfoEmployee engInfoEmployee;
+        HHRRInfoEmployee hhrrInfoEmployee;
 
         EmployeeForm employeeForm;
         BasicInfoEditForm basicInfoEditForm;
-        PublicInfoEditForm publicInfoEditForm;
+        //PublicInfoEditForm publicInfoEditForm;
         PersonalInfoEditForm personalInfoEditForm;
         EngInfoEditForm engInfoEditForm;
+        HHRRInfoEditForm hhrrInfoEditForm;
 
         for(Employee employee : inputData) {
             gralButtons = new GeneralButtonsBar();
@@ -437,16 +446,17 @@ public class EmployeeSteps {
             Thread.sleep(3000);
 
             basicInfoEmployee = new BasicInfoEmployee();
-            publicInfoEmployee = new PublicInfoEmployee();
+            //publicInfoEmployee = new PublicInfoEmployee();
             personalInfoEmployee = new PersonalInfoEmployee();
             engInfoEmployee = new EngInfoEmployee();
+            hhrrInfoEmployee = new HHRRInfoEmployee();
 
             employeeForm = new EmployeeForm();
             basicInfoEditForm = new BasicInfoEditForm();
-            publicInfoEditForm = new PublicInfoEditForm();
+            //publicInfoEditForm = new PublicInfoEditForm();
             personalInfoEditForm = new PersonalInfoEditForm();
             engInfoEditForm = new EngInfoEditForm();
-
+            hhrrInfoEditForm = new HHRRInfoEditForm();
 
             basicInfoEmployee.firstName = employee.firstName;
             basicInfoEmployee.lastName = employee.lastName;
@@ -454,8 +464,10 @@ public class EmployeeSteps {
 
             if (employee.user != null) {
                 employeeForm.selectTab(publicInfo);
-                publicInfoEmployee.user = employee.user;
-                publicInfoEditForm.modifyData(publicInfoEmployee);
+                hhrrInfoEmployee.user = employee.user;
+                //publicInfoEmployee.user = employee.user;
+                //publicInfoEditForm.modifyData(publicInfoEmployee);
+                hhrrInfoEditForm.modifyData(hhrrInfoEmployee);
             }
 
             employeeForm.selectTab(personalInfo);

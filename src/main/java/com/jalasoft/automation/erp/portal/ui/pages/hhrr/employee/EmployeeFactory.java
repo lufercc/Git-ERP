@@ -52,12 +52,6 @@ public class EmployeeFactory {
                 } else {
                     return new NDAInfoReadForm();
                 }
-            case "nationality":
-                if (editMode) {
-                    return new NationalityInfoEditForm();
-                } else {
-                    return new NationalityInfoReadForm();
-                }
             case "emergency":
                 if (editMode) {
                     return new EmergencyContactInfoEditForm();

@@ -307,11 +307,11 @@ public class EmployeeSteps {
     }
 
     @And("^I add this nationality data to employee form$")
-    public void I_add_this_nationality_data_to_employee_form(List<Nationality> nationalityInfoData) throws Throwable {
+    public void I_add_this_nationality_data_to_employee_form(List<Tag> nationalityInfoData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
         NationalityInfoEditForm nationalityInfoEditForm = new NationalityInfoEditForm();
         employeeForm.selectTab(personalInfo);
-        nationalityInfoEditForm.addData(nationalityInfoData);
+        nationalityInfoEditForm.addTags(nationalityInfoData);
     }
 
     @And("^I delete this nda data from employee form$")
@@ -360,11 +360,11 @@ public class EmployeeSteps {
     }
 
     @And("^I delete this nationality data to employee form$")
-    public void I_delete_this_nationality_data_to_employee_form(List<Nationality> infoData) throws Throwable {
+    public void I_delete_this_nationality_data_to_employee_form(List<Tag> infoData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
         NationalityInfoEditForm nationalityInfoEditForm = new NationalityInfoEditForm();
         employeeForm.selectTab(personalInfo);
-        nationalityInfoEditForm.removeData(infoData);
+        nationalityInfoEditForm.deleteTags(infoData);
     }
 
     @And("^I add this tag data to employee form$")

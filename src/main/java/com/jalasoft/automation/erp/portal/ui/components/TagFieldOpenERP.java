@@ -13,8 +13,8 @@ import java.util.List;
  * Created by Henry Benito on 1/12/2016.
  */
 public class TagFieldOpenERP extends PortalUIElement {
-    protected WebElement inputTag;
-    protected List <WebElement> tags;
+    protected WebElement inputField;
+    protected List<WebElement> tags;
     protected int columnsSize;
     private Logger log = Logger.getLogger(getClass());
     public boolean allTagsWereAdded;
@@ -36,9 +36,9 @@ public class TagFieldOpenERP extends PortalUIElement {
     public void addTags(List<Tag> tagList) {
         try {
             allTagsWereAdded = false;
-            if (webDriverTools.isElementDisplayed(inputTag)) {
+            if (webDriverTools.isElementDisplayed(inputField)) {
                 for (Tag tag : tagList) {
-                    webDriverTools.clearAndSendKeys(inputTag, tag.name);
+                    webDriverTools.clearAndSendKeys(inputField, tag.name);
                     this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
                     WebElement suggestedValue = webDriver.findElement(By.xpath("//ul[contains(@class,'ui-autocomplete') and contains(@style,'display: block')]//a[contains(text(),'" + tag.name + "')]"));
                     suggestedValue.click();
@@ -73,12 +73,12 @@ public class TagFieldOpenERP extends PortalUIElement {
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.inputTag);
+        return super.webDriverTools.isElementDisplayed(this.inputField);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.inputTag);
+        super.webDriverTools.waitUntilElementPresentAndVisible(this.inputField);
     }
 
     public boolean hasSameContent(boolean shouldBeAble, List<Tag> expectedData) {

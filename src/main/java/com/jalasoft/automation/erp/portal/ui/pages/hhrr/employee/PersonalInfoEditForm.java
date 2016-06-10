@@ -17,13 +17,13 @@ public class PersonalInfoEditForm extends FormEditMode {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(name = "identification_type")
+    @FindBy(xpath = "//select[@name='identification_type']")
     protected WebElement nationalOrForeign;
 
     @FindBy(name = "identification_id")
     protected WebElement idNumber;
 
-    @FindBy(name = "id_expiration")
+    @FindBy(xpath = "//input[@name='id_expiration']")
     protected WebElement idExpDate;
 
     @FindBy(name = "passport_issued_id")
@@ -71,7 +71,7 @@ public class PersonalInfoEditForm extends FormEditMode {
     @FindBy(xpath = "//label[contains(text(),'Age')]/ancestor::td/following-sibling::td/span/div/input")
     protected WebElement age;
 
-    @FindBy(name = "identification_poi")
+    @FindBy(xpath = "//select[@name='identification_poi']")
     protected WebElement idPlace;
 
     @FindBy(name = "passport_exp_date")

@@ -14,20 +14,13 @@ import com.jalasoft.automation.erp.portal.ui.pages.hhrr.Submenu;
 import com.jalasoft.automation.erp.portal.ui.pages.hhrr.employee.*;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import gherkin.formatter.model.DataTableRow;
-import org.apache.xmlrpc.client.XmlRpcClient;
-import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 
-import java.net.URL;
 import java.util.*;
-
-import static java.util.Collections.emptyList;
-import static java.util.Collections.emptyMap;
 
 /**
  * Created by Henry Benito on 1/28/2016.
@@ -120,13 +113,6 @@ public class EmployeeSteps {
         Assert.assertTrue(matchDataTable(hasOrNot, personalInfo, ndaInfo, expectedObjectData));
     }
 
-    @And("^I verify if he has( not|)? this nationality data$")
-    public void I_verify_if_he_has_this_nationality_data(String hasOrNot, List<Nationality> expectedData) throws Throwable {
-        List<OdooObject> expectedObjectData = new ArrayList<>();
-        expectedObjectData.addAll(expectedData);
-        Assert.assertTrue(matchDataTable(hasOrNot, personalInfo, nationalityInfo, expectedObjectData));
-    }
-
     @And("^I verify if he has( not|)? this emergency contact data$")
     public void I_verify_if_he_has_this_emergency_contact_data(String hasOrNot, List<EmergencyContact> expectedData) throws Throwable {
         List<OdooObject> expectedObjectData = new ArrayList<>();
@@ -175,9 +161,25 @@ public class EmployeeSteps {
             shouldBeAble = true;
         }
 
-        TagInfoReadForm tagInfoReadForm = new TagInfoReadForm();
+        TagInfoForm tagInfoForm = new TagInfoForm();
 
-        result = tagInfoReadForm.hasSameContent(shouldBeAble, expectedData);
+        result = tagInfoForm.hasSameContent(shouldBeAble, expectedData);
+        Assert.assertTrue(result);
+    }
+
+    @And("^I verify if he has( not|)? this nationality data$")
+    public void I_verify_if_he_has_this_nationality_data(String hasOrNot, List<Tag> expectedData) throws Throwable {
+        Boolean result= false;
+        Boolean shouldBeAble = false;
+        if (hasOrNot.isEmpty()) {
+            shouldBeAble = true;
+        }
+
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.selectTab(personalInfo);
+        NationalityInfoForm nationalityInfoForm = new NationalityInfoForm();
+
+        result = nationalityInfoForm.hasSameContent(shouldBeAble, expectedData);
         Assert.assertTrue(result);
     }
 
@@ -191,9 +193,9 @@ public class EmployeeSteps {
 
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab(hhrrInfo);
-        HolidayPoliciesInfoReadForm holidayPoliciesInfoReadForm = new HolidayPoliciesInfoReadForm();
+        HolidayPoliciesInfoForm holidayPoliciesInfoForm = new HolidayPoliciesInfoForm();
 
-        result = holidayPoliciesInfoReadForm.hasSameContent(shouldBeAble, expectedData);
+        result = holidayPoliciesInfoForm.hasSameContent(shouldBeAble, expectedData);
         Assert.assertTrue(result);
     }
 
@@ -207,9 +209,9 @@ public class EmployeeSteps {
 
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab(engineeringInfo);
-        OtherSupervisorsInfoReadForm otherSupervisorsInfoReadForm = new OtherSupervisorsInfoReadForm();
+        OtherSupervisorsInfoForm otherSupervisorsInfoForm = new OtherSupervisorsInfoForm();
 
-        result = otherSupervisorsInfoReadForm.hasSameContent(shouldBeAble, expectedData);
+        result = otherSupervisorsInfoForm.hasSameContent(shouldBeAble, expectedData);
         Assert.assertTrue(result);
     }
 
@@ -306,14 +308,6 @@ public class EmployeeSteps {
         internalCareerInfoEditForm.addData(internalCareerInfoData);
     }
 
-    @And("^I add this nationality data to employee form$")
-    public void I_add_this_nationality_data_to_employee_form(List<Tag> nationalityInfoData) throws Throwable {
-        EmployeeForm employeeForm = new EmployeeForm();
-        NationalityInfoEditForm nationalityInfoEditForm = new NationalityInfoEditForm();
-        employeeForm.selectTab(personalInfo);
-        nationalityInfoEditForm.addTags(nationalityInfoData);
-    }
-
     @And("^I delete this nda data from employee form$")
     public void I_delete_this_nda_data_from_employee_form(List<NDA> ndaInfoData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
@@ -359,64 +353,72 @@ public class EmployeeSteps {
         internalCareerInfoEditForm.removeData(infoData);
     }
 
+    @And("^I add this nationality data to employee form$")
+    public void I_add_this_nationality_data_to_employee_form(List<Tag> nationalityInfoData) throws Throwable {
+        EmployeeForm employeeForm = new EmployeeForm();
+        NationalityInfoForm nationalityInfoForm = new NationalityInfoForm();
+        employeeForm.selectTab(personalInfo);
+        nationalityInfoForm.addTags(nationalityInfoData);
+    }
+
     @And("^I delete this nationality data to employee form$")
     public void I_delete_this_nationality_data_to_employee_form(List<Tag> infoData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
-        NationalityInfoEditForm nationalityInfoEditForm = new NationalityInfoEditForm();
+        NationalityInfoForm nationalityInfoForm = new NationalityInfoForm();
         employeeForm.selectTab(personalInfo);
-        nationalityInfoEditForm.deleteTags(infoData);
+        nationalityInfoForm.deleteTags(infoData);
     }
 
     @And("^I add this tag data to employee form$")
     public void I_add_this_tag_data_to_employee_form(List<Tag> inputData) throws Throwable {
-        TagInfoEditForm tagInfoEditForm = new TagInfoEditForm();
-        tagInfoEditForm.addTags(inputData);
+        TagInfoForm tagInfoForm = new TagInfoForm();
+        tagInfoForm.addTags(inputData);
     }
 
     @And("^I delete this tag data to employee form$")
     public void I_delete_this_tag_data_to_employee_form(List<Tag> inputData) throws Throwable {
-        TagInfoEditForm tagInfoEditForm = new TagInfoEditForm();
-        tagInfoEditForm.deleteTags(inputData);
+        TagInfoForm tagInfoForm = new TagInfoForm();
+        tagInfoForm.deleteTags(inputData);
     }
 
     @And("^I add this holiday policies data to employee form$")
     public void I_add_this_holiday_policies_data_to_employee_form(List<Tag> inputData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab(hhrrInfo);
-        HolidayPoliciesInfoEditForm holidayPoliciesInfoEditForm = new HolidayPoliciesInfoEditForm();
-        holidayPoliciesInfoEditForm.addTags(inputData);
+        HolidayPoliciesInfoForm holidayPoliciesInfoForm = new HolidayPoliciesInfoForm();
+        holidayPoliciesInfoForm.addTags(inputData);
     }
 
     @And("^I delete this holiday policies data to employee form$")
     public void I_delete_this_holiday_policies_data_to_employee_form(List<Tag> inputData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab(hhrrInfo);
-        HolidayPoliciesInfoEditForm holidayPoliciesInfoEditForm = new HolidayPoliciesInfoEditForm();
-        holidayPoliciesInfoEditForm.deleteTags(inputData);
+        HolidayPoliciesInfoForm holidayPoliciesInfoForm = new HolidayPoliciesInfoForm();
+        holidayPoliciesInfoForm.deleteTags(inputData);
     }
 
     @And("^I add this other supervisors data to employee form$")
     public void I_add_this_other_supervisors_data_to_employee_form(List<Tag> inputData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab(engineeringInfo);
-        OtherSupervisorsInfoEditForm otherSupervisorsInfoEditForm = new OtherSupervisorsInfoEditForm();
-        otherSupervisorsInfoEditForm.addTags(inputData);
+        OtherSupervisorsInfoForm otherSupervisorsInfoForm = new OtherSupervisorsInfoForm();
+        otherSupervisorsInfoForm.addTags(inputData);
     }
 
     @And("^I delete this other supervisors data to employee form$")
     public void I_delete_this_other_supervisors_data_to_employee_form(List<Tag> inputData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab(engineeringInfo);
-        OtherSupervisorsInfoEditForm otherSupervisorsInfoEditForm = new OtherSupervisorsInfoEditForm();
-        otherSupervisorsInfoEditForm.deleteTags(inputData);
+        OtherSupervisorsInfoForm otherSupervisorsInfoForm = new OtherSupervisorsInfoForm();
+        otherSupervisorsInfoForm.deleteTags(inputData);
     }
 
     @And("^I add this Vacation Allocation Policies data to employee form$")
     public void I_add_this_Vacation_Allocation_Policies_data_to_employee_form(List<Tag> inputData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
         employeeForm.selectTab(hhrrInfo);
-        VacationAllocationPoliciesEditForm vacationAllocationPoliciesEditForm = new VacationAllocationPoliciesEditForm();
-        vacationAllocationPoliciesEditForm.addTags(inputData);
+        VacationAllocationPoliciesForm vacationAllocationPoliciesForm = new VacationAllocationPoliciesForm();
+        vacationAllocationPoliciesForm.addTags(inputData);
     }
 
     @And("^I create an employee with required fields$")

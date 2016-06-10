@@ -13,7 +13,8 @@ import java.util.List;
  * Created by Henry Benito on 1/12/2016.
  */
 public class TagFieldOpenERP extends PortalUIElement {
-    protected WebElement field;
+    protected WebElement inputField;
+    protected List<WebElement> tags;
     protected int columnsSize;
     private Logger log = Logger.getLogger(getClass());
     public boolean allTagsWereAdded;
@@ -22,10 +23,9 @@ public class TagFieldOpenERP extends PortalUIElement {
 
     public List<String> getTags() {
         List<String> result = new ArrayList<>();
-        List<WebElement> tagList = field.findElements(By.xpath("./span"));
-        this.columnsSize = tagList.size();
-        for (WebElement tag : tagList) {
-            String value = tag.getAttribute("innerHTML");
+        this.columnsSize = tags.size();
+        for (WebElement tag : tags) {
+            String value = tag.getAttribute("innerText");
             value = value.replaceAll("\n","");
             value = value.trim();
             result.add(value);
@@ -36,10 +36,9 @@ public class TagFieldOpenERP extends PortalUIElement {
     public void addTags(List<Tag> tagList) {
         try {
             allTagsWereAdded = false;
-            WebElement tagTextField = field.findElement(By.xpath(".//input"));
-            if (webDriverTools.isElementDisplayed(tagTextField)) {
+            if (webDriverTools.isElementDisplayed(inputField)) {
                 for (Tag tag : tagList) {
-                    tagTextField.sendKeys(tag.name);
+                    webDriverTools.clearAndSendKeys(inputField, tag.name);
                     this.webDriverTools.waitUntilInvisibilityOpenERPProgress();
                     WebElement suggestedValue = webDriver.findElement(By.xpath("//ul[contains(@class,'ui-autocomplete') and contains(@style,'display: block')]//a[contains(text(),'" + tag.name + "')]"));
                     suggestedValue.click();
@@ -54,9 +53,16 @@ public class TagFieldOpenERP extends PortalUIElement {
     }
 
     public void deleteTags(List<Tag> tagList) {
-        for (Tag tag : tagList) {
-            WebElement suggestedValue = field.findElement(By.xpath(".//div[contains(@class,'text-tag')]//span[text()='" + tag.name + "']/following-sibling::a"));
-            suggestedValue.click();
+        for (Tag inputTag : tagList) {
+            for (WebElement tag : tags) {
+                String value = tag.getAttribute("innerText");
+                value = value.replaceAll("\n","");
+                value = value.trim();
+                if(inputTag.name.equals(value)) {
+                    WebElement removeTag = tag.findElement(By.xpath("./span[contains(@class,'o_delete')]"));
+                    removeTag.click();
+                }
+            }
         }
     }
 
@@ -67,12 +73,12 @@ public class TagFieldOpenERP extends PortalUIElement {
 
     @Override
     public boolean isLoaded() {
-        return super.webDriverTools.isElementDisplayed(this.field);
+        return super.webDriverTools.isElementDisplayed(this.inputField);
     }
 
     @Override
     public void waitForLoading() {
-        super.webDriverTools.waitUntilElementPresentAndVisible(this.field);
+        super.webDriverTools.waitUntilElementPresentAndVisible(this.inputField);
     }
 
     public boolean hasSameContent(boolean shouldBeAble, List<Tag> expectedData) {

@@ -14,7 +14,7 @@ public class EmployeeFactory {
             if (editMode) {
                 return new BasicInfoEditForm();
             } else {
-                return new BasicInfoEditForm();
+                return new BasicInfoReadForm();
             }
         case "public":
             if (editMode) {

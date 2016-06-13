@@ -70,6 +70,12 @@ public class EngInfoEmployee extends OdooObject {
                 return false;
             }
         }
+        if (this.consultant != null) {
+            if (this.consultant.equals(uiData.consultant) != shouldContain) {
+                logWarning("consultant", this.consultant);
+                return false;
+            }
+        }
         if (this.lead != null) {
             if (this.lead.equals(uiData.lead) != shouldContain) {
                 logWarning("lead", this.lead);
@@ -115,12 +121,6 @@ public class EngInfoEmployee extends OdooObject {
         if (this.active != null) {
             if (this.active.equals(uiData.active) != shouldContain) {
                 logWarning("active", this.active);
-                return false;
-            }
-        }
-        if (this.consultant != null) {
-            if (this.consultant.equals(uiData.consultant) != shouldContain) {
-                logWarning("consultant", this.consultant);
                 return false;
             }
         }

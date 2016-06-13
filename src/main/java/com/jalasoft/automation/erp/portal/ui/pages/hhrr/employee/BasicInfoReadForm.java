@@ -16,7 +16,7 @@ public class BasicInfoReadForm extends FormReadMode {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "//h1//span[contains(@class,'oe_form_char_content')]")
+    @FindBy(name = "name_related")
     protected WebElement fullName;
 
     public BasicInfoReadForm() {
@@ -43,5 +43,4 @@ public class BasicInfoReadForm extends FormReadMode {
         logReadStatus();
         return result;
     }
-
 }

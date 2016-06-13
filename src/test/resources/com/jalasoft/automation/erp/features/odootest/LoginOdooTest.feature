@@ -58,8 +58,8 @@ Feature: OdooTest
       | ABILA   | test@hotmail.com | 456-158-15532 | 12      | 707-642-51545 | Melchor      | 0F       | Bolivia | Cochabamba | Other info |
 
     And I modify the employee with personal data
-      | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                       | visaExpDate| hasDriverLicense | motorcycleLicence | motorcycleLicenceEXP | carLicence | bloodType | homeAddress  | dateBirth  | country | city     |
-      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Business and Tourism (B-1/B-2) | 02/20/2019 | true             | true              | 02/20/2019           | C          | O+        | Administrator| 02/12/1986 | Albania | SomeCity |
+      | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                       | visaExpDate| hasDriverLicense | motorcycleLicence | motorcycleLicenceEXP | carLicence | bloodType | dateBirth  | country | city     | homeAddress  |
+      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Business and Tourism (B-1/B-2) | 02/20/2019 | true             | true              | 02/20/2019           | C          | O+        | 02/12/1986 | Albania | SomeCity | Administrator|
 
     And I add this nationality data to employee form
       | name  |
@@ -67,7 +67,7 @@ Feature: OdooTest
 
     And I modify the employee with hhrr data
       | user          | hireDate   | salaryReviewDate | gender  | maritalStatus | numberChildren | internalID | workingSchedule  | holidayGroup           | vacationAnniversary |
-      | Administrator | 01/04/2016 | 01/04/2016       | Male    | Single        | 3              | 654818     | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          |
+      | Administrator | 01/04/2016 | 06/09/2022       | Male    | Single        | 1              | 654818     | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          |
 
     And I add this Vacation Allocation Policies data to employee form
       | name 			  |
@@ -83,6 +83,26 @@ Feature: OdooTest
 
     And I add this external career data to employee form
       | jobTitle | startDate  | endDate    | employer |
-      | xde      | 02/03/2016 | 02/04/2016 | asd      |
+      | xde      | 02/03/2016 | 02/04/2022 | asd      |
 
     And I press "save" general button
+##
+    And I verify if he has this data in basic information
+      | fullName                   |
+      | testEmplo js Automation hr |
+
+    And I verify if he has this data in public information
+      | address | workEmail        | workPhone     | extCode | workMobile    | workLocation | location | country | city       | otherInfo  |
+      | ABILA   | test@hotmail.com | 456-158-15532 | 12      | 707-642-51545 | Melchor      | 0F       | Bolivia | Cochabamba | Other info |
+
+    And I verify if he has this simple data in personal information
+      | nationalOrForeign | idNumber | idExpDate  | idPlace | passportNumber | passportPlace | passportExpDate | hasVisa | visaType                       | visaExpDate| hasDriverLicense | motorcycleLicence | motorcycleLicenceEXP | carLicence | bloodType | dateBirth  | country | city     | homeAddress  |
+      | National          | 6541512  | 02/22/2017 | CBA     | 4564215        | Angola        | 02/20/2019      | true    | Business and Tourism (B-1/B-2) | 02/20/2019 | true             | true              | 02/20/2019           | C          | O+        | 02/12/1986 | Albania | SomeCity | Administrator|
+
+    And I verify if he has this simple data in hrdata information
+      | user          | hireDate   | salaryReviewDate | gender  | maritalStatus | numberChildren | internalID | workingSchedule  | holidayGroup           | vacationAnniversary |
+      | Administrator | 01/04/2016 | 06/09/2022       | Male    | Single        | 1              | 654818     | Recursos humanos | Jala Bolivian Holidays | 02/04/2016          |
+
+    And I verify if he has this simple data in engineering information
+      | department | division    | jobTitle | manager        | consultant |
+      | Sales      | Outsourcing | Security | Auto S Manager | true       |

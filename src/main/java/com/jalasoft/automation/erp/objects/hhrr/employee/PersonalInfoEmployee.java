@@ -111,7 +111,7 @@ public class PersonalInfoEmployee extends OdooObject {
         }
         if (this.visaType != null) {
             if (this.visaType.equals(uiData.visaType) != shouldContain) {
-                logWarning("nationalOrForeign", this.nationalOrForeign);
+                logWarning("visaType", this.visaType);
                 return false;
             }
         }
@@ -127,8 +127,8 @@ public class PersonalInfoEmployee extends OdooObject {
                 return false;
             }
         }
-        if (this.motorcycleLicenceEXP != null) {
-            if (this.motorcycleLicenceEXP.equals(uiData.motorcycleLicence) != shouldContain) {
+        if (this.motorcycleLicence != null) {
+            if (this.motorcycleLicence.equals(uiData.motorcycleLicence) != shouldContain) {
                 logWarning("motorcycleLicence", this.motorcycleLicence);
                 return false;
             }

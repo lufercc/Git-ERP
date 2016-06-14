@@ -16,40 +16,41 @@ public class PublicInfoReadForm extends FormReadMode {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "//label[contains(text(),'Working Address')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/a | " +
-                    "//label[contains(text(),'Working Address')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
+    @FindBy(name = "address_id")
     protected WebElement address;
 
     @FindBy(xpath = "//label[contains(text(),'Working Address')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement addressDescription;
 
-    @FindBy(xpath = "//label[contains(text(),'Work Email')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/a")
+    @FindBy(name = "work_email")
     protected WebElement workEmail;
 
-    @FindBy(xpath = "//label[contains(text(),'Work Phone')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
+    @FindBy(name = "work_phone")
     protected WebElement workPhone;
 
-    @FindBy(xpath = "//label[contains(text(),'Extension Code')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
+    @FindBy(name = "extension_code")
     protected WebElement extCode;
 
-    @FindBy(xpath = "//label[contains(text(),'Work Mobile')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
+    @FindBy(name = "mobile_phone")
     protected WebElement workMobile;
 
-    @FindBy(xpath = "//div[contains(@class,'oe_form_field oe_form_field_text')]/span")
+    @FindBy(name = "work_location")
+    protected WebElement workLocation;
+
+    @FindBy(name = "notes")
     protected WebElement otherInfo;
 
-    @FindBy(xpath = "//label[contains(text(),'Location')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/a | " +
-                    "//label[contains(text(),'Location')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
+    @FindBy(name = "location_id")
     protected WebElement location;
+
+    @FindBy(name = "country_localization_id")
+    protected WebElement country;
+
+    @FindBy(name = "city_localization")
+    protected WebElement city;
 
     @FindBy(xpath = "//label[contains(text(),'Desk Code')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
     protected WebElement codeDesktop;
-
-    @FindBy(xpath = "//label[contains(text(),'Country')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
-    protected WebElement country;
-
-    @FindBy(xpath = "//label[contains(text(),'City')]/ancestor::td[contains(@class,'cell_label')]/following-sibling::td/span/span")
-    protected WebElement city;
 
     public PublicInfoReadForm() {
         this.waitForLoading();
@@ -76,6 +77,7 @@ public class PublicInfoReadForm extends FormReadMode {
         if(infoFromStep.addressDescription != null) {result.addressDescription = getSpanValue(address, "address");}
         if(infoFromStep.workEmail != null) {result.workEmail = getSpanValue(workEmail, "workEmail");}
         if(infoFromStep.workPhone != null) {result.workPhone = getSpanValue(workPhone, "workPhone");}
+        if(infoFromStep.workLocation != null) {result.workLocation = getSpanValue(workLocation, "workLocation");}
         if(infoFromStep.extCode != null) {result.extCode = getSpanValue(extCode, "extCode");}
         if(infoFromStep.workMobile != null) {result.workMobile = getSpanValue(workMobile, "workMobile");}
         if(infoFromStep.otherInfo != null) {result.otherInfo = getSpanValue(otherInfo, "otherInfo");}
@@ -101,11 +103,13 @@ public class PublicInfoReadForm extends FormReadMode {
         if(infoFromStep.workPhone != null) {result.workPhone = getSpanValue(workPhone, "workPhone");}
         if(infoFromStep.extCode != null) {result.extCode = getSpanValue(extCode, "extCode");}
         if(infoFromStep.workMobile != null) {result.workMobile = getSpanValue(workMobile, "workMobile");}
+        if(infoFromStep.workLocation != null) {result.workLocation = getSpanValue(workLocation, "workLocation");}
         if(infoFromStep.otherInfo != null) {result.otherInfo = getSpanValue(otherInfo, "otherInfo");}
         if(infoFromStep.location != null) {result.location = getSpanValue(location, "location");}
-        if(infoFromStep.codeDesktop != null) {result.codeDesktop = getSpanValue(codeDesktop, "codeDesktop");}
         if(infoFromStep.country != null) {result.country = getSpanValue(country, "country");}
         if(infoFromStep.city != null) {result.city = getSpanValue(city, "city");}
+
+        if(infoFromStep.codeDesktop != null) {result.codeDesktop = getSpanValue(codeDesktop, "codeDesktop");}
 
         logReadStatus();
         return result;

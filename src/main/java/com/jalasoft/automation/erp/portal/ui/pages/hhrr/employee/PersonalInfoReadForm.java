@@ -16,54 +16,68 @@ public class PersonalInfoReadForm extends FormReadMode {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "//label[contains(text(),'National or Foreign?')]/ancestor::td/following-sibling::td/span")
+    @FindBy(name = "identification_type")
     protected WebElement nationalOrForeign;
 
-    @FindBy(xpath = "//label[contains(text(),'ID Number')]/ancestor::td/following-sibling::td/span/span")
+    @FindBy(name = "identification_id")
     protected WebElement idNumber;
 
-    @FindBy(xpath = "//label[contains(text(),'ID Number Expiration Date')]/ancestor::td/following-sibling::td/span")
+    @FindBy(name = "id_expiration")
     protected WebElement idExpDate;
 
-    @FindBy(xpath = "//label[contains(text(),'ID Place of Issue')]/ancestor::td/following-sibling::td/span")
+    @FindBy(name = "identification_poi")
     protected WebElement idPlace;
 
-    @FindBy(xpath = "//label[contains(text(),'Passport No')]/ancestor::td/following-sibling::td/span/span")
+    @FindBy(name = "passport_id")
     protected WebElement passportNumber;
 
-    @FindBy(xpath = "//label[contains(text(),'Passport Issued')]/ancestor::td/following-sibling::td/span/span")
+    @FindBy(name = "passport_issued_id")
     protected WebElement passportPlace;
 
-    @FindBy(xpath = "//label[contains(text(),'Passport Expiration Date')]/ancestor::td/following-sibling::td/span")
+    @FindBy(name = "passport_exp_date")
     protected WebElement passportExpDate;
 
     @FindBy(name = "has_visa")
     protected WebElement hasVisa;
 
-    @FindBy(xpath = "//label[contains(text(),'Type Of Visa')]/ancestor::td/following-sibling::td/span")
+    @FindBy(name = "type_of_visa_id")
     protected WebElement visaType;
 
-    @FindBy(xpath = "//label[contains(text(),'Visa Expiration Date')]/ancestor::td/following-sibling::td/span")
+    @FindBy(name = "visa_expiration")
     protected WebElement visaExpDate;
 
-    @FindBy(xpath = "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/a | " +
-            "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/span")
-    protected WebElement homeAddress;
+    @FindBy(name = "has_driver_license")
+    protected WebElement hasDriverLicense;
 
-    @FindBy(xpath = "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/span")
-    protected WebElement homeAddressDescription;
+    @FindBy(xpath = "//input[@name='motorcycle_license']")
+    protected WebElement motorcycleLicence;
 
-    @FindBy(xpath = "//label[contains(text(),'Date of Birth')]/ancestor::td/following-sibling::td/span")
+    @FindBy(name = "motorcycle_exp_date")
+    protected WebElement motorcycleLicenceEXP;
+
+    @FindBy(name = "car_license")
+    protected WebElement carLicence;
+
+    @FindBy(name = "blood_type")
+    protected WebElement bloodType;
+
+    @FindBy(name = "birthday")
     protected WebElement dateBirth;
+
+    @FindBy(name = "country_of_birth_id")
+    protected WebElement country;
+
+    @FindBy(name = "city_of_birth")
+    protected WebElement city;
+
+    @FindBy(name = "address_home_id")
+    protected WebElement homeAddress;
 
     @FindBy(xpath = "//label[contains(text(),'Age')]/ancestor::td/following-sibling::td/div/div")
     protected WebElement age;
 
-    @FindBy(xpath = "//label[contains(text(),'Country of Birth')]/ancestor::td/following-sibling::td/span/span")
-    protected WebElement country;
-
-    @FindBy(xpath = "//label[contains(text(),'City of Birth')]/ancestor::td/following-sibling::td/span/span")
-    protected WebElement city;
+    @FindBy(xpath = "//label[contains(text(),'Home Address')]/ancestor::td/following-sibling::td/span/span")
+    protected WebElement homeAddressDescription;
 
     public PersonalInfoReadForm() {
         this.waitForLoading();
@@ -116,17 +130,23 @@ public class PersonalInfoReadForm extends FormReadMode {
         if(infoFromStep.visaExpDate != null) {
             result.visaExpDate = getSpanValue(visaExpDate, "visaExpDate");
         }
-        if(infoFromStep.homeAddress != null) {
-            result.homeAddress = getSpanValue(homeAddress, "homeAddress");
+        if(infoFromStep.hasDriverLicense != null) {
+            result.hasDriverLicense = getCheckValue(hasDriverLicense, "hasDriverLicense");
         }
-        if(infoFromStep.homeAddressDescription != null) {
-            result.homeAddressDescription = getSpanValue(homeAddressDescription, "homeAddressDescription");
+        if(infoFromStep.motorcycleLicence != null) {
+            result.motorcycleLicence = getCheckValue(motorcycleLicence, "motorcycleLicence");
+        }
+        if(infoFromStep.motorcycleLicenceEXP != null) {
+            result.motorcycleLicenceEXP = getSpanValue(motorcycleLicenceEXP, "motorcycleLicenceEXP");
+        }
+        if(infoFromStep.carLicence != null) {
+            result.carLicence = getSpanValue(carLicence, "carLicence");
+        }
+        if(infoFromStep.bloodType != null) {
+            result.bloodType = getSpanValue(bloodType, "bloodType");
         }
         if(infoFromStep.dateBirth != null) {
             result.dateBirth = getSpanValue(dateBirth, "dateBirth");
-        }
-        if(infoFromStep.age != null) {
-            result.age = getSpanValue(age, "age");
         }
         if(infoFromStep.country != null) {
             result.country = getSpanValue(country, "country");
@@ -134,6 +154,16 @@ public class PersonalInfoReadForm extends FormReadMode {
         if(infoFromStep.city != null) {
             result.city = getSpanValue(city, "city");
         }
+        if(infoFromStep.homeAddress != null) {
+            result.homeAddress = getSpanValue(homeAddress, "homeAddress");
+        }
+        if(infoFromStep.age != null) {
+            result.age = getSpanValue(age, "age");
+        }
+        if(infoFromStep.homeAddressDescription != null) {
+            result.homeAddressDescription = getSpanValue(homeAddressDescription, "homeAddressDescription");
+        }
+
         logReadStatus();
         return result;
     }

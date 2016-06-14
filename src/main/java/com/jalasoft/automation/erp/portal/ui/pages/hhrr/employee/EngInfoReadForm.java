@@ -16,19 +16,20 @@ public class EngInfoReadForm extends FormReadMode {
     @FindBy(xpath = "//div[@class='oe_title']")
     protected WebElement dataContainer;
 
-    @FindBy(xpath = "//label[contains(text(),'Department')]/ancestor::td/following-sibling::td/span/a | " +
-                    "//label[contains(text(),'Department')]/ancestor::td/following-sibling::td/span/span")
+    @FindBy(name = "department_id")
     protected WebElement department;
 
-    @FindBy(xpath = "//label[contains(text(),'Division')]/ancestor::td/following-sibling::td/span/a | " +
-                    "//label[contains(text(),'Division')]/ancestor::td/following-sibling::td/span/span")
+    @FindBy(name = "division_id")
     protected WebElement division;
 
-    @FindBy(xpath = "//label[contains(text(),'Job Title')]/ancestor::td/following-sibling::td/span/span[contains(@class,'uri')]")
+    @FindBy(name = "job_id")
     protected WebElement jobTitle;
 
-    @FindBy(xpath = "//label[contains(text(),'Manager')]/ancestor::td/following-sibling::td/span/span[contains(@class,'uri')]")
+    @FindBy(name = "parent_id")
     protected WebElement manager;
+
+    @FindBy(name = "is_consultant")
+    protected WebElement consultant;
 
     @FindBy(xpath = "//label[contains(text(),'Lead')]/ancestor::td/following-sibling::td/span/span[contains(@class,'uri')]")
     protected WebElement lead;
@@ -53,9 +54,6 @@ public class EngInfoReadForm extends FormReadMode {
 
     @FindBy(name = "active")
     protected WebElement active;
-
-    @FindBy(name = "consultant")
-    protected WebElement consultant;
 
     @FindBy(name = "jala_core_engineer")
     protected WebElement jce;
@@ -102,6 +100,9 @@ public class EngInfoReadForm extends FormReadMode {
         if(infoFromStep.manager != null) {
             result.manager = getSpanValue(manager, "manager");
         }
+        if(infoFromStep.consultant != null) {
+            result.consultant = getCheckValue(consultant, "consultant");
+        }
         if(infoFromStep.lead != null) {
             result.lead = getSpanValue(lead, "lead");
         }
@@ -125,9 +126,6 @@ public class EngInfoReadForm extends FormReadMode {
         }
         if(infoFromStep.active != null) {
             result.active = getCheckValue(active, "active");
-        }
-        if(infoFromStep.consultant != null) {
-            result.consultant = getCheckValue(consultant, "consultant");
         }
         if(infoFromStep.jce != null) {
             result.jce = getCheckValue(jce, "jce");

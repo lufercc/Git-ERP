@@ -56,27 +56,5 @@ public class ProjectInfoEditForm extends TableOpenERP {
         }
     }
 
-    public void removeData(List<Project> expectedData) {
-        List<HashMap<String, String>> dataFromUITable;
-        Project currentProject;
-        HashMap<String, String> currentRow;
-
-        for (int i = 0; i < expectedData.size(); i++) {
-            dataFromUITable = this.getData();
-            currentProject = expectedData.get(i);
-
-            for (int uit = 0; uit < dataFromUITable.size(); uit++) {
-                currentRow = dataFromUITable.get(uit);
-                if (currentProject.code.equals(currentRow.get(expectedHeaders.get("code")))) {
-                    this.deleteElement(uit);
-                    break;
-                }
-                if (uit == (dataFromUITable.size() - 1)) {
-                    logNotRecordFoundInTable();
-                }
-            }
-        }
-    }
-
     public boolean inputDataIsInRow(OdooObject inputRec, HashMap<String,String> tableRow){return false;}
 }

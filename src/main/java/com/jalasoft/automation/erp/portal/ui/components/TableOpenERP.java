@@ -1,6 +1,7 @@
 package com.jalasoft.automation.erp.portal.ui.components;
 
 import com.jalasoft.automation.erp.objects.general.OdooObject;
+import com.jalasoft.automation.erp.objects.hhrr.employee.FamilyMember;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  * Created by Henry Benito on 1/12/2016.
  */
-public abstract class TableOpenERP extends PortalUIElement {
+public abstract class TableOpenERP extends OdooForm {
     protected WebElement table;
     protected int columnsSize;
     protected int rowsSize = -1;
@@ -32,76 +33,6 @@ public abstract class TableOpenERP extends PortalUIElement {
     public TableOpenERP() {
         expectedSpanishHeaders = new HashMap<>();
         expectedEnglishHeaders = new HashMap<>();
-    }
-
-
-    public void selectOpenERPItem(SelectOpenERP element, String field, String value) {
-        try {
-            element.selectItem(value);
-            fieldsWereEdited.add(field);
-        }catch (NoSuchElementException nsee) {
-            fieldsWereNotEdited.add(field);
-            allFieldsWereEdited = false;
-        }
-    }
-
-    public void selectOpenERPItem(WebElement element, String field, String value) {
-        try {
-            SelectOpenERP aux = new SelectOpenERP(element);
-            aux.selectItem(value);
-            fieldsWereEdited.add(field);
-        }catch (NoSuchElementException nsee) {
-            fieldsWereNotEdited.add(field);
-            allFieldsWereEdited = false;
-        }
-    }
-
-    public void selectItem(WebElement element, String field, String value) {
-        if(this.webDriverTools.isElementDisplayed(element)) {
-            this.webDriverTools.selectOptionOfDropListElement(element, value);
-            fieldsWereEdited.add(field);
-        } else {
-            fieldsWereNotEdited.add(field);
-            allFieldsWereEdited = false;
-        }
-//        try {
-//            this.webDriverTools.selectOptionOfDropListElement(element, value);
-//            fieldsWereEdited.add(field);
-//        }catch (NoSuchElementException nsee) {
-//            fieldsWereNotEdited.add(field);
-//            allFieldsWereEdited = false;
-//        }
-    }
-
-    public void setInput(WebElement element, String field, String value) {
-        try {
-            this.webDriverTools.clearAndSendKeys(element, value);
-            fieldsWereEdited.add(field);
-        }catch (NoSuchElementException nsee) {
-            fieldsWereNotEdited.add(field);
-            allFieldsWereEdited = false;
-        }
-    }
-
-    public void setCheckbox(WebElement element, String field, String value) {
-        try {
-            if (value.equals("true")) {
-                this.webDriverTools.checkBox(element);
-            }else {
-                this.webDriverTools.unCheckBox(element);
-            }
-            fieldsWereEdited.add(field);
-        }catch (NoSuchElementException nsee) {
-            fieldsWereNotEdited.add(field);
-            allFieldsWereEdited = false;
-        }
-    }
-
-    public void logEditStatus() {
-        log = Logger.getLogger(getClass());
-        log.info("All fields were updated? ==> " + allFieldsWereEdited);
-        log.info("These fields were updated in the form: " + fieldsWereEdited);
-        log.info("These fields were NOT updated in the form: " + fieldsWereNotEdited);
     }
 
     public List< HashMap<String,String>> getData() {
@@ -196,6 +127,28 @@ public abstract class TableOpenERP extends PortalUIElement {
         addElement.click();
     }
 
+    public void removeData(List<OdooObject> inputData) {
+        List<HashMap<String, String>> dataFromUITable;
+        OdooObject currentExpected;
+        HashMap<String, String> currentRow;
+
+        for (int i = 0; i < inputData.size(); i++) {
+            dataFromUITable = this.getData();
+            currentExpected = inputData.get(i);
+
+            for (int uit = 0; uit < dataFromUITable.size(); uit++) {
+                currentRow = dataFromUITable.get(uit);
+                if (inputDataIsInRow(currentExpected, currentRow)) {
+                    this.deleteElement(uit);
+                    break;
+                }
+                if (uit == (dataFromUITable.size() - 1)) {
+                    logNotRecordFoundInTable();
+                }
+            }
+        }
+    }
+
     public void deleteAllData() {
         getDataFromTable();
         if (rowsSize > 0) {
@@ -253,4 +206,7 @@ public abstract class TableOpenERP extends PortalUIElement {
     public void waitForLoading() {
         super.webDriverTools.waitUntilElementPresentAndVisible(this.table);
     }
+
+    public void modifyData(OdooObject odooObject){}
+    public OdooObject getDataFromUI(OdooObject odooObject){return null;}
 }

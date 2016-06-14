@@ -46,42 +46,16 @@ public class EmployeeFactory {
 
     public TableOpenERP getTableForm(String infoType, boolean editMode) {
         switch (infoType) {
-            case "nda":
-                if (editMode) {
-                    return new NDAInfoEditForm();
-                } else {
-                    return new NDAInfoReadForm();
-                }
-            case "emergency":
-                if (editMode) {
-                    return new EmergencyContactInfoEditForm();
-                } else {
-                    return new EmergencyContactInfoReadForm();
-                }
-            case "family":
-                if (editMode) {
-                    return new FamilyInfoEditForm();
-                } else {
-                    return new FamilyInfoReadForm();
-                }
-            case "project":
-                if (editMode) {
-                    return new ProjectInfoEditForm();
-                } else {
-                    return new ProjectInfoReadForm();
-                }
-            case "internal":
-                if (editMode) {
-                    return new InternalCareerInfoEditForm();
-                } else {
-                    return new InternalCareerInfoReadForm();
-                }
-            case "external":
-                if (editMode) {
-                    return new ExternalCareerInfoEditForm();
-                } else {
-                    return new ExternalCareerInfoReadForm();
-                }
+        case "emergency":
+            return new EmergencyContactTable();
+        case "family":
+            return new FamilyInfoTable();
+        case "project":
+            return new ProjectInfoEditForm();
+        case "internal":
+            return new InternalCareerTable();
+        case "external":
+            return new ExternalCareerTable();
         }
         return null;
     }

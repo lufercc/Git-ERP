@@ -11,6 +11,7 @@ public class EmergencyContact extends OdooObject {
     public String relationship;
     public String phone;
     public String mobile;
+    public String employee;
 
     public boolean matchWith(boolean shouldContain, OdooObject inputData) {
         return false;

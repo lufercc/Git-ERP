@@ -61,28 +61,5 @@ public class NDAInfoEditForm extends TableOpenERP {
         }
     }
 
-    public void removeData(List<NDA> expectedData) {
-        List<HashMap<String, String>> dataFromUITable;
-        NDA currentNDA;
-        HashMap<String, String> currentRow;
-
-        for (int i = 0; i < expectedData.size(); i++) {
-            dataFromUITable = this.getData();
-            currentNDA = expectedData.get(i);
-
-            for (int uit = 0; uit < dataFromUITable.size(); uit++) {
-                currentRow = dataFromUITable.get(uit);
-                if (currentNDA.ndaVersion.equals(currentRow.get(expectedHeaders.get("ndaVersion"))) &&
-                    currentNDA.signDate.equals(currentRow.get(expectedHeaders.get("signDate")))) {
-                    this.deleteElement(uit);
-                    break;
-                }
-                if (uit == (dataFromUITable.size() - 1)) {
-                    logNotRecordFoundInTable();
-                }
-            }
-        }
-    }
-
     public boolean inputDataIsInRow(OdooObject inputRec, HashMap<String,String> tableRow){return false;}
 }

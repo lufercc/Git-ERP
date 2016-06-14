@@ -30,6 +30,7 @@ public class EmployeeSteps {
                  publicInfo = "public",
                  personalInfo = "personal",
                  hhrrInfo = "hhrr",
+                 history = "history",
                  engineeringInfo = "engineering";
     final String ndaInfo = "nda",
                  nationalityInfo = "nationality",
@@ -138,14 +139,14 @@ public class EmployeeSteps {
     public void I_verify_if_he_has_this_external_career_data(String hasOrNot, List<ExternalCareer> expectedData) throws Throwable {
         List<OdooObject> expectedObjectData = new ArrayList<>();
         expectedObjectData.addAll(expectedData);
-        Assert.assertTrue(matchDataTable(hasOrNot, personalInfo, externalCareerInfo, expectedObjectData));
+        Assert.assertTrue(matchDataTable(hasOrNot, history, externalCareerInfo, expectedObjectData));
     }
 
     @And("^I verify if he has( not|)? this internal career data$")
     public void I_verify_if_he_has_this_internal_career_data(String hasOrNot, List<InternalCareer> expectedData) throws Throwable {
         List<OdooObject> expectedObjectData = new ArrayList<>();
         expectedObjectData.addAll(expectedData);
-        Assert.assertTrue(matchDataTable(hasOrNot, personalInfo, internalCareerInfo, expectedObjectData));
+        Assert.assertTrue(matchDataTable(hasOrNot, history, internalCareerInfo, expectedObjectData));
     }
 
     /*
@@ -271,17 +272,17 @@ public class EmployeeSteps {
     @And("^I add this emergency contact data to employee form$")
     public void I_add_this_emergency_contact_data_to_employee_form(List<EmergencyContact> emergencyContactInfoData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
-        EmergencyContactInfoEditForm emergencyContactInfoEditForm = new EmergencyContactInfoEditForm();
+        EmergencyContactTable emergencyContactTable = new EmergencyContactTable();
         employeeForm.selectTab(personalInfo);
-        emergencyContactInfoEditForm.addData(emergencyContactInfoData);
+        emergencyContactTable.addData(emergencyContactInfoData);
     }
 
     @And("^I add this family data to employee form$")
     public void I_add_this_family_data_to_employee_form(List<FamilyMember> familyMemberInfoData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
-        FamilyInfoEditForm familyInfoEditForm = new FamilyInfoEditForm();
+        FamilyInfoTable familyInfoTable = new FamilyInfoTable();
         employeeForm.selectTab(hhrrInfo);
-        familyInfoEditForm.addData(familyMemberInfoData);
+        familyInfoTable.addData(familyMemberInfoData);
     }
 
     @And("^I add this project data to employee form$")
@@ -295,17 +296,17 @@ public class EmployeeSteps {
     @And("^I add this external career data to employee form$")
     public void I_add_this_external_career_data_to_employee_form(List<ExternalCareer> externalCareerInfoData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
-        ExternalCareerInfoEditForm externalCareerInfoEditForm = new ExternalCareerInfoEditForm();
+        ExternalCareerTable externalCareerTable = new ExternalCareerTable();
         employeeForm.selectTab("history");
-        externalCareerInfoEditForm.addData(externalCareerInfoData);
+        externalCareerTable.addData(externalCareerInfoData);
     }
 
     @And("^I add this internal career data to employee form$")
     public void I_add_this_internal_career_data_to_employee_form(List<InternalCareer> internalCareerInfoData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
-        InternalCareerInfoEditForm internalCareerInfoEditForm = new InternalCareerInfoEditForm();
+        InternalCareerTable internalCareerTable = new InternalCareerTable();
         employeeForm.selectTab("history");
-        internalCareerInfoEditForm.addData(internalCareerInfoData);
+        internalCareerTable.addData(internalCareerInfoData);
     }
 
     @And("^I delete this nda data from employee form$")
@@ -314,43 +315,43 @@ public class EmployeeSteps {
         NDAInfoEditForm ndaInfoEditForm = new NDAInfoEditForm();
         employeeForm.selectTab(personalInfo);
 
-        ndaInfoEditForm.removeData(ndaInfoData);
+        ndaInfoEditForm.removeData((List<OdooObject>)(List<?>) ndaInfoData);
     }
 
     @And("^I delete this emergency contact data to employee form$")
     public void I_delete_this_emergency_contact_data_to_employee_form(List<EmergencyContact> infoData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
-        EmergencyContactInfoEditForm emergencyContactInfoEditForm = new EmergencyContactInfoEditForm();
+        EmergencyContactTable emergencyContactTable = new EmergencyContactTable();
         employeeForm.selectTab(personalInfo);
 
-        emergencyContactInfoEditForm.removeData(infoData);
+        emergencyContactTable.removeData((List<OdooObject>)(List<?>) infoData);
     }
 
     @And("^I delete this family data to employee form$")
     public void I_delete_this_family_data_to_employee_form(List<FamilyMember> infoData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
-        FamilyInfoEditForm familyInfoEditForm = new FamilyInfoEditForm();
+        FamilyInfoTable familyInfoTable = new FamilyInfoTable();
         employeeForm.selectTab(hhrrInfo);
 
-        familyInfoEditForm.removeData(infoData);
+        familyInfoTable.removeData((List<OdooObject>)(List<?>) infoData);
     }
 
     @And("^I delete this external career data to employee form$")
     public void I_delete_this_external_career_data_to_employee_form(List<ExternalCareer> infoData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
-        ExternalCareerInfoEditForm externalCareerInfoEditForm = new ExternalCareerInfoEditForm();
+        ExternalCareerTable externalCareerTable = new ExternalCareerTable();
         employeeForm.selectTab("history");
 
-        externalCareerInfoEditForm.removeData(infoData);
+        externalCareerTable.removeData((List<OdooObject>)(List<?>) infoData);
     }
 
     @And("^I delete this internal career data to employee form$")
     public void I_delete_this_internal_career_data_to_employee_form(List<InternalCareer> infoData) throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
-        InternalCareerInfoEditForm internalCareerInfoEditForm = new InternalCareerInfoEditForm();
+        InternalCareerTable internalCareerTable = new InternalCareerTable();
         employeeForm.selectTab("history");
 
-        internalCareerInfoEditForm.removeData(infoData);
+        internalCareerTable.removeData((List<OdooObject>)(List<?>) infoData);
     }
 
     @And("^I add this nationality data to employee form$")
@@ -491,10 +492,10 @@ public class EmployeeSteps {
     @And("^I remove all emergency contact data from employee form$")
     public void I_remove_all_emergency_contact_data_from_employee_form() throws Throwable {
         EmployeeForm employeeForm = new EmployeeForm();
-        EmergencyContactInfoEditForm emergencyContactInfoEditForm = new EmergencyContactInfoEditForm();
+        EmergencyContactTable emergencyContactTable = new EmergencyContactTable();
         employeeForm.selectTab(personalInfo);
 
-        emergencyContactInfoEditForm.deleteAllData();
+        emergencyContactTable.deleteAllData();
     }
 
     @And("^I verify no one of these fields are read in public information$")
@@ -593,7 +594,7 @@ public class EmployeeSteps {
     }
     /*
      ========================
-     Attachements Steps
+     Attachments Steps
      ========================
      */
     @And("^I add this file to employee attachments$")

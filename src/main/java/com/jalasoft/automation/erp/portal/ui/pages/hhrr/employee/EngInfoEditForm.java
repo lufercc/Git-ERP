@@ -168,6 +168,6 @@ public class EngInfoEditForm extends FormEditMode {
             setInput(this.nextEvalDate, "nextEvalDate", inputData.nextEvalDate);
         }
 
-        logEditStatus();
+        logEditStatus(true);
     }
 }

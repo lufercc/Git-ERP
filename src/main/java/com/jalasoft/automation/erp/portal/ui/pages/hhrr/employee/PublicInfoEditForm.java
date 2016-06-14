@@ -121,6 +121,6 @@ public class PublicInfoEditForm extends FormEditMode {
             setInput(this.city, "city", inputData.city);
         }
 
-        logEditStatus();
+        logEditStatus(true);
     }
 }

@@ -15,13 +15,27 @@ import java.util.List;
 /**
  * Created by Henry Benito on 10/20/2015.
  */
-public class FamilyInfoEditForm extends TableOpenERP {
+public class FamilyInfoTable extends TableOpenERP {
     @CacheLookup
-    @FindBy(name = "hr.dependent")
+    @FindBy(name = "table.hr.dependent")
     protected WebElement table;
 
+    @FindBy(xpath = "//table//input[@name='name']")
+    protected WebElement name;
 
-    public FamilyInfoEditForm() {
+    @FindBy(name = "last_name")
+    protected WebElement lastName;
+
+    @FindBy(xpath = "//select[@name='relation']")
+    protected WebElement relation;
+
+    @FindBy(xpath = "//select[@name='sex']")
+    protected WebElement sex;
+
+    @FindBy(xpath = "//input[@name='day_of_birth']")
+    protected WebElement birthDate;
+
+    public FamilyInfoTable() {
         super.table = this.table;
         expectedSpanishHeaders.put("name","Nombres");
         expectedSpanishHeaders.put("lastName","Apellidos");
@@ -49,21 +63,9 @@ public class FamilyInfoEditForm extends TableOpenERP {
     public void addData(List<FamilyMember> inputData) {
         try {
             allRecordsWereAdded = false;
-            WebElement name;
-            WebElement lastName;
-            WebElement relation;
-            WebElement sex;
-            WebElement birthDate;
 
             for ( FamilyMember item : inputData) {
                 clickAddElement();
-
-                name = this.webDriver.findElement(By.xpath("//table//input[@name='name']"));
-                lastName = this.webDriver.findElement(By.name("last_name"));
-                relation = this.webDriver.findElement(By.name("relation"));
-                sex = this.webDriver.findElement(By.name("sex"));
-                birthDate = this.webDriver.findElement(By.name("day_of_birth"));
-
 
                 if(item.name != null) {
                     this.webDriverTools.clearAndSendKeys(name, item.name);
@@ -92,31 +94,33 @@ public class FamilyInfoEditForm extends TableOpenERP {
         }
     }
 
-    public void removeData(List<FamilyMember> inputData) {
-        List<HashMap<String, String>> dataFromUITable;
-        FamilyMember currentExpected;
-        HashMap<String, String> currentRow;
-
-        for (int i = 0; i < inputData.size(); i++) {
-            dataFromUITable = this.getData();
-            currentExpected = inputData.get(i);
-
-            for (int uit = 0; uit < dataFromUITable.size(); uit++) {
-                currentRow = dataFromUITable.get(uit);
-                if (currentExpected.name.equals(currentRow.get(expectedHeaders.get("name"))) &&
-                    currentExpected.lastName.equals(currentRow.get(expectedHeaders.get("lastName"))) &&
-                    currentExpected.relation.equals(currentRow.get(expectedHeaders.get("relation"))) &&
-                    currentExpected.sex.equals(currentRow.get(expectedHeaders.get("sex"))) &&
-                    currentExpected.birthDate.equals(currentRow.get(expectedHeaders.get("birthDate")))) {
-                    this.deleteElement(uit);
-                    break;
-                }
-                if (uit == (dataFromUITable.size() - 1)) {
-                    logNotRecordFoundInTable();
-                }
+    public boolean inputDataIsInRow(OdooObject inputRec, HashMap<String,String> tableRow) {
+        FamilyMember inputRecord = (FamilyMember)inputRec;
+        if(inputRecord.name != null) {
+            if (!inputRecord.name.equals(tableRow.get(expectedHeaders.get("name")))) {
+                return false;
             }
         }
+        if(inputRecord.lastName != null) {
+            if (!inputRecord.lastName.equals(tableRow.get(expectedHeaders.get("lastName")))){
+                return false;
+            }
+        }
+        if(inputRecord.relation != null) {
+            if (!inputRecord.relation.equals(tableRow.get(expectedHeaders.get("relation")))) {
+                return false;
+            }
+        }
+        if(inputRecord.sex != null) {
+            if (!inputRecord.sex.equals(tableRow.get(expectedHeaders.get("sex")))) {
+                return false;
+            }
+        }
+        if(inputRecord.birthDate != null) {
+            if (!inputRecord.birthDate.equals(tableRow.get(expectedHeaders.get("birthDate")))) {
+                return false;
+            }
+        }
+        return true;
     }
-
-    public boolean inputDataIsInRow(OdooObject inputRec, HashMap<String,String> tableRow){return false;}
 }

@@ -185,7 +185,6 @@ public class PersonalInfoEditForm extends FormEditMode {
             setInput(this.age, "age", inputData.age);
         }
 
-
-        logEditStatus();
+        logEditStatus(true);
     }
 }

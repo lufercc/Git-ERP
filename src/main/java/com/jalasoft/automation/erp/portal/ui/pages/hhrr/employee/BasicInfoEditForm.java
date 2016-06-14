@@ -104,6 +104,6 @@ public class BasicInfoEditForm extends FormEditMode {
             setInput(preferredName, "preferredName", inputData.preferredName);
         }
 
-        logEditStatus();
+        logEditStatus(true);
     }
 }

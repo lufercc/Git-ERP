@@ -143,6 +143,6 @@ public class HHRRInfoEditForm extends FormEditMode {
             setInput(this.endDate, "endDate", inputData.endDate);
         }
 
-       logEditStatus();
+       logEditStatus(true);
     }
 }
